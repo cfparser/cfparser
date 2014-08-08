@@ -1,0 +1,7 @@
+The log4j-api-1.2.15.jar file contains only a small subset of the classes from
+the full log4j-1.2.15.jar file found in the Log4J distribution.
+
+This subset has been created purely to enable this project to compile without
+the need to include the full jar file, which is quite large.
+
+You will not find a file called log4j-api-1.2.15.jar in the Log4J distribution.
