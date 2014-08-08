@@ -12,7 +12,7 @@ import net.htmlparser.jericho.Source;
  * @author denny
  */
 public class TestGetAttributes extends TestCase {
-	private static final String sourceUrlString = "file:test/data/tag/attribute/simpleTests.xml";
+	private static final String sourceUrlString = "file:src/test/resources/tag/attribute/simpleTests.xml";
 	private Source fSource;
 	private CFMLStartTag fGenericStartTag;
 	

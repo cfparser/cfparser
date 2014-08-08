@@ -91,7 +91,7 @@ public class TestArraysStructs {
 	public void testParseNestedStructsAndArrays() {
 		String path = "";
 		try {
-			path = new URL("file:test/data/cfml/NestedArraysStructs.cfc").getPath();
+			path = new URL("file:src/test/resources/cfml/NestedArraysStructs.cfc").getPath();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}

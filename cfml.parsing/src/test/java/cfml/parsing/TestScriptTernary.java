@@ -10,7 +10,7 @@ import cfml.parsing.cfscript.script.CFScriptStatement;
 public class TestScriptTernary {
 	
 	private CFMLParser fCfmlParser;
-	private static final String sourceUrlFile = "file:test/data/cfml/test1.cfm";
+	private static final String sourceUrlFile = "file:src/test/resources/cfml/test1.cfm";
 	
 	@Before
 	public void setUp() throws Exception {

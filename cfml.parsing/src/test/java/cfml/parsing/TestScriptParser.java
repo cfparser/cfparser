@@ -128,7 +128,7 @@ public class TestScriptParser {
 	public void testParseScriptCfcGood() {
 		String path = "";
 		try {
-			path = new URL("file:test/data/cfml/ScriptComponent.cfc").getPath();
+			path = new URL("file:src/test/resources/cfml/ScriptComponent.cfc").getPath();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -152,7 +152,7 @@ public class TestScriptParser {
 	public void testParseScriptCfcHarder() {
 		String path = "";
 		try {
-			path = new URL("file:test/data/cfml/ScriptComponentHarder.cfc").getPath();
+			path = new URL("file:src/test/resources/cfml/ScriptComponentHarder.cfc").getPath();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -177,7 +177,7 @@ public class TestScriptParser {
 	public void testParseScriptCfcWow() {
 		String path = "";
 		try {
-			path = new URL("file:test/data/cfml/ScriptComponentWow.cfc").getPath();
+			path = new URL("file:src/test/resources/cfml/ScriptComponentWow.cfc").getPath();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -202,7 +202,7 @@ public class TestScriptParser {
 	public void testParseScriptCfcCrazy() {
 		String path = "";
 		try {
-			path = new URL("file:test/data/cfml/ScriptComponentCrazy.cfc").getPath();
+			path = new URL("file:src/test/resources/cfml/ScriptComponentCrazy.cfc").getPath();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -227,7 +227,7 @@ public class TestScriptParser {
 	public void testParseScriptFw1() {
 		String path = "";
 		try {
-			path = new URL("file:test/data/cfml/fw1.cfc").getPath();
+			path = new URL("file:src/test/resources/cfml/fw1.cfc").getPath();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -252,7 +252,7 @@ public class TestScriptParser {
 	public void testParseCFCWithColonMetadata() {
 		String path = "";
 		try {
-			path = new URL("file:test/data/cfml/CFCWithColonMetadata.cfc").getPath();
+			path = new URL("file:src/test/resources/cfml/CFCWithColonMetadata.cfc").getPath();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -277,7 +277,7 @@ public class TestScriptParser {
 	public void testParseAllTestCFCs() {
 		String path = "";
 		try {
-			path = new URL("file:test/data/cfml/").getPath();
+			path = new URL("file:src/test/resources/cfml/").getPath();
 			File[] files = new File(path).listFiles();
 			for (File file : files) {
 				if (file.isDirectory()) {
