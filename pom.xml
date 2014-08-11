@@ -10,5 +10,7 @@
 		<module>cfml.dictionary</module>
 		<module>cfml.parsing</module>
 	</modules>
-
+	<properties>
+        <github.global.server>github</github.global.server>
+	</properties>
 </project>
