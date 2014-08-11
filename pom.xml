@@ -11,6 +11,14 @@
 		<module>cfml.parsing</module>
 	</modules>
 	<properties>
-        <github.global.server>github</github.global.server>
+          <github.global.server>github</github.global.server>
 	</properties>
+
+<distributionManagement>
+    <repository>
+        <id>internal.repo</id>
+        <name>Temporary Staging Repository</name>
+        <url>file://${project.build.directory}/mvn-repo</url>
+    </repository>
+</distributionManagement>
 </project>
