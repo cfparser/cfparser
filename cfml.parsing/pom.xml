@@ -13,7 +13,7 @@
 
 	<dependencies>
 		<dependency>
-      	     	<groupId>${project.groupId}</groupId>
+      	    <groupId>${project.groupId}</groupId>
         	<artifactId>cfml.dictionary</artifactId>
         	<version>1.0.0</version>
         </dependency>
@@ -27,15 +27,19 @@
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr-runtime</artifactId>
 			<version>3.4</version>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>stringtemplate</artifactId>
 			<version>3.2.1</version>
+			<scope>compile</scope>
 		</dependency><dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr</artifactId>
-			<version>3.5.2</version>
+			<version>3.4</version>
+			<type>jar</type>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>javolution</groupId>
@@ -62,56 +66,86 @@
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
 		</dependency>
-		<dependency>
-			<groupId>org.antlr</groupId>
-			<artifactId>ST4</artifactId>
-			<version>4.0.8</version>
-		</dependency>
 	</dependencies>
-<build>
-	<plugins>
-    <plugin>
-        <artifactId>maven-deploy-plugin</artifactId>
-        <version>2.8.1</version>
-        <configuration>
-               <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
-        </configuration>
-    </plugin>
-<plugin>
-         <groupId>com.github.github</groupId>
-         <artifactId>site-maven-plugin</artifactId>
-         <version>0.9</version>
-         <configuration>
-              <!-- git commit message -->
-              <message>Maven artifacts for ${project.version}</message>
-              <!-- disable webpage processing -->
-              <noJekyll>true</noJekyll>
-              <!-- matches distribution management repository url above -->
-              <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
-              <!-- remote branch name -->
-              <branch>refs/heads/mvn-repo</branch>
-              <!-- If you remove this then the old artifact will be removed and new
-               one will replace. But with the merge tag you can just release by changing
-                                                the version -->
-              <merge>true</merge>
-              <includes>
-                <include>**/*</include>
-                </includes>
-                <!-- github repo name -->
-                <repositoryName>cfparser</repositoryName>
-                <!-- github username -->
-		<repositoryOwner>cfparser</repositoryOwner>
-          </configuration>
-          <executions>
-              <execution>
-                    <goals>
-                         <goal>site</goal>
-                    </goals>
-                    <phase>deploy</phase>
-              </execution>
-          </executions>
-</plugin>
-	</plugins>
-</build>
+	<build>
+		<plugins>
+		    <plugin>
+		        <artifactId>maven-deploy-plugin</artifactId>
+		        <version>2.8.1</version>
+		        <configuration>
+		               <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/mvn-repo</altDeploymentRepository>
+		        </configuration>
+		    </plugin>
+			<plugin>
+		         <groupId>com.github.github</groupId>
+		         <artifactId>site-maven-plugin</artifactId>
+		         <version>0.9</version>
+		         <configuration>
+		                <!-- git commit message -->
+		                <message>Maven artifacts for ${project.version}</message>
+		                <!-- disable webpage processing -->
+		                <noJekyll>true</noJekyll>
+		                <!-- matches distribution management repository url above -->
+		                <outputDirectory>${project.build.directory}/mvn-repo</outputDirectory>
+		                <!-- remote branch name -->
+		                <branch>refs/heads/mvn-repo</branch>
+		                <!-- If you remove this then the old artifact will be removed and new
+		                one will replace. But with the merge tag you can just release by changing
+		                                                the version -->
+		                <merge>true</merge>
+		                <includes>
+		                	<include>**/*</include>
+		                </includes>
+		                <!-- github repo name -->
+		                <repositoryName>cfparser</repositoryName>
+		                <!-- github username -->
+					<repositoryOwner>cfparser</repositoryOwner>
+			    </configuration>
+			        <executions>
+			            <execution>
+			                    <goals>
+			                        <goal>site</goal>
+			                    </goals>
+			                    <phase>deploy</phase>
+			            </execution>
+			        </executions>
+			</plugin>
+			<!-- Antlr sources -->
+			<plugin>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr3-maven-plugin</artifactId>
+				<version>3.4</version>
+				<executions>
+					<execution>
+						<id>run antlr</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>antlr</goal>
+						</goals>
+					</execution>
+					<execution></execution>
+				</executions>
+			</plugin>
+			<!-- Antlr sources -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${basedir}/target/generated-sources/antlr3</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
