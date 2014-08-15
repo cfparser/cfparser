@@ -2,3 +2,7 @@ bin/
 .DS_Store
 /cfml.parsing.jar
 /target
+/lib
+/build
+/gUnitEditor
+/ant
