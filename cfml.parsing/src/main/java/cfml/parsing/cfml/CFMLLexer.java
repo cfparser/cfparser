@@ -26,7 +26,7 @@ import org.antlr.runtime.*;
 
 import cfml.parsing.cfml.antlr.*;
 
-public class CFMLLexer extends cfml.parsing.cfml.antlr.CFMLLexer
+public class CFMLLexer extends cfml.parsing.cfml.antlr4.CFMLLexer
 {
 	private ErrorObservable observable;
 
