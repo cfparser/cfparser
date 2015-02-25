@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import org.junit.Before;
 import org.junit.Test;
 
-import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.CFSCRIPTParser.ScriptBlockContext;
 
 public class TestScriptTernary {
 	
@@ -20,7 +20,7 @@ public class TestScriptTernary {
 	@Test
 	public void testParseScriptTernaryFunction() {
 		String script = "result = fileExists(destfile) ? \"overwritten\" : \"created\";";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -33,7 +33,7 @@ public class TestScriptTernary {
 	@Test
 	public void testParseScriptTernaryFunctionParen() {
 		String script = "result = (fileExists(destfile)) ? \"overwritten\" : \"created\";";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -47,7 +47,7 @@ public class TestScriptTernary {
 	public void testParseScriptTernaryString() {
 		// String script = "result = (fileExists(destfile)) ? \"overwritten\" : \"created\";";
 		String script = "result = a == b ? \"overwritten\" : \"created\";";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -60,7 +60,7 @@ public class TestScriptTernary {
 	@Test
 	public void testParseScriptTernaryChain() {
 		String script = "result = a == b ? c > a ? 'c > a' : 'a > c' : 'b != a';";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {

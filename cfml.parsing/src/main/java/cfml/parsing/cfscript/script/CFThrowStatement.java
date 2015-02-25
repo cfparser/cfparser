@@ -27,7 +27,7 @@ public class CFThrowStatement extends CFParsedStatement implements java.io.Seria
 	
 	private CFExpression message;
 	
-	public CFThrowStatement(org.antlr.runtime.Token t, CFExpression _message) {
+	public CFThrowStatement(org.antlr.v4.runtime.Token t, CFExpression _message) {
 		super(t);
 		message = _message;
 	}

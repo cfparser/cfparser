@@ -34,7 +34,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFContext;
 import cfml.parsing.cfscript.CFExpression;

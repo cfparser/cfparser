@@ -32,7 +32,7 @@ package cfml.parsing.cfscript.script;
  * A completely empty statement (";") which does nothing.
  */
 
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 public class CFEmptyStatement extends CFParsedStatement implements java.io.Serializable {
 	

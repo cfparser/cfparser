@@ -32,7 +32,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Map;
 
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFExpression;
 

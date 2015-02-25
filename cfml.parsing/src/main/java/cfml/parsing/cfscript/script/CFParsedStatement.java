@@ -34,7 +34,7 @@ package cfml.parsing.cfscript.script;
  * elements.
  */
 
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 abstract public class CFParsedStatement implements CFScriptStatement, java.io.Serializable {
 	private static final long serialVersionUID = 1L;

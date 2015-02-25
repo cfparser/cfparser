@@ -30,6 +30,8 @@ package cfml.parsing.cfscript;
 
 import org.antlr.runtime.Token;
 
+import cfml.CFSCRIPTLexer;
+
 public class CFTernaryExpression extends CFAssignmentExpression implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -51,12 +53,12 @@ public class CFTernaryExpression extends CFAssignmentExpression implements java.
 		super(t, right, right);
 		_kind = t.getType();
 		operatorImage = t.getText();
-		if (_kind == CFScriptLexer.ANDOPERATOR) {
-			_kind = CFScriptLexer.AND;
-		} else if (_kind == CFScriptLexer.OROPERATOR) {
-			_kind = CFScriptLexer.OR;
-		} else if (_kind == CFScriptLexer.MODOPERATOR) {
-			_kind = CFScriptLexer.MOD;
+		if (_kind == CFSCRIPTLexer.ANDOPERATOR) {
+			_kind = CFSCRIPTLexer.AND;
+		} else if (_kind == CFSCRIPTLexer.OROPERATOR) {
+			_kind = CFSCRIPTLexer.OR;
+		} else if (_kind == CFSCRIPTLexer.MODOPERATOR) {
+			_kind = CFSCRIPTLexer.MOD;
 		}
 		_left = left;
 		_right = right;
@@ -68,7 +70,7 @@ public class CFTernaryExpression extends CFAssignmentExpression implements java.
 	
 	public String Decompile(int indent) {
 		String endChar = "";
-		if (_kind == CFScriptLexer.LEFTBRACKET) {
+		if (_kind == CFSCRIPTLexer.LEFTBRACKET) {
 			endChar = "]";
 		}
 		return "" + _left.Decompile(indent) + operatorImage + _right.Decompile(indent) + endChar;

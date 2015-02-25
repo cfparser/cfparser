@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.CFSCRIPTParser.ScriptBlockContext;
 
 public class TestScriptDoubleNot {
 	
@@ -21,7 +21,7 @@ public class TestScriptDoubleNot {
 	@Test
 	public void testParseScriptDoubleNot() {
 		String script = "if (!! xx) yy = 1;";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {

@@ -23,7 +23,7 @@ public class CFReThrowStatement extends CFParsedStatement implements java.io.Ser
 	
 	private static final long serialVersionUID = 1L;
 	
-	public CFReThrowStatement(org.antlr.runtime.Token t) {
+	public CFReThrowStatement(org.antlr.v4.runtime.Token t) {
 		super(t);
 	}
 	

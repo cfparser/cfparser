@@ -45,7 +45,7 @@ public class CFCompoundStatement extends CFParsedStatement implements CFScriptSt
 		_v = new ArrayList<CFScriptStatement>();
 	}
 	
-	public CFCompoundStatement(org.antlr.runtime.Token t) {
+	public CFCompoundStatement(org.antlr.v4.runtime.Token t) {
 		super(t);
 		_v = new ArrayList<CFScriptStatement>();
 	}

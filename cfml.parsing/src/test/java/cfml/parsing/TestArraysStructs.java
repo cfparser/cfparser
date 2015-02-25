@@ -9,7 +9,7 @@ import java.net.URL;
 import org.junit.Before;
 import org.junit.Test;
 
-import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.CFSCRIPTParser.ScriptBlockContext;
 
 public class TestArraysStructs {
 	
@@ -20,8 +20,8 @@ public class TestArraysStructs {
 		fCfmlParser = new CFMLParser();
 	}
 	
-	private CFScriptStatement parseScript(String script) {
-		CFScriptStatement scriptStatement = null;
+	private ScriptBlockContext parseScript(String script) {
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -35,7 +35,7 @@ public class TestArraysStructs {
 	@Test
 	public void testEmptyVaredArray() {
 		String script = "var someArry = [];";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -46,7 +46,7 @@ public class TestArraysStructs {
 	@Test
 	public void testVaredArrayOfStruct() {
 		String script = "var someArry = [{funk:'wee'},{funk2:'wee2'}];";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -57,7 +57,7 @@ public class TestArraysStructs {
 	@Test
 	public void testVaredArrayOfStructKyeyWerd() {
 		String script = "var package = { name:'cfcPackage', datatypes:datatypes, classes : [{ name:'CFCModel',features : [{name='package', etype:'EString', lowerBound:0,upperBound:1},{name='cfcs', reference:'ORMEntity',containment:true, lowerBound:0,upperBound:-1}]}]};";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -68,7 +68,7 @@ public class TestArraysStructs {
 	@Test
 	public void testStructOfArray() {
 		String script = "var someStrucsArry = {stru:[{funk:'wee'},{funk2:'wee2'}], stro:[{funk:'wee'},{funk2:'wee2'}]};";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -79,7 +79,7 @@ public class TestArraysStructs {
 	@Test
 	public void testArrayWithFunction() {
 		String script = "arrData[ ArrayLen( arrData ) + 1 ] = { Foo = \"Bar\" };";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -95,7 +95,7 @@ public class TestArraysStructs {
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScriptFile(path);
 		} catch (Exception e) {

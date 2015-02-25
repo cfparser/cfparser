@@ -29,11 +29,14 @@
 
 package cfml.parsing.cfscript;
 
-import java.io.StringReader;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.TokenStream;
 
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.tree.CommonTree;
-import org.antlr.runtime.tree.CommonTreeNodeStream;
+import cfml.CFSCRIPTLexer;
+import cfml.CFSCRIPTParser;
+import cfml.CFSCRIPTParser.ExpressionContext;
+import cfml.CFSCRIPTParser.ScriptBlockContext;
 
 public abstract class CFExpression extends CFParsedStatement implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
@@ -51,26 +54,24 @@ public abstract class CFExpression extends CFParsedStatement implements java.io.
 	}
 	
 	public static CFExpression getCFExpressionThrows(String _infix) throws Exception {
-		ANTLRNoCaseReaderStream input = new ANTLRNoCaseReaderStream(new poundSignFilterStream(new StringReader(_infix)));
 		
-		CFScriptLexer lexer = new CFScriptLexer(input);
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		CFScriptParser parser = new CFScriptParser(tokens);
-		parser.scriptMode = false;
-		CFScriptParser.expression_return r = parser.expression();
-		CommonTree tree = (CommonTree) r.getTree();
+		ANTLRInputStream input = new ANTLRInputStream(_infix);
+		CFSCRIPTLexer lexer = new CFSCRIPTLexer(input);
+		TokenStream tokens = new CommonTokenStream(lexer);
 		
-		CommonTreeNodeStream nodes = new CommonTreeNodeStream(tree);
-		nodes.setTokenStream(tokens);
-		CFScriptTree p2 = new CFScriptTree(nodes);
-		p2.scriptMode = false;
-		CFExpression exp = p2.expression();
+		ScriptBlockContext scriptStatement = null;
+		CFSCRIPTParser parser = new CFSCRIPTParser(tokens);
 		
-		if (exp instanceof CFAssignmentExpression) {
-			((CFAssignmentExpression) exp).checkIndirect(_infix);
-		}
+		// lexer.addErrorListener(errorReporter);
+		// parser.addErrorListener(errorReporter);
+		// p2.scriptMode = false;
+		ExpressionContext exp = parser.expression();
 		
-		return exp;
+		// if (exp instanceof CFAssignmentExpression) {
+		// ((CFAssignmentExpression) exp).checkIndirect(_infix);
+		// }
+		// TODO
+		return null;
 		
 	}
 	

@@ -31,6 +31,8 @@ package cfml.parsing.cfscript;
 
 import org.antlr.runtime.Token;
 
+import cfml.CFSCRIPTLexer;
+
 public class CFLiteral extends CFExpression implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -43,11 +45,11 @@ public class CFLiteral extends CFExpression implements java.io.Serializable {
 		kind = _t.getType();
 		image = _t.getText();
 		switch (kind) {
-		case CFScriptLexer.FLOATING_POINT_LITERAL:
-		case CFScriptLexer.INTEGER_LITERAL:
+		case CFSCRIPTLexer.FLOATING_POINT_LITERAL:
+		case CFSCRIPTLexer.INTEGER_LITERAL:
 			val = _t.getText();
 			break;
-		case CFScriptLexer.STRING_LITERAL:
+		case CFSCRIPTLexer.STRING_LITERAL:
 			// create a String, stripping off the surrounding quotes and
 			// replacing any escaped quotes with a single quote
 			String quote = _t.getText().substring(0, 1);
@@ -56,11 +58,11 @@ public class CFLiteral extends CFExpression implements java.io.Serializable {
 			image = str;
 			val = str;
 			break;
-		case CFScriptLexer.BOOLEAN_LITERAL:
+		case CFSCRIPTLexer.BOOLEAN_LITERAL:
 			val = _t.getText();
 			break;
 		// CFML doesn't do nulls, to my knowledge
-		// case CFScriptLexer.NULL:
+		// case CFSCRIPTLexer.NULL:
 		// val = "";
 		// break;
 		default:

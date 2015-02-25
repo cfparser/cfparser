@@ -27,7 +27,7 @@ public class CFExitStatement extends CFParsedStatement implements java.io.Serial
 	
 	private CFExpression methodArg;
 	
-	public CFExitStatement(org.antlr.runtime.Token t, CFExpression _method) {
+	public CFExitStatement(org.antlr.v4.runtime.Token t, CFExpression _method) {
 		super(t);
 		methodArg = _method;
 	}

@@ -31,7 +31,7 @@ package cfml.parsing.cfscript;
 
 import java.io.Serializable;
 
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 public class ParseException extends IllegalArgumentException implements Serializable {
 	

@@ -37,11 +37,11 @@ public class CFAbortStatement extends CFParsedStatement implements java.io.Seria
 	
 	private CFExpression message;
 	
-	public CFAbortStatement(org.antlr.runtime.Token t) {
+	public CFAbortStatement(org.antlr.v4.runtime.Token t) {
 		this(t, null);
 	}
 	
-	public CFAbortStatement(org.antlr.runtime.Token t, CFExpression _message) {
+	public CFAbortStatement(org.antlr.v4.runtime.Token t, CFExpression _message) {
 		super(t);
 		message = _message;
 	}

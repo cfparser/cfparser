@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.CFSCRIPTParser.ScriptBlockContext;
 
 public class TestScriptReservedWordOrder {
 	
@@ -17,8 +17,8 @@ public class TestScriptReservedWordOrder {
 		fCfmlParser = new CFMLParser();
 	}
 	
-	private CFScriptStatement parseScript(String script) {
-		CFScriptStatement scriptStatement = null;
+	private ScriptBlockContext parseScript(String script) {
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -32,7 +32,7 @@ public class TestScriptReservedWordOrder {
 	@Test
 	public void testFuncNameMatchesAccessType() {
 		String script = "function package() {}";
-		CFScriptStatement scriptStatement = parseScript(script);
+		ScriptBlockContext scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}
@@ -42,7 +42,7 @@ public class TestScriptReservedWordOrder {
 	@Test
 	public void testAccessTypeAndFuncNameMatch() {
 		String script = "package function package() {}";
-		CFScriptStatement scriptStatement = parseScript(script);
+		ScriptBlockContext scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}
@@ -52,7 +52,7 @@ public class TestScriptReservedWordOrder {
 	@Test
 	public void testReturnAndAccessTypeAndFuncNameMatch() {
 		String script = "package package function package() {}";
-		CFScriptStatement scriptStatement = parseScript(script);
+		ScriptBlockContext scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}

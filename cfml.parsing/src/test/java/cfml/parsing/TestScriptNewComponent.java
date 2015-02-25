@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.CFSCRIPTParser.ScriptBlockContext;
 
 public class TestScriptNewComponent {
 	
@@ -17,8 +17,8 @@ public class TestScriptNewComponent {
 		fCfmlParser = new CFMLParser();
 	}
 	
-	private CFScriptStatement parseScript(String script) {
-		CFScriptStatement scriptStatement = null;
+	private ScriptBlockContext parseScript(String script) {
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -32,7 +32,7 @@ public class TestScriptNewComponent {
 	@Test
 	public void testNewInFunction() {
 		String script = "var dojoAppPackage = ecore.load(new moshen.metamodels.DojoApp().package());";
-		CFScriptStatement scriptStatement = parseScript(script);
+		ScriptBlockContext scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}
@@ -42,7 +42,7 @@ public class TestScriptNewComponent {
 	@Test
 	public void testNewInFunctionMember() {
 		String script = "var dojoAppPackage = ecore.load(new moshen.metamodels.DojoApp().package().thing);";
-		CFScriptStatement scriptStatement = parseScript(script);
+		ScriptBlockContext scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}
@@ -52,7 +52,7 @@ public class TestScriptNewComponent {
 	@Test
 	public void testNewOp() {
 		String script = "myvar = new my.path.cfc.Here();";
-		CFScriptStatement scriptStatement = parseScript(script);
+		ScriptBlockContext scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}

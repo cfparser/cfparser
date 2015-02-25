@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.CFSCRIPTParser.ScriptBlockContext;
 
 public class TestScriptParserIfs {
 	
@@ -17,8 +17,8 @@ public class TestScriptParserIfs {
 		fCfmlParser = new CFMLParser();
 	}
 	
-	private CFScriptStatement parseScript(String script) {
-		CFScriptStatement scriptStatement = null;
+	private ScriptBlockContext parseScript(String script) {
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -32,7 +32,7 @@ public class TestScriptParserIfs {
 	@Test
 	public void testIfLongFunkKeyWord() {
 		String script = "if(tag.template.startsWith('ram:')) {}";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -43,7 +43,7 @@ public class TestScriptParserIfs {
 	@Test
 	public void testIfLongFunk() {
 		String script = "if(foo.bar.blah('ram:')) {}";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -54,7 +54,7 @@ public class TestScriptParserIfs {
 	@Test
 	public void testIfshortForm() {
 		String script = "if ( structKeyExists( cfc, \"get#property#\" ) ) return evaluate( 'cfc.get#property#()' );";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());

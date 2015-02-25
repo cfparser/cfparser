@@ -50,7 +50,7 @@ public class CFPropertyStatement extends CFParsedAttributeStatement implements j
 		validAttributes.add("PATTERN");
 	}
 	
-	public CFPropertyStatement(org.antlr.runtime.Token t, Map<String, CFExpression> _attributes) {
+	public CFPropertyStatement(org.antlr.v4.runtime.Token t, Map<String, CFExpression> _attributes) {
 		super(t, _attributes);
 		// validateAttributes(t, validAttributes);
 	}

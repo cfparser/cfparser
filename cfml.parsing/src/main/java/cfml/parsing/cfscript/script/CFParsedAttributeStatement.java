@@ -33,7 +33,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFContext;
 import cfml.parsing.cfscript.CFException;

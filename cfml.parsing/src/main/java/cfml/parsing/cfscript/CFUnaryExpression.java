@@ -29,6 +29,8 @@
 
 package cfml.parsing.cfscript;
 
+import cfml.CFSCRIPTLexer;
+
 /**
  * Definition of expression tree for a unary expression.
  */
@@ -53,38 +55,38 @@ public class CFUnaryExpression extends CFExpression implements java.io.Serializa
 		StringBuilder sb = new StringBuilder();
 		
 		switch (kind) {
-		case CFScriptLexer.MINUS:
+		case CFSCRIPTLexer.MINUS:
 			sb.append('-');
 			sb.append(sub.Decompile(0));
 			break;
-		case CFScriptLexer.NOT:
+		case CFSCRIPTLexer.NOT:
 			sb.append("NOT ");
 			sb.append(sub.Decompile(0));
 			break;
-		case CFScriptLexer.NOTOP:
+		case CFSCRIPTLexer.NOTOP:
 			sb.append('!');
 			sb.append(sub.Decompile(0));
 			break;
-		case CFScriptLexer.PLUS:
+		case CFSCRIPTLexer.PLUS:
 			sb.append('+');
 			sb.append(sub.Decompile(0));
 			break;
-		case CFScriptLexer.PLUSPLUS:
+		case CFSCRIPTLexer.PLUSPLUS:
 			sb.append("++");
 			sb.append(sub.Decompile(0));
 			break;
-		case CFScriptLexer.MINUSMINUS:
+		case CFSCRIPTLexer.MINUSMINUS:
 			sb.append("--");
 			sb.append(sub.Decompile(0));
 			break;
-		case CFScriptLexer.POSTPLUSPLUS:
-			sb.append(sub.Decompile(0));
-			sb.append("--");
-			break;
-		case CFScriptLexer.POSTMINUSMINUS:
-			sb.append(sub.Decompile(0));
-			sb.append("--");
-			break;
+		// case CFSCRIPTLexer.POSTPLUSPLUS:
+		// sb.append(sub.Decompile(0));
+		// sb.append("--");
+		// break;
+		// case CFSCRIPTLexer.POSTMINUSMINUS:
+		// sb.append(sub.Decompile(0));
+		// sb.append("--");
+		// break;
 		}
 		
 		return sb.toString();

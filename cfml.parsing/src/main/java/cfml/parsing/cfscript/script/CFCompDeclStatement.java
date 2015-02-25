@@ -33,7 +33,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFContext;
 import cfml.parsing.cfscript.CFExpression;
@@ -54,7 +54,6 @@ public class CFCompDeclStatement extends CFParsedStatement {
 	public CFCompDeclStatement(Token _t, Map<String, CFExpression> _attr, CFScriptStatement _body) {
 		super(_t);
 		body = _body;
-		
 		// handle the function attributes
 		attributes = new HashMap<String, String>();
 		if (_attr != null) {

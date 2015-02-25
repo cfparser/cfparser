@@ -1,12 +1,12 @@
 package cfml.parsing;
 
 import java.io.BufferedReader;
-import java.io.CharArrayReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -15,31 +15,24 @@ import java.util.Set;
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.StartTag;
 
-import org.antlr.runtime.BitSet;
-import org.antlr.runtime.CommonTokenStream;
-import org.antlr.runtime.IntStream;
-import org.antlr.runtime.ParserRuleReturnScope;
-import org.antlr.runtime.RecognitionException;
-import org.antlr.runtime.tree.CommonTree;
-import org.antlr.runtime.tree.CommonTreeNodeStream;
-import org.antlr.runtime.tree.DOTTreeGenerator;
-import org.antlr.stringtemplate.StringTemplate;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.IntStream;
+import org.antlr.v4.runtime.Parser;
+import org.antlr.v4.runtime.RecognitionException;
+import org.antlr.v4.runtime.Recognizer;
+import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.atn.ATNConfigSet;
+import org.antlr.v4.runtime.dfa.DFA;
 
+import cfml.CFSCRIPTLexer;
+import cfml.CFSCRIPTParser;
+import cfml.CFSCRIPTParser.ScriptBlockContext;
 import cfml.dictionary.DictionaryManager;
-import cfml.dictionary.Parameter;
 import cfml.dictionary.SyntaxDictionary;
 import cfml.dictionary.preferences.DictionaryPreferences;
-import cfml.parsing.cfscript.ANTLRNoCaseReaderStream;
-import cfml.parsing.cfscript.CFParseException;
-import cfml.parsing.cfscript.CFScriptLexer;
-import cfml.parsing.cfscript.CFScriptParser;
-import cfml.parsing.cfscript.CFScriptTree;
 import cfml.parsing.cfscript.IErrorReporter;
 import cfml.parsing.cfscript.ParseException;
-import cfml.parsing.cfscript.poundSignFilterStream;
-import cfml.parsing.cfscript.poundSignFilterStreamException;
-import cfml.parsing.cfscript.sourceReader;
-import cfml.parsing.cfscript.script.CFScriptStatement;
 
 public class CFMLParser {
 	
@@ -77,7 +70,7 @@ public class CFMLParser {
 	public CFMLParser(String dictionariesPath, String dictionary) {
 		fDictPrefs.setDictionaryDir(dictionariesPath);
 		fDictPrefs.setCFDictionary(dictionary);
-		DictionaryManager.initDictionaries(fDictPrefs);
+		// DictionaryManager.initDictionaries(fDictPrefs);
 		cfdic = DictionaryManager.getDictionaryByVersion(dictionary);
 		if (cfdic == null) {
 			throw new IllegalArgumentException("The syntax dictionary could not be loaded!");
@@ -233,23 +226,24 @@ public class CFMLParser {
 			String name = element.getName();
 			String itemData = element.getTextExtractor().toString();
 			
-			for (int i = 0; i < params.length; i++) {
-				Parameter currParam = (Parameter) params[i];
-				if (currParam.isRequired() && !(itemAttributes.containsKey(currParam.getName().toLowerCase()))) {
-					addMessage(new ParseError(lineNumber, startPosition, endPosition, itemData, "The attribute \'"
-							+ currParam.getName() + "\' is compulsory for the <" + name + "> tag." + attributesFound));
-				}
-				
-				if (!currParam.getTriggers().isEmpty() && currParam.isRequired(suggestedAttributes) == 3
-						&& !itemAttributes.containsKey(currParam.getName())) {
-					addMessage(new ParseError(lineNumber, startPosition, endPosition, itemData, "The attribute \'"
-							+ currParam.getName() + "\' is required for the <" + name + "> tag." + attributesFound));
-				} else if (!currParam.getTriggers().isEmpty() && currParam.isTriggered(suggestedAttributes) == 0
-						&& itemAttributes.containsKey(currParam.getName())) {
-					addMessage(new ParseError(lineNumber, startPosition, endPosition, itemData, "The attribute \'"
-							+ currParam.getName() + "\' is not valid for the <" + name + "> tag." + attributesFound));
-				}
-			}
+			// TODO
+			// for (int i = 0; i < params.length; i++) {
+			// Parameter currParam = (Parameter) params[i];
+			// if (currParam.isRequired() && !(itemAttributes.containsKey(currParam.getName().toLowerCase()))) {
+			// addMessage(new ParseError(lineNumber, startPosition, endPosition, itemData, "The attribute \'"
+			// + currParam.getName() + "\' is compulsory for the <" + name + "> tag." + attributesFound));
+			// }
+			//
+			// if (!currParam.getTriggers().isEmpty() && currParam.isRequired(suggestedAttributes) == 3
+			// && !itemAttributes.containsKey(currParam.getName())) {
+			// addMessage(new ParseError(lineNumber, startPosition, endPosition, itemData, "The attribute \'"
+			// + currParam.getName() + "\' is required for the <" + name + "> tag." + attributesFound));
+			// } else if (!currParam.getTriggers().isEmpty() && currParam.isTriggered(suggestedAttributes) == 0
+			// && itemAttributes.containsKey(currParam.getName())) {
+			// addMessage(new ParseError(lineNumber, startPosition, endPosition, itemData, "The attribute \'"
+			// + currParam.getName() + "\' is not valid for the <" + name + "> tag." + attributesFound));
+			// }
+			// }
 		}
 		
 	}
@@ -261,14 +255,14 @@ public class CFMLParser {
 		}
 		
 		public void reportError(RecognitionException re) {
-			if (re.token != null) {
+			if (re.getOffendingToken() != null) {
 				// System.out.println("Token line:" + re.token.getLine());
 				// System.out.println("Token text:" + re.token.getText());
 			}
 			// re.printStackTrace();
 			// System.err.println(re.getMessage());
-			addMessage(new ParseError(re.line, re.charPositionInLine, re.charPositionInLine, re.getMessage(),
-					re.getMessage()));
+			addMessage(new ParseError(re.getOffendingToken().getLine(), re.getOffendingToken().getCharPositionInLine(),
+					re.getOffendingToken().getCharPositionInLine(), re.getMessage(), re.getMessage()));
 		}
 		
 		public void reportError(String[] tokenNames, RecognitionException re) {
@@ -276,89 +270,78 @@ public class CFMLParser {
 			// System.out.println("Token text:" + re.token.getText());
 			// System.err.println(tokenNames);
 			// System.err.println(re.getMessage());
-			addMessage(new ParseError(re.line, re.charPositionInLine, re.charPositionInLine, tokenNames.toString(),
-					re.getMessage()));
+			addMessage(new ParseError(re.getOffendingToken().getLine(), re.getOffendingToken().getCharPositionInLine(),
+					re.getOffendingToken().getCharPositionInLine(), tokenNames.toString(), re.getMessage()));
 			// re.printStackTrace();
 		}
 		
-		public void reportError(IntStream input, RecognitionException re, BitSet follow) {
+		public void reportError(IntStream input, RecognitionException re, org.antlr.runtime.BitSet follow) {
 			// System.out.println("Token line:" + re.token.getLine());
 			// System.out.println("Token text:" + re.token.getText());
-			addMessage(new ParseError(re.line, re.charPositionInLine, re.charPositionInLine, re.getMessage(),
-					re.getMessage()));
+			addMessage(new ParseError(re.getOffendingToken().getLine(), re.getOffendingToken().getCharPositionInLine(),
+					re.getOffendingToken().getCharPositionInLine(), re.getMessage(), re.getMessage()));
 			// System.err.println(re.getMessage());
+		}
+		
+		public void reportAmbiguity(Parser arg0, DFA arg1, int arg2, int arg3, boolean arg4, BitSet arg5,
+				ATNConfigSet arg6) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		public void reportAttemptingFullContext(Parser arg0, DFA arg1, int arg2, int arg3, BitSet arg4,
+				ATNConfigSet arg5) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		public void reportContextSensitivity(Parser arg0, DFA arg1, int arg2, int arg3, int arg4, ATNConfigSet arg5) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+		public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine,
+				String msg, RecognitionException re) {
+			addMessage(new ParseError(line, charPositionInLine, charPositionInLine, msg, re == null ? null
+					: re.getMessage()));
+			
 		}
 		
 	}
 	
-	public CFScriptStatement parseScriptFile(String file) throws ParseException, IOException {
+	public ScriptBlockContext parseScriptFile(String file) throws ParseException, IOException {
 		return parseScript(readFileAsString(file));
 	}
 	
-	public CFScriptStatement parseScript(String cfscript) throws ParseException, IOException {
-		CFScriptStatement scriptStatement = null;
-		char[] scriptWithEndTag = cfscript.toCharArray();
+	public ScriptBlockContext parseScript(String cfscript) throws ParseException, IOException {
 		
-		poundSignFilterStream psfstream = new poundSignFilterStream(new CharArrayReader(scriptWithEndTag));
-		ANTLRNoCaseReaderStream input = new ANTLRNoCaseReaderStream(psfstream); // +
-		// ANTLRNoCaseReaderStream input = new ANTLRNoCaseReaderStream(new CharArrayReader(scriptWithEndTag)); // +
-		CFScriptLexer lexer = new CFScriptLexer(input);
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
-		CFScriptParser parser = new CFScriptParser(tokens);
+		ANTLRInputStream input = new ANTLRInputStream(cfscript);
+		CFSCRIPTLexer lexer = new CFSCRIPTLexer(input);
+		TokenStream tokens = new CommonTokenStream(lexer);
+		// int i = 0;
+		// tokens.consume();
+		// while (true) {
+		// System.out.println("-> " + CFSCRIPTLexer.tokenNames[tokens.get(i++).getType()]);
+		// tokens.consume();
+		// if (System.currentTimeMillis() < 1000)
+		// break;
+		//
+		// }
+		ScriptBlockContext scriptStatement = null;
+		CFSCRIPTParser parser = new CFSCRIPTParser(tokens);
 		
-		lexer.setErrorReporter(errorReporter);
-		parser.setErrorReporter(errorReporter);
+		lexer.addErrorListener(errorReporter);
+		parser.addErrorListener(errorReporter);
 		try {
-			// "</CFSCRIPT>")
-			// )
-			// );
-			ParserRuleReturnScope r = parser.scriptBlock();
-			CommonTree tree = (CommonTree) r.getTree();
-			DOTTreeGenerator gen = new DOTTreeGenerator();
-			StringTemplate st = gen.toDOT(tree);
-			// System.out.println(st);
+			scriptStatement = parser.scriptBlock();
 			
-			/*
- */
-			// System.out.println(parser.getNumberOfSyntaxErrors());
-			CommonTreeNodeStream nodes = new CommonTreeNodeStream(tree);
-			// System.out.println(nodes.getTreeAdaptor().getChildCount(tree));
-			nodes.setTokenStream(tokens);
-			CFScriptTree p2 = new CFScriptTree(nodes);
-			p2.setErrorReporter(errorReporter);
-			scriptStatement = p2.scriptBlock();
-			// find special cases of "#varName#"="value";
-			sourceReader sr = new sourceReader(new BufferedReader(new CharArrayReader(cfscript.toCharArray())));
-			scriptStatement.checkIndirectAssignments(sr.getLines());
-			
-		} catch (CFParseException e) {
-			addMessage(new ParseError(e.line, e.charPositionInLine, e.charPositionInLine,
-					e.getSourceException().input.toString(), e.getMessage()));
-			// throw new ParseException(e.token, "Unexpected \'" + parser.getTokenErrorDisplay(e.token) + "\' at line "
-			// +e.line + e.charPositionInLine);
-			// addMessage(new ParseError(e.line, e.charPositionInLine, e.charPositionInLine, parser
-			// .getTokenErrorDisplay(e.token), "Unexpected \'" + parser.getTokenErrorDisplay(e.token) + "\'"));
-			// parser.displayRecognitionError(parser.getTokenNames(), e);
-			// System.out.println(cfscript);
-			// System.out.println(parser.getErrorMessage(e, parser.getTokenNames()));
-			// System.out.println(e.line + ":" + e.charPositionInLine + " er:" + e.getMessage()
-			// + parser.getTokenErrorDisplay(e.token) + e.token.getTokenIndex() + e.getUnexpectedType()
-			// + cfscript.charAt(e.charPositionInLine) + tokens.get(e.index - 1).toString());
-			// e.printStackTrace();
+			// } catch (CFParseException e) {
+			// addMessage(new ParseError(e.line, e.charPositionInLine, e.charPositionInLine,
+			// e.getSourceException().input.toString(), e.getMessage()));
 		} catch (RecognitionException e) {
-			throw new ParseException(e.token, "Unexpected \'" + parser.getTokenErrorDisplay(e.token) + "\' ("
-					+ e.token.getText() + ")");
-			// addMessage(new ParseError(e.line, e.charPositionInLine, e.charPositionInLine, parser
-			// .getTokenErrorDisplay(e.token), "Unexpected \'" + parser.getTokenErrorDisplay(e.token) + "\'"));
-			// parser.displayRecognitionError(parser.getTokenNames(), e);
-			// System.out.println(cfscript);
-			// System.out.println(parser.getErrorMessage(e, parser.getTokenNames()));
-			// System.out.println(e.line + ":" + e.charPositionInLine + " er:" + e.getMessage()
-			// + parser.getTokenErrorDisplay(e.token) + e.token.getTokenIndex() + e.getUnexpectedType()
-			// + cfscript.charAt(e.charPositionInLine) + tokens.get(e.index - 1).toString());
-			// e.printStackTrace();
-		} catch (poundSignFilterStreamException e) {
-			e.printStackTrace();
+			throw new ParseException(e.getOffendingToken(), "Unexpected \'"
+					+ parser.getTokenErrorDisplay(e.getOffendingToken()) + "\' (" + e.getOffendingToken().getText()
+					+ ")");
 		}
 		return scriptStatement;
 	}

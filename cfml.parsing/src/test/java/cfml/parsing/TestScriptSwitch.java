@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.CFSCRIPTParser.ScriptBlockContext;
 
 public class TestScriptSwitch {
 	
@@ -17,8 +17,8 @@ public class TestScriptSwitch {
 		fCfmlParser = new CFMLParser();
 	}
 	
-	private CFScriptStatement parseScript(String script) {
-		CFScriptStatement scriptStatement = null;
+	private ScriptBlockContext parseScript(String script) {
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -32,7 +32,7 @@ public class TestScriptSwitch {
 	@Test
 	public void testSwitch() {
 		String script = "switch(prop.getType()) {case 'date' : case 'datetime' : kronk=sqronk; break; default: flur;}";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -43,8 +43,9 @@ public class TestScriptSwitch {
 	@Test
 	public void testSwitchEmpty() {
 		String script = "switch(prop) {case 'trunk' : case 'pleck' : break; case 'strunk' : break;}";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
+		// TestUtils.showGUI(scriptStatement, CFSCRIPTParser.ruleNames);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}
@@ -54,7 +55,7 @@ public class TestScriptSwitch {
 	@Test
 	public void testCfmlFunctionStatement() {
 		String script = "savecontent variable='renderedcontent' {model = duplicate(_model);metadata = duplicate(_model);};";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());

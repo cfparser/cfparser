@@ -52,7 +52,7 @@ public class CFLockStatement extends CFParsedAttributeStatement implements java.
 		supportedAttributes.add("THROWONTIMEOUT");
 	}
 	
-	public CFLockStatement(org.antlr.runtime.Token _t, Map<String, CFExpression> _attr, CFScriptStatement _body) {
+	public CFLockStatement(org.antlr.v4.runtime.Token _t, Map<String, CFExpression> _attr, CFScriptStatement _body) {
 		super(_t, _attr);
 		
 		validateAttributes(_t, supportedAttributes);

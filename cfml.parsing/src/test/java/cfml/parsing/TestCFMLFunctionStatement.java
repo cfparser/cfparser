@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.CFSCRIPTParser.ScriptBlockContext;
 
 public class TestCFMLFunctionStatement {
 	
@@ -17,8 +17,8 @@ public class TestCFMLFunctionStatement {
 		fCfmlParser = new CFMLParser();
 	}
 	
-	private CFScriptStatement parseScript(String script) {
-		CFScriptStatement scriptStatement = null;
+	private ScriptBlockContext parseScript(String script) {
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -32,7 +32,7 @@ public class TestCFMLFunctionStatement {
 	@Test
 	public void testCfmlSavecontentFunctionStatement() {
 		String script = "savecontent variable='renderedcontent' {}";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -43,7 +43,7 @@ public class TestCFMLFunctionStatement {
 	@Test
 	public void testCfmlFunctionStatement() {
 		String script = "savecontent variable='renderedcontent' {model = duplicate(_model); metadata = duplicate(_model); INCLUDE '/ram/#randName#';};";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -54,7 +54,7 @@ public class TestCFMLFunctionStatement {
 	@Test
 	public void testCfmlFunctionDirectoryStatement() {
 		String script = "directory name=\"dir\" directory=dir action=\"list\" fart=\"yep\" ;";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -65,7 +65,7 @@ public class TestCFMLFunctionStatement {
 	@Test
 	public void testIncludeStatement() {
 		String script = "include \"/ram/#my#\";";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -76,7 +76,7 @@ public class TestCFMLFunctionStatement {
 	@Test
 	public void testSettingStatement() {
 		String script = "setting requesttimeout=\"333\";";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -94,7 +94,7 @@ public class TestCFMLFunctionStatement {
 	@Test
 	public void testQueryStatement() {
 		String script = "query name=\"funk\" { writeOutput('SELECT * FROM FUNK'); }";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -105,7 +105,7 @@ public class TestCFMLFunctionStatement {
 	@Test
 	public void testLongFuncStatement() {
 		String script = "var wee = load_resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(\"*\", XMIResourceFactoryImpl);";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -117,7 +117,7 @@ public class TestCFMLFunctionStatement {
 	public void testIncludeWithTemplateStatementFail() {
 		/* need to check if this is valid in OBD/ACF */
 		String script = "include template=\"/ram/#randName#\";";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() == 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -129,7 +129,7 @@ public class TestCFMLFunctionStatement {
 	public void testTransactionStatement() {
 		/* need to check if this is valid in OBD/ACF */
 		String script = "transaction {}";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -141,7 +141,7 @@ public class TestCFMLFunctionStatement {
 	public void testImportStatement() {
 		/* need to check if this is valid in OBD/ACF */
 		String script = "import projectshen.core.*;";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());

@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.CFSCRIPTParser.ScriptBlockContext;
 
 public class TestCFMLParser {
 	
@@ -149,7 +149,7 @@ public class TestCFMLParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -170,7 +170,7 @@ public class TestCFMLParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -184,7 +184,7 @@ public class TestCFMLParser {
 	@Test
 	public void testParseScriptMissingAssignment() {
 		String script = "var x = 1; y =; createObject('java','java.lang.String');";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -198,7 +198,7 @@ public class TestCFMLParser {
 	public void testParseScriptTernary() {
 		// String script = "result = (fileExists(destfile)) ? \"overwritten\" : \"created\";";
 		String script = "result = a == b ? \"overwritten\" : \"created\";";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -211,7 +211,7 @@ public class TestCFMLParser {
 	@Test
 	public void testParseScriptTernary2() {
 		String script = "result = a == b ? c > a ? 'c > a' : 'a > c' : 'b != a';";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -235,7 +235,7 @@ public class TestCFMLParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -255,7 +255,7 @@ public class TestCFMLParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScriptFile(path);
 		} catch (Exception e) {
@@ -276,7 +276,7 @@ public class TestCFMLParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScriptFile(path);
 		} catch (Exception e) {
@@ -297,7 +297,7 @@ public class TestCFMLParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScriptFile(path);
 		} catch (Exception e) {
@@ -312,7 +312,7 @@ public class TestCFMLParser {
 	@Test
 	public void testParseScriptFunction() {
 		String script = "function runFunction(functionName,argCol) { runFunk = this[functionName]; results = structNew(); results.result = runFunk(argumentCollection=argCol); results.debug = getDebugMessages(); return results; }";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -326,7 +326,7 @@ public class TestCFMLParser {
 	@Test
 	public void testParseScriptTryCatch() {
 		String script = "try { throw('funk'); } catch (Any e) { woot(); }";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {

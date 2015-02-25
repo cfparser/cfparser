@@ -6,7 +6,7 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.CFSCRIPTParser.ScriptBlockContext;
 
 public class TestScriptParserForLoop {
 	
@@ -17,8 +17,8 @@ public class TestScriptParserForLoop {
 		fCfmlParser = new CFMLParser();
 	}
 	
-	private CFScriptStatement parseScript(String script) {
-		CFScriptStatement scriptStatement = null;
+	private ScriptBlockContext parseScript(String script) {
+		ScriptBlockContext scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -32,7 +32,7 @@ public class TestScriptParserForLoop {
 	@Test
 	public void testForIn() {
 		String script = "for(widget in thingWithWidgets.getWidgets()) { writeOutput(widget); };";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -43,7 +43,7 @@ public class TestScriptParserForLoop {
 	@Test
 	public void testForInWithVar() {
 		String script = "for(var widget in thingWithWidgets.getWidgets()) { writeOutput(widget); };";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -54,7 +54,7 @@ public class TestScriptParserForLoop {
 	@Test
 	public void testForInWithPropVar() {
 		String script = "for(var prop in displayFields) {}";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -65,7 +65,7 @@ public class TestScriptParserForLoop {
 	@Test
 	public void testForInWithMember() {
 		String script = "for(tag in e.tagcontext) {if(tag.template.startsWith('ram:')) {tag.template = templatepath;}}";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
@@ -76,7 +76,7 @@ public class TestScriptParserForLoop {
 	@Test
 	public void testForInWithMemberEmpty() {
 		String script = "for(tag in e.tagcontext) {}";
-		CFScriptStatement scriptStatement = null;
+		ScriptBlockContext scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());

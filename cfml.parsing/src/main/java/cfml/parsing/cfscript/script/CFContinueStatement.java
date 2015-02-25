@@ -29,7 +29,7 @@
 
 package cfml.parsing.cfscript.script;
 
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 public class CFContinueStatement extends CFParsedStatement implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
