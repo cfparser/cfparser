@@ -37,6 +37,7 @@ public class TestCFMLFunctionStatement {
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}
+		
 		assertNotNull(scriptStatement);
 	}
 	
