@@ -31,7 +31,7 @@ package cfml.parsing.cfscript;
 
 import java.util.List;
 
-public class CFUndefinedValue extends cfData implements java.io.Serializable {
+public class CFUndefinedValue extends CFData implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -48,7 +48,7 @@ public class CFUndefinedValue extends cfData implements java.io.Serializable {
 		return "[undefined]";
 	}
 	
-	public cfData duplicate() {
+	public CFData duplicate() {
 		return this;
 	}
 	

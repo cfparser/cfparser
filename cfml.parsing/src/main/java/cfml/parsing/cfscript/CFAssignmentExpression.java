@@ -29,7 +29,7 @@
 
 package cfml.parsing.cfscript;
 
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 public class CFAssignmentExpression extends CFExpression {
 	

@@ -33,6 +33,9 @@ import cfml.dictionary.SyntaxDictionary;
 import cfml.dictionary.preferences.DictionaryPreferences;
 import cfml.parsing.cfscript.IErrorReporter;
 import cfml.parsing.cfscript.ParseException;
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.cfscript.walker.CFSCRIPT2ObjectVisitor;
+import cfml.parsing.utils.TestUtils;
 
 public class CFMLParser {
 	
@@ -309,11 +312,19 @@ public class CFMLParser {
 		
 	}
 	
-	public ScriptBlockContext parseScriptFile(String file) throws ParseException, IOException {
+	public CFScriptStatement parseScriptFile(String file) throws ParseException, IOException {
 		return parseScript(readFileAsString(file));
 	}
 	
-	public ScriptBlockContext parseScript(String cfscript) throws ParseException, IOException {
+	public CFScriptStatement parseScript(String cfscript) throws ParseException, IOException {
+		ScriptBlockContext scriptBlockContext = parseScriptBlockContext(cfscript);
+		CFSCRIPT2ObjectVisitor visitor = new CFSCRIPT2ObjectVisitor();
+		
+		CFScriptStatement result = visitor.visit(scriptBlockContext);
+		return result;
+	}
+	
+	public ScriptBlockContext parseScriptBlockContext(String cfscript) throws ParseException, IOException {
 		
 		ANTLRInputStream input = new ANTLRInputStream(cfscript);
 		CFSCRIPTLexer lexer = new CFSCRIPTLexer(input);
@@ -343,6 +354,7 @@ public class CFMLParser {
 					+ parser.getTokenErrorDisplay(e.getOffendingToken()) + "\' (" + e.getOffendingToken().getText()
 					+ ")");
 		}
+		TestUtils.showGUI(scriptStatement, CFSCRIPTParser.ruleNames);
 		return scriptStatement;
 	}
 	

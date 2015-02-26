@@ -29,12 +29,18 @@
 
 package cfml.parsing.cfscript;
 
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 public class CFIdentifier extends CFVarExpression implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	protected String name;
+	protected String scope;
+	
+	public String getScope() {
+		return scope;
+	}
+	
 	protected Token token;
 	
 	public CFIdentifier(Token _t) {
@@ -47,6 +53,13 @@ public class CFIdentifier extends CFVarExpression implements java.io.Serializabl
 		super(_t);
 		name = _img;
 		token = _t;
+	}
+	
+	public CFIdentifier(Token _t, String scope, String _img) {
+		super(_t);
+		name = _img;
+		token = _t;
+		this.scope = scope;
 	}
 	
 	public byte getType() {

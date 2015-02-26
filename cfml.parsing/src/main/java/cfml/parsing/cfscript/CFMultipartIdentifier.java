@@ -26,62 +26,39 @@
  *  
  *  http://www.openbluedragon.org/
  */
+
 package cfml.parsing.cfscript;
 
-import org.antlr.v4.runtime.Token;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import cfml.CFSCRIPTLexer;
-
-public class CFBinaryExpression extends CFExpression implements java.io.Serializable {
-	
+public class CFMultipartIdentifier extends CFIdentifier implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	static private final int _ERR = 0;
-	static private final int _NUM = 1;
-	static private final int _STR = 2;
-	static private final int _BOOL = 3;
-	static private final int _REF = 4; // cfStructs, cfArrays
-	static private final int _DATE = 5; // date ops
+	List<CFIdentifier> ids;
 	
-	// instance vars
-	private int _kind;
-	private CFExpression _left;
-	private CFExpression _right;
-	private String operatorImage;
-	
-	public CFBinaryExpression(Token t, CFExpression left, CFExpression right) {
-		super(t);
-		_kind = t.getType();
-		operatorImage = t.getText();
-		if (_kind == CFSCRIPTLexer.ANDOPERATOR) {
-			_kind = CFSCRIPTLexer.AND;
-		} else if (_kind == CFSCRIPTLexer.OROPERATOR) {
-			_kind = CFSCRIPTLexer.OR;
-		} else if (_kind == CFSCRIPTLexer.MODOPERATOR) {
-			_kind = CFSCRIPTLexer.MOD;
-		}
-		_left = left;
-		_right = right;
-	}
-	
-	public byte getType() {
-		return CFExpression.BINARY;
+	public CFMultipartIdentifier(CFIdentifier... identifiers) {
+		super(identifiers[0].getToken());
+		this.scope = identifiers[0].getScope();
+		this.ids = new ArrayList<CFIdentifier>(Arrays.asList(identifiers));
 	}
 	
 	public String Decompile(int indent) {
-		String endChar = "";
-		if (_kind == CFSCRIPTLexer.LEFTBRACKET) {
-			endChar = "]";
+		StringBuffer sb = new StringBuffer();
+		sb.append(super.Decompile(indent));
+		for (int i = 1; i < ids.size(); i++) {
+			sb.append(".").append(ids.get(i).Decompile(0));
 		}
-		return "" + _left.Decompile(indent) + operatorImage + _right.Decompile(indent) + endChar;
+		return sb.toString();
 	}
 	
-	public CFExpression getLeft() {
-		return _left;
+	public String toString() {
+		return Decompile(0);
 	}
 	
-	public CFExpression getRight() {
-		return _right;
+	public void addIdentifier(CFIdentifier id) {
+		ids.add(id);
 	}
 	
 }

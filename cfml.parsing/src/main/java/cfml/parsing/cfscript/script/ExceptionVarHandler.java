@@ -30,11 +30,11 @@
 package cfml.parsing.cfscript.script;
 
 import cfml.parsing.cfscript.CFContext;
-import cfml.parsing.cfscript.cfData;
+import cfml.parsing.cfscript.CFData;
 
 public class ExceptionVarHandler {
 	
-	private cfData preExistVal;
+	private CFData preExistVal;
 	
 	private CFContext context;
 	private String varname;

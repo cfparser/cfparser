@@ -37,7 +37,7 @@ package cfml.parsing.cfscript;
 import cfml.parsing.cfscript.script.CFStatementResult;
 
 import java.lang.String;
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 public abstract class CFParsedStatement implements CFStatement, java.io.Serializable {
 	

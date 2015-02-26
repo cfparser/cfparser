@@ -24,11 +24,28 @@ public class TestScriptTernary {
 	}
 	
 	@Test
+	public void testParseScriptParens() {
+		String script = "5 * (1 + 2);";
+		ScriptBlockContext scriptStatement = null;
+		try {
+			scriptStatement = fCfmlParser.parseScriptBlockContext(script);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		TestUtils.showGUI(scriptStatement, CFSCRIPTParser.ruleNames);
+		List<ParseTree> nodesList = TestUtils.getLeaves(scriptStatement);
+		assertTreeNodes(nodesList, "if", "(", "(", "(", "x", "EQ", "1", ")", "OR", "true", ")", "AND", "(", "true",
+				"OR", "true", ")", ")", "{", "}", "<EOF>");
+		assertNotNull(scriptStatement);
+	}
+	
+	@Test
 	public void testParseScriptTernaryFunction() {
 		String script = "if(((x EQ 1) OR true) AND (true OR true)){} ";
 		ScriptBlockContext scriptStatement = null;
 		try {
-			scriptStatement = fCfmlParser.parseScript(script);
+			scriptStatement = fCfmlParser.parseScriptBlockContext(script);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,7 +62,7 @@ public class TestScriptTernary {
 		String script = "var x = 123;";
 		ScriptBlockContext scriptStatement = null;
 		try {
-			scriptStatement = fCfmlParser.parseScript(script);
+			scriptStatement = fCfmlParser.parseScriptBlockContext(script);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -61,7 +78,7 @@ public class TestScriptTernary {
 		String script = "x = 123;";
 		ScriptBlockContext scriptStatement = null;
 		try {
-			scriptStatement = fCfmlParser.parseScript(script);
+			scriptStatement = fCfmlParser.parseScriptBlockContext(script);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

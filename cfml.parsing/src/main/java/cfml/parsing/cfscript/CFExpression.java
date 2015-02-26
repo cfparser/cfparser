@@ -83,7 +83,7 @@ public abstract class CFExpression extends CFParsedStatement implements java.io.
 		return false;
 	}
 	
-	public CFExpression(org.antlr.runtime.Token t) {
+	public CFExpression(org.antlr.v4.runtime.Token t) {
 		super(t);
 	}
 	

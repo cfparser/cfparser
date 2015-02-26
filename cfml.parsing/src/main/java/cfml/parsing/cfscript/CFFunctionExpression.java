@@ -34,16 +34,18 @@ import java.util.Vector;
 public class CFFunctionExpression extends CFExpression {
 	private static final long serialVersionUID = 1L;
 	
-	private String name;
+	private CFIdentifier nameId;
 	private Vector<CFExpression> args; // Vector of CFExpression's
 	private boolean isUDF = true;
-	private boolean isParamExists;
+	
+	// private boolean isParamExists;
 	
 	public CFFunctionExpression(CFIdentifier _name, Vector<CFExpression> _args) throws ParseException {
 		super(_name.getToken());
-		name = _name.getName().toLowerCase();
+		// name = _name.getName().toLowerCase();
+		nameId = _name;
 		args = _args;
-		isParamExists = name.equals("parameterexists");
+		// isParamExists = name.equals("parameterexists");
 		// isUDF = !expressionEngine.isFunction(name);
 		isUDF = false;
 		
@@ -72,7 +74,7 @@ public class CFFunctionExpression extends CFExpression {
 	}
 	
 	public String getFunctionName() {
-		return name;
+		return nameId.getName().toLowerCase();
 	}
 	
 	public boolean isUDF() {
@@ -80,7 +82,7 @@ public class CFFunctionExpression extends CFExpression {
 	}
 	
 	public String Decompile(int indent) {
-		String s = name + "(";
+		String s = nameId.Decompile(indent) + "(";
 		
 		for (int i = 0; i < args.size(); i++) {
 			s += args.elementAt(i).Decompile(indent);
@@ -99,7 +101,11 @@ public class CFFunctionExpression extends CFExpression {
 	}
 	
 	public String getName() {
-		return name;
+		return nameId.Decompile(0);
+	}
+	
+	public CFIdentifier getIdentifier() {
+		return nameId;
 	}
 	
 }

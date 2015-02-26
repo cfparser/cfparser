@@ -58,7 +58,7 @@ parameterList
   ;
   
 parameter
-  : (REQUIRED)? (parameterType)? identifier ( EQUALSOP baseExpression )? parameterAttribute* //-> ^(FUNCTION_PARAMETER (REQUIRED)? (parameterType)? identifier (EQUALSOP baseExpression)? parameterAttribute*)
+  : (REQUIRED)? (parameterType)? identifier ( EQUALSOP (baseExpression | ternary) )? parameterAttribute* //-> ^(FUNCTION_PARAMETER (REQUIRED)? (parameterType)? identifier (EQUALSOP baseExpression)? parameterAttribute*)
   ;
   
 parameterType
@@ -66,16 +66,16 @@ parameterType
   ;
 
 componentAttribute
-  : identifier (COLON identifier)? op=EQUALSOP baseExpression //-> ^(COMPONENT_ATTRIBUTE identifier (COLON identifier)? baseExpression)
+  : identifier (COLON identifier)? op=EQUALSOP (baseExpression | ternary) //-> ^(COMPONENT_ATTRIBUTE identifier (COLON identifier)? baseExpression)
   ;
 //i=identifier EQUALSOP^ v=baseExpression
   
 functionAttribute
-  : identifier op=EQUALSOP baseExpression //-> ^(FUNCTION_ATTRIBUTE[$op] identifier baseExpression)
+  : identifier op=EQUALSOP (baseExpression | ternary) //-> ^(FUNCTION_ATTRIBUTE[$op] identifier baseExpression)
   ;
   
 parameterAttribute
-  : identifier EQUALSOP baseExpression //-> ^(PARAMETER_ATTRIBUTE identifier baseExpression)
+  : identifier EQUALSOP (baseExpression | ternary) //-> ^(PARAMETER_ATTRIBUTE identifier baseExpression)
   | identifier
   ;
   
@@ -101,16 +101,19 @@ statement
   |   compoundStatement 
   |   localAssignmentExpression SEMICOLON
   |   assignmentExpression SEMICOLON
+  |   ternary SEMICOLON
+  |   baseExpression SEMICOLON
   |   SEMICOLON // empty statement
   ;
    
 condition
-  : LEFTPAREN baseExpression RIGHTPAREN
+  : LEFTPAREN (baseExpression | compareExpression) RIGHTPAREN
   ;
   
 returnStatement
   : RETURN SEMICOLON
-  | RETURN assignmentExpression SEMICOLON
+  | RETURN baseExpression SEMICOLON
+  | RETURN ternary SEMICOLON
   ;
   
 ifStatement
@@ -126,7 +129,7 @@ doWhileStatement
   ;
   
 forStatement
-  : FOR LEFTPAREN ( localAssignmentExpression | assignmentExpression )? SEMICOLON ( assignmentExpression )? SEMICOLON  ( assignmentExpression )? RIGHTPAREN statement
+  : FOR LEFTPAREN ( localAssignmentExpression | assignmentExpression )? SEMICOLON ( assignmentExpression )? SEMICOLON  ( baseExpression )? RIGHTPAREN statement
   | FOR LEFTPAREN forInKey IN assignmentExpression RIGHTPAREN statement
   ;
   
@@ -263,7 +266,7 @@ paramStatementAttributes
   ;
   
 param
-  : i=identifier EQUALSOP v=baseExpression
+  : i=identifier EQUALSOP (v=baseExpression | v=ternary)
   ;
 
 
@@ -272,27 +275,32 @@ param
 expression 
 	: localAssignmentExpression EOF
 	|	assignmentExpression EOF
+	|   ternary EOF
+	|	baseExpression EOF
 	;
 	
 localAssignmentExpression 
-	:	VAR identifier ( EQUALSOP baseExpression )? //-> ^( VARLOCAL identifier ( EQUALSOP baseExpression )? ) 
+	:	VAR identifier ( EQUALSOP (baseExpression | ternary) )? //-> ^( VARLOCAL identifier ( EQUALSOP baseExpression )? ) 
 	;
 
 assignmentExpression 
-  : baseExpression ( ( EQUALSOP | PLUSEQUALS | MINUSEQUALS | STAREQUALS | SLASHEQUALS | MODEQUALS | CONCATEQUALS ) baseExpression )?
+  : (baseExpression|ternary)
+     ( ( EQUALSOP | PLUSEQUALS | MINUSEQUALS | STAREQUALS | SLASHEQUALS | MODEQUALS | CONCATEQUALS )  
+     	(baseExpression|ternary)
+     )
   ;
 
 baseExpression
-	:	ternary
-	| impliedExpression
+	:	
+/* 	| impliedExpression
 	| equivalentExpression
 	| xorExpression
 	| orExpression
 	| andExpression
 	| notExpression
 	| equalityExpression
-	| concatenationExpression
-	| additiveExpression
+	| concatenationExpression*/
+	 additiveExpression
 	| modExpression
 	| intDivisionExpression
 	| multiplicativeExpression
@@ -300,37 +308,47 @@ baseExpression
 	| unaryExpression
 	;
 	
-impliedExpression
-	:	equivalentExpression ( IMP equivalentExpression )
-	;
-
+compareExpression
+	: impliedExpression
+	| equivalentExpression
+	| xorExpression
+	| orExpression
+	| andExpression
+	| notExpression
+	| equalityExpression
+	;	
+	
 ternary
-   : equivalentExpression QUESTIONMARK baseExpression COLON baseExpression //-> ^(TERNARY equivalentExpression localAssignmentExpression localAssignmentExpression)
+   : compareExpression QUESTIONMARK (baseExpression | ternary) COLON (baseExpression | ternary) //-> ^(TERNARY equivalentExpression localAssignmentExpression localAssignmentExpression)
    ;
 
+impliedExpression
+	:	baseExpression ( IMP baseExpression )
+	;
+
 equivalentExpression
-	:	xorExpression ( EQV xorExpression )
+	:	baseExpression ( EQV baseExpression )
 	;
 
 xorExpression
-	:	orExpression ( XOR orExpression )
+	:	baseExpression ( XOR baseExpression )
 	;
 	
 orExpression
-	:	andExpression ( ( OR | OROPERATOR ) andExpression )
+	:	baseExpression ( ( OR | OROPERATOR ) baseExpression )
 	;
 	
 andExpression
-	:	notExpression ( ( AND | ANDOPERATOR ) notExpression )
+	:	baseExpression ( ( AND | ANDOPERATOR ) baseExpression )
 	;
 	
 notExpression
-	:	( NOT | NOTOP ) equalityExpression 
+	:	( NOT | NOTOP ) baseExpression 
 	;
 
 equalityExpression
-    : concatenationExpression
-      ( equalityOperator1 concatenationExpression )
+    : baseExpression
+      ( equalityOperator1 baseExpression )
     ;
 
 equalityOperator1
@@ -368,39 +386,44 @@ equalityOperator5
     ; */
     
 concatenationExpression
-	:	additiveExpression ( CONCAT additiveExpression )
+	:	unaryExpression ( CONCAT (baseExpression | ternary) )
 	;
 	
 additiveExpression
-	:	modExpression ( (PLUS|MINUS) modExpression )
+	:	unaryExpression ( (PLUS|MINUS) (baseExpression | ternary) )
 	;
 
 modExpression
-	:	intDivisionExpression  ( MOD intDivisionExpression )
+	:	unaryExpression  ( MOD (baseExpression | ternary) )
 	;
 	
 intDivisionExpression
-	:	multiplicativeExpression ( BSLASH multiplicativeExpression )
+	:	unaryExpression ( BSLASH (baseExpression | ternary) )
 	;
 
 multiplicativeExpression
-	:	powerOfExpression ( (STAR|SLASH) powerOfExpression )
+	:	unaryExpression ( (STAR|SLASH) (baseExpression | ternary) )
 	;
 	
 powerOfExpression
-	:	unaryExpression ( POWER unaryExpression )
+	:	unaryExpression ( POWER (baseExpression | ternary) )
 	;
 	
 unaryExpression
-	: MINUS memberExpression //-> ^(MINUS memberExpression)
-	| PLUS memberExpression //-> ^(PLUS memberExpression)
-	| MINUSMINUS memberExpression //-> ^(MINUSMINUS memberExpression) 
-	| PLUSPLUS memberExpression //-> ^(PLUSPLUS memberExpression)
-	| newComponentExpression (DOT primaryExpressionIRW (LEFTPAREN argumentList ')')*)*
-  | memberExpression MINUSMINUS //-> ^(POSTMINUSMINUS memberExpression)
-  | memberExpression PLUSPLUS //-> ^(POSTPLUSPLUS memberExpression)
-  | memberExpression 
+	: MINUS (baseExpression | ternary) //-> ^(MINUS memberExpression)
+	| PLUS (baseExpression | ternary) //-> ^(PLUS memberExpression)
+	| MINUSMINUS (baseExpression | ternary) //-> ^(MINUSMINUS memberExpression) 
+	| PLUSPLUS (baseExpression | ternary) //-> ^(PLUSPLUS memberExpression)
+	| identifier (DOT primaryExpressionIRW (LEFTPAREN argumentList RIGHTPAREN)*)*
+  | identifier MINUSMINUS //-> ^(POSTMINUSMINUS memberExpression)
+  | identifier PLUSPLUS //-> ^(POSTPLUSPLUS memberExpression)
   | primaryExpression
+  | parentheticalExpression
+  | functionCall
+	;
+	
+functionCall
+	:(identifier | multipartIdentifier) LEFTPAREN argumentList RIGHTPAREN
 	;
 	
 memberExpression
@@ -409,12 +432,13 @@ memberExpression
 	;
 	
 memberExpressionB
-  : ( primaryExpression //-> primaryExpression 
+  : ( primaryExpression 
+  	| parentheticalExpression//-> primaryExpression 
   ) // set return tree to just primary
   ( 
   : DOT primaryExpressionIRW LEFTPAREN argumentList ')' //-> ^(JAVAMETHODCALL $memberExpressionB primaryExpressionIRW argumentList )
     |  LEFTPAREN argumentList RIGHTPAREN //-> ^(FUNCTIONCALL $memberExpressionB argumentList)
-    | LEFTBRACKET baseExpression RIGHTBRACKET //-> ^(LEFTBRACKET $memberExpressionB baseExpression)
+    | LEFTBRACKET (baseExpression | ternary) RIGHTBRACKET //-> ^(LEFTBRACKET $memberExpressionB baseExpression)
     | DOT primaryExpressionIRW //-> ^(DOT $memberExpressionB primaryExpressionIRW)
   )+
   ;
@@ -431,11 +455,16 @@ propertyReferenceSuffix
   ;
 
 indexSuffix
-  : LEFTBRACKET  LT* primaryExpression  LT* ']' 
+  : LEFTBRACKET  LT* (primaryExpression | parentheticalExpression) LT* ']' 
   ; 
   
 primaryExpressionIRW
-	:	primaryExpression
+	:	STRING_LITERAL
+	|	BOOLEAN_LITERAL
+	| FLOATING_POINT_LITERAL
+	|	INTEGER_LITERAL
+	| implicitArray
+	| implicitStruct
 	| reservedWord
 	;
 	
@@ -454,12 +483,16 @@ argumentList
   ;
 
 argument
-  : ( identifier COLON baseExpression //-> ^( COLON identifier baseExpression ) 
+  : ( identifier COLON (baseExpression | ternary) //-> ^( COLON identifier baseExpression ) 
   )
-  | ( identifier EQUALSOP baseExpression //-> ^( COLON identifier baseExpression ) 
+  | ( identifier EQUALSOP (baseExpression | ternary) //-> ^( COLON identifier baseExpression ) 
   )
   | baseExpression 
   ;
+
+multipartIdentifier
+	:
+		identifier (DOT identifier)+;
 
 identifier
 	:	SCOPE? (COMPONENT
@@ -527,16 +560,20 @@ primaryExpression
 	| implicitArray
 	| implicitStruct
 //	|	NULL
-	| '(' LT* assignmentExpression LT* ')'
 	|	identifier
 	;
+	
+parentheticalExpression
+	: LEFTPAREN LT* ternary LT* RIGHTPAREN
+	| LEFTPAREN LT* baseExpression LT* RIGHTPAREN
+;	
 
 implicitArray
   : lc=LEFTBRACKET implicitArrayElements? RIGHTBRACKET //-> ^(IMPLICITARRAY[$lc] implicitArrayElements?) 
   ;
   
 implicitArrayElements
-  : baseExpression ( COMMA baseExpression )*
+  : (baseExpression | ternary) ( COMMA (baseExpression | ternary) )*
   ;
   
 implicitStruct
@@ -548,7 +585,7 @@ implicitStructElements
   ;
 
 implicitStructExpression
-  : implicitStructKeyExpression ( COLON | EQUALSOP ) baseExpression 
+  : implicitStructKeyExpression ( COLON | EQUALSOP ) (baseExpression | ternary) 
   ;
   
 implicitStructKeyExpression

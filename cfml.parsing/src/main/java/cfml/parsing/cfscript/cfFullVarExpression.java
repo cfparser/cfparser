@@ -33,7 +33,7 @@ import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
 
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 public class cfFullVarExpression extends CFVarExpression implements Serializable {
 	

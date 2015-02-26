@@ -40,7 +40,7 @@ import java.util.Stack;
 
 import cfml.parsing.cfscript.script.userDefinedFunction;
 
-public class CFContext extends cfData implements java.io.Serializable {
+public class CFContext implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -53,7 +53,7 @@ public class CFContext extends cfData implements java.io.Serializable {
 	
 	// This is set by every expression evaluation routine - we need it for the
 	// "eval()" builtin
-	public cfData _lastExpr;
+	public CFData _lastExpr;
 	
 	public CFContext() {
 		_callStack = new CFCallStack();

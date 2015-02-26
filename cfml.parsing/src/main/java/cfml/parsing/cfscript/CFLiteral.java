@@ -29,7 +29,7 @@
 
 package cfml.parsing.cfscript;
 
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 import cfml.CFSCRIPTLexer;
 
@@ -80,7 +80,11 @@ public class CFLiteral extends CFExpression implements java.io.Serializable {
 	
 	public String Decompile(int indent) {
 		try {
-			return val;
+			if (CFSCRIPTLexer.STRING_LITERAL == kind && val != null) {
+				return "'" + val + "'";
+			} else {
+				return val;
+			}
 		} catch (Exception e) {
 			return "Couldn't get literal value";
 		}

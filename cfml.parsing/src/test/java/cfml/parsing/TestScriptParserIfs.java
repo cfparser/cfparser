@@ -6,7 +6,8 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 
-import cfml.CFSCRIPTParser.ScriptBlockContext;
+import cfml.parsing.cfscript.script.CFIfStatement;
+import cfml.parsing.cfscript.script.CFScriptStatement;
 
 public class TestScriptParserIfs {
 	
@@ -17,8 +18,8 @@ public class TestScriptParserIfs {
 		fCfmlParser = new CFMLParser();
 	}
 	
-	private ScriptBlockContext parseScript(String script) {
-		ScriptBlockContext scriptStatement = null;
+	private CFScriptStatement parseScript(String script) {
+		CFScriptStatement scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
@@ -32,34 +33,39 @@ public class TestScriptParserIfs {
 	@Test
 	public void testIfLongFunkKeyWord() {
 		String script = "if(tag.template.startsWith('ram:')) {}";
-		ScriptBlockContext scriptStatement = null;
-		scriptStatement = parseScript(script);
+		CFIfStatement scriptStatement = null;
+		scriptStatement = (CFIfStatement) parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}
 		assertNotNull(scriptStatement);
+		System.out.println(scriptStatement.Decompile(0));
+		// System.out.println(scriptStatement.getExpression().Decompile(0));
+		// System.out.println(scriptStatement.getExpression().getClass());
 	}
 	
 	@Test
 	public void testIfLongFunk() {
 		String script = "if(foo.bar.blah('ram:')) {}";
-		ScriptBlockContext scriptStatement = null;
+		CFScriptStatement scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}
 		assertNotNull(scriptStatement);
+		System.out.println(scriptStatement.Decompile(0));
 	}
 	
 	@Test
 	public void testIfshortForm() {
 		String script = "if ( structKeyExists( cfc, \"get#property#\" ) ) return evaluate( 'cfc.get#property#()' );";
-		ScriptBlockContext scriptStatement = null;
+		CFScriptStatement scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}
 		assertNotNull(scriptStatement);
+		System.out.println(scriptStatement.Decompile(0));
 	}
 	
 }

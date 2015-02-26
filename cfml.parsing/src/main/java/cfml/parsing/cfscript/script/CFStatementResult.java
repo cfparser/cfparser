@@ -29,7 +29,7 @@
 
 package cfml.parsing.cfscript.script;
 
-import cfml.parsing.cfscript.cfData;
+import cfml.parsing.cfscript.CFData;
 
 public class CFStatementResult {
 	
@@ -41,13 +41,13 @@ public class CFStatementResult {
 	public static final CFStatementResult CONTINUE = new CFStatementResult(CONTINUE_TYPE);
 	
 	private int resultType;
-	private cfData returnValue;
+	private CFData returnValue;
 	
 	private CFStatementResult(int type) {
 		resultType = type;
 	}
 	
-	public CFStatementResult(cfData value) {
+	public CFStatementResult(CFData value) {
 		resultType = RETURN_TYPE;
 		returnValue = value;
 	}
@@ -64,7 +64,7 @@ public class CFStatementResult {
 		return (resultType == CONTINUE_TYPE);
 	}
 	
-	public cfData getReturnValue() {
+	public CFData getReturnValue() {
 		return returnValue;
 	}
 }

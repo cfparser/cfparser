@@ -31,7 +31,7 @@ package cfml.parsing.cfscript;
 
 import java.util.ArrayList;
 
-import org.antlr.runtime.Token;
+import org.antlr.v4.runtime.Token;
 
 public class CFStructExpression extends CFExpression implements java.io.Serializable {
 	
