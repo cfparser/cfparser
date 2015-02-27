@@ -5,6 +5,10 @@ HTML_COMMENT
     : '<!--' .*? '-->'
     ;
 
+CFML_COMMENT     
+    : '<!---' .*? '--->'
+    ;
+
 HTML_CONDITIONAL_COMMENT    
     : '<![' .*? ']>'
     ;

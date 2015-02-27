@@ -4,24 +4,33 @@ options { tokenVocab=CFMLLexer; }
 
 htmlDocument    
     : (scriptlet | SEA_WS)* xml? (scriptlet | SEA_WS)* dtd? (scriptlet | SEA_WS)* 
-    	(cfmlElement| htmlElements)*
+    	( cfmlElement | htmlElements)*
     ;
+
+cfmlComment:
+    CFML_COMMENT;
+
+cfmlCloseTag:
+    TAG_OPEN TAG_SLASH htmlTagName TAG_CLOSE;
 
 htmlElements
     : htmlMisc* htmlElement htmlMisc*
     ; 
 
 htmlElement     
-    : TAG_OPEN htmlTagName htmlAttribute* TAG_CLOSE htmlContent TAG_OPEN TAG_SLASH htmlTagName TAG_CLOSE
+    : cfmlCloseTag
+    | TAG_OPEN htmlTagName htmlAttribute* TAG_CLOSE htmlContent TAG_OPEN TAG_SLASH htmlTagName TAG_CLOSE
     | TAG_OPEN htmlTagName htmlAttribute* TAG_SLASH_CLOSE
     | TAG_OPEN htmlTagName htmlAttribute* TAG_CLOSE
+    
     | scriptlet
     | script
     | style
     ;
-    
-cfmlElement:
-    cfset
+
+cfmlElement
+    : cfmlComment
+    | cfset
     ;
         
 cfset
