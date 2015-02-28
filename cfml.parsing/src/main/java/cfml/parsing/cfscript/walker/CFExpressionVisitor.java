@@ -1,5 +1,7 @@
 package cfml.parsing.cfscript.walker;
 
+import java.util.Stack;
+
 import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -7,6 +9,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 import cfml.CFSCRIPTParser.AccessTypeContext;
 import cfml.CFSCRIPTParser.ArgumentContext;
 import cfml.CFSCRIPTParser.ArgumentListContext;
+import cfml.CFSCRIPTParser.ArrayMemberExpressionContext;
 import cfml.CFSCRIPTParser.AssignmentExpressionContext;
 import cfml.CFSCRIPTParser.BaseExpressionContext;
 import cfml.CFSCRIPTParser.CfmlFunctionContext;
@@ -24,15 +27,11 @@ import cfml.CFSCRIPTParser.FunctionCallContext;
 import cfml.CFSCRIPTParser.FunctionDeclarationContext;
 import cfml.CFSCRIPTParser.IdentifierContext;
 import cfml.CFSCRIPTParser.ImplicitArrayContext;
-import cfml.CFSCRIPTParser.ImplicitArrayElementsContext;
 import cfml.CFSCRIPTParser.ImplicitStructContext;
-import cfml.CFSCRIPTParser.ImplicitStructElementsContext;
 import cfml.CFSCRIPTParser.ImplicitStructExpressionContext;
-import cfml.CFSCRIPTParser.ImplicitStructKeyExpressionContext;
 import cfml.CFSCRIPTParser.IndexSuffixContext;
 import cfml.CFSCRIPTParser.LocalAssignmentExpressionContext;
 import cfml.CFSCRIPTParser.MemberExpressionBContext;
-import cfml.CFSCRIPTParser.MemberExpressionContext;
 import cfml.CFSCRIPTParser.MemberExpressionSuffixContext;
 import cfml.CFSCRIPTParser.MultipartIdentifierContext;
 import cfml.CFSCRIPTParser.NewComponentExpressionContext;
@@ -42,6 +41,7 @@ import cfml.CFSCRIPTParser.ParameterAttributeContext;
 import cfml.CFSCRIPTParser.ParameterContext;
 import cfml.CFSCRIPTParser.ParameterListContext;
 import cfml.CFSCRIPTParser.ParameterTypeContext;
+import cfml.CFSCRIPTParser.ParentheticalExpressionContext;
 import cfml.CFSCRIPTParser.PrimaryExpressionContext;
 import cfml.CFSCRIPTParser.PrimaryExpressionIRWContext;
 import cfml.CFSCRIPTParser.PropertyReferenceSuffixContext;
@@ -52,13 +52,18 @@ import cfml.CFSCRIPTParser.TypeSpecContext;
 import cfml.CFSCRIPTParser.UnaryExpressionContext;
 import cfml.CFSCRIPTParserBaseVisitor;
 import cfml.parsing.cfscript.ArgumentsVector;
+import cfml.parsing.cfscript.CFArrayExpression;
 import cfml.parsing.cfscript.CFAssignmentExpression;
 import cfml.parsing.cfscript.CFBinaryExpression;
 import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.cfscript.CFFullVarExpression;
 import cfml.parsing.cfscript.CFFunctionExpression;
 import cfml.parsing.cfscript.CFIdentifier;
 import cfml.parsing.cfscript.CFLiteral;
-import cfml.parsing.cfscript.CFMultipartIdentifier;
+import cfml.parsing.cfscript.CFMember;
+import cfml.parsing.cfscript.CFNewExpression;
+import cfml.parsing.cfscript.CFStructElementExpression;
+import cfml.parsing.cfscript.CFStructExpression;
 import cfml.parsing.cfscript.CFTernaryExpression;
 import cfml.parsing.cfscript.CFUnaryExpression;
 import cfml.parsing.cfscript.CFVarDeclExpression;
@@ -70,6 +75,8 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	// System.out.println("CFExpr.visitElement");
 	// return super.visitElement(ctx);
 	// }
+	
+	Stack<CFExpression> aggregator = new Stack<CFExpression>();
 	
 	@Override
 	public CFExpression visitFunctionDeclaration(FunctionDeclarationContext ctx) {
@@ -193,10 +200,11 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	
 	@Override
 	public CFExpression visitLocalAssignmentExpression(LocalAssignmentExpressionContext ctx) {
-		
+		System.out.println("CFExpr.visitLocalAssignmentExpression");
 		CFIdentifier identifier = (CFIdentifier) visit(ctx.getChild(1));
 		CFExpression initExpression = visit(ctx.getChild(3));
-		System.out.println("CFExpr.visitLocalAssignmentExpression");
+		System.out.println("CFExpr.visitLocalAssignmentExpression -> " + identifier.Decompile(0) + " : "
+				+ initExpression);
 		CFVarDeclExpression retval = new CFVarDeclExpression(ctx.start, identifier, initExpression);
 		// return super.visitLocalAssignmentExpression(ctx);
 		return retval;
@@ -264,14 +272,21 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	}
 	
 	@Override
-	public CFExpression visitMemberExpression(MemberExpressionContext ctx) {
-		if (ctx.getChildCount() < 2) {
-			return visitChildren(ctx);
+	public CFExpression visitParentheticalExpression(ParentheticalExpressionContext ctx) {
+		if (ctx.getChildCount() == 3) {
+			CFUnaryExpression unaryExpression = new CFUnaryExpression(getTerminalToken(ctx.getChild(0)),
+					visit(ctx.getChild(1)));
+			return unaryExpression;
+			
 		} else {
-			return visit(ctx.getChild(1));
+			return super.visitParentheticalExpression(ctx);
 		}
 	}
 	
+	/*
+	 * @Override public CFExpression visitMemberExpression(MemberExpressionContext ctx) { if (ctx.getChildCount() < 2) {
+	 * return visitChildren(ctx); } else { return visit(ctx.getChild(1)); } }
+	 */
 	@Override
 	public CFExpression visitMemberExpressionB(MemberExpressionBContext ctx) {
 		System.out.println("CFExpr.visitMemberExpressionB+" + ctx.getChildCount());
@@ -288,7 +303,31 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 					args);
 			return functionExpression;
 		}
+		// System.out.println("CFExpr.visitFunctionCall");
+		// ArgumentsVector args = new ArgumentsVector();
+		// if (ctx.getChildCount() > 3) {
+		// for (int i = 0; i < ctx.getChild(2).getChildCount(); i++) {
+		// ParseTree argCtx = ctx.getChild(2).getChild(i);
+		// if (argCtx instanceof ArgumentContext) {
+		// if (argCtx.getChildCount() == 3) {
+		// args.putNamedArg(argCtx.getChild(0).getText(), visit(argCtx.getChild(2)));
+		// } else {
+		// args.add(visit(argCtx));
+		// }
+		// }
+		// }
+		// }
+		// CFFunctionExpression cfFunctionExpression = new CFFunctionExpression((CFIdentifier) visit(ctx.getChild(0)),
+		// args);
+		// return cfFunctionExpression;
 		return super.visitMemberExpressionB(ctx);
+	}
+	
+	@Override
+	public CFExpression visitArrayMemberExpression(ArrayMemberExpressionContext ctx) {
+		System.out.println("CFExpr.visitArrayMemberExpression");
+		CFMember member = new CFMember(ctx.getStart(), visit(ctx.getChild(1)));
+		return member;
 	}
 	
 	@Override
@@ -329,7 +368,9 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	@Override
 	public CFExpression visitArgument(ArgumentContext ctx) {
 		System.out.println("CFExpr.visitArgument");
-		return super.visitArgument(ctx);
+		CFExpression retval = super.visitArgument(ctx);
+		System.out.println("CFExpr.visitArgument->" + retval.Decompile(0));
+		return retval;
 	}
 	
 	@Override
@@ -368,43 +409,70 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	@Override
 	public CFExpression visitImplicitArray(ImplicitArrayContext ctx) {
 		System.out.println("CFExpr.visitImplicitArray");
-		return super.visitImplicitArray(ctx);
-	}
-	
-	@Override
-	public CFExpression visitImplicitArrayElements(ImplicitArrayElementsContext ctx) {
-		System.out.println("CFExpr.visitImplicitArrayElements");
-		return super.visitImplicitArrayElements(ctx);
+		CFArrayExpression arrayExpression = new CFArrayExpression(ctx.getStart());
+		aggregator.push(arrayExpression);
+		CFExpression retval = super.visitImplicitArray(ctx);
+		aggregator.pop();
+		if (retval != null && retval != arrayExpression) {
+			arrayExpression.addElement(retval);
+		}
+		return arrayExpression;
 	}
 	
 	@Override
 	public CFExpression visitImplicitStruct(ImplicitStructContext ctx) {
 		System.out.println("CFExpr.visitImplicitStruct");
-		return super.visitImplicitStruct(ctx);
+		CFStructExpression structExpression = new CFStructExpression(ctx.getStart());
+		aggregator.push(structExpression);
+		CFExpression retval = super.visitImplicitStruct(ctx);
+		aggregator.pop();
+		if (retval instanceof CFStructElementExpression) {
+			structExpression.addElement((CFStructElementExpression) retval);
+		}
+		return structExpression;
 	}
 	
-	@Override
-	public CFExpression visitImplicitStructElements(ImplicitStructElementsContext ctx) {
-		System.out.println("CFExpr.visitImplicitStructElements");
-		return super.visitImplicitStructElements(ctx);
-	}
+	// @Override
+	// public CFExpression visitImplicitStructElements(ImplicitStructElementsContext ctx) {
+	// System.out.println("CFExpr.visitImplicitStructElements");
+	// // CFStructExpression structExpression = new CFStructExpression(ctx.getStart());
+	// // for (int i = 0; i < ctx.getChildCount(); i++) {
+	// // if (!(ctx.getChild(i) instanceof TerminalNode)) {
+	// // structExpression.addElement(visit(ctx.getChild(i)));
+	// // }
+	// // }
+	// // return structExpression;
+	// return super.visitImplicitStructElements(ctx);
+	// }
 	
 	@Override
 	public CFExpression visitImplicitStructExpression(ImplicitStructExpressionContext ctx) {
 		System.out.println("CFExpr.visitImplicitStructExpression");
-		return super.visitImplicitStructExpression(ctx);
+		CFStructElementExpression elementExpression = new CFStructElementExpression(ctx.getStart(),
+				(CFIdentifier) visit(ctx.getChild(0)), visit(ctx.getChild(2)));
+		// return super.visitImplicitStructExpression(ctx);
+		return elementExpression;
 	}
 	
-	@Override
-	public CFExpression visitImplicitStructKeyExpression(ImplicitStructKeyExpressionContext ctx) {
-		System.out.println("CFExpr.visitImplicitStructKeyExpression");
-		return super.visitImplicitStructKeyExpression(ctx);
-	}
+	// @Override
+	// public CFExpression visitImplicitStructKeyExpression(ImplicitStructKeyExpressionContext ctx) {
+	// System.out.println("CFExpr.visitImplicitStructKeyExpression");
+	// return super.visitImplicitStructKeyExpression(ctx);
+	// }
 	
 	@Override
 	public CFExpression visitNewComponentExpression(NewComponentExpressionContext ctx) {
-		System.out.println("CFExpr.visitNewComponentExpression");
-		return super.visitNewComponentExpression(ctx);
+		ArgumentsVector args = new ArgumentsVector();
+		if (ctx.getChildCount() > 4) {
+			for (int i = 0; i < ctx.getChild(3).getChildCount(); i++) {
+				ParseTree argCtx = ctx.getChild(3).getChild(i);
+				if (argCtx instanceof ArgumentContext) {
+					args.add(visit(argCtx));
+				}
+			}
+		}
+		CFNewExpression newExpression = new CFNewExpression(ctx.getStart(), (CFIdentifier) visit(ctx.getChild(1)), args);
+		return newExpression;
 	}
 	
 	@Override
@@ -432,10 +500,12 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		if (ctx.getChildCount() > 3) {
 			for (int i = 0; i < ctx.getChild(2).getChildCount(); i++) {
 				ParseTree argCtx = ctx.getChild(2).getChild(i);
-				if (argCtx.getChildCount() == 3) {
-					args.putNamedArg(argCtx.getChild(0).getText(), visit(argCtx.getChild(2)));
-				} else {
-					args.add(visit(argCtx));
+				if (argCtx instanceof ArgumentContext) {
+					if (argCtx.getChildCount() == 3) {
+						args.putNamedArg(argCtx.getChild(0).getText(), visit(argCtx.getChild(2)));
+					} else {
+						args.add(visit(argCtx));
+					}
 				}
 			}
 		}
@@ -460,18 +530,53 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 			return nextResult;
 		}
 		System.out.println("CFExpr.aggregateResult --------------------------");
-		System.out.println(aggregate.getClass() + " -> " + aggregate.Decompile(0));
-		System.out.println(nextResult.getClass() + " -> " + nextResult.Decompile(0));
-		System.out.println("--------------------------------------------");
+		System.out.println("agg:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
+		System.out.println("next:" + nextResult.getClass() + " -> " + nextResult.Decompile(0));
 		
-		if (aggregate instanceof CFIdentifier && nextResult instanceof CFIdentifier) {
-			if (aggregate instanceof CFMultipartIdentifier) {
-				((CFMultipartIdentifier) aggregate).addIdentifier((CFIdentifier) nextResult);
-			} else {
-				return new CFMultipartIdentifier((CFIdentifier) aggregate, (CFIdentifier) nextResult);
+		try {
+			if (!aggregator.isEmpty() && aggregator.peek() instanceof CFArrayExpression) {
+				CFArrayExpression arrayExpression = (CFArrayExpression) aggregator.peek();
+				if (aggregate != arrayExpression) {
+					arrayExpression.addElement(aggregate);
+				}
+				arrayExpression.addElement(nextResult);
+				return arrayExpression;
+			} else if (!aggregator.isEmpty() && aggregator.peek() instanceof CFStructExpression) {
+				CFStructExpression structExpression = (CFStructExpression) aggregator.peek();
+				if (aggregate != structExpression && aggregate instanceof CFStructElementExpression) {
+					structExpression.addElement((CFStructElementExpression) aggregate);
+				}
+				if (nextResult instanceof CFStructElementExpression) {
+					structExpression.addElement((CFStructElementExpression) nextResult);
+				}
+				return structExpression;
 			}
+			// Convert an simple identifier to a full var expression with members.
+			// or add another member to a full var expression.
+			else if (nextResult instanceof CFIdentifier || nextResult instanceof CFMember) {
+				if (aggregate instanceof CFFullVarExpression) {
+					((CFFullVarExpression) aggregate).addMember(nextResult);
+				} else {
+					CFFullVarExpression fullVar = new CFFullVarExpression(aggregate.getToken(), aggregate);
+					fullVar.addMember(nextResult);
+					aggregate = fullVar;
+				}
+			}
+			// Struct elements {"x" : "abc", "y" : "123"} are aggregated
+			else if (nextResult instanceof CFStructElementExpression) {
+				if (aggregate instanceof CFStructElementExpression) {
+					CFStructExpression structExpression = new CFStructExpression(aggregate.getToken());
+					structExpression.addElement((CFStructElementExpression) aggregate);
+					structExpression.addElement((CFStructElementExpression) nextResult);
+					aggregate = structExpression;
+				} else if (aggregate instanceof CFStructExpression) {
+					((CFStructExpression) aggregate).addElement((CFStructElementExpression) nextResult);
+				}
+			}
+			return aggregate;
+		} finally {
+			System.out.println("New aggr:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
+			System.out.println("--------------------------------------------");
 		}
-		return aggregate;
 	}
-	
 }

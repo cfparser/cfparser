@@ -1,5 +1,5 @@
 /* 
- *  Copyright (C) 2000 - 2010 TagServlet Ltd
+ *  Copyright (C) 2000 - 2008 TagServlet Ltd
  *
  *  This file is part of Open BlueDragon (OpenBD) CFML Server Engine.
  *  
@@ -27,39 +27,10 @@
  *  http://www.openbluedragon.org/
  */
 
-package cfml.parsing.cfscript;
+package cfml.parsing.util;
 
-import java.util.Vector;
-
-import org.antlr.v4.runtime.Token;
-
-public class CFNewExpression extends CFExpression implements java.io.Serializable {
+public interface CaseSensitiveMap<K, V> extends java.util.Map<String, V> {
 	
-	private static final long serialVersionUID = 1L;
+	public boolean isCaseSensitive();
 	
-	private CFIdentifier componentPath;
-	private Vector args;
-	
-	public CFNewExpression(Token _t, CFIdentifier _component, Vector _args) {
-		super(_t);
-		componentPath = _component;
-		args = _args;
-	}
-	
-	@Override
-	public String Decompile(int indent) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("new ");
-		sb.append(componentPath.Decompile(0));
-		sb.append("(");
-		for (int i = 0; i < args.size(); i++) {
-			sb.append((args.elementAt(i)).toString());
-			if (i < args.size() - 1) {
-				sb.append(", ");
-			}
-		}
-		sb.append(")");
-		
-		return sb.toString();
-	}
 }

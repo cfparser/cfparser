@@ -1,5 +1,5 @@
 /* 
- *  Copyright (C) 2000 - 2008 TagServlet Ltd
+ *  Copyright (C) 2000 - 2010 TagServlet Ltd
  *
  *  This file is part of Open BlueDragon (OpenBD) CFML Server Engine.
  *  
@@ -29,8 +29,35 @@
 
 package cfml.parsing.cfscript;
 
-public interface CaseSensitiveMap<K, V> extends java.util.Map<String, V> {
+import org.antlr.v4.runtime.Token;
+
+public class CFMember extends CFExpression implements java.io.Serializable {
+	private static final long serialVersionUID = 1L;
 	
-	public boolean isCaseSensitive();
+	protected Token token;
+	
+	private CFExpression expression;
+	
+	public CFMember(Token _t, CFExpression expr) {
+		super(_t);
+		token = _t;
+		expression = expr;
+	}
+	
+	public byte getType() {
+		return CFExpression.ARRAYMEMBER;
+	}
+	
+	public Token getToken() {
+		return token;
+	}
+	
+	public String Decompile(int indent) {
+		return "[" + expression.Decompile(0) + "]";
+	}
+	
+	public String toString() {
+		return Decompile(0);
+	}
 	
 }

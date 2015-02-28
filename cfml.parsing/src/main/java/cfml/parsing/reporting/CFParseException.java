@@ -27,7 +27,7 @@
  *  http://www.openbluedragon.org/
  */
 
-package cfml.parsing.cfscript;
+package cfml.parsing.reporting;
 
 import org.antlr.runtime.RecognitionException;
 

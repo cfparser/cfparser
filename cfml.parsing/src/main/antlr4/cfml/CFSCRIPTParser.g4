@@ -1,4 +1,4 @@
-parser grammar  CFSCRIPTParser;
+parser grammar  CFSCRIPTParser; 
 
 options { tokenVocab=CFSCRIPTLexer; }
 
@@ -266,7 +266,7 @@ paramStatementAttributes
   ;
   
 param
-  : i=identifier EQUALSOP (v=baseExpression | v=ternary)
+  : i=identifier EQUALSOP (baseExpression | ternary)
   ;
 
 
@@ -298,9 +298,9 @@ baseExpression
 	| orExpression
 	| andExpression
 	| notExpression
-	| equalityExpression
-	| concatenationExpression*/
-	 additiveExpression
+	| equalityExpression*/
+	 concatenationExpression
+	| additiveExpression
 	| modExpression
 	| intDivisionExpression
 	| multiplicativeExpression
@@ -319,7 +319,7 @@ compareExpression
 	;	
 	
 ternary
-   : compareExpression QUESTIONMARK (baseExpression | ternary) COLON (baseExpression | ternary) //-> ^(TERNARY equivalentExpression localAssignmentExpression localAssignmentExpression)
+   : (compareExpression | unaryExpression) QUESTIONMARK (baseExpression | ternary) COLON (baseExpression | ternary) //-> ^(TERNARY equivalentExpression localAssignmentExpression localAssignmentExpression)
    ;
 
 impliedExpression
@@ -419,31 +419,48 @@ unaryExpression
   | identifier PLUSPLUS //-> ^(POSTPLUSPLUS memberExpression)
   | primaryExpression
   | parentheticalExpression
-  | functionCall
-	;
+//  | functionCall
+  | memberExpression
+  ;
 	
-functionCall
-	:(identifier | multipartIdentifier) LEFTPAREN argumentList RIGHTPAREN
-	;
+
 	
 memberExpression
-	:	POUND_SIGN memberExpressionB POUND_SIGN
-	| memberExpressionB
+	:	POUND_SIGN (memberExpressionB | functionCall) POUND_SIGN
+	| (memberExpressionB | functionCall | newComponentExpression)
 	;
 	
 memberExpressionB
-  : ( primaryExpression 
+  : ( //primaryExpression
+    identifier 
   	| parentheticalExpression//-> primaryExpression 
+  	| newComponentExpression
   ) // set return tree to just primary
   ( 
-  : DOT primaryExpressionIRW LEFTPAREN argumentList ')' //-> ^(JAVAMETHODCALL $memberExpressionB primaryExpressionIRW argumentList )
-    |  LEFTPAREN argumentList RIGHTPAREN //-> ^(FUNCTIONCALL $memberExpressionB argumentList)
-    | LEFTBRACKET (baseExpression | ternary) RIGHTBRACKET //-> ^(LEFTBRACKET $memberExpressionB baseExpression)
+   DOT javaCallMemberExpression //-> ^(JAVAMETHODCALL $memberExpressionB primaryExpressionIRW argumentList )
+   | DOT functionCall
+    | parentheticalMemberExpression //-> ^(FUNCTIONCALL $memberExpressionB argumentList)
+    | arrayMemberExpression//-> ^(LEFTBRACKET $memberExpressionB baseExpression)
     | DOT primaryExpressionIRW //-> ^(DOT $memberExpressionB primaryExpressionIRW)
+    | DOT identifier
   )+
   ;
   
-
+arrayMemberExpression
+	:LEFTBRACKET (baseExpression | ternary) RIGHTBRACKET 
+	;
+  
+functionCall
+	:(identifier | multipartIdentifier) LEFTPAREN argumentList RIGHTPAREN
+	;
+	  
+parentheticalMemberExpression
+	:LEFTPAREN argumentList RIGHTPAREN 
+	;
+	
+javaCallMemberExpression
+	:primaryExpressionIRW LEFTPAREN argumentList RIGHTBRACKET 
+	;	
 
 memberExpressionSuffix
   : indexSuffix
@@ -455,7 +472,7 @@ propertyReferenceSuffix
   ;
 
 indexSuffix
-  : LEFTBRACKET  LT* (primaryExpression | parentheticalExpression) LT* ']' 
+  : LEFTBRACKET  LT* (primaryExpression | parentheticalExpression) LT* RIGHTBRACKET 
   ; 
   
 primaryExpressionIRW
@@ -595,7 +612,7 @@ implicitStructKeyExpression
   ;
 
 newComponentExpression
-  : NEW componentPath LEFTPAREN argumentList ')'
+  : NEW componentPath LEFTPAREN argumentList RIGHTPAREN
   ;
   
 componentPath

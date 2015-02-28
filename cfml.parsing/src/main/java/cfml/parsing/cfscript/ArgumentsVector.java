@@ -32,6 +32,8 @@ package cfml.parsing.cfscript;
 import java.util.Set;
 import java.util.Vector;
 
+import cfml.parsing.util.SequencedHashMap;
+
 public class ArgumentsVector extends Vector<CFExpression> {
 	
 	private static final long serialVersionUID = 1L;

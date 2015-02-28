@@ -33,7 +33,7 @@ import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
-import cfml.parsing.cfscript.ParseException;
+import cfml.parsing.reporting.ParseException;
 
 public class CFTryCatchStatement extends CFParsedStatement implements java.io.Serializable {
 	

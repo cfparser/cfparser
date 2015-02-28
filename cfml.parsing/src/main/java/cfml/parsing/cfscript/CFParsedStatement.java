@@ -34,9 +34,6 @@ package cfml.parsing.cfscript;
  * elements.
  */
 
-import cfml.parsing.cfscript.script.CFStatementResult;
-
-import java.lang.String;
 import org.antlr.v4.runtime.Token;
 
 public abstract class CFParsedStatement implements CFStatement, java.io.Serializable {
@@ -45,6 +42,7 @@ public abstract class CFParsedStatement implements CFStatement, java.io.Serializ
 	
 	private int line;
 	private int col;
+	private Token token;
 	
 	public CFParsedStatement(int _line, int _col) {
 		line = _line;
@@ -52,7 +50,19 @@ public abstract class CFParsedStatement implements CFStatement, java.io.Serializ
 	}
 	
 	public CFParsedStatement(Token t) {
-		this(t.getLine(), t.getCharPositionInLine());
+		setToken(t);
+	}
+	
+	public Token getToken() {
+		return token;
+	}
+	
+	public void setToken(Token t) {
+		if (t != null) {
+			line = t.getLine();
+			col = t.getCharPositionInLine() + 1;
+		}
+		token = t;
 	}
 	
 	public abstract String Decompile(int indent);

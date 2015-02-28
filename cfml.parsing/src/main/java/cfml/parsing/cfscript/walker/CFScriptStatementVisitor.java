@@ -7,8 +7,6 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import cfml.CFSCRIPTParser.AbortStatementContext;
 import cfml.CFSCRIPTParser.AccessTypeContext;
-import cfml.CFSCRIPTParser.AdditiveExpressionContext;
-import cfml.CFSCRIPTParser.AndExpressionContext;
 import cfml.CFSCRIPTParser.ArgumentContext;
 import cfml.CFSCRIPTParser.ArgumentListContext;
 import cfml.CFSCRIPTParser.AssignmentExpressionContext;
@@ -23,15 +21,10 @@ import cfml.CFSCRIPTParser.ComponentDeclarationContext;
 import cfml.CFSCRIPTParser.ComponentGutsContext;
 import cfml.CFSCRIPTParser.ComponentPathContext;
 import cfml.CFSCRIPTParser.CompoundStatementContext;
-import cfml.CFSCRIPTParser.ConcatenationExpressionContext;
 import cfml.CFSCRIPTParser.ConditionContext;
-import cfml.CFSCRIPTParser.ConstantExpressionContext;
 import cfml.CFSCRIPTParser.DoWhileStatementContext;
 import cfml.CFSCRIPTParser.ElementContext;
 import cfml.CFSCRIPTParser.EndOfScriptBlockContext;
-import cfml.CFSCRIPTParser.EqualityExpressionContext;
-import cfml.CFSCRIPTParser.EqualityOperator1Context;
-import cfml.CFSCRIPTParser.EquivalentExpressionContext;
 import cfml.CFSCRIPTParser.ExitStatementContext;
 import cfml.CFSCRIPTParser.ExpressionContext;
 import cfml.CFSCRIPTParser.FinallyStatementContext;
@@ -41,27 +34,11 @@ import cfml.CFSCRIPTParser.FunctionAttributeContext;
 import cfml.CFSCRIPTParser.FunctionDeclarationContext;
 import cfml.CFSCRIPTParser.IdentifierContext;
 import cfml.CFSCRIPTParser.IfStatementContext;
-import cfml.CFSCRIPTParser.ImplicitArrayContext;
-import cfml.CFSCRIPTParser.ImplicitArrayElementsContext;
-import cfml.CFSCRIPTParser.ImplicitStructContext;
-import cfml.CFSCRIPTParser.ImplicitStructElementsContext;
-import cfml.CFSCRIPTParser.ImplicitStructExpressionContext;
-import cfml.CFSCRIPTParser.ImplicitStructKeyExpressionContext;
-import cfml.CFSCRIPTParser.ImpliedExpressionContext;
 import cfml.CFSCRIPTParser.ImportStatementContext;
 import cfml.CFSCRIPTParser.IncludeStatementContext;
 import cfml.CFSCRIPTParser.IndexSuffixContext;
-import cfml.CFSCRIPTParser.IntDivisionExpressionContext;
 import cfml.CFSCRIPTParser.LocalAssignmentExpressionContext;
 import cfml.CFSCRIPTParser.LockStatementContext;
-import cfml.CFSCRIPTParser.MemberExpressionBContext;
-import cfml.CFSCRIPTParser.MemberExpressionContext;
-import cfml.CFSCRIPTParser.MemberExpressionSuffixContext;
-import cfml.CFSCRIPTParser.ModExpressionContext;
-import cfml.CFSCRIPTParser.MultiplicativeExpressionContext;
-import cfml.CFSCRIPTParser.NewComponentExpressionContext;
-import cfml.CFSCRIPTParser.NotExpressionContext;
-import cfml.CFSCRIPTParser.OrExpressionContext;
 import cfml.CFSCRIPTParser.ParamContext;
 import cfml.CFSCRIPTParser.ParamStatementAttributesContext;
 import cfml.CFSCRIPTParser.ParamStatementContext;
@@ -69,8 +46,6 @@ import cfml.CFSCRIPTParser.ParameterAttributeContext;
 import cfml.CFSCRIPTParser.ParameterContext;
 import cfml.CFSCRIPTParser.ParameterListContext;
 import cfml.CFSCRIPTParser.ParameterTypeContext;
-import cfml.CFSCRIPTParser.PowerOfExpressionContext;
-import cfml.CFSCRIPTParser.PrimaryExpressionIRWContext;
 import cfml.CFSCRIPTParser.PropertyReferenceSuffixContext;
 import cfml.CFSCRIPTParser.PropertyStatementContext;
 import cfml.CFSCRIPTParser.ReservedWordContext;
@@ -86,7 +61,6 @@ import cfml.CFSCRIPTParser.TransactionStatementContext;
 import cfml.CFSCRIPTParser.TryCatchStatementContext;
 import cfml.CFSCRIPTParser.TypeContext;
 import cfml.CFSCRIPTParser.TypeSpecContext;
-import cfml.CFSCRIPTParser.UnaryExpressionContext;
 import cfml.CFSCRIPTParser.WhileStatementContext;
 import cfml.CFSCRIPTParser.XorExpressionContext;
 import cfml.CFSCRIPTParserBaseVisitor;
@@ -96,9 +70,10 @@ import cfml.parsing.cfscript.script.CFCompoundStatement;
 import cfml.parsing.cfscript.script.CFExpressionStatement;
 import cfml.parsing.cfscript.script.CFFuncDeclStatement;
 import cfml.parsing.cfscript.script.CFIfStatement;
+import cfml.parsing.cfscript.script.CFReturnStatement;
 import cfml.parsing.cfscript.script.CFScriptStatement;
 
-public class CFSCRIPT2ObjectVisitor extends CFSCRIPTParserBaseVisitor<CFScriptStatement> {
+public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScriptStatement> {
 	
 	@Override
 	public CFScriptStatement visit(ParseTree tree) {
@@ -132,55 +107,55 @@ public class CFSCRIPT2ObjectVisitor extends CFSCRIPTParserBaseVisitor<CFScriptSt
 	
 	@Override
 	public CFScriptStatement visitFunctionDeclaration(FunctionDeclarationContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitFunctionDeclaration");
 		return super.visitFunctionDeclaration(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitAccessType(AccessTypeContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitAccessType");
 		return super.visitAccessType(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitTypeSpec(TypeSpecContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitTypeSpec");
 		return super.visitTypeSpec(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitParameterList(ParameterListContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitParameterList");
 		return super.visitParameterList(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitParameter(ParameterContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitParameter");
 		return super.visitParameter(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitParameterType(ParameterTypeContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitParameterType");
 		return super.visitParameterType(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitComponentAttribute(ComponentAttributeContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitComponentAttribute");
 		return super.visitComponentAttribute(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitFunctionAttribute(FunctionAttributeContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitFunctionAttribute");
 		return super.visitFunctionAttribute(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitParameterAttribute(ParameterAttributeContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitParameterAttribute");
 		return super.visitParameterAttribute(ctx);
 	}
 	
@@ -193,7 +168,7 @@ public class CFSCRIPT2ObjectVisitor extends CFSCRIPTParserBaseVisitor<CFScriptSt
 	
 	@Override
 	public CFScriptStatement visitComponentGuts(ComponentGutsContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitComponentGuts");
 		return super.visitComponentGuts(ctx);
 	}
 	
@@ -212,14 +187,16 @@ public class CFSCRIPT2ObjectVisitor extends CFSCRIPTParserBaseVisitor<CFScriptSt
 	
 	@Override
 	public CFScriptStatement visitCondition(ConditionContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitCondition");
 		return super.visitCondition(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitReturnStatement(ReturnStatementContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitReturnStatement(ctx);
+		System.out.println("visitReturnStatement");
+		CFReturnStatement returnStatement = new CFReturnStatement(ctx.getStart(), new CFExpressionVisitor().visit(ctx
+				.getChild(1)));
+		return returnStatement;
 	}
 	
 	@Override
@@ -232,31 +209,31 @@ public class CFSCRIPT2ObjectVisitor extends CFSCRIPTParserBaseVisitor<CFScriptSt
 	
 	@Override
 	public CFScriptStatement visitWhileStatement(WhileStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitWhileStatement");
 		return super.visitWhileStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitDoWhileStatement(DoWhileStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitDoWhileStatement");
 		return super.visitDoWhileStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitForStatement(ForStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitForStatement");
 		return super.visitForStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitForInKey(ForInKeyContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitForInKey");
 		return super.visitForInKey(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitTryCatchStatement(TryCatchStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitTryCatchStatement");
 		return super.visitTryCatchStatement(ctx);
 	}
 	
@@ -268,261 +245,155 @@ public class CFSCRIPT2ObjectVisitor extends CFSCRIPTParserBaseVisitor<CFScriptSt
 	
 	@Override
 	public CFScriptStatement visitFinallyStatement(FinallyStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitFinallyStatement");
 		return super.visitFinallyStatement(ctx);
 	}
 	
 	@Override
-	public CFScriptStatement visitConstantExpression(ConstantExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitConstantExpression(ctx);
-	}
-	
-	@Override
 	public CFScriptStatement visitSwitchStatement(SwitchStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitSwitchStatement");
 		return super.visitSwitchStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitCaseStatement(CaseStatementContext ctx) {
+		System.out.println("visitCaseStatement");
 		CFCase retval = new CFCase(null);// TODO
 		return super.visitCaseStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitTagOperatorStatement(TagOperatorStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitTagOperatorStatement");
 		return super.visitTagOperatorStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitIncludeStatement(IncludeStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitIncludeStatement");
 		return super.visitIncludeStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitImportStatement(ImportStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitImportStatement");
 		return super.visitImportStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitTransactionStatement(TransactionStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitTransactionStatement");
 		return super.visitTransactionStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitCfmlfunctionStatement(CfmlfunctionStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitCfmlfunctionStatement");
 		return super.visitCfmlfunctionStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitCfmlFunction(CfmlFunctionContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitCfmlFunction");
 		return super.visitCfmlFunction(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitLockStatement(LockStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitLockStatement");
 		return super.visitLockStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitThreadStatement(ThreadStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitThreadStatement");
 		return super.visitThreadStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitAbortStatement(AbortStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitAbortStatement");
 		return super.visitAbortStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitThrowStatement(ThrowStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitThrowStatement");
 		return super.visitThrowStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitExitStatement(ExitStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitExitStatement");
 		return super.visitExitStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitParamStatement(ParamStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitParamStatement");
 		return super.visitParamStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitPropertyStatement(PropertyStatementContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitPropertyStatement");
 		return super.visitPropertyStatement(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitParamStatementAttributes(ParamStatementAttributesContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitParamStatementAttributes");
 		return super.visitParamStatementAttributes(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitParam(ParamContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitParam");
 		return super.visitParam(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitExpression(ExpressionContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitExpression");
 		return super.visitExpression(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitLocalAssignmentExpression(LocalAssignmentExpressionContext ctx) {
 		// CFVarDeclExpression retval = new CFVarDeclExpression(ctx.start, null, null);
-		System.out.println("===========");
+		System.out.println("visitLocalAssignmentExpression");
 		System.out.println(ctx.getChildCount());
 		System.out.println(ctx.getChild(0));
 		System.out.println(ctx.getChild(1).getClass());
 		System.out.println(ctx.getChild(2));
 		System.out.println(ctx.getChild(3).getClass());
+		System.out.println("===========");
 		return super.visitLocalAssignmentExpression(ctx);
 		// return retval;
 	}
 	
 	@Override
 	public CFScriptStatement visitAssignmentExpression(AssignmentExpressionContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitAssignmentExpression");
 		return super.visitAssignmentExpression(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitBaseExpression(BaseExpressionContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitBaseExpression");
 		return super.visitBaseExpression(ctx);
 	}
 	
 	@Override
-	public CFScriptStatement visitImpliedExpression(ImpliedExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitImpliedExpression(ctx);
-	}
-	
-	@Override
 	public CFScriptStatement visitTernary(TernaryContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitTernary");
 		return super.visitTernary(ctx);
 	}
 	
 	@Override
-	public CFScriptStatement visitEquivalentExpression(EquivalentExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitEquivalentExpression(ctx);
-	}
-	
-	@Override
 	public CFScriptStatement visitXorExpression(XorExpressionContext ctx) {
-		System.out.println("visitTODO");
+		System.out.println("visitXorExpression");
 		return super.visitXorExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitOrExpression(OrExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitOrExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitAndExpression(AndExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitAndExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitNotExpression(NotExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitNotExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitEqualityExpression(EqualityExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitEqualityExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitEqualityOperator1(EqualityOperator1Context ctx) {
-		System.out.println("visitTODO");
-		return super.visitEqualityOperator1(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitConcatenationExpression(ConcatenationExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitConcatenationExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitAdditiveExpression(AdditiveExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitAdditiveExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitModExpression(ModExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitModExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitIntDivisionExpression(IntDivisionExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitIntDivisionExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitMultiplicativeExpression(MultiplicativeExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitMultiplicativeExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitPowerOfExpression(PowerOfExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitPowerOfExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitUnaryExpression(UnaryExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitUnaryExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitMemberExpression(MemberExpressionContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitMemberExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitMemberExpressionB(MemberExpressionBContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitMemberExpressionB(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitMemberExpressionSuffix(MemberExpressionSuffixContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitMemberExpressionSuffix(ctx);
 	}
 	
 	@Override
@@ -535,12 +406,6 @@ public class CFSCRIPT2ObjectVisitor extends CFSCRIPTParserBaseVisitor<CFScriptSt
 	public CFScriptStatement visitIndexSuffix(IndexSuffixContext ctx) {
 		System.out.println("visitTODO");
 		return super.visitIndexSuffix(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitPrimaryExpressionIRW(PrimaryExpressionIRWContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitPrimaryExpressionIRW(ctx);
 	}
 	
 	@Override
@@ -577,48 +442,6 @@ public class CFSCRIPT2ObjectVisitor extends CFSCRIPTParserBaseVisitor<CFScriptSt
 	public CFScriptStatement visitCfscriptKeywords(CfscriptKeywordsContext ctx) {
 		System.out.println("visitTODO");
 		return super.visitCfscriptKeywords(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitImplicitArray(ImplicitArrayContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitImplicitArray(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitImplicitArrayElements(ImplicitArrayElementsContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitImplicitArrayElements(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitImplicitStruct(ImplicitStructContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitImplicitStruct(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitImplicitStructElements(ImplicitStructElementsContext ctx) {
-		System.out.println("visitTODO");
-		return super.visitImplicitStructElements(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitImplicitStructExpression(ImplicitStructExpressionContext ctx) {
-		System.out.println("visitImplicitStructExpression");
-		return super.visitImplicitStructExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitImplicitStructKeyExpression(ImplicitStructKeyExpressionContext ctx) {
-		System.out.println("visitImplicitStructKeyExpression");
-		return super.visitImplicitStructKeyExpression(ctx);
-	}
-	
-	@Override
-	public CFScriptStatement visitNewComponentExpression(NewComponentExpressionContext ctx) {
-		System.out.println("visitNewComponentExpression");
-		return super.visitNewComponentExpression(ctx);
 	}
 	
 	@Override

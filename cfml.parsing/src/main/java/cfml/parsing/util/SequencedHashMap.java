@@ -13,13 +13,12 @@
  * that uses com.nary.util.HashMap for storing entries (instead of java.util.Map)
  * and that supports case-sensitive or case-insensitive keys.
  */
-package cfml.parsing.cfscript;
+package cfml.parsing.util;
 
 import java.io.Externalizable;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 import java.io.IOException;
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;

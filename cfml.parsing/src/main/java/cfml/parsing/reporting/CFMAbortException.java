@@ -27,19 +27,19 @@
  *  http://www.openbluedragon.org/
  */
 
-package cfml.parsing.cfscript;
+package cfml.parsing.reporting;
 
-public class cfmAbortException extends RuntimeException {
+public class CFMAbortException extends RuntimeException {
 	private static final long serialVersionUID = 1;
 	
 	private String output;
 	private boolean bFlushOutput;
 	
-	public cfmAbortException() {
+	public CFMAbortException() {
 		this(false);
 	}
 	
-	public cfmAbortException(boolean _flushOutput) {
+	public CFMAbortException(boolean _flushOutput) {
 		bFlushOutput = _flushOutput;
 	}
 	

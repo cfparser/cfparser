@@ -31,10 +31,10 @@ import cfml.CFSCRIPTParser.ScriptBlockContext;
 import cfml.dictionary.DictionaryManager;
 import cfml.dictionary.SyntaxDictionary;
 import cfml.dictionary.preferences.DictionaryPreferences;
-import cfml.parsing.cfscript.IErrorReporter;
-import cfml.parsing.cfscript.ParseException;
 import cfml.parsing.cfscript.script.CFScriptStatement;
-import cfml.parsing.cfscript.walker.CFSCRIPT2ObjectVisitor;
+import cfml.parsing.cfscript.walker.CFScriptStatementVisitor;
+import cfml.parsing.reporting.IErrorReporter;
+import cfml.parsing.reporting.ParseException;
 import cfml.parsing.utils.TestUtils;
 
 public class CFMLParser {
@@ -318,7 +318,7 @@ public class CFMLParser {
 	
 	public CFScriptStatement parseScript(String cfscript) throws ParseException, IOException {
 		ScriptBlockContext scriptBlockContext = parseScriptBlockContext(cfscript);
-		CFSCRIPT2ObjectVisitor visitor = new CFSCRIPT2ObjectVisitor();
+		CFScriptStatementVisitor visitor = new CFScriptStatementVisitor();
 		
 		CFScriptStatement result = visitor.visit(scriptBlockContext);
 		return result;

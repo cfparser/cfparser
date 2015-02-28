@@ -33,7 +33,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 import cfml.parsing.cfscript.CFExpression;
-import cfml.parsing.cfscript.ParseException;
+import cfml.parsing.reporting.ParseException;
 
 public class CFLockStatement extends CFParsedAttributeStatement implements java.io.Serializable {
 	

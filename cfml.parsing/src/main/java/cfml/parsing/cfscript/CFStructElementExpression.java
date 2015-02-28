@@ -29,27 +29,29 @@
 
 package cfml.parsing.cfscript;
 
-import java.util.ArrayList;
+import org.antlr.v4.runtime.Token;
 
-public class CFStructElementExpression implements java.io.Serializable {
+public class CFStructElementExpression extends CFExpression implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<String> key;
+	private CFIdentifier key;
 	private CFExpression value;
 	
-	public CFStructElementExpression( ArrayList<String> _key, CFExpression _value ) {
+	public CFStructElementExpression(Token t, CFIdentifier _key, CFExpression _value) {
+		super(t);
 		key = _key;
 		value = _value;
 	}
 	
 	public String toString() {
+		return Decompile(0);
+	}
+	
+	@Override
+	public String Decompile(int indent) {
 		StringBuilder sb = new StringBuilder();
-		sb.append( key.get( 0 ) );
-		for (int i = 1; i < key.size(); i++) {
-			sb.append('.');
-			sb.append( key.get( i ) );
-		}
+		sb.append(key.Decompile(0));
 		sb.append(':');
 		sb.append(value.Decompile(0));
 		return sb.toString();

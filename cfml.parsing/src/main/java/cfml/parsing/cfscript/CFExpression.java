@@ -41,7 +41,8 @@ import cfml.CFSCRIPTParser.ScriptBlockContext;
 public abstract class CFExpression extends CFParsedStatement implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	public static byte FUNCTION = 0, ASSIGNMENT = 1, BINARY = 2, LITERAL = 3, IDENTIFIER = 4, VARIABLE = 5, UNARY = 6;
+	public static byte FUNCTION = 0, ASSIGNMENT = 1, BINARY = 2, LITERAL = 3, IDENTIFIER = 4, VARIABLE = 5, UNARY = 6,
+			ARRAYMEMBER = 7;
 	
 	@Deprecated
 	public static CFExpression getCFExpression(String _infix) {

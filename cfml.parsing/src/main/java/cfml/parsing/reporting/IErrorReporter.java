@@ -1,4 +1,4 @@
-package cfml.parsing.cfscript;
+package cfml.parsing.reporting;
 
 import org.antlr.runtime.BitSet;
 import org.antlr.v4.runtime.ANTLRErrorListener;

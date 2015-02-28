@@ -1,5 +1,5 @@
 /* 
- *  Copyright (C) 2000 - 2010 TagServlet Ltd
+ *  Copyright (C) 2000 - 2008 TagServlet Ltd
  *
  *  This file is part of Open BlueDragon (OpenBD) CFML Server Engine.
  *  
@@ -27,29 +27,48 @@
  *  http://www.openbluedragon.org/
  */
 
-package cfml.parsing.cfscript;
+package cfml.parsing.util;
 
-import java.io.Serializable;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.antlr.v4.runtime.Token;
-
-public class ParseException extends IllegalArgumentException implements Serializable {
+public class SourceReader extends Object {
 	
-	private static final long serialVersionUID = 1;
+	private List<String> lineBuffer = new ArrayList<String>();
+	private int lineStart, lineCount;
 	
-	private Token token;
-	
-	public ParseException(Token _t, String _msg) {
-		super(_msg);
-		token = _t;
+	public SourceReader( BufferedReader in ) throws IOException {
+		this( in, 0, Integer.MAX_VALUE );
 	}
 	
-	public int getLine() {
-		return token.getLine();
+	public SourceReader( BufferedReader in, int _lineStart, int _lineCount ) throws IOException {
+		
+		lineStart	= _lineStart;
+		lineCount	= _lineCount;
+		
+		if ( lineStart < 0 ) lineStart = 0;
+		
+		//--[ Skip a head
+		int currentLine = 0;
+		while ( ( currentLine < lineStart ) && ( in.readLine() != null ) ) {
+			currentLine++;
+		}
+		
+		if ( currentLine != lineStart )
+			throw new IOException( "sourceReader: not enough lines in the file" );
+		
+		String line;
+		for ( int i = 0; ( i < lineCount ) && ( ( line = in.readLine() ) != null ); i++ ) {
+			lineBuffer.add( line );
+		}
 	}
 	
-	public int getCol() {
-		return token.getCharPositionInLine();
+	public String[] getLines(){
+		return lineBuffer.toArray( new String[ lineBuffer.size() ] );
 	}
 	
+	public int getLineStart(){
+		return lineStart;
+	}
 }

@@ -27,7 +27,7 @@
  *  http://www.openbluedragon.org/
  */
 
-package cfml.parsing.cfscript;
+package cfml.parsing.util;
 
 /**
  * This class filters out strings containing pound signs replacing them with
@@ -41,7 +41,7 @@ import java.io.CharArrayWriter;
 import java.io.Reader;
 import java.io.IOException;
 
-public class poundSignFilterStream extends FilterReader {
+public class PoundSignFilterStream extends FilterReader {
 	
 	char[] buffer = null;
 	int bufferAt;
@@ -51,7 +51,7 @@ public class poundSignFilterStream extends FilterReader {
 	// output
 	private boolean isClosed;
 	
-	public poundSignFilterStream(Reader _in) throws IOException {
+	public PoundSignFilterStream(Reader _in) throws IOException {
 		super(_in);
 		added = 0;
 		readChar();
@@ -224,7 +224,7 @@ public class poundSignFilterStream extends FilterReader {
 						}
 					} else {
 						// throw an exception
-						throw new poundSignFilterStreamException("Invalid string expression - unclosed '#' expression");
+						throw new PoundSignFilterStreamException("Invalid string expression - unclosed '#' expression");
 					}
 					
 				}
@@ -327,7 +327,7 @@ public class poundSignFilterStream extends FilterReader {
 		for (int i = 0; i < inputList.size(); i++) {
 			String input = (String) inputList.get(i);
 			try {
-				poundSignFilterStream psf = new poundSignFilterStream(new java.io.StringReader(input));
+				PoundSignFilterStream psf = new PoundSignFilterStream(new java.io.StringReader(input));
 				char[] buffer = new char[1024];
 				int read = psf.read(buffer);
 				System.out.println("BEFORE: " + input.length() + "; AFTER: " + read + "; Added: " + psf.added

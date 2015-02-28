@@ -31,7 +31,9 @@ package cfml.parsing.cfscript;
 
 import java.util.Vector;
 
-public class CFFunctionExpression extends CFExpression {
+import cfml.parsing.reporting.ParseException;
+
+public class CFFunctionExpression extends CFMember {
 	private static final long serialVersionUID = 1L;
 	
 	private CFIdentifier nameId;
@@ -41,7 +43,7 @@ public class CFFunctionExpression extends CFExpression {
 	// private boolean isParamExists;
 	
 	public CFFunctionExpression(CFIdentifier _name, Vector<CFExpression> _args) throws ParseException {
-		super(_name.getToken());
+		super(_name.getToken(), null);
 		// name = _name.getName().toLowerCase();
 		nameId = _name;
 		args = _args;

@@ -51,7 +51,7 @@ public class CFStructExpression extends CFExpression implements java.io.Serializ
 	@Override
 	public String Decompile(int indent) {
 		StringBuilder sb = new StringBuilder();
-		sb.append('[');
+		sb.append('{');
 		for (int i = 0; i < elements.size(); i++) {
 			sb.append(((CFStructElementExpression) elements.get(i)).toString());
 			sb.append(',');
@@ -61,7 +61,7 @@ public class CFStructExpression extends CFExpression implements java.io.Serializ
 			sb.deleteCharAt(sb.length() - 1);
 		}
 		
-		sb.append(']');
+		sb.append('}');
 		return sb.toString();
 	}
 	

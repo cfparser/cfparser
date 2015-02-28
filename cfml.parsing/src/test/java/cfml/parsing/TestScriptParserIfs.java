@@ -1,5 +1,6 @@
 package cfml.parsing;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
@@ -40,6 +41,8 @@ public class TestScriptParserIfs {
 		}
 		assertNotNull(scriptStatement);
 		System.out.println(scriptStatement.Decompile(0));
+		assertEquals("if(tag.template.startsWith('ram:') )   {  }",
+				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 		// System.out.println(scriptStatement.getExpression().Decompile(0));
 		// System.out.println(scriptStatement.getExpression().getClass());
 	}
@@ -53,7 +56,7 @@ public class TestScriptParserIfs {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}
 		assertNotNull(scriptStatement);
-		System.out.println(scriptStatement.Decompile(0));
+		assertEquals("if(foo.bar.blah('ram:') )   {  }", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
 	@Test
@@ -66,6 +69,8 @@ public class TestScriptParserIfs {
 		}
 		assertNotNull(scriptStatement);
 		System.out.println(scriptStatement.Decompile(0));
+		assertEquals("if(structKeyExists(cfc, 'get#property#') )   return evaluate('cfc.get#property#()')",
+				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
 }

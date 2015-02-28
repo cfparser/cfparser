@@ -39,7 +39,7 @@ import org.antlr.v4.runtime.Token;
 import cfml.parsing.cfscript.CFContext;
 import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFLiteral;
-import cfml.parsing.cfscript.ParseException;
+import cfml.parsing.reporting.ParseException;
 
 public class CFFuncDeclStatement extends CFParsedStatement {
 	

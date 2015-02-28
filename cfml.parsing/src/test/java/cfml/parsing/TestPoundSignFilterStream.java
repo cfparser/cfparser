@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 
-import cfml.parsing.cfscript.poundSignFilterStream;
+import cfml.parsing.util.PoundSignFilterStream;
 
 public class TestPoundSignFilterStream {
 	
@@ -43,7 +43,7 @@ public class TestPoundSignFilterStream {
 		for (int i = 0; i < inputList.size(); i++) {
 			String input = (String) inputList.get(i);
 			try {
-				poundSignFilterStream psf = new poundSignFilterStream(new java.io.StringReader(input));
+				PoundSignFilterStream psf = new PoundSignFilterStream(new java.io.StringReader(input));
 				char[] buffer = new char[1024];
 				int read = psf.read(buffer);
 				System.out.println("BEFORE: " + input.length() + "; AFTER: " + read + "; Added: " + psf.getAdded()

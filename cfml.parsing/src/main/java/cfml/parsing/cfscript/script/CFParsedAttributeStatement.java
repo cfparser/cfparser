@@ -36,9 +36,9 @@ import java.util.Map;
 import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFContext;
-import cfml.parsing.cfscript.CFException;
 import cfml.parsing.cfscript.CFExpression;
-import cfml.parsing.cfscript.ParseException;
+import cfml.parsing.reporting.ParseException;
+import cfml.parsing.util.CFException;
 
 abstract public class CFParsedAttributeStatement extends CFParsedStatement implements Serializable {
 	private static final long serialVersionUID = 1L;
