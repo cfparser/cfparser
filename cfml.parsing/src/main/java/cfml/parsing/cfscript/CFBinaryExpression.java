@@ -73,7 +73,7 @@ public class CFBinaryExpression extends CFExpression implements java.io.Serializ
 		if (_kind == CFSCRIPTLexer.LEFTBRACKET) {
 			endChar = "]";
 		}
-		return "" + _left.Decompile(indent) + operatorImage + _right.Decompile(indent) + endChar;
+		return "" + _left.Decompile(indent) + " " + operatorImage + " " + _right.Decompile(indent) + endChar;
 	}
 	
 	public CFExpression getLeft() {

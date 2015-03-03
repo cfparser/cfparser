@@ -34,7 +34,6 @@ package cfml.parsing.cfscript.script;
  * hold a vector of these.
  */
 
-import java.util.Iterator;
 import java.util.List;
 
 import cfml.parsing.cfscript.CFExpression;
@@ -43,18 +42,18 @@ public class CFCase implements CFScriptStatement, java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private List<CFScriptStatement> statementBlock;
+	private List<CFScriptStatement> statements;
 	private boolean isDefault = true;
 	private CFExpression constant;
 	
-	public CFCase(CFExpression _constant, List<CFScriptStatement> _statementBlock) {
-		this(_statementBlock);
+	public CFCase(CFExpression _constant, List<CFScriptStatement> _statement) {
+		this(_statement);
 		isDefault = false;
 		constant = _constant;
 	}
 	
-	public CFCase(List<CFScriptStatement> _statementBlock) {
-		statementBlock = _statementBlock;
+	public CFCase(List<CFScriptStatement> _statement) {
+		statements = _statement;
 	}
 	
 	public boolean isDefault() {
@@ -62,19 +61,12 @@ public class CFCase implements CFScriptStatement, java.io.Serializable {
 	}
 	
 	public void checkIndirectAssignments(String[] scriptSource) {
-		for (int i = 0; i < statementBlock.size(); i++) {
-			statementBlock.get(i).checkIndirectAssignments(scriptSource);
-		}
+		for (CFScriptStatement statement : statements)
+			statement.checkIndirectAssignments(scriptSource);
 	}
 	
 	public String toString() {
-		String temp = "case :\n";
-		Iterator<CFScriptStatement> statements = statementBlock.iterator();
-		
-		while (statements.hasNext())
-			temp += statements.next().Decompile(0) + "\n";
-		
-		return temp;
+		return Decompile(0);
 	}
 	
 	public String Decompile(int indent) {
@@ -84,6 +76,10 @@ public class CFCase implements CFScriptStatement, java.io.Serializable {
 		} else {
 			sb.append("case ");
 			sb.append(constant.Decompile(0));
+			sb.append(":");
+		}
+		for (CFScriptStatement statement : statements) {
+			sb.append(statement.Decompile(0)).append(";");
 		}
 		return sb.toString();
 	}

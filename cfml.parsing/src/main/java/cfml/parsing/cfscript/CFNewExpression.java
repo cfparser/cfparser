@@ -37,10 +37,10 @@ public class CFNewExpression extends CFExpression implements java.io.Serializabl
 	
 	private static final long serialVersionUID = 1L;
 	
-	private CFIdentifier componentPath;
+	private CFExpression componentPath;
 	private Vector args;
 	
-	public CFNewExpression(Token _t, CFIdentifier _component, Vector _args) {
+	public CFNewExpression(Token _t, CFExpression _component, Vector _args) {
 		super(_t);
 		componentPath = _component;
 		args = _args;

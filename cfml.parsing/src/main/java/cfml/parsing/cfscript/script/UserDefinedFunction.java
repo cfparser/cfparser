@@ -36,7 +36,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class userDefinedFunction implements java.io.Serializable {
+import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.cfscript.CFIdentifier;
+
+public class UserDefinedFunction implements java.io.Serializable {
 	private static final long serialVersionUID = 1;
 	
 	public static final int ACCESS_PRIVATE = 0;
@@ -44,11 +47,11 @@ public class userDefinedFunction implements java.io.Serializable {
 	public static final int ACCESS_PUBLIC = 2;
 	public static final int ACCESS_REMOTE = 3;
 	
-	protected String name;
+	protected CFIdentifier name;
 	protected int access = -1;
 	private String returnType;
 	
-	private Map<String, String> attributes; // the function attributes
+	private Map<CFIdentifier, CFExpression> attributes; // the function attributes
 	
 	// the following attribute is only used for CFFUNCTION-based UDFs
 	
@@ -63,18 +66,18 @@ public class userDefinedFunction implements java.io.Serializable {
 	protected Method javaMethod;
 	
 	// for creating CFSCRIPT-based UDFs
-	public userDefinedFunction(String _name, byte _access, String _returnType, List<CFFunctionParameter> _formals,
-			Map<String, String> _attr, CFScriptStatement _body) {
+	public UserDefinedFunction(CFIdentifier _name, byte _access, String _returnType,
+			List<CFFunctionParameter> _formals, Map<CFIdentifier, CFExpression> attributes2, CFScriptStatement _body) {
 		name = _name;
 		access = _access;
 		formals = _formals;
-		attributes = _attr;
+		attributes = attributes2;
 		body = _body;
 		returnType = _returnType;
 	}
 	
-	public userDefinedFunction(Method method, JavaBlock javaBlock) {
-		name = method.getName();
+	public UserDefinedFunction(Method method, JavaBlock javaBlock) {
+		name = new CFIdentifier(null, method.getName());
 		this.javaBlock = javaBlock;
 		this.javaMethod = method;
 		access = ACCESS_PUBLIC;
@@ -89,12 +92,12 @@ public class userDefinedFunction implements java.io.Serializable {
 		return formals;
 	}
 	
-	public String getName() {
+	public CFIdentifier getName() {
 		return name;
 	}
 	
 	public String getString() {
-		return name;
+		return name.Decompile(0);
 	}
 	
 	public boolean isJavaBlock() {

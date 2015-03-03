@@ -35,6 +35,7 @@ import java.util.Map;
 import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.cfscript.CFIdentifier;
 
 public class CFTransactionStatement extends CFParsedAttributeStatement implements Serializable {
 	
@@ -51,7 +52,7 @@ public class CFTransactionStatement extends CFParsedAttributeStatement implement
 		supportedAttributes.add("ISOLATION");
 	}
 	
-	public CFTransactionStatement(Token _t, Map<String, CFExpression> _attr, CFScriptStatement _body) {
+	public CFTransactionStatement(Token _t, Map<CFIdentifier, CFExpression> _attr, CFScriptStatement _body) {
 		super(_t, _attr);
 		
 		body = _body;

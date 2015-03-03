@@ -1,11 +1,13 @@
 package cfml.parsing;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import cfml.CFSCRIPTParser.ScriptBlockContext;
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.utils.TestUtils;
 
 public class TestScriptNestedAND {
 	
@@ -20,54 +22,34 @@ public class TestScriptNestedAND {
 	@Test
 	public void testParseScriptTernaryFunction() {
 		String script = "result = fileExists(destfile) ? \"overwritten\" : \"created\";";
-		ScriptBlockContext scriptStatement = null;
-		try {
-			scriptStatement = fCfmlParser.parseScript(script);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
+		assertEquals("result=fileExists(destfile)?'overwritten':'created'", scriptStatement.Decompile(0));
 	}
 	
 	@Test
 	public void testParseScriptTernaryFunctionParen() {
 		String script = "result = (fileExists(destfile)) ? \"overwritten\" : \"created\";";
-		ScriptBlockContext scriptStatement = null;
-		try {
-			scriptStatement = fCfmlParser.parseScript(script);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
+		assertEquals("result=(fileExists(destfile))?'overwritten':'created'", scriptStatement.Decompile(0));
 	}
 	
 	@Test
 	public void testParseScriptTernaryString() {
 		// String script = "result = (fileExists(destfile)) ? \"overwritten\" : \"created\";";
 		String script = "result = a == b ? \"overwritten\" : \"created\";";
-		ScriptBlockContext scriptStatement = null;
-		try {
-			scriptStatement = fCfmlParser.parseScript(script);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
+		assertEquals("result=a==b?'overwritten':'created'", scriptStatement.Decompile(0));
 	}
 	
 	@Test
 	public void testParseScriptTernaryChain() {
 		String script = "result = a == b ? c > a ? 'c > a' : 'a > c' : 'b != a';";
-		ScriptBlockContext scriptStatement = null;
-		try {
-			scriptStatement = fCfmlParser.parseScript(script);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
+		assertEquals("result=a==b?c>a?'c > a':'a > c':'b != a'", scriptStatement.Decompile(0));
 	}
 	
 }

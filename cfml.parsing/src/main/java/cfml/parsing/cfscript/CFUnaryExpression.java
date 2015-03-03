@@ -72,6 +72,10 @@ public class CFUnaryExpression extends CFExpression implements java.io.Serializa
 			sb.append('!');
 			sb.append(sub.Decompile(0));
 			break;
+		case CFSCRIPTLexer.NOTNOTOP:
+			sb.append("!!");
+			sb.append(sub.Decompile(0));
+			break;
 		case CFSCRIPTLexer.PLUS:
 			sb.append('+');
 			sb.append(sub.Decompile(0));

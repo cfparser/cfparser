@@ -26,72 +26,57 @@
  *  
  *  http://www.openbluedragon.org/
  */
+package cfml.parsing.cfscript.script;
 
-package cfml.parsing.cfscript;
-
-import java.util.Vector;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Map;
 
 import org.antlr.v4.runtime.Token;
 
-import cfml.parsing.reporting.ParseException;
+import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.cfscript.CFIdentifier;
 
-public class CFFunctionExpression extends CFMember {
+public class CFMLFunctionStatement extends CFParsedAttributeStatement implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
 	
-	private CFIdentifier nameId;
-	private Vector<CFExpression> args; // Vector of CFExpression's
-	private boolean isUDF = true;
+	private CFScriptStatement body;
 	
-	// private boolean isParamExists;
-	public CFFunctionExpression(CFIdentifier _name, Vector<CFExpression> _args) throws ParseException {
-		this(_name.getToken(), _name, _args);
+	private Token type;
+	
+	private static HashSet<String> supportedAttributes;
+	
+	static {
+		supportedAttributes = new HashSet<String>();
+		supportedAttributes.add("ACTION");
+		supportedAttributes.add("SAVEPOINT");
+		supportedAttributes.add("ISOLATION");
 	}
 	
-	public CFFunctionExpression(Token t, CFIdentifier _name, Vector<CFExpression> _args) throws ParseException {
-		super(t, null);
-		nameId = _name;
-		args = _args;
-		isUDF = false;
-	}
-	
-	public byte getType() {
-		return CFExpression.FUNCTION;
-	}
-	
-	public String getFunctionName() {
-		return nameId == null ? "" : nameId.getName().toLowerCase();
-	}
-	
-	public boolean isUDF() {
-		return isUDF;
-	}
-	
-	public String Decompile(int indent) {
-		String s = nameId == null ? "" : nameId.Decompile(indent);
-		s += "(";
+	public CFMLFunctionStatement(Token _t, Token type, Map<CFIdentifier, CFExpression> _attr, CFScriptStatement _body) {
+		super(_t, _attr);
+		this.type = type;
 		
-		for (int i = 0; i < args.size(); i++) {
-			s += args.elementAt(i).Decompile(indent);
-			if (i < args.size() - 1) {
-				s += ", ";
-			}
+		body = _body;
+	}
+	
+	public Token getType() {
+		return type;
+	}
+	
+	@Override
+	public String Decompile(int indent) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(type.getText());
+		DecompileAttributes(sb);
+		if (body == null) {
+			sb.append(";");
+		} else {
+			sb.append(body.Decompile(0));
 		}
 		
-		s += ")";
-		
-		return s;
-	}
-	
-	public Vector<CFExpression> getArgs() {
-		return args;
-	}
-	
-	public String getName() {
-		return nameId == null ? "" : nameId.Decompile(0);
-	}
-	
-	public CFIdentifier getIdentifier() {
-		return nameId;
+		return sb.toString();
 	}
 	
 }

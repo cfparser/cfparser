@@ -29,18 +29,26 @@
 
 package cfml.parsing.cfscript.script;
 
-public class CFCatchStatement extends cfCatchClause implements CFScriptStatement {
+import cfml.parsing.cfscript.CFIdentifier;
+
+public class CFCatchStatement extends CFCatchClause implements CFScriptStatement {
 	
-	private String var;
+	private CFIdentifier var;
 	private CFScriptStatement body;
 	
-	public CFCatchStatement(String _type, String _var, CFScriptStatement _body) {
+	public CFCatchStatement(String _type, CFIdentifier _var, CFScriptStatement _body) {
 		type = _type;
 		var = _var;
 		body = _body;
 	}
 	
-	public String getVariable() {
+	public CFCatchStatement(CFIdentifier _type, CFIdentifier _var, CFScriptStatement _body) {
+		type = _type.Decompile(0);
+		var = _var;
+		body = _body;
+	}
+	
+	public CFIdentifier getVariable() {
 		return var;
 	}
 	
@@ -57,15 +65,10 @@ public class CFCatchStatement extends cfCatchClause implements CFScriptStatement
 		sb.append("catch( ");
 		sb.append(type);
 		sb.append(' ');
-		sb.append(var);
+		sb.append(var.Decompile(0));
 		sb.append(")\n");
 		sb.append(body.Decompile(0));
 		return sb.toString();
-	}
-	
-	public Object getType() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 }

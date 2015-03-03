@@ -1,62 +1,37 @@
 package cfml.parsing;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import cfml.CFSCRIPTParser.ScriptBlockContext;
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.utils.TestUtils;
 
 public class TestScriptReservedWordOrder {
-	
-	private CFMLParser fCfmlParser;
-	
-	@Before
-	public void setUp() throws Exception {
-		fCfmlParser = new CFMLParser();
-	}
-	
-	private ScriptBlockContext parseScript(String script) {
-		ScriptBlockContext scriptStatement = null;
-		try {
-			scriptStatement = fCfmlParser.parseScript(script);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			fail("whoops! " + e.getMessage());
-		}
-		return scriptStatement;
-	}
 	
 	@Test
 	public void testFuncNameMatchesAccessType() {
 		String script = "function package() {}";
-		ScriptBlockContext scriptStatement = parseScript(script);
-		if (fCfmlParser.getMessages().size() > 0) {
-			fail("whoops! " + fCfmlParser.getMessages());
-		}
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
+		assertEquals("public function package()   {  }", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
 	@Test
 	public void testAccessTypeAndFuncNameMatch() {
 		String script = "package function package() {}";
-		ScriptBlockContext scriptStatement = parseScript(script);
-		if (fCfmlParser.getMessages().size() > 0) {
-			fail("whoops! " + fCfmlParser.getMessages());
-		}
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
+		assertEquals("package function package()   {  }", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
 	@Test
 	public void testReturnAndAccessTypeAndFuncNameMatch() {
 		String script = "package package function package() {}";
-		ScriptBlockContext scriptStatement = parseScript(script);
-		if (fCfmlParser.getMessages().size() > 0) {
-			fail("whoops! " + fCfmlParser.getMessages());
-		}
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
+		assertEquals("package package function package()   {  }", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
 }

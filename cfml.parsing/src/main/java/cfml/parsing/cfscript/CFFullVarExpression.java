@@ -34,7 +34,7 @@ import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
-public class CFFullVarExpression extends CFVarExpression implements Serializable {
+public class CFFullVarExpression extends CFIdentifier implements Serializable {
 	
 	private static final long serialVersionUID = 1;
 	
@@ -45,7 +45,8 @@ public class CFFullVarExpression extends CFVarExpression implements Serializable
 		super(_t);
 		// token = _t;
 		expressions = new ArrayList<CFExpression>();
-		expressions.add(_main);
+		if (_main != null)
+			expressions.add(_main);
 	}
 	
 	public CFIdentifier getIdentifier() {
@@ -82,9 +83,13 @@ public class CFFullVarExpression extends CFVarExpression implements Serializable
 	public String Decompile(int indent) {
 		StringBuilder sb = new StringBuilder();
 		for (CFExpression expression : expressions) {
-			if (sb.length() > 0
-					&& (expression.getType() == CFExpression.IDENTIFIER || expression.getType() == CFExpression.FUNCTION)) {
-				sb.append(".");
+			if (sb.length() > 0) {
+				if (expression.getType() == CFExpression.IDENTIFIER) {
+					sb.append(".");
+				} else if (expression instanceof CFFunctionExpression
+						&& ((CFFunctionExpression) expression).getIdentifier() != null) {
+					sb.append(".");
+				}
 			}
 			sb.append(expression.Decompile(0));
 		}

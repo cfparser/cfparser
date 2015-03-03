@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cfml.CFSCRIPTParser.ScriptBlockContext;
+import cfml.parsing.cfscript.script.CFScriptStatement;
 import cfml.parsing.utils.TestUtils;
 
 public class TestScriptParser {
@@ -28,7 +29,7 @@ public class TestScriptParser {
 	private ScriptBlockContext parseScript(String script) {
 		ScriptBlockContext scriptStatement = null;
 		try {
-			scriptStatement = fCfmlParser.parseScript(script);
+			scriptStatement = fCfmlParser.parseScriptBlockContext(script);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -151,7 +152,7 @@ public class TestScriptParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ScriptBlockContext scriptStatement = null;
+		CFScriptStatement scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScriptFile(path);
 		} catch (Exception e) {
@@ -175,7 +176,7 @@ public class TestScriptParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ScriptBlockContext scriptStatement = null;
+		CFScriptStatement scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScriptFile(path);
 		} catch (Exception e) {
@@ -200,7 +201,7 @@ public class TestScriptParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ScriptBlockContext scriptStatement = null;
+		CFScriptStatement scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScriptFile(path);
 		} catch (Exception e) {
@@ -225,7 +226,7 @@ public class TestScriptParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ScriptBlockContext scriptStatement = null;
+		CFScriptStatement scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScriptFile(path);
 		} catch (Exception e) {
@@ -250,7 +251,7 @@ public class TestScriptParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ScriptBlockContext scriptStatement = null;
+		CFScriptStatement scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScriptFile(path);
 		} catch (Exception e) {
@@ -275,7 +276,7 @@ public class TestScriptParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ScriptBlockContext scriptStatement = null;
+		CFScriptStatement scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScriptFile(path);
 		} catch (Exception e) {
@@ -301,7 +302,7 @@ public class TestScriptParser {
 				if (file.isDirectory()) {
 					System.out.println("Directory: " + file.getName());
 				} else if (file.getPath().endsWith(".cfc")) {
-					ScriptBlockContext scriptStatement = null;
+					CFScriptStatement scriptStatement = null;
 					try {
 						scriptStatement = fCfmlParser.parseScriptFile(file.getAbsolutePath());
 					} catch (Exception e) {

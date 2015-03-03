@@ -33,6 +33,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.cfscript.CFIdentifier;
 import cfml.parsing.reporting.ParseException;
 
 public class CFLockStatement extends CFParsedAttributeStatement implements java.io.Serializable {
@@ -52,7 +53,7 @@ public class CFLockStatement extends CFParsedAttributeStatement implements java.
 		supportedAttributes.add("THROWONTIMEOUT");
 	}
 	
-	public CFLockStatement(org.antlr.v4.runtime.Token _t, Map<String, CFExpression> _attr, CFScriptStatement _body) {
+	public CFLockStatement(org.antlr.v4.runtime.Token _t, Map<CFIdentifier, CFExpression> _attr, CFScriptStatement _body) {
 		super(_t, _attr);
 		
 		validateAttributes(_t, supportedAttributes);

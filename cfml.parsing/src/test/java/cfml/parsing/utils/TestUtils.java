@@ -1,5 +1,7 @@
 package cfml.parsing.utils;
 
+import static org.junit.Assert.fail;
+
 import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
@@ -35,6 +37,13 @@ import org.junit.Assert;
 import cfml.CFSCRIPTLexer;
 import cfml.CFSCRIPTParser;
 import cfml.CFSCRIPTParser.ScriptBlockContext;
+import cfml.parsing.CFMLParser;
+import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.cfscript.CFFullVarExpression;
+import cfml.parsing.cfscript.CFIdentifier;
+import cfml.parsing.cfscript.CFMember;
+import cfml.parsing.cfscript.script.CFExpressionStatement;
+import cfml.parsing.cfscript.script.CFScriptStatement;
 
 public class TestUtils {
 	public static String _pad280(String input) {
@@ -280,5 +289,41 @@ public class TestUtils {
 				Assert.assertEquals(message, tok.trim(), stok.trim());
 			}
 		}
+	}
+	
+	public static CFScriptStatement parseScript(String script) {
+		CFScriptStatement scriptStatement = null;
+		CFMLParser fCfmlParser = new CFMLParser();
+		try {
+			scriptStatement = fCfmlParser.parseScript(script);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+		return scriptStatement;
+	}
+	
+	public static void printCFScriptTree(CFScriptStatement scriptStatement) {
+		System.out.println(scriptStatement.getClass());
+		if (scriptStatement instanceof CFExpressionStatement) {
+			printCFExpressionTree(((CFExpressionStatement) scriptStatement).getExpression());
+		}
+	}
+	
+	public static void printCFExpressionTree(CFExpression expression, String... indent) {
+		final String prefix = indent.length > 0 ? indent[0] : "";
+		if (expression instanceof CFFullVarExpression) {
+			System.out.println(prefix + expression.getClass().getSimpleName());
+			for (CFExpression subexpression : ((CFFullVarExpression) expression).getExpressions()) {
+				printCFExpressionTree(subexpression, prefix + "  ");
+			}
+			return;
+		} else if (expression instanceof CFIdentifier || expression instanceof CFMember) {
+			System.out.print(prefix + expression.Decompile(0));
+		} else {
+			System.out.println(prefix + expression.getClass().getSimpleName());
+		}
+		System.out.println(prefix + expression.getClass().getSimpleName());
 	}
 }

@@ -197,9 +197,9 @@ public class TestCFMLParser {
 			scriptStatement = fCfmlParser.parseScript(script);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return;
 		}
-		assertNotNull(scriptStatement);
+		// assertNotNull(scriptStatement);
 	}
 	
 	@Test
@@ -217,7 +217,7 @@ public class TestCFMLParser {
 		CFAssignmentExpression expressionStatement = (CFAssignmentExpression) ((CFExpressionStatement) scriptStatement)
 				.getExpression();
 		
-		assertEquals("a==b?'overwritten':'created'", expressionStatement.getRight().Decompile(1));
+		assertEquals("a == b?'overwritten':'created'", expressionStatement.getRight().Decompile(1));
 	}
 	
 	@Test
@@ -231,7 +231,7 @@ public class TestCFMLParser {
 			e.printStackTrace();
 		}
 		assertNotNull(scriptStatement);
-		assertEquals("result=a==b?c>a?'c > a':'a > c':'b != a'", scriptStatement.Decompile(0));
+		assertEquals("result=a == b?c > a?'c > a':'a > c':'b != a'", scriptStatement.Decompile(0));
 	}
 	
 	@Test
@@ -302,6 +302,23 @@ public class TestCFMLParser {
 	}
 	
 	@Test
+	public void testForInkey() {
+		String script = "for(daform in model.getViews()) {}";
+		CFScriptStatement scriptStatement = null;
+		try {
+			scriptStatement = fCfmlParser.parseScript(script);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertNotNull(scriptStatement);
+		assertEquals("for( daform in model.getViews() )   {  }", scriptStatement.Decompile(0)
+				.replaceAll("[\\r\\n]", ""));
+		System.out.println(scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
+		
+	}
+	
+	@Test
 	public void testParseScriptCfcWow() {
 		String path = "";
 		try {
@@ -323,6 +340,23 @@ public class TestCFMLParser {
 	}
 	
 	@Test
+	public void testParseScriptFunction2() {
+		String script = "runFunk=this[functionName]; ";
+		CFScriptStatement scriptStatement = null;
+		try {
+			scriptStatement = fCfmlParser.parseScript(script);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		assertNotNull(scriptStatement);
+		System.out.println(scriptStatement.Decompile(0));
+		System.out.println(scriptStatement.getClass());
+		assertEquals("runFunk=this[functionName]", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
+	}
+	
+	@Test
 	public void testParseScriptFunction() {
 		String script = "function runFunction(functionName,argCol) { runFunk = this[functionName]; results = structNew(); results.result = runFunk(argumentCollection=argCol); results.debug = getDebugMessages(); return results; }";
 		CFScriptStatement scriptStatement = null;
@@ -334,6 +368,10 @@ public class TestCFMLParser {
 		}
 		
 		assertNotNull(scriptStatement);
+		System.out.println(scriptStatement.Decompile(0));
+		assertEquals(
+				"public function runFunction(functionName, argCol)   {runFunk=this[functionName];results=structNew();results.result=runFunk(argCol);results.debug=getDebugMessages();    return results;  }",
+				scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
 	}
 	
 	@Test
@@ -348,6 +386,9 @@ public class TestCFMLParser {
 		}
 		
 		assertNotNull(scriptStatement);
+		System.out.println(scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
+		assertEquals("try{throw('funk');}catch(Any e{woot();}", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
+		
 	}
 	
 	@Test

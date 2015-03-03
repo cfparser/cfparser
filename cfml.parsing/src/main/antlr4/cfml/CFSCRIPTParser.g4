@@ -28,19 +28,15 @@ element
   ;
 
 functionDeclaration
-  : (accessType)? (typeSpec)? lc=FUNCTION identifier LEFTPAREN (parameterList)? RIGHTPAREN functionAttribute* compoundStatement //-> ^( FUNCDECL[$lc] (functionAccessType)? (functionReturnType)? ^(FUNCTION_NAME identifier) (parameterList)? functionAttribute* compoundStatement )
+  : accessType? typeSpec? FUNCTION identifier 
+  	LEFTPAREN parameterList? RIGHTPAREN 
+  	functionAttribute* body=compoundStatement 
   ;
-
-/*functionAccessType
-  //: (PUBLIC | PRIVATE | REMOTE | PACKAGE) (functionReturnType|identifier)
-  : (accessType functionReturnType? FUNCTION identifier) //=> accessType -> ^(FUNCTION_ACCESS accessType) 
-//  : ((PUBLIC | PRIVATE | REMOTE | PACKAGE) functionReturnType? FUNCTION identifier) => lc=(PUBLIC | PRIVATE | REMOTE | PACKAGE -> ^(FUNCTION_ACCESS[$lc])
+anonymousFunctionDeclaration
+  : accessType? typeSpec? FUNCTION //identifier? 
+  	LEFTPAREN parameterList? RIGHTPAREN 
+  	functionAttribute* body=compoundStatement 
   ;
-
-functionReturnType
-  : (typeSpec FUNCTION) //=> typeSpec -> ^( FUNCTION_RETURNTYPE typeSpec )
-  ;
-  */
 
 accessType
 	:PUBLIC | PRIVATE | REMOTE | PACKAGE
@@ -48,17 +44,18 @@ accessType
 
 typeSpec
   : type
-  | identifier ( DOT ( identifier | reservedWord ) )*
+  | multipartIdentifier
   | STRING_LITERAL
   ;
   
+ 
 parameterList
   : parameter ( COMMA parameter)*
   |
   ;
   
 parameter
-  : (REQUIRED)? (parameterType)? identifier ( EQUALSOP (baseExpression | ternary) )? parameterAttribute* //-> ^(FUNCTION_PARAMETER (REQUIRED)? (parameterType)? identifier (EQUALSOP baseExpression)? parameterAttribute*)
+  : (REQUIRED)? (parameterType)? identifier ( EQUALSOP startExpression )? parameterAttribute* //-> ^(FUNCTION_PARAMETER (REQUIRED)? (parameterType)? identifier (EQUALSOP baseExpression)? parameterAttribute*)
   ;
   
 parameterType
@@ -66,16 +63,16 @@ parameterType
   ;
 
 componentAttribute
-  : identifier (COLON identifier)? op=EQUALSOP (baseExpression | ternary) //-> ^(COMPONENT_ATTRIBUTE identifier (COLON identifier)? baseExpression)
+  : (prefix=identifier COLON)? id=identifier op=EQUALSOP startExpression //-> ^(COMPONENT_ATTRIBUTE identifier (COLON identifier)? baseExpression)
   ;
 //i=identifier EQUALSOP^ v=baseExpression
-  
+   
 functionAttribute
-  : identifier op=EQUALSOP (baseExpression | ternary) //-> ^(FUNCTION_ATTRIBUTE[$op] identifier baseExpression)
+  : identifier op=EQUALSOP startExpression //-> ^(FUNCTION_ATTRIBUTE[$op] identifier baseExpression)
   ;
   
 parameterAttribute
-  : identifier EQUALSOP (baseExpression | ternary) //-> ^(PARAMETER_ATTRIBUTE identifier baseExpression)
+  : identifier EQUALSOP startExpression //-> ^(PARAMETER_ATTRIBUTE identifier baseExpression)
   | identifier
   ;
   
@@ -94,17 +91,22 @@ statement
   |   doWhileStatement
   |   forStatement
   |   switchStatement
-  |   CONTINUE SEMICOLON
-  |   BREAK SEMICOLON
+  |   continueStatement SEMICOLON
+  |   breakStatement SEMICOLON
   |   returnStatement
   |   tagOperatorStatement
   |   compoundStatement 
   |   localAssignmentExpression SEMICOLON
   |   assignmentExpression SEMICOLON
-  |   ternary SEMICOLON
-  |   baseExpression SEMICOLON
+  |   startExpression SEMICOLON
   |   SEMICOLON // empty statement
   ;
+  
+breakStatement 
+  :BREAK ;
+  
+continueStatement 
+  :CONTINUE ;  
    
 condition
   : LEFTPAREN (baseExpression | compareExpression) RIGHTPAREN
@@ -112,8 +114,7 @@ condition
   
 returnStatement
   : RETURN SEMICOLON
-  | RETURN baseExpression SEMICOLON
-  | RETURN ternary SEMICOLON
+  | RETURN startExpression SEMICOLON
   ;
   
 ifStatement
@@ -129,12 +130,15 @@ doWhileStatement
   ;
   
 forStatement
-  : FOR LEFTPAREN ( localAssignmentExpression | assignmentExpression )? SEMICOLON ( assignmentExpression )? SEMICOLON  ( baseExpression )? RIGHTPAREN statement
-  | FOR LEFTPAREN forInKey IN assignmentExpression RIGHTPAREN statement
+  : FOR LEFTPAREN ( localAssignmentExpression | initExpression=assignmentExpression )? SEMICOLON ( condExpression=assignmentExpression )? SEMICOLON  ( incrExpression=startExpression )? RIGHTPAREN statement
+  | FOR LEFTPAREN forInKey IN startExpression RIGHTPAREN statement
   ;
   
+startExpression:
+  ternary | baseExpression | compareExpression;
+  
 forInKey
-  : VAR? identifier ( DOT ( identifier | reservedWord ) )*
+  : VAR? multipartIdentifier
   ;
 
 tryCatchStatement
@@ -169,9 +173,9 @@ switchStatement
   ;
 
 caseStatement
-  : ( CASE constantExpression COLON ( statement )* ) 
+  : ( CASE constantExpression COLON statement*) 
     | 
-    ( DEFAULT COLON ( statement )* ) 
+    ( DEFAULT COLON statement* ) 
   ;
 
 tagOperatorStatement
@@ -180,7 +184,7 @@ tagOperatorStatement
   | importStatement
   | abortStatement
   | throwStatement
-  | RETHROW SEMICOLON //-> ^(RETHROWSTATEMENT)
+  | rethrowStatment //-> ^(RETHROWSTATEMENT)
   | exitStatement
   | paramStatement
   | propertyStatement
@@ -189,23 +193,26 @@ tagOperatorStatement
   | transactionStatement
   | cfmlfunctionStatement
   ; 
+  
+rethrowStatment:
+  lc=RETHROW SEMICOLON ;
 
 // component  
 
 includeStatement
-  : INCLUDE baseExpression* SEMICOLON  //-> ^(INCLUDE  baseExpression* ) 
+  : lc=INCLUDE baseExpression SEMICOLON  //-> ^(INCLUDE  baseExpression* ) 
   ;
 
 importStatement
-  : IMPORT componentPath (DOT '*')? SEMICOLON 
+  : lc=IMPORT componentPath (DOT all='*')? SEMICOLON 
   ;
 
 transactionStatement
-  : lc=TRANSACTION (paramStatementAttributes)* (compoundStatement)? //-> ^(TRANSACTIONSTATEMENT[$lc] (paramStatementAttributes)* (compoundStatement)?)
+  : lc=TRANSACTION (paramStatementAttributes)? (compoundStatement)? //-> ^(TRANSACTIONSTATEMENT[$lc] (paramStatementAttributes)* (compoundStatement)?)
   ;
   
 cfmlfunctionStatement
-  : cfmlFunction (param)* (compoundStatement)?//-> ^(CFMLFUNCTIONSTATEMENT cfmlFunction (param)* (compoundStatement)?)
+  : cfmlFunction (paramStatementAttributes)? (compoundStatement)?//-> ^(CFMLFUNCTIONSTATEMENT cfmlFunction (param)* (compoundStatement)?)
   ;
   
 cfmlFunction
@@ -266,7 +273,7 @@ paramStatementAttributes
   ;
   
 param
-  : i=identifier EQUALSOP (baseExpression | ternary)
+  : i=identifier EQUALSOP startExpression
   ;
 
 
@@ -275,18 +282,17 @@ param
 expression 
 	: localAssignmentExpression EOF
 	|	assignmentExpression EOF
-	|   ternary EOF
-	|	baseExpression EOF
+	|   startExpression EOF
 	;
 	
 localAssignmentExpression 
-	:	VAR identifier ( EQUALSOP (baseExpression | ternary) )? //-> ^( VARLOCAL identifier ( EQUALSOP baseExpression )? ) 
+	:	VAR identifier ( EQUALSOP startExpression )? //-> ^( VARLOCAL identifier ( EQUALSOP baseExpression )? ) 
 	;
 
 assignmentExpression 
-  : (baseExpression|ternary)
+  : left=startExpression
      ( ( EQUALSOP | PLUSEQUALS | MINUSEQUALS | STAREQUALS | SLASHEQUALS | MODEQUALS | CONCATEQUALS )  
-     	(baseExpression|ternary)
+     	right = startExpression
      )
   ;
 
@@ -315,40 +321,45 @@ compareExpression
 	| orExpression
 	| andExpression
 	| notExpression
+	| notNotExpression
 	| equalityExpression
 	;	
 	
 ternary
-   : (compareExpression | unaryExpression) QUESTIONMARK (baseExpression | ternary) COLON (baseExpression | ternary) //-> ^(TERNARY equivalentExpression localAssignmentExpression localAssignmentExpression)
+   : (compareExpression | unaryExpression) QUESTIONMARK startExpression COLON startExpression //-> ^(TERNARY equivalentExpression localAssignmentExpression localAssignmentExpression)
    ;
 
 impliedExpression
-	:	baseExpression ( IMP baseExpression )
+	:	baseExpression IMP startExpression
 	;
 
 equivalentExpression
-	:	baseExpression ( EQV baseExpression )
+	:	baseExpression EQV startExpression 
 	;
 
 xorExpression
-	:	baseExpression ( XOR baseExpression )
+	:	baseExpression XOR startExpression 
 	;
 	
 orExpression
-	:	baseExpression ( ( OR | OROPERATOR ) baseExpression )
+	:	baseExpression  ( OR | OROPERATOR ) startExpression 
 	;
 	
 andExpression
-	:	baseExpression ( ( AND | ANDOPERATOR ) baseExpression )
+	:	baseExpression  ( AND | ANDOPERATOR ) startExpression 
 	;
 	
 notExpression
-	:	( NOT | NOTOP ) baseExpression 
+	:	( NOT | NOTOP ) startExpression 
 	;
+	
+notNotExpression
+	:	NOTNOTOP  startExpression 
+	;	
 
 equalityExpression
     : baseExpression
-      ( equalityOperator1 baseExpression )
+      ( equalityOperator1 startExpression )
     ;
 
 equalityOperator1
@@ -386,34 +397,34 @@ equalityOperator5
     ; */
     
 concatenationExpression
-	:	unaryExpression ( CONCAT (baseExpression | ternary) )
+	:	unaryExpression ( CONCAT startExpression )
 	;
 	
 additiveExpression
-	:	unaryExpression ( (PLUS|MINUS) (baseExpression | ternary) )
+	:	unaryExpression ( (PLUS|MINUS) startExpression )
 	;
 
 modExpression
-	:	unaryExpression  ( MOD (baseExpression | ternary) )
+	:	unaryExpression  ( MOD startExpression )
 	;
 	
 intDivisionExpression
-	:	unaryExpression ( BSLASH (baseExpression | ternary) )
+	:	unaryExpression ( BSLASH startExpression )
 	;
 
 multiplicativeExpression
-	:	unaryExpression ( (STAR|SLASH) (baseExpression | ternary) )
+	:	unaryExpression ( (STAR|SLASH) startExpression )
 	;
 	
 powerOfExpression
-	:	unaryExpression ( POWER (baseExpression | ternary) )
+	:	unaryExpression ( POWER startExpression )
 	;
 	
 unaryExpression
-	: MINUS (baseExpression | ternary) //-> ^(MINUS memberExpression)
-	| PLUS (baseExpression | ternary) //-> ^(PLUS memberExpression)
-	| MINUSMINUS (baseExpression | ternary) //-> ^(MINUSMINUS memberExpression) 
-	| PLUSPLUS (baseExpression | ternary) //-> ^(PLUSPLUS memberExpression)
+	: MINUS startExpression //-> ^(MINUS memberExpression)
+	| PLUS startExpression //-> ^(PLUS memberExpression)
+	| MINUSMINUS startExpression //-> ^(MINUSMINUS memberExpression) 
+	| PLUSPLUS startExpression //-> ^(PLUSPLUS memberExpression)
 	| identifier (DOT primaryExpressionIRW (LEFTPAREN argumentList RIGHTPAREN)*)*
   | identifier MINUSMINUS //-> ^(POSTMINUSMINUS memberExpression)
   | identifier PLUSPLUS //-> ^(POSTPLUSPLUS memberExpression)
@@ -426,13 +437,16 @@ unaryExpression
 
 	
 memberExpression
-	:	POUND_SIGN (memberExpressionB | functionCall) POUND_SIGN
-	| (memberExpressionB | functionCall | newComponentExpression)
+	:	innerExpression
+	| (functionCall | newComponentExpression| memberExpressionB)
 	;
+	
+innerExpression:
+	POUND_SIGN baseExpression POUND_SIGN;
 	
 memberExpressionB
   : ( //primaryExpression
-    identifier 
+    firstidentifier=identifier 
   	| parentheticalExpression//-> primaryExpression 
   	| newComponentExpression
   ) // set return tree to just primary
@@ -446,12 +460,16 @@ memberExpressionB
   )+
   ;
   
+identifierOrReservedWord:
+identifier | reservedWord;
+
+  
 arrayMemberExpression
-	:LEFTBRACKET (baseExpression | ternary) RIGHTBRACKET 
+	:LEFTBRACKET startExpression RIGHTBRACKET 
 	;
   
 functionCall
-	:(identifier | multipartIdentifier) LEFTPAREN argumentList RIGHTPAREN
+	:multipartIdentifier LEFTPAREN argumentList RIGHTPAREN
 	;
 	  
 parentheticalMemberExpression
@@ -500,16 +518,17 @@ argumentList
   ;
 
 argument
-  : ( identifier COLON (baseExpression | ternary) //-> ^( COLON identifier baseExpression ) 
+  : ( name=identifier COLON startExpression //-> ^( COLON identifier baseExpression ) 
   )
-  | ( identifier EQUALSOP (baseExpression | ternary) //-> ^( COLON identifier baseExpression ) 
+  | ( name=identifier EQUALSOP startExpression //-> ^( COLON identifier baseExpression ) 
   )
-  | baseExpression 
+  | startExpression 
+  | anonymousFunctionDeclaration
   ;
 
 multipartIdentifier
 	:
-		identifier (DOT identifier)+;
+		identifier (DOT identifierOrReservedWord)*;
 
 identifier
 	:	SCOPE? (COMPONENT
@@ -581,8 +600,7 @@ primaryExpression
 	;
 	
 parentheticalExpression
-	: LEFTPAREN LT* ternary LT* RIGHTPAREN
-	| LEFTPAREN LT* baseExpression LT* RIGHTPAREN
+	: LEFTPAREN LT* startExpression LT* RIGHTPAREN
 ;	
 
 implicitArray
@@ -590,7 +608,7 @@ implicitArray
   ;
   
 implicitArrayElements
-  : (baseExpression | ternary) ( COMMA (baseExpression | ternary) )*
+  : startExpression ( COMMA startExpression )*
   ;
   
 implicitStruct
@@ -602,11 +620,11 @@ implicitStructElements
   ;
 
 implicitStructExpression
-  : implicitStructKeyExpression ( COLON | EQUALSOP ) (baseExpression | ternary) 
+  : implicitStructKeyExpression ( COLON | EQUALSOP ) startExpression 
   ;
   
 implicitStructKeyExpression
-  : identifier ( DOT ( identifier | reservedWord ) )*
+  : multipartIdentifier
   | additiveExpression ( CONCAT additiveExpression )*
   | STRING_LITERAL
   ;
@@ -617,5 +635,6 @@ newComponentExpression
   
 componentPath
   : STRING_LITERAL
-  | identifier ( DOT identifier )*
+  | identifier
+  | multipartIdentifier
   ;

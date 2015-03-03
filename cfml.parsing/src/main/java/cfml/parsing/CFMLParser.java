@@ -35,7 +35,6 @@ import cfml.parsing.cfscript.script.CFScriptStatement;
 import cfml.parsing.cfscript.walker.CFScriptStatementVisitor;
 import cfml.parsing.reporting.IErrorReporter;
 import cfml.parsing.reporting.ParseException;
-import cfml.parsing.utils.TestUtils;
 
 public class CFMLParser {
 	
@@ -332,7 +331,9 @@ public class CFMLParser {
 		// int i = 0;
 		// tokens.consume();
 		// while (true) {
-		// System.out.println("-> " + CFSCRIPTLexer.tokenNames[tokens.get(i++).getType()]);
+		// System.out.println("-> " + CFSCRIPTLexer.tokenNames[tokens.get(i).getType()] + " "
+		// + tokens.get(i).getType());
+		// i++;
 		// tokens.consume();
 		// if (System.currentTimeMillis() < 1000)
 		// break;
@@ -354,7 +355,7 @@ public class CFMLParser {
 					+ parser.getTokenErrorDisplay(e.getOffendingToken()) + "\' (" + e.getOffendingToken().getText()
 					+ ")");
 		}
-		TestUtils.showGUI(scriptStatement, CFSCRIPTParser.ruleNames);
+		// TestUtils.showGUI(scriptStatement, CFSCRIPTParser.ruleNames);
 		return scriptStatement;
 	}
 	

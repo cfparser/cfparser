@@ -159,6 +159,7 @@ SLASHEQUALS: '/=';
 MODEQUALS: '%=';
 CONCATEQUALS: '&=';
 COLON: ':';
+NOTNOTOP: '!!'; 
 NOTOP: '!'; 
 SEMICOLON: ';';
 OROPERATOR: '||';

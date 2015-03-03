@@ -51,15 +51,15 @@ public class CFCompDeclStatement extends CFParsedStatement {
 	private String returnType;
 	
 	// TODO: prevent function declared inside function. May want to do this elsewhere
-	public CFCompDeclStatement(Token _t, Map<String, CFExpression> _attr, CFScriptStatement _body) {
+	public CFCompDeclStatement(Token _t, Map<CFExpression, CFExpression> _attr, CFScriptStatement _body) {
 		super(_t);
 		body = _body;
 		// handle the function attributes
 		attributes = new HashMap<String, String>();
 		if (_attr != null) {
-			Iterator<String> keys = _attr.keySet().iterator();
+			Iterator<CFExpression> keys = _attr.keySet().iterator();
 			while (keys.hasNext()) {
-				String nextKey = keys.next();
+				String nextKey = keys.next().Decompile(0);
 				CFExpression nextExpr = _attr.get(nextKey);
 				if (!(nextExpr instanceof CFLiteral)) {
 					throw new ParseException(_t, "The attribute " + nextKey.toUpperCase()

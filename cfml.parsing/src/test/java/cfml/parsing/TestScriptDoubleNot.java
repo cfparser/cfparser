@@ -1,12 +1,13 @@
 package cfml.parsing;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
-import cfml.CFSCRIPTParser.ScriptBlockContext;
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.utils.TestUtils;
 
 public class TestScriptDoubleNot {
 	
@@ -17,17 +18,11 @@ public class TestScriptDoubleNot {
 		fCfmlParser = new CFMLParser();
 	}
 	
-	@Ignore
 	@Test
 	public void testParseScriptDoubleNot() {
 		String script = "if (!! xx) yy = 1;";
-		ScriptBlockContext scriptStatement = null;
-		try {
-			scriptStatement = fCfmlParser.parseScript(script);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
+		assertEquals("if(!!xx ) yy=1", scriptStatement.Decompile(0));
 	}
 }

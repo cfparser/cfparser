@@ -41,6 +41,7 @@ abstract public class CFParsedStatement implements CFScriptStatement, java.io.Se
 	
 	protected int _line;
 	protected int _col;
+	protected Token token = null;
 	
 	protected CFParsedStatement(int line, int col) {
 		_line = line;
@@ -49,6 +50,7 @@ abstract public class CFParsedStatement implements CFScriptStatement, java.io.Se
 	
 	protected CFParsedStatement(Token t) {
 		this(t.getLine(), t.getCharPositionInLine());
+		token = t;
 	}
 	
 	public abstract String Decompile(int indent);

@@ -31,18 +31,22 @@ package cfml.parsing.cfscript.script;
 
 import org.antlr.v4.runtime.Token;
 
+import cfml.parsing.cfscript.CFExpression;
+
 public class CFImportStatement extends CFParsedStatement implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String path;
+	private CFExpression path;
+	boolean all = false;
 	
-	public CFImportStatement(Token _t, String _path) {
+	public CFImportStatement(Token _t, CFExpression _path, boolean _all) {
 		super(_t);
 		path = _path;
+		all = _all;
 	}
 	
 	public String Decompile(int indent) {
-		return "import " + path;
+		return "import " + path.Decompile(0) + (all ? ".*" : "");
 	}
 }

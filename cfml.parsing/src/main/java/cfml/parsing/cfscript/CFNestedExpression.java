@@ -29,69 +29,34 @@
 
 package cfml.parsing.cfscript;
 
-import java.util.Vector;
+/**
+ * Definition of expression tree for a unary expression.
+ */
 
-import org.antlr.v4.runtime.Token;
-
-import cfml.parsing.reporting.ParseException;
-
-public class CFFunctionExpression extends CFMember {
+public class CFNestedExpression extends CFExpression implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private CFIdentifier nameId;
-	private Vector<CFExpression> args; // Vector of CFExpression's
-	private boolean isUDF = true;
+	private CFExpression sub;
 	
-	// private boolean isParamExists;
-	public CFFunctionExpression(CFIdentifier _name, Vector<CFExpression> _args) throws ParseException {
-		this(_name.getToken(), _name, _args);
-	}
-	
-	public CFFunctionExpression(Token t, CFIdentifier _name, Vector<CFExpression> _args) throws ParseException {
-		super(t, null);
-		nameId = _name;
-		args = _args;
-		isUDF = false;
+	public CFNestedExpression(org.antlr.v4.runtime.Token _t, CFExpression _sub) {
+		super(_t);
+		sub = _sub;
 	}
 	
 	public byte getType() {
-		return CFExpression.FUNCTION;
-	}
-	
-	public String getFunctionName() {
-		return nameId == null ? "" : nameId.getName().toLowerCase();
-	}
-	
-	public boolean isUDF() {
-		return isUDF;
+		return CFExpression.NESTED;
 	}
 	
 	public String Decompile(int indent) {
-		String s = nameId == null ? "" : nameId.Decompile(indent);
-		s += "(";
-		
-		for (int i = 0; i < args.size(); i++) {
-			s += args.elementAt(i).Decompile(indent);
-			if (i < args.size() - 1) {
-				s += ", ";
-			}
-		}
-		
-		s += ")";
-		
-		return s;
+		StringBuilder sb = new StringBuilder();
+		sb.append('#');
+		sb.append(sub.Decompile(0));
+		sb.append('#');
+		return sb.toString();
 	}
 	
-	public Vector<CFExpression> getArgs() {
-		return args;
-	}
-	
-	public String getName() {
-		return nameId == null ? "" : nameId.Decompile(0);
-	}
-	
-	public CFIdentifier getIdentifier() {
-		return nameId;
+	public CFExpression getSub() {
+		return sub;
 	}
 	
 }

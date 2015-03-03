@@ -1,6 +1,10 @@
 package cfml.parsing.cfscript.script;
 
-public class cfCatchClause {
+public class CFCatchClause {
+	
+	public String getType() {
+		return type;
+	}
 	
 	protected String type;
 	

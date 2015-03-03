@@ -38,7 +38,7 @@ package cfml.parsing.cfscript;
 import java.util.Map;
 import java.util.Stack;
 
-import cfml.parsing.cfscript.script.userDefinedFunction;
+import cfml.parsing.cfscript.script.UserDefinedFunction;
 
 public class CFContext implements java.io.Serializable {
 	

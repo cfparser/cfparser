@@ -33,6 +33,7 @@ import java.util.HashSet;
 import java.util.Map;
 
 import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.cfscript.CFIdentifier;
 
 public class CFParamStatement extends CFParsedAttributeStatement implements java.io.Serializable {
 	
@@ -50,7 +51,7 @@ public class CFParamStatement extends CFParsedAttributeStatement implements java
 		validAttributes.add("PATTERN");
 	}
 	
-	public CFParamStatement(org.antlr.v4.runtime.Token t, Map<String, CFExpression> _attributes) {
+	public CFParamStatement(org.antlr.v4.runtime.Token t, Map<CFIdentifier, CFExpression> _attributes) {
 		super(t, _attributes);
 		validateAttributes(t, validAttributes);
 	}

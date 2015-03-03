@@ -37,26 +37,31 @@ import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFContext;
 import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.cfscript.CFIdentifier;
 import cfml.parsing.reporting.ParseException;
 import cfml.parsing.util.CFException;
 
 abstract public class CFParsedAttributeStatement extends CFParsedStatement implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Map<String, CFExpression> attributes;
+	private Map<CFIdentifier, CFExpression> attributes;
 	
-	protected CFParsedAttributeStatement(Token _t, Map<String, CFExpression> _a) {
+	protected CFParsedAttributeStatement(Token _t, Map<CFIdentifier, CFExpression> _a) {
 		super(_t);
 		attributes = _a;
 	}
 	
+	public Map<CFIdentifier, CFExpression> getAttributes() {
+		return attributes;
+	}
+	
 	// utility method used for outputting the attributes to string
 	protected void DecompileAttributes(StringBuilder sb) {
-		Iterator<String> attrIt = attributes.keySet().iterator();
+		Iterator<CFIdentifier> attrIt = attributes.keySet().iterator();
 		while (attrIt.hasNext()) {
 			sb.append(" ");
-			String nextKey = attrIt.next();
-			sb.append(nextKey);
+			CFIdentifier nextKey = attrIt.next();
+			sb.append(nextKey.Decompile(0));
 			sb.append("=");
 			sb.append(attributes.get(nextKey).Decompile(0));
 		}
@@ -72,10 +77,10 @@ abstract public class CFParsedAttributeStatement extends CFParsedStatement imple
 	 */
 	protected void validateAttributes(Token _t, HashSet<String> _allowedKeys) {
 		
-		Iterator<String> it = attributes.keySet().iterator();
+		Iterator<CFIdentifier> it = attributes.keySet().iterator();
 		
 		while (it.hasNext()) {
-			String nextKey = it.next();
+			String nextKey = it.next().Decompile(0);
 			if (!_allowedKeys.contains(nextKey)) {
 				throw new ParseException(_t, "Invalid attribute " + nextKey);
 			}
@@ -89,17 +94,17 @@ abstract public class CFParsedAttributeStatement extends CFParsedStatement imple
 	 */
 	protected void validateAttributesRuntime(CFContext _context, HashSet<String> _allowedKeys, String _msg)
 			throws CFException {
-		Iterator<String> it = attributes.keySet().iterator();
+		Iterator<CFIdentifier> it = attributes.keySet().iterator();
 		
 		while (it.hasNext()) {
-			String nextKey = it.next();
+			String nextKey = it.next().Decompile(0);
 			if (!_allowedKeys.contains(nextKey)) {
 				throw new CFException(_msg, _context);
 			}
 		}
 	}
 	
-	protected Iterator<String> getAttributeKeyIterator() {
+	protected Iterator<CFIdentifier> getAttributeKeyIterator() {
 		return attributes.keySet().iterator();
 	}
 }

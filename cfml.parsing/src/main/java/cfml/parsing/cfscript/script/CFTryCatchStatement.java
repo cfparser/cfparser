@@ -40,10 +40,10 @@ public class CFTryCatchStatement extends CFParsedStatement implements java.io.Se
 	private static final long serialVersionUID = 1;
 	
 	private CFScriptStatement body; // body of the try block
-	private List<cfCatchClause> catchStatements;
+	private List<CFCatchClause> catchStatements;
 	private CFScriptStatement finallyStatement;
 	
-	public CFTryCatchStatement(Token _t1, CFScriptStatement _s1, List<cfCatchClause> _catches,
+	public CFTryCatchStatement(Token _t1, CFScriptStatement _s1, List<CFCatchClause> _catches,
 			CFScriptStatement _finally) {
 		super(_t1);
 		body = _s1;
@@ -54,20 +54,20 @@ public class CFTryCatchStatement extends CFParsedStatement implements java.io.Se
 		}
 		
 		// now stick the catch 'any' if there is one at the end
-		cfCatchClause catchAny = null;
-		cfCatchClause nextClause;
-		for (int i = 0; i < catchStatements.size(); i++) {
-			nextClause = catchStatements.get(i);
-			if (nextClause.isCatchAny()) {
-				catchAny = nextClause;
-				catchStatements.remove(i);
-				i--; // make adjustment for removed clause
-			}
-		}
-		
-		if (catchAny != null) {
-			catchStatements.add(catchAny);
-		}
+		// CFCatchClause catchAny = null;
+		// CFCatchClause nextClause;
+		// for (int i = 0; i < catchStatements.size(); i++) {
+		// nextClause = catchStatements.get(i);
+		// if (nextClause.isCatchAny()) {
+		// catchAny = nextClause;
+		// catchStatements.remove(i);
+		// i--; // make adjustment for removed clause
+		// }
+		// }
+		//
+		// if (catchAny != null) {
+		// catchStatements.add(catchAny);
+		// }
 		
 		finallyStatement = _finally;
 	}
@@ -87,12 +87,12 @@ public class CFTryCatchStatement extends CFParsedStatement implements java.io.Se
 			sb.append(clause.getType());
 			sb.append(" ");
 			sb.append(clause.getVariable());
-			sb.append("{");
+			// sb.append("{");
 			sb.append(clause.getCatchBody().Decompile(0));
-			sb.append("}");
+			// sb.append("}");
 		}
 		
-		sb.insert(0, "try{" + body.Decompile(0) + "}");
+		sb.insert(0, "try" + body.Decompile(0));
 		return sb.toString();
 	}
 	
