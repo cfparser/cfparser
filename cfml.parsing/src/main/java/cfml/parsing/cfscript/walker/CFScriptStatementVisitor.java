@@ -420,7 +420,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	//
 	@Override
 	public CFScriptStatement visitLockStatement(LockStatementContext ctx) {
-		System.out.println("visitLockStatement");
+		// System.out.println("visitLockStatement");
 		Map<CFIdentifier, CFExpression> _attr = new HashMap<CFIdentifier, CFExpression>();
 		CFLockStatement lockStatement = new CFLockStatement(ctx.LOCK().getSymbol(), _attr,
 				visit(ctx.compoundStatement()));
@@ -490,13 +490,13 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	
 	@Override
 	public CFScriptStatement visitParamStatementAttributes(ParamStatementAttributesContext ctx) {
-		System.out.println("visitParamStatementAttributes");
+		// System.out.println("visitParamStatementAttributes");
 		return super.visitParamStatementAttributes(ctx);
 	}
 	
 	@Override
 	public CFScriptStatement visitParam(ParamContext ctx) {
-		System.out.println("visitParam");
+		// System.out.println("visitParam");
 		if (!aggregator.isEmpty() && aggregator.peek() instanceof CFParsedAttributeStatement) {
 			((CFParsedAttributeStatement) aggregator.peek()).getAttributes().put(
 					(CFIdentifier) visitExpression(ctx.identifier()), visitExpression(ctx.startExpression()));
@@ -508,7 +508,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	
 	@Override
 	public CFScriptStatement visitExpression(ExpressionContext ctx) {
-		System.out.println("visitExpression");
+		// System.out.println("visitExpression");
 		return super.visitExpression(ctx);
 	}
 	
