@@ -45,8 +45,11 @@ accessType
 typeSpec
   : type
   | multipartIdentifier
-  | STRING_LITERAL
+  | stringLiteral
   ;
+  
+stringLiteral
+  :  STRING_LITERAL;
   
  
 parameterList
@@ -130,8 +133,10 @@ doWhileStatement
   ;
   
 forStatement
-  : FOR LEFTPAREN ( localAssignmentExpression | initExpression=assignmentExpression )? SEMICOLON ( condExpression=assignmentExpression )? SEMICOLON  ( incrExpression=startExpression )? RIGHTPAREN statement
-  | FOR LEFTPAREN forInKey IN startExpression RIGHTPAREN statement
+  : FOR LEFTPAREN ( localAssignmentExpression | initExpression=assignmentExpression )? SEMICOLON 
+  	  ( condExpression=startExpression )? SEMICOLON  
+  	  ( incrExpression=startExpression | incrExpression2=assignmentExpression )? RIGHTPAREN statement
+  | FOR LEFTPAREN forInKey IN inExpr=startExpression RIGHTPAREN statement
   ;
   
 startExpression:
@@ -494,14 +499,18 @@ indexSuffix
   ; 
   
 primaryExpressionIRW
-	:	STRING_LITERAL
-	|	BOOLEAN_LITERAL
-	| FLOATING_POINT_LITERAL
-	|	INTEGER_LITERAL
+	:	literalExpression
 	| implicitArray
 	| implicitStruct
 	| reservedWord
 	;
+	
+literalExpression
+	:	STRING_LITERAL
+	|	BOOLEAN_LITERAL
+	| FLOATING_POINT_LITERAL
+	|	INTEGER_LITERAL;
+	
 	
 reservedWord
   : CONTAINS //| IS | EQUAL | GE | LE | EQUALS  
@@ -589,10 +598,7 @@ cfscriptKeywords
   ;
   
 primaryExpression
-	:	STRING_LITERAL
-	|	BOOLEAN_LITERAL
-	| FLOATING_POINT_LITERAL
-	|	INTEGER_LITERAL
+	:	literalExpression
 	| implicitArray
 	| implicitStruct
 //	|	NULL
@@ -626,7 +632,7 @@ implicitStructExpression
 implicitStructKeyExpression
   : multipartIdentifier
   | additiveExpression ( CONCAT additiveExpression )*
-  | STRING_LITERAL
+  | stringLiteral
   ;
 
 newComponentExpression
@@ -634,7 +640,7 @@ newComponentExpression
   ;
   
 componentPath
-  : STRING_LITERAL
+  : stringLiteral
   | identifier
   | multipartIdentifier
   ;

@@ -66,7 +66,8 @@ public class CFForStatement extends CFParsedStatement implements java.io.Seriali
 		if (next != null) {
 			s += next.Decompile(indent);
 		}
-		body.Decompile(indent + 2);
+		s += ")";
+		s += body.Decompile(indent + 2);
 		
 		return s;
 	}

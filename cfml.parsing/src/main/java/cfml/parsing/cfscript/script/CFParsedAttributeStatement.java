@@ -68,7 +68,12 @@ abstract public class CFParsedAttributeStatement extends CFParsedStatement imple
 	}
 	
 	protected boolean containsAttribute(String _k) {
-		return attributes.containsKey(_k);
+		for (CFIdentifier key : attributes.keySet()) {
+			if (key.toString().equalsIgnoreCase(_k)) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	/*

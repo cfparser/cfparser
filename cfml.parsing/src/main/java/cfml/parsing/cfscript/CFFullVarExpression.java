@@ -65,19 +65,8 @@ public class CFFullVarExpression extends CFIdentifier implements Serializable {
 		return expressions.get(expressions.size() - 1).isEscapeSingleQuotes();
 	}
 	
-	public void addMember(CFIdentifier _right) {
-		expressions.add(_right);
-	}
-	
-	public void addMember(CFMember _right) {
-		expressions.add(_right);
-	}
-	
 	public void addMember(CFExpression _right) {
-		if (_right instanceof CFIdentifier || _right instanceof CFMember)
-			expressions.add(_right);
-		else
-			throw new RuntimeException("Not CFIdentifier nor CFMember");
+		expressions.add(_right);
 	}
 	
 	public String Decompile(int indent) {

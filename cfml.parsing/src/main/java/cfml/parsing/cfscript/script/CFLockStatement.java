@@ -58,18 +58,22 @@ public class CFLockStatement extends CFParsedAttributeStatement implements java.
 		
 		validateAttributes(_t, supportedAttributes);
 		
+		body = _body;
+	}
+	
+	public void validate() {
 		// minimal requirement is the timeout attribute
 		if (!containsAttribute("TIMEOUT"))
-			throw new ParseException(_t, "Lock requires the TIMEOUT attribute");
+			throw new ParseException(token, "Lock requires the TIMEOUT attribute");
 		
 		if (containsAttribute("NAME") && containsAttribute("SCOPE"))
-			throw new ParseException(_t, "Invalid Attributes: specify either SCOPE or NAME, but not both");
-		
-		body = _body;
+			throw new ParseException(token, "Invalid Attributes: specify either SCOPE or NAME, but not both");
 	}
 	
 	@Override
 	public String Decompile(int indent) {
+		validate();
+		
 		StringBuilder sb = new StringBuilder();
 		sb.append("lock ");
 		DecompileAttributes(sb);

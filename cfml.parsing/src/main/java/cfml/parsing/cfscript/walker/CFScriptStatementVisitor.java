@@ -32,6 +32,7 @@ import cfml.CFSCRIPTParser.IncludeStatementContext;
 import cfml.CFSCRIPTParser.LocalAssignmentExpressionContext;
 import cfml.CFSCRIPTParser.LockStatementContext;
 import cfml.CFSCRIPTParser.ParamContext;
+import cfml.CFSCRIPTParser.ParamStatementAttributesContext;
 import cfml.CFSCRIPTParser.ParamStatementContext;
 import cfml.CFSCRIPTParser.ParameterContext;
 import cfml.CFSCRIPTParser.PropertyStatementContext;
@@ -278,13 +279,14 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		// System.out.println("visitForStatement");
 		if (ctx.forInKey() != null) {
 			CFForInStatement forInStatement = new CFForInStatement(ctx.FOR().getSymbol(), cfExpressionVisitor.visit(ctx
-					.forInKey()), cfExpressionVisitor.visit(ctx.startExpression()), visit(ctx.statement()));
+					.forInKey()), cfExpressionVisitor.visit(ctx.inExpr), visit(ctx.statement()));
 			return forInStatement;
 		} else {
 			CFForStatement forStatement = new CFForStatement(ctx.FOR().getSymbol(),
 					cfExpressionVisitor.visit(ExpressionUtils.coalesce(ctx.localAssignmentExpression(),
 							ctx.initExpression)), cfExpressionVisitor.visit(ctx.condExpression),
-					cfExpressionVisitor.visit(ctx.incrExpression), visit(ctx.statement()));
+					cfExpressionVisitor.visit(ExpressionUtils.coalesce(ctx.incrExpression, ctx.incrExpression2)),
+					visit(ctx.statement()));
 			return forStatement;
 		}
 		// return super.visitForStatement(ctx);
@@ -315,13 +317,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	
 	@Override
 	public CFScriptStatement visitCatchCondition(CatchConditionContext ctx) {
-		if (ctx.typeSpec().STRING_LITERAL() != null) {
-			return new CFCatchStatement(ctx.typeSpec().STRING_LITERAL().getText(),
-					(CFIdentifier) visit(ctx.identifier()), visit(ctx.compoundStatement()));
-		} else {
-			return new CFCatchStatement((CFIdentifier) visit(ctx.typeSpec()), (CFIdentifier) visit(ctx.identifier()),
-					visit(ctx.compoundStatement()));
-		}
+		return new CFCatchStatement((CFIdentifier) visit(ctx.typeSpec()), (CFIdentifier) visit(ctx.identifier()),
+				visit(ctx.compoundStatement()));
 	}
 	
 	@Override
@@ -423,7 +420,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	//
 	@Override
 	public CFScriptStatement visitLockStatement(LockStatementContext ctx) {
-		// System.out.println("visitLockStatement");
+		System.out.println("visitLockStatement");
 		Map<CFIdentifier, CFExpression> _attr = new HashMap<CFIdentifier, CFExpression>();
 		CFLockStatement lockStatement = new CFLockStatement(ctx.LOCK().getSymbol(), _attr,
 				visit(ctx.compoundStatement()));
@@ -491,15 +488,15 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		return propertyStatement;
 	}
 	
-	// @Override
-	// public CFScriptStatement visitParamStatementAttributes(ParamStatementAttributesContext ctx) {
-	// System.out.println("visitParamStatementAttributes");
-	// return super.visitParamStatementAttributes(ctx);
-	// }
+	@Override
+	public CFScriptStatement visitParamStatementAttributes(ParamStatementAttributesContext ctx) {
+		System.out.println("visitParamStatementAttributes");
+		return super.visitParamStatementAttributes(ctx);
+	}
 	
 	@Override
 	public CFScriptStatement visitParam(ParamContext ctx) {
-		// System.out.println("visitParam");
+		System.out.println("visitParam");
 		if (!aggregator.isEmpty() && aggregator.peek() instanceof CFParsedAttributeStatement) {
 			((CFParsedAttributeStatement) aggregator.peek()).getAttributes().put(
 					(CFIdentifier) visitExpression(ctx.identifier()), visitExpression(ctx.startExpression()));
@@ -552,8 +549,18 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 			return nextResult;
 		}
 		System.out.println("aggregateResult --------------------------");
-		System.out.println("agg:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
-		System.out.println("next:" + nextResult.getClass() + " -> " + nextResult.Decompile(0));
+		try {
+			System.out.println("agg:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
+		} catch (Exception e) {
+			System.out.println("agg:" + aggregate.getClass() + " e-> " + e.getMessage());
+		}
+		
+		try {
+			System.out.println("next:" + nextResult.getClass() + " -> " + nextResult.Decompile(0));
+		} catch (Exception e) {
+			System.out.println("next:" + nextResult.getClass() + " e-> " + e.getMessage());
+		}
+		
 		try {
 			if (!aggregator.isEmpty() && aggregator.peek() instanceof CFCompoundStatement
 					&& aggregate != aggregator.peek()) {
@@ -579,7 +586,12 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 				return statement;
 			}
 		} finally {
-			System.out.println("New aggr:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
+			try {
+				System.out.println("New aggr:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
+			} catch (Exception e) {
+				System.out.println("New aggr:" + aggregate.getClass() + " e-> " + e.getMessage());
+			}
+			
 			System.out.println("--------------------------------------------");
 		}
 	}

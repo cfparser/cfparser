@@ -120,11 +120,13 @@ public class TestCFMLFunctionStatement {
 		/* need to check if this is valid in OBD/ACF */
 		String script = "include template=\"/ram/#randName#\";";
 		CFScriptStatement scriptStatement = null;
-		scriptStatement = parseScript(script);
-		if (fCfmlParser.getMessages().size() == 0) {
-			fail("whoops! " + fCfmlParser.getMessages());
+		try {
+			scriptStatement = parseScript(script);
+		} catch (AssertionError fail) {
+			return;
 		}
-		assertNotNull(scriptStatement);
+		fail("error expected");
+		
 	}
 	
 	@Test

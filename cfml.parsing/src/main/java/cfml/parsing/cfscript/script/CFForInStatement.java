@@ -55,7 +55,7 @@ public class CFForInStatement extends CFParsedStatement implements java.io.Seria
 		StringBuilder sb = new StringBuilder();
 		sb.append(Indent(indent));
 		sb.append("for( ");
-		sb.append(variable);
+		sb.append(variable.Decompile(0));
 		sb.append(" in ");
 		sb.append(structure.Decompile(indent));
 		sb.append(" ) ");

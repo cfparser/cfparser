@@ -16,7 +16,8 @@ public class TestScriptParserForLoop {
 		CFScriptStatement scriptStatement = null;
 		scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
+		assertEquals("for( widget in thingWithWidgets.getWidgets() )   {writeOutput(widget);  }", scriptStatement
+				.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
 	@Test
@@ -25,7 +26,8 @@ public class TestScriptParserForLoop {
 		CFScriptStatement scriptStatement = null;
 		scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
+		assertEquals("for( var widget in thingWithWidgets.getWidgets() )   {writeOutput(widget);  }", scriptStatement
+				.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
 	@Test
@@ -34,7 +36,7 @@ public class TestScriptParserForLoop {
 		CFScriptStatement scriptStatement = null;
 		scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
+		assertEquals("for( var prop in displayFields )   {  }", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
 	@Test
@@ -43,7 +45,9 @@ public class TestScriptParserForLoop {
 		CFScriptStatement scriptStatement = null;
 		scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
+		assertEquals(
+				"for( tag in e.tagcontext )   {    if(tag.template.startsWith('ram:') )       {tag.template=templatepath;      };  }",
+				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
 	@Test
@@ -52,7 +56,16 @@ public class TestScriptParserForLoop {
 		CFScriptStatement scriptStatement = null;
 		scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
+		assertEquals("for( tag in e.tagcontext )   {  }", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
+	@Test
+	public void testForStatement() {
+		String script = "for ( i = 1; i <= n; i = i + 1 ) {}";
+		CFScriptStatement scriptStatement = null;
+		scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		TestUtils.printCFScriptTree(scriptStatement);
+		assertEquals("for(i=1;i <= n;i=i + 1)  {  }", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
+	}
 }

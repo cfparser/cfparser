@@ -94,7 +94,7 @@ public class TestArraysStructs {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}
 		assertNotNull(scriptStatement);
-		assertEquals("arrData[ArrayLen(arrData)+1]={Foo:'Bar'}", scriptStatement.Decompile(0));
+		assertEquals("arrData[ArrayLen(arrData) + 1]={Foo:'Bar'}", scriptStatement.Decompile(0));
 	}
 	
 	@Test
@@ -159,4 +159,29 @@ public class TestArraysStructs {
 		assertNotNull(scriptStatement);
 		System.out.println(scriptStatement.Decompile(0));
 	}
+	
+	@Test
+	public void testStructs() {
+		String script = "props[prop.getName()] = 1;";
+		CFScriptStatement scriptStatement = parseScript(script);
+		assertNotNull(scriptStatement);
+		assertEquals("props[prop.getName()]=1", scriptStatement.Decompile(0));
+	}
+	
+	@Test
+	public void testStructWithHashKey() {
+		String script = "x = { \"#method##route#\" = target };";
+		CFScriptStatement scriptStatement = parseScript(script);
+		assertNotNull(scriptStatement);
+		assertEquals("x={'#method##route#':target}", scriptStatement.Decompile(0));
+	}
+	
+	@Test
+	public void testStructWithHashKey2() {
+		String script = "x={ '#route#' = target };";
+		CFScriptStatement scriptStatement = parseScript(script);
+		assertNotNull(scriptStatement);
+		assertEquals("x={'#route#':target}", scriptStatement.Decompile(0));
+	}
+	
 }

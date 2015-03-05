@@ -49,10 +49,6 @@ public class CFTryCatchStatement extends CFParsedStatement implements java.io.Se
 		body = _s1;
 		catchStatements = _catches;
 		
-		if (catchStatements.size() == 0 && _finally == null) {
-			throw new ParseException(_t1, "try statement must include at least one catch clause or a finally clause.");
-		}
-		
 		// now stick the catch 'any' if there is one at the end
 		// CFCatchClause catchAny = null;
 		// CFCatchClause nextClause;
@@ -72,6 +68,12 @@ public class CFTryCatchStatement extends CFParsedStatement implements java.io.Se
 		finallyStatement = _finally;
 	}
 	
+	public void validate() {
+		if (catchStatements.size() == 0 && finallyStatement == null) {
+			throw new ParseException(token, "try statement must include at least one catch clause or a finally clause.");
+		}
+	}
+	
 	public void checkIndirectAssignments(String[] scriptSource) {
 		body.checkIndirectAssignments(scriptSource);
 		for (int i = 0; i < catchStatements.size(); i++) {
@@ -80,6 +82,7 @@ public class CFTryCatchStatement extends CFParsedStatement implements java.io.Se
 	}
 	
 	public String Decompile(int indent) {
+		validate();
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < catchStatements.size(); i++) {
 			CFCatchStatement clause = (CFCatchStatement) catchStatements.get(i);
@@ -95,5 +98,4 @@ public class CFTryCatchStatement extends CFParsedStatement implements java.io.Se
 		sb.insert(0, "try" + body.Decompile(0));
 		return sb.toString();
 	}
-	
 }
