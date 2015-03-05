@@ -475,10 +475,10 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		if (aggregate == null) {
 			return nextResult;
 		}
-		System.out.println("CFExpr.aggregateResult --------------------------"
-				+ (aggregator.isEmpty() ? null : aggregator.peek().getClass()));
-		System.out.println("agg:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
-		System.out.println("next:" + nextResult.getClass() + " -> " + nextResult.Decompile(0));
+		// System.out.println("CFExpr.aggregateResult --------------------------"
+		// + (aggregator.isEmpty() ? null : aggregator.peek().getClass()));
+		// System.out.println("agg:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
+		// System.out.println("next:" + nextResult.getClass() + " -> " + nextResult.Decompile(0));
 		
 		try {
 			if (aggregate instanceof CFNewExpression) {
@@ -531,8 +531,8 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 			}
 			return aggregate;
 		} finally {
-			System.out.println("New aggr:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
-			System.out.println("--------------------------------------------");
+			// System.out.println("New aggr:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
+			// System.out.println("--------------------------------------------");
 		}
 	}
 	

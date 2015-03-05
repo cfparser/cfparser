@@ -548,18 +548,18 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		if (aggregate == null) {
 			return nextResult;
 		}
-		System.out.println("aggregateResult --------------------------");
-		try {
-			System.out.println("agg:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
-		} catch (Exception e) {
-			System.out.println("agg:" + aggregate.getClass() + " e-> " + e.getMessage());
-		}
-		
-		try {
-			System.out.println("next:" + nextResult.getClass() + " -> " + nextResult.Decompile(0));
-		} catch (Exception e) {
-			System.out.println("next:" + nextResult.getClass() + " e-> " + e.getMessage());
-		}
+		// System.out.println("aggregateResult --------------------------");
+		// try {
+		// System.out.println("agg:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
+		// } catch (Exception e) {
+		// System.out.println("agg:" + aggregate.getClass() + " e-> " + e.getMessage());
+		// }
+		//
+		// try {
+		// System.out.println("next:" + nextResult.getClass() + " -> " + nextResult.Decompile(0));
+		// } catch (Exception e) {
+		// System.out.println("next:" + nextResult.getClass() + " e-> " + e.getMessage());
+		// }
 		
 		try {
 			if (!aggregator.isEmpty() && aggregator.peek() instanceof CFCompoundStatement
@@ -586,13 +586,13 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 				return statement;
 			}
 		} finally {
-			try {
-				System.out.println("New aggr:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
-			} catch (Exception e) {
-				System.out.println("New aggr:" + aggregate.getClass() + " e-> " + e.getMessage());
-			}
-			
-			System.out.println("--------------------------------------------");
+			// try {
+			// System.out.println("New aggr:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
+			// } catch (Exception e) {
+			// System.out.println("New aggr:" + aggregate.getClass() + " e-> " + e.getMessage());
+			// }
+			//
+			// System.out.println("--------------------------------------------");
 		}
 	}
 	
