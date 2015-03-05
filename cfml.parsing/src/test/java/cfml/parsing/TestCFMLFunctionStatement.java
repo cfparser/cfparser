@@ -122,7 +122,8 @@ public class TestCFMLFunctionStatement {
 		CFScriptStatement scriptStatement = null;
 		try {
 			scriptStatement = parseScript(script);
-		} catch (AssertionError fail) {
+			scriptStatement.Decompile(0);
+		} catch (Exception fail) {
 			return;
 		}
 		fail("error expected");
