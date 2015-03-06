@@ -40,6 +40,12 @@ public class CFLiteral extends CFExpression implements java.io.Serializable {
 	private int kind;
 	private String image;
 	
+	public CFLiteral(Token _t, String img) {
+		this(_t);
+		val = img;
+		image = img;
+	}
+	
 	public CFLiteral(Token _t) {
 		super(_t);
 		kind = _t.getType();

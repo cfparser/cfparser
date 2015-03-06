@@ -73,7 +73,7 @@ public class CFFullVarExpression extends CFIdentifier implements Serializable {
 		StringBuilder sb = new StringBuilder();
 		for (CFExpression expression : expressions) {
 			if (sb.length() > 0) {
-				if (expression.getType() == CFExpression.IDENTIFIER) {
+				if (expression.getType() == CFExpression.IDENTIFIER || expression.getType() == CFExpression.LITERAL) {
 					sb.append(".");
 				} else if (expression instanceof CFFunctionExpression
 						&& ((CFFunctionExpression) expression).getIdentifier() != null) {

@@ -1,6 +1,7 @@
 package cfml.parsing;
 
 import static cfml.parsing.utils.TestUtils.assertTreeNodes;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
@@ -13,7 +14,11 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.junit.Before;
 import org.junit.Test;
 
+import cfml.CFSCRIPTLexer;
 import cfml.CFSCRIPTParser.ScriptBlockContext;
+import cfml.parsing.cfscript.CFAssignmentExpression;
+import cfml.parsing.cfscript.CFLiteral;
+import cfml.parsing.cfscript.script.CFExpressionStatement;
 import cfml.parsing.cfscript.script.CFScriptStatement;
 import cfml.parsing.utils.TestUtils;
 
@@ -436,11 +441,58 @@ public class TestScriptParser {
 	public void testVoidFunctionComplex() {
 		String script = "public void function redirect( string action, string preserve = 'none', string append = 'none', string path = variables.magicBaseURL, string queryString = '', string statusCode = '302' ) { }";
 		ScriptBlockContext scriptStatement = parseScript(script);
-		if (fCfmlParser.getMessages().size() > 0) {
-			fail("whoops! " + fCfmlParser.getMessages());
-		}
-		
 		assertNotNull(scriptStatement);
 	}
 	
+	@Test
+	public void testDotNum() {
+		String script = "StructKeyExists(FPBSymbolCurrent,\"5\") AND FPBSymbolCurrent.5 EQ \"\";";
+		ScriptBlockContext scriptStatement = parseScript(script);
+		assertNotNull(scriptStatement);
+	}
+	
+	@Test
+	public void testDotNum1() {
+		String script = "FPBSymbolCurrent.5;";
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		TestUtils.printCFScriptTree(scriptStatement);
+		assertEquals("FPBSymbolCurrent.5", scriptStatement.Decompile(0));
+	}
+	
+	@Test
+	public void testFloat1() {
+		String script = "x=1.2;";
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		CFAssignmentExpression assignmentExpr = (CFAssignmentExpression) ((CFExpressionStatement) scriptStatement)
+				.getExpression();
+		CFLiteral literal = (CFLiteral) assignmentExpr.getRight();
+		assertEquals(literal.getToken().getType(), CFSCRIPTLexer.FLOATING_POINT_LITERAL);
+		assertEquals("x=1.2", scriptStatement.Decompile(0));
+	}
+	
+	@Test
+	public void testFloat2() {
+		String script = "x=.2e10;";
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		CFAssignmentExpression assignmentExpr = (CFAssignmentExpression) ((CFExpressionStatement) scriptStatement)
+				.getExpression();
+		CFLiteral literal = (CFLiteral) assignmentExpr.getRight();
+		assertEquals(literal.getToken().getType(), CFSCRIPTLexer.FLOATING_POINT_LITERAL);
+		assertEquals("x=.2e10", scriptStatement.Decompile(0));
+	}
+	
+	@Test
+	public void testFloat3() {
+		String script = "x=.2;";
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		CFAssignmentExpression assignmentExpr = (CFAssignmentExpression) ((CFExpressionStatement) scriptStatement)
+				.getExpression();
+		CFLiteral literal = (CFLiteral) assignmentExpr.getRight();
+		assertEquals(literal.getToken().getType(), CFSCRIPTLexer.DOT);
+		assertEquals("x=.2", scriptStatement.Decompile(0));
+	}
 }

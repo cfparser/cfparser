@@ -351,8 +351,6 @@ public class TestCFMLParser {
 		}
 		
 		assertNotNull(scriptStatement);
-		System.out.println(scriptStatement.Decompile(0));
-		System.out.println(scriptStatement.getClass());
 		assertEquals("runFunk=this[functionName]", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
 	}
 	
@@ -368,7 +366,6 @@ public class TestCFMLParser {
 		}
 		
 		assertNotNull(scriptStatement);
-		System.out.println(scriptStatement.Decompile(0));
 		assertEquals(
 				"public function runFunction(functionName, argCol)   {runFunk=this[functionName];results=structNew();results.result=runFunk(argCol);results.debug=getDebugMessages();    return results;  }",
 				scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
@@ -384,11 +381,8 @@ public class TestCFMLParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		assertNotNull(scriptStatement);
-		System.out.println(scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
 		assertEquals("try{throw('funk');}catch(Any e{woot();}", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
-		
 	}
 	
 	@Test
@@ -403,8 +397,6 @@ public class TestCFMLParser {
 			}
 			System.out.println("Source text with content:\n" + element);
 		}
-		System.out.println(fCfmlParser.getCacheDebugInfo());
-		System.out.println(fCfmlParser.printMessages());
 		assertEquals(21, elementList.size());
 	}
 	

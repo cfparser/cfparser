@@ -160,9 +160,9 @@ finallyStatement
   
 constantExpression
   : LEFTPAREN constantExpression RIGHTPAREN
-  | MINUS ( INTEGER_LITERAL | FLOATING_POINT_LITERAL  )
+  | MINUS ( INTEGER_LITERAL | floatingPointExpression  )
   | INTEGER_LITERAL
-  | FLOATING_POINT_LITERAL
+  | floatingPointExpression
   | STRING_LITERAL
   | BOOLEAN_LITERAL
 //  | NULL
@@ -430,7 +430,7 @@ unaryExpression
 	| PLUS startExpression //-> ^(PLUS memberExpression)
 	| MINUSMINUS startExpression //-> ^(MINUSMINUS memberExpression) 
 	| PLUSPLUS startExpression //-> ^(PLUSPLUS memberExpression)
-	| identifier (DOT primaryExpressionIRW (LEFTPAREN argumentList RIGHTPAREN)*)*
+	| identifier (DOT primaryExpressionIRW (LEFTPAREN argumentList RIGHTPAREN)+)*
   | identifier MINUSMINUS //-> ^(POSTMINUSMINUS memberExpression)
   | identifier PLUSPLUS //-> ^(POSTPLUSPLUS memberExpression)
   | primaryExpression
@@ -508,9 +508,12 @@ primaryExpressionIRW
 literalExpression
 	:	STRING_LITERAL
 	|	BOOLEAN_LITERAL
-	| FLOATING_POINT_LITERAL
+	| floatingPointExpression
 	|	INTEGER_LITERAL;
 	
+floatingPointExpression
+    : FLOATING_POINT_LITERAL
+    | DOT INTEGER_LITERAL;
 	
 reservedWord
   : CONTAINS //| IS | EQUAL | GE | LE | EQUALS  

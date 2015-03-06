@@ -17,6 +17,7 @@ import cfml.CFSCRIPTParser.ComponentGutsContext;
 import cfml.CFSCRIPTParser.ComponentPathContext;
 import cfml.CFSCRIPTParser.ConditionContext;
 import cfml.CFSCRIPTParser.ConstantExpressionContext;
+import cfml.CFSCRIPTParser.FloatingPointExpressionContext;
 import cfml.CFSCRIPTParser.ForInKeyContext;
 import cfml.CFSCRIPTParser.FunctionAttributeContext;
 import cfml.CFSCRIPTParser.FunctionCallContext;
@@ -93,31 +94,31 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	
 	@Override
 	public CFExpression visitComponentAttribute(ComponentAttributeContext ctx) {
-		System.out.println("CFExpr.visitComponentAttribute");
+		// System.out.println("CFExpr.visitComponentAttribute");
 		return super.visitComponentAttribute(ctx);
 	}
 	
 	@Override
 	public CFExpression visitFunctionAttribute(FunctionAttributeContext ctx) {
-		System.out.println("CFExpr.visitFunctionAttribute");
+		// System.out.println("CFExpr.visitFunctionAttribute");
 		return super.visitFunctionAttribute(ctx);
 	}
 	
 	@Override
 	public CFExpression visitParameterAttribute(ParameterAttributeContext ctx) {
-		System.out.println("CFExpr.visitParameterAttribute");
+		// System.out.println("CFExpr.visitParameterAttribute");
 		return super.visitParameterAttribute(ctx);
 	}
 	
 	@Override
 	public CFExpression visitComponentGuts(ComponentGutsContext ctx) {
-		System.out.println("CFExpr.visitComponentGuts");
+		// System.out.println("CFExpr.visitComponentGuts");
 		return super.visitComponentGuts(ctx);
 	}
 	
 	@Override
 	public CFExpression visitCondition(ConditionContext ctx) {
-		System.out.println("CFExpr.visitCondition");
+		// System.out.println("CFExpr.visitCondition");
 		return super.visitCondition(ctx);
 	}
 	
@@ -134,7 +135,9 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	@Override
 	public CFExpression visitConstantExpression(ConstantExpressionContext ctx) {
 		// System.out.println("CFExpr.visitConstantExpression");
-		if (ctx.MINUS() != null) {
+		if (ctx.floatingPointExpression() != null) {
+			return visitFloatingPointExpression(ctx.floatingPointExpression());
+		} else if (ctx.MINUS() != null) {
 			return new CFUnaryExpression(ctx.MINUS().getSymbol(), visitConstantExpression(ctx.constantExpression()));
 		} else if (ctx.LEFTPAREN() != null) {
 			return new CFUnaryExpression(ctx.LEFTPAREN().getSymbol(), visitConstantExpression(ctx.constantExpression()));
@@ -299,7 +302,7 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	
 	@Override
 	public CFExpression visitPrimaryExpressionIRW(PrimaryExpressionIRWContext ctx) {
-		System.out.println("CFExpr.visitPrimaryExpressionIRW:" + ctx.getText());
+		// System.out.println("CFExpr.visitPrimaryExpressionIRW:" + ctx.getText());
 		return super.visitPrimaryExpressionIRW(ctx);
 	}
 	
@@ -382,7 +385,7 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	
 	@Override
 	public CFExpression visitImplicitStructExpression(ImplicitStructExpressionContext ctx) {
-		System.out.println("CFExpr.visitImplicitStructExpression");
+		// System.out.println("CFExpr.visitImplicitStructExpression");
 		CFStructElementExpression elementExpression = new CFStructElementExpression(ctx.getStart(),
 				makeIdentifier(visit(ctx.getChild(0))), visit(ctx.getChild(2)));
 		// return super.visitImplicitStructExpression(ctx);
@@ -417,7 +420,19 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	
 	@Override
 	public CFExpression visitLiteralExpression(LiteralExpressionContext ctx) {
+		if (ctx.floatingPointExpression() != null) {
+			return visitFloatingPointExpression(ctx.floatingPointExpression());
+		}
 		return new CFLiteral(ctx.start);
+	}
+	
+	@Override
+	public CFExpression visitFloatingPointExpression(FloatingPointExpressionContext ctx) {
+		if (ctx.INTEGER_LITERAL() != null) {
+			return new CFLiteral(ctx.start, "." + ctx.INTEGER_LITERAL().getText());
+		} else {
+			return new CFLiteral(ctx.start);
+		}
 	}
 	
 	// @Override
@@ -461,7 +476,7 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	
 	@Override
 	public CFExpression visitAnonymousFunctionDeclaration(AnonymousFunctionDeclarationContext ctx) {
-		System.out.println("visitAnonymousFunctionDeclaration");
+		// System.out.println("visitAnonymousFunctionDeclaration");
 		CFFuncDeclStatement funcDeclStatement = (CFFuncDeclStatement) new CFScriptStatementVisitor()
 				.visitAnonymousFunctionDeclaration(ctx);
 		return new CFAnonymousFunctionExpression(ctx.FUNCTION().getSymbol(), funcDeclStatement);

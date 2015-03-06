@@ -232,7 +232,7 @@ fragment DecimalDigit
   ;
 FLOATING_POINT_LITERAL
   : DecimalDigit+ '.' DecimalDigit* ExponentPart?
-  | '.' DecimalDigit+ ExponentPart?
+  | '.' DecimalDigit+ ExponentPart
   | DecimalDigit+ ExponentPart?
   ;
 fragment ExponentPart

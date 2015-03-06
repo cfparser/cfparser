@@ -42,6 +42,7 @@ import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFFullVarExpression;
 import cfml.parsing.cfscript.CFIdentifier;
 import cfml.parsing.cfscript.CFMember;
+import cfml.parsing.cfscript.CFUnaryExpression;
 import cfml.parsing.cfscript.script.CFExpressionStatement;
 import cfml.parsing.cfscript.script.CFScriptStatement;
 
@@ -321,9 +322,13 @@ public class TestUtils {
 			return;
 		} else if (expression instanceof CFIdentifier || expression instanceof CFMember) {
 			System.out.print(prefix + expression.Decompile(0));
-		} else {
+		} else if (expression instanceof CFUnaryExpression) {
+			CFUnaryExpression unaryExpression = (CFUnaryExpression) expression;
 			System.out.println(prefix + expression.getClass().getSimpleName());
+			printCFExpressionTree(unaryExpression.getSub(), prefix + "  ");
+		} else {
+			System.out.print(prefix + expression.getClass().getSimpleName());
 		}
-		System.out.println(prefix + expression.getClass().getSimpleName());
+		System.out.println(expression.getClass().getSimpleName());
 	}
 }
