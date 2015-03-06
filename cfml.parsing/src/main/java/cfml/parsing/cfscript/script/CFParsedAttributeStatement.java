@@ -29,8 +29,12 @@
 package cfml.parsing.cfscript.script;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import org.antlr.v4.runtime.Token;
@@ -57,7 +61,15 @@ abstract public class CFParsedAttributeStatement extends CFParsedStatement imple
 	
 	// utility method used for outputting the attributes to string
 	protected void DecompileAttributes(StringBuilder sb) {
-		Iterator<CFIdentifier> attrIt = attributes.keySet().iterator();
+		List<CFIdentifier> sorted = new ArrayList<CFIdentifier>(attributes.keySet());
+		Collections.sort(sorted, new Comparator<CFIdentifier>() {
+			
+			@Override
+			public int compare(CFIdentifier o1, CFIdentifier o2) {
+				return o1.toString().compareTo(o2.toString());
+			}
+		});
+		Iterator<CFIdentifier> attrIt = sorted.iterator();
 		while (attrIt.hasNext()) {
 			sb.append(" ");
 			CFIdentifier nextKey = attrIt.next();
