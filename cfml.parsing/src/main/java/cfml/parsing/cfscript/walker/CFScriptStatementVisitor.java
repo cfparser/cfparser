@@ -16,6 +16,7 @@ import cfml.CFSCRIPTParser.BreakStatementContext;
 import cfml.CFSCRIPTParser.CaseStatementContext;
 import cfml.CFSCRIPTParser.CatchConditionContext;
 import cfml.CFSCRIPTParser.CfmlfunctionStatementContext;
+import cfml.CFSCRIPTParser.CompareExpressionContext;
 import cfml.CFSCRIPTParser.ComponentAttributeContext;
 import cfml.CFSCRIPTParser.ComponentDeclarationContext;
 import cfml.CFSCRIPTParser.CompoundStatementContext;
@@ -42,7 +43,6 @@ import cfml.CFSCRIPTParser.ScriptBlockContext;
 import cfml.CFSCRIPTParser.StartExpressionContext;
 import cfml.CFSCRIPTParser.StatementContext;
 import cfml.CFSCRIPTParser.SwitchStatementContext;
-import cfml.CFSCRIPTParser.TernaryContext;
 import cfml.CFSCRIPTParser.ThreadStatementContext;
 import cfml.CFSCRIPTParser.ThrowStatementContext;
 import cfml.CFSCRIPTParser.TransactionStatementContext;
@@ -234,7 +234,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		// System.out.println("visitStatement");
 		if (ctx.getChild(0) instanceof LocalAssignmentExpressionContext
 				|| ctx.getChild(0) instanceof AssignmentExpressionContext
-				|| ctx.getChild(0) instanceof BaseExpressionContext || ctx.getChild(0) instanceof TernaryContext) {
+				|| ctx.getChild(0) instanceof BaseExpressionContext
+				|| ctx.getChild(0) instanceof CompareExpressionContext) {
 			CFExpressionStatement expressionStmt = new CFExpressionStatement(cfExpressionVisitor.visit(ctx.getChild(0)));
 			// System.out.println("visitStatement.b" + expressionStmt.Decompile(0));
 			return expressionStmt;

@@ -89,4 +89,13 @@ public class CFFullVarExpression extends CFIdentifier implements Serializable {
 		return expressions;
 	}
 	
+	public CFIdentifier getLastIdentifier() {
+		for (int i = expressions.size() - 1; i >= 0; i--) {
+			if (expressions.get(i) instanceof CFIdentifier) {
+				return (CFIdentifier) expressions.get(i);
+			}
+		}
+		return null;
+	}
+	
 }

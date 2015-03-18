@@ -382,7 +382,8 @@ public class TestCFMLParser {
 			e.printStackTrace();
 		}
 		assertNotNull(scriptStatement);
-		assertEquals("try{throw('funk');}catch(Any e{woot();}", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
+		assertEquals("try{throw ('funk');}catch(Any e{woot();}", scriptStatement.Decompile(0)
+				.replaceAll("[\\r\\n]", ""));
 	}
 	
 	@Test

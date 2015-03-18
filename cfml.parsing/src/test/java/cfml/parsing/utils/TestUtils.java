@@ -27,8 +27,8 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
-import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
+import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.gui.TreeViewer;
@@ -114,7 +114,7 @@ public class TestUtils {
 			final boolean gui) {
 		ANTLRInputStream input = new ANTLRInputStream(inputstr);
 		CFSCRIPTLexer lexer = new CFSCRIPTLexer(input);
-		TokenStream tokens = new CommonTokenStream(lexer);
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		final CFSCRIPTParser parser = new CFSCRIPTParser(tokens);
 		
 		if (errors != null) {
@@ -146,7 +146,16 @@ public class TestUtils {
 				
 			});
 		}
-		CFSCRIPTParser.ScriptBlockContext entry = parser.scriptBlock();
+		CFSCRIPTParser.ScriptBlockContext entry = null;
+		parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
+		try {
+			entry = parser.scriptBlock();
+		} catch (Exception e) {
+			tokens.reset(); // rewind input stream
+			parser.reset();
+			parser.getInterpreter().setPredictionMode(PredictionMode.LL);
+			entry = parser.scriptBlock(); // STAGE 2
+		}
 		List<CommonToken> tokenList = new ArrayList<CommonToken>();
 		
 		for (int i = 0; i < entry.getChildCount(); i++) {
@@ -171,7 +180,7 @@ public class TestUtils {
 		showGUI(tree, parser.getRuleNames());
 	}
 	
-	public static void showGUI(ScriptBlockContext tree, String[] ruleNames) {
+	public static void showGUI(ParseTree tree, String[] ruleNames) {
 		// JFrame frame = new JFrame("Antlr AST");
 		JDialog frame = new JDialog();
 		JPanel panel = new JPanel();
@@ -297,6 +306,50 @@ public class TestUtils {
 		CFMLParser fCfmlParser = new CFMLParser();
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail(e.getMessage());
+		}
+		return scriptStatement;
+	}
+	
+	public static CFExpression parseExpression(String script) {
+		CFExpression scriptStatement = null;
+		CFMLParser fCfmlParser = new CFMLParser();
+		try {
+			scriptStatement = fCfmlParser.parseCFExpression(script, new ANTLRErrorListener() {
+				
+				@Override
+				public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line,
+						int charPositionInLine, String msg, RecognitionException e) {
+					System.out.println("se");
+					
+				}
+				
+				@Override
+				public void reportContextSensitivity(Parser recognizer, DFA dfa, int startIndex, int stopIndex,
+						int prediction, ATNConfigSet configs) {
+					System.out.println("cs");
+					
+				}
+				
+				@Override
+				public void reportAttemptingFullContext(Parser recognizer, DFA dfa, int startIndex, int stopIndex,
+						BitSet conflictingAlts, ATNConfigSet configs) {
+					// TODO Auto-generated method stub
+					System.out.println("fc" + conflictingAlts.size());
+					
+				}
+				
+				@Override
+				public void reportAmbiguity(Parser recognizer, DFA dfa, int startIndex, int stopIndex, boolean exact,
+						BitSet ambigAlts, ATNConfigSet configs) {
+					// TODO Auto-generated method stub
+					System.out.println("amb");
+					
+				}
+			});
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

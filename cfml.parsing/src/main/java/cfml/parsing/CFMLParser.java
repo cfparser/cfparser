@@ -15,23 +15,29 @@ import java.util.Set;
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.StartTag;
 
+import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.BailErrorStrategy;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.DefaultErrorStrategy;
 import org.antlr.v4.runtime.IntStream;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
-import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
+import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.dfa.DFA;
 
 import cfml.CFSCRIPTLexer;
 import cfml.CFSCRIPTParser;
+import cfml.CFSCRIPTParser.ExpressionContext;
 import cfml.CFSCRIPTParser.ScriptBlockContext;
 import cfml.dictionary.DictionaryManager;
 import cfml.dictionary.SyntaxDictionary;
 import cfml.dictionary.preferences.DictionaryPreferences;
+import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.cfscript.walker.CFExpressionVisitor;
 import cfml.parsing.cfscript.walker.CFScriptStatementVisitor;
 import cfml.parsing.reporting.IErrorReporter;
 import cfml.parsing.reporting.ParseException;
@@ -46,6 +52,77 @@ public class CFMLParser {
 	private SyntaxDictionary cfdic;
 	private DictionaryPreferences fDictPrefs = new DictionaryPreferences();
 	IErrorReporter errorReporter = new StdErrReporter();
+	CFExpressionVisitor expressionVisitor = new CFExpressionVisitor();
+	CFScriptStatementVisitor scriptVisitor = new CFScriptStatementVisitor();
+	CFSCRIPTLexer lexer = null;
+	CFSCRIPTParser parser = null;
+	
+	public void clearDFA() {
+		if (parser != null)
+			parser.getInterpreter().clearDFA();
+		if (lexer != null)
+			lexer.getInterpreter().clearDFA();
+	}
+	
+	public CFExpression parseCFExpression(String _infix, ANTLRErrorListener errorReporter) throws Exception {
+		if (errorReporter == null) {
+			errorReporter = this.errorReporter;
+		}
+		
+		final ANTLRInputStream input = new ANTLRInputStream(_infix);
+		if (lexer == null) {
+			lexer = new CFSCRIPTLexer(input);
+			// lexer.setInterpreter(new LexerATNSimulator(lexer, lexer.getATN(), lexer.getInterpreter().decisionToDFA,
+			// new PredictionContextCache()));
+		} else {
+			lexer.setInputStream(input);
+		}
+		
+		final CommonTokenStream tokens = new CommonTokenStream(lexer);
+		
+		// ScriptBlockContext scriptStatement = null;
+		if (parser == null) {
+			parser = new CFSCRIPTParser(tokens);
+			// parser.setInterpreter(new ParserATNSimulator(parser, parser.getATN(),
+			// parser.getInterpreter().decisionToDFA, new PredictionContextCache()));
+			// parser.getInterpreter().clearDFA();
+			if (errorReporter == null) {
+				lexer.addErrorListener(this.errorReporter);
+				parser.addErrorListener(this.errorReporter);
+			}
+		} else {
+			parser.setTokenStream(tokens);
+		}
+		
+		if (errorReporter != null) {
+			lexer.addErrorListener(errorReporter);
+			parser.addErrorListener(errorReporter);
+		}
+		// p2.scriptMode = false;
+		parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
+		parser.reset();
+		ExpressionContext expressionContext = null;
+		try {
+			expressionContext = parser.expression(); // Stage 1
+			// TestUtils.showGUI(expressionContext, CFSCRIPTParser.ruleNames);
+			
+		} catch (Exception e) {
+			tokens.reset(); // rewind input stream
+			parser.reset();
+			parser.getInterpreter().setPredictionMode(PredictionMode.LL);
+			expressionContext = parser.expression(); // STAGE 2
+		} finally {
+			if (errorReporter != null) {
+				lexer.removeErrorListener(errorReporter);
+				parser.removeErrorListener(errorReporter);
+			}
+		}
+		if (expressionContext != null) {
+			return expressionVisitor.visit(expressionContext);
+		} else
+			return null;
+		
+	}
 	
 	private static String readFileAsString(String filePath) throws java.io.IOException {
 		StringBuffer fileData = new StringBuffer(1000);
@@ -317,9 +394,8 @@ public class CFMLParser {
 	
 	public CFScriptStatement parseScript(String cfscript) throws ParseException, IOException {
 		ScriptBlockContext scriptBlockContext = parseScriptBlockContext(cfscript);
-		CFScriptStatementVisitor visitor = new CFScriptStatementVisitor();
 		
-		CFScriptStatement result = visitor.visit(scriptBlockContext);
+		CFScriptStatement result = scriptVisitor.visit(scriptBlockContext);
 		return result;
 	}
 	
@@ -327,7 +403,7 @@ public class CFMLParser {
 		
 		ANTLRInputStream input = new ANTLRInputStream(cfscript);
 		CFSCRIPTLexer lexer = new CFSCRIPTLexer(input);
-		TokenStream tokens = new CommonTokenStream(lexer);
+		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		// int i = 0;
 		// tokens.consume();
 		// while (true) {
@@ -337,23 +413,32 @@ public class CFMLParser {
 		// tokens.consume();
 		// if (System.currentTimeMillis() < 1000)
 		// break;
-		//
 		// }
 		ScriptBlockContext scriptStatement = null;
 		CFSCRIPTParser parser = new CFSCRIPTParser(tokens);
 		
 		lexer.addErrorListener(errorReporter);
 		parser.addErrorListener(errorReporter);
+		parser.reset();
+		parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
+		parser.setErrorHandler(new BailErrorStrategy());
 		try {
 			scriptStatement = parser.scriptBlock();
-			
 			// } catch (CFParseException e) {
 			// addMessage(new ParseError(e.line, e.charPositionInLine, e.charPositionInLine,
 			// e.getSourceException().input.toString(), e.getMessage()));
-		} catch (RecognitionException e) {
-			throw new ParseException(e.getOffendingToken(), "Unexpected \'"
-					+ parser.getTokenErrorDisplay(e.getOffendingToken()) + "\' (" + e.getOffendingToken().getText()
-					+ ")");
+			
+		} catch (Exception e) {
+			/*
+			 * throw new ParseException(e.getOffendingToken(), "Unexpected \'" +
+			 * parser.getTokenErrorDisplay(e.getOffendingToken()) + "\' (" + e.getOffendingToken().getText() + ")");
+			 */
+			System.out.println("Stage 2!");
+			tokens.reset(); // rewind input stream
+			parser.reset();
+			parser.setErrorHandler(new DefaultErrorStrategy());
+			parser.getInterpreter().setPredictionMode(PredictionMode.LL);
+			scriptStatement = parser.scriptBlock(); // STAGE 2
 		}
 		// TestUtils.showGUI(scriptStatement, CFSCRIPTParser.ruleNames);
 		return scriptStatement;

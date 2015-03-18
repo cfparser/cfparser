@@ -206,11 +206,11 @@ PACKAGE: [pP][aA][cC][kK][aA][gG][eE];
 REQUIRED: [rR][eE][qQ][uU][iI][rR][eE][dD];
 COMPONENT: [cC][oO][mM][pP][oO][nN][eE][nN][tT];
 
-SCOPE
-    :   [tT][hH][iI][sS] DOT
-    |   [lL][oO][cC][aA][lL] DOT
-    |   [vV][aA][rR][iI][aA][bB][lL][eE][sS] DOT
-    ;
+//SCOPE
+//    :   [tT][hH][iI][sS] DOT
+//    |   [lL][oO][cC][aA][lL] DOT
+//    |   [vV][aA][rR][iI][aA][bB][lL][eE][sS] DOT
+//    ;
 IDENTIFIER 
 	:	LETTER (LETTER|CF_DIGIT)*;
 	

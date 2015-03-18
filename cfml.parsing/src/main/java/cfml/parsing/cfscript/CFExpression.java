@@ -29,14 +29,6 @@
 
 package cfml.parsing.cfscript;
 
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.TokenStream;
-
-import cfml.CFSCRIPTLexer;
-import cfml.CFSCRIPTParser;
-import cfml.CFSCRIPTParser.ExpressionContext;
-import cfml.CFSCRIPTParser.ScriptBlockContext;
 
 public abstract class CFExpression extends CFParsedStatement implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
@@ -44,37 +36,33 @@ public abstract class CFExpression extends CFParsedStatement implements java.io.
 	public static byte FUNCTION = 0, ASSIGNMENT = 1, BINARY = 2, LITERAL = 3, IDENTIFIER = 4, VARIABLE = 5, UNARY = 6,
 			ARRAYMEMBER = 7, NESTED = 8;
 	
-	@Deprecated
-	public static CFExpression getCFExpression(String _infix) {
-		try {
-			return getCFExpressionThrows(_infix);
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-	
-	public static CFExpression getCFExpressionThrows(String _infix) throws Exception {
-		
-		ANTLRInputStream input = new ANTLRInputStream(_infix);
-		CFSCRIPTLexer lexer = new CFSCRIPTLexer(input);
-		TokenStream tokens = new CommonTokenStream(lexer);
-		
-		ScriptBlockContext scriptStatement = null;
-		CFSCRIPTParser parser = new CFSCRIPTParser(tokens);
-		
-		// lexer.addErrorListener(errorReporter);
-		// parser.addErrorListener(errorReporter);
-		// p2.scriptMode = false;
-		ExpressionContext exp = parser.expression();
-		
-		// if (exp instanceof CFAssignmentExpression) {
-		// ((CFAssignmentExpression) exp).checkIndirect(_infix);
-		// }
-		// TODO
-		return null;
-		
-	}
+	// @Deprecated
+	// public static CFExpression getCFExpression(String _infix) {
+	// try {
+	// return getCFExpression(_infix, null);
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// return null;
+	// }
+	// }
+	//
+	// public static CFExpression getCFExpression(String _infix, ANTLRErrorListener errorReporter) throws Exception {
+	//
+	// ANTLRInputStream input = new ANTLRInputStream(_infix);
+	// CFSCRIPTLexer lexer = new CFSCRIPTLexer(input);
+	// TokenStream tokens = new CommonTokenStream(lexer);
+	//
+	// // ScriptBlockContext scriptStatement = null;
+	// CFSCRIPTParser parser = new CFSCRIPTParser(tokens);
+	//
+	// lexer.addErrorListener(errorReporter);
+	// parser.addErrorListener(errorReporter);
+	// // p2.scriptMode = false;
+	// ExpressionContext expressionContext = parser.expression();
+	//
+	// return new CFExpressionVisitor().visit(expressionContext);
+	//
+	// }
 	
 	public byte getType() {
 		return -1;

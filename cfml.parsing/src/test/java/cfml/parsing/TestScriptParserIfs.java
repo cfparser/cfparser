@@ -41,4 +41,14 @@ public class TestScriptParserIfs {
 				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
+	@Test
+	public void testIfFunctionP() {
+		String script = "if (fileExists(destfile) && !overwrite) {}";
+		// String script = "fileExists(destfile) && !overwrite;";
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		assertEquals("if(fileExists(destfile) && !overwrite )   {  }",
+				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
+	}
+	
 }

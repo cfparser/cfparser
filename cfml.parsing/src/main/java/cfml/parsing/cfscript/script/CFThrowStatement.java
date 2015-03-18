@@ -35,7 +35,7 @@ public class CFThrowStatement extends CFParsedStatement implements java.io.Seria
 	@Override
 	public String Decompile(int indent) {
 		if (message != null) {
-			return "throw \"" + message + "\"";
+			return "throw " + message + "";
 		} else {
 			return "throw";
 		}

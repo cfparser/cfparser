@@ -70,12 +70,16 @@ public class CFIdentifier extends CFVarExpression implements java.io.Serializabl
 		return name;
 	}
 	
+	public String getFullName() {
+		return (scope != null && scope.trim().length() > 0 ? scope.trim() : "") + name;
+	}
+	
 	public Token getToken() {
 		return token;
 	}
 	
 	public String Decompile(int indent) {
-		return name;
+		return getFullName();
 	}
 	
 	public String toString() {

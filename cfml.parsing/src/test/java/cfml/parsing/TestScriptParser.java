@@ -495,4 +495,59 @@ public class TestScriptParser {
 		assertEquals(literal.getToken().getType(), CFSCRIPTLexer.DOT);
 		assertEquals("x=.2", scriptStatement.Decompile(0));
 	}
+	
+	@Test
+	public void testAndReservedWord() {
+		String script = "return Padding & string;";
+		// String script = "trim(arguments.form.CellNumber);";
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		assertEquals("return Padding & string", scriptStatement.Decompile(0));
+	}
+	
+	@Test
+	public void testAndReservedWord2() {
+		String script = "len(string);";
+		// String script = "trim(arguments.form.CellNumber);";
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		assertEquals("len(string)", scriptStatement.Decompile(0));
+	}
+	
+	@Test
+	public void testAndReservedWord3() {
+		String script = "var Array = createObject(\"java\", \"java.lang.reflect.Array\");";
+		// String script = "trim(arguments.form.CellNumber);";
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		assertEquals("var Array = createObject('java', 'java.lang.reflect.Array')", scriptStatement.Decompile(0));
+	}
+	
+	@Test
+	public void testAndReservedWord4() {
+		String script = "variables.instance.events.string;";
+		// String script = "trim(arguments.form.CellNumber);";
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		assertEquals("variables.instance.events.string", scriptStatement.Decompile(0));
+	}
+	
+	@Test
+	public void testMemberExpr() {
+		String script = "setNumberOwners(val(arguments.f['ownership_numberOwners']));";
+		// String script = "trim(arguments.form.CellNumber);";
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		assertEquals("setNumberOwners(val(arguments.f['ownership_numberOwners']))", scriptStatement.Decompile(0));
+	}
+	
+	@Test
+	public void testHangs() {
+		String script = "gm.setChangedBy(arguments.user.getFirstName() & \" \" & arguments.user.getMiddleInitial() & \" \" & arguments.user.getLastName() & \" [\" & arguments.user.getUserName() & \"] [\" & arguments.user.getEmail() & \"]\");";
+		// String script = "trim(arguments.form.CellNumber);";
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		// assertEquals("setNumberOwners(val(arguments.f['ownership_numberOwners']))", scriptStatement.Decompile(0));
+	}
+	
 }

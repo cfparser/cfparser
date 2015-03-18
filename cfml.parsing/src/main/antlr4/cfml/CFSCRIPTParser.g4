@@ -21,7 +21,7 @@ endOfScriptBlock
   : SCRIPTCLOSE 
   | EOF
   ;
-  
+   
 element
   : functionDeclaration
   | statement
@@ -112,7 +112,7 @@ continueStatement
   :CONTINUE ;  
    
 condition
-  : LEFTPAREN (baseExpression | compareExpression) RIGHTPAREN
+  : LEFTPAREN compareExpression RIGHTPAREN
   ;
   
 returnStatement
@@ -140,7 +140,10 @@ forStatement
   ;
   
 startExpression:
-  ternary | baseExpression | compareExpression;
+  compareExpression;
+  
+baseOrTernaryExpression:
+  compareExpression;
   
 forInKey
   : VAR? multipartIdentifier
@@ -209,7 +212,7 @@ includeStatement
   ;
 
 importStatement
-  : lc=IMPORT componentPath (DOT all='*')? SEMICOLON 
+  : lc=IMPORT componentPath (DOT all=STAR)? SEMICOLON 
   ;
 
 transactionStatement
@@ -320,25 +323,32 @@ baseExpression
 	;
 	
 compareExpression
-	: impliedExpression
-	| equivalentExpression
-	| xorExpression
-	| orExpression
-	| andExpression
-	| notExpression
+	: (
+	notExpression
 	| notNotExpression
-	| equalityExpression
+	| left=baseExpression 
+		(operator=compareExpressionOperator right=compareExpression)?
+	) 
+	(QUESTIONMARK ternaryExpression1=startExpression COLON ternaryExpression2=startExpression)?
 	;	
 	
-ternary
-   : (compareExpression | unaryExpression) QUESTIONMARK startExpression COLON startExpression //-> ^(TERNARY equivalentExpression localAssignmentExpression localAssignmentExpression)
-   ;
-
-impliedExpression
-	:	baseExpression IMP startExpression
-	;
-
-equivalentExpression
+compareExpressionOperator:
+ OR 
+ | OROPERATOR
+ | EQV
+ | XOR
+ | AND
+ | ANDOPERATOR
+    |EQ //-> ^(EQ)
+    |   LT //-> ^(LT)
+    |   LTE //-> ^(LTE)
+    |   GT //-> ^(GT)
+    |   GTE //-> ^(GTE)
+    |   NEQ //-> ^(NEQ)
+    |   CONTAINS //-> ^(CONTAINS)
+ ;
+	
+/*equivalentExpression
 	:	baseExpression EQV startExpression 
 	;
 
@@ -353,7 +363,7 @@ orExpression
 andExpression
 	:	baseExpression  ( AND | ANDOPERATOR ) startExpression 
 	;
-	
+	*/
 notExpression
 	:	( NOT | NOTOP ) startExpression 
 	;
@@ -361,12 +371,12 @@ notExpression
 notNotExpression
 	:	NOTNOTOP  startExpression 
 	;	
-
+/*
 equalityExpression
     : baseExpression
       ( equalityOperator1 startExpression )
     ;
-
+*/
 equalityOperator1
     :
     //IS //-> ^(EQ)
@@ -400,73 +410,71 @@ equalityOperator5
     :   LESS THAN OR EQUAL TO //-> ^(LTE)
     |   GREATER THAN OR EQUAL TO //-> ^(GTE)
     ; */
-    
+     
 concatenationExpression
-	:	unaryExpression ( CONCAT startExpression )
+	:	unaryExpression CONCAT baseOrTernaryExpression
 	;
 	
 additiveExpression
-	:	unaryExpression ( (PLUS|MINUS) startExpression )
+	:	unaryExpression (PLUS|MINUS) baseOrTernaryExpression
 	;
 
 modExpression
-	:	unaryExpression  ( MOD startExpression )
+	:	unaryExpression  ( MOD baseOrTernaryExpression )
 	;
 	
 intDivisionExpression
-	:	unaryExpression ( BSLASH startExpression )
+	:	unaryExpression ( BSLASH baseOrTernaryExpression )
 	;
 
 multiplicativeExpression
-	:	unaryExpression ( (STAR|SLASH) startExpression )
+	:	unaryExpression ( (STAR|SLASH) baseOrTernaryExpression )
 	;
 	
 powerOfExpression
-	:	unaryExpression ( POWER startExpression )
+	:	unaryExpression ( POWER baseOrTernaryExpression )
 	;
 	
 unaryExpression
-	: MINUS startExpression //-> ^(MINUS memberExpression)
-	| PLUS startExpression //-> ^(PLUS memberExpression)
-	| MINUSMINUS startExpression //-> ^(MINUSMINUS memberExpression) 
-	| PLUSPLUS startExpression //-> ^(PLUSPLUS memberExpression)
-	| identifier (DOT primaryExpressionIRW (LEFTPAREN argumentList RIGHTPAREN)+)*
-  | identifier MINUSMINUS //-> ^(POSTMINUSMINUS memberExpression)
-  | identifier PLUSPLUS //-> ^(POSTPLUSPLUS memberExpression)
-  | primaryExpression
-  | parentheticalExpression
-//  | functionCall
+	: (MINUS | PLUS | MINUSMINUS | PLUSPLUS) primaryExpression //-> ^(MINUS memberExpression)
+	//| PLUS primaryExpression //-> ^(PLUS memberExpression)
+	//| MINUSMINUS primaryExpression //-> ^(MINUSMINUS memberExpression) 
+	//| PLUSPLUS primaryExpression //-> ^(PLUSPLUS memberExpression)
+	//| identifier (DOT primaryExpressionIRW (LEFTPAREN argumentList RIGHTPAREN)+)*
+  //| primaryExpression PLUSPLUS //-> ^(POSTPLUSPLUS memberExpression)
+  //| primaryExpression
+//  | parentheticalExpression
   | memberExpression
+  | innerExpression
+  |  primaryExpression (MINUSMINUS | PLUSPLUS)?//-> ^(POSTMINUSMINUS memberExpression)
   ;
-	
 
+innerExpression:
+	POUND_SIGN baseOrTernaryExpression POUND_SIGN;
 	
 memberExpression
-	:	innerExpression
-	| (functionCall | newComponentExpression| memberExpressionB)
-	;
-	
-innerExpression:
-	POUND_SIGN baseExpression POUND_SIGN;
-	
-memberExpressionB
   : ( //primaryExpression
-    firstidentifier=identifier 
-  	| parentheticalExpression//-> primaryExpression 
+    functionCall
   	| newComponentExpression
+    |firstidentifier=identifier 
+  	| parentheticalExpression//-> primaryExpression 
+  	
   ) // set return tree to just primary
   ( 
-   DOT javaCallMemberExpression //-> ^(JAVAMETHODCALL $memberExpressionB primaryExpressionIRW argumentList )
-   | DOT functionCall
-    | parentheticalMemberExpression //-> ^(FUNCTIONCALL $memberExpressionB argumentList)
-    | arrayMemberExpression//-> ^(LEFTBRACKET $memberExpressionB baseExpression)
+   //DOT javaCallMemberExpression //-> ^(JAVAMETHODCALL $memberExpressionB primaryExpressionIRW argumentList )
+    DOT functionCall
+    //| parentheticalMemberExpression //-> ^(FUNCTIONCALL $memberExpressionB argumentList)
+    | arrayMemberExpression parentheticalMemberExpression?//-> ^(LEFTBRACKET $memberExpressionB baseExpression)
     | DOT primaryExpressionIRW //-> ^(DOT $memberExpressionB primaryExpressionIRW)
     | DOT identifier
-  )+
+    //| DOT identifierWithTypeKeyword
+  )*
   ;
   
 identifierOrReservedWord:
 identifier | reservedWord;
+
+
 
   
 arrayMemberExpression
@@ -474,7 +482,7 @@ arrayMemberExpression
 	;
   
 functionCall
-	:multipartIdentifier LEFTPAREN argumentList RIGHTPAREN
+	:identifierOrReservedWord LEFTPAREN argumentList RIGHTPAREN
 	;
 	  
 parentheticalMemberExpression
@@ -508,8 +516,8 @@ primaryExpressionIRW
 literalExpression
 	:	STRING_LITERAL
 	|	BOOLEAN_LITERAL
-	| floatingPointExpression
-	|	INTEGER_LITERAL;
+	|  floatingPointExpression
+	|  INTEGER_LITERAL;
 	
 floatingPointExpression
     : FLOATING_POINT_LITERAL
@@ -543,7 +551,7 @@ multipartIdentifier
 		identifier (DOT identifierOrReservedWord)*;
 
 identifier
-	:	SCOPE? (COMPONENT
+	:	(COMPONENT
 	| IDENTIFIER
   //| DOES 
   | CONTAIN
@@ -567,7 +575,8 @@ identifier
   | REQUIRED
   | cfmlFunction
   | //{!scriptMode}?//=> 
-  	cfscriptKeywords )
+  	cfscriptKeywords 
+  | type	)
 	;
 
 type
@@ -609,7 +618,7 @@ primaryExpression
 	;
 	
 parentheticalExpression
-	: LEFTPAREN LT* startExpression LT* RIGHTPAREN
+	: LEFTPAREN startExpression RIGHTPAREN
 ;	
 
 implicitArray
@@ -629,12 +638,12 @@ implicitStructElements
   ;
 
 implicitStructExpression
-  : implicitStructKeyExpression ( COLON | EQUALSOP ) startExpression 
+  : implicitStructKeyExpression ( COLON | EQUALSOP ) unaryExpression 
   ;
   
 implicitStructKeyExpression
   : multipartIdentifier
-  | additiveExpression ( CONCAT additiveExpression )*
+ // | additiveExpression ( CONCAT additiveExpression )*
   | stringLiteral
   ;
 

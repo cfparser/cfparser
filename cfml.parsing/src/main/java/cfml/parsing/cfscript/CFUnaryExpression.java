@@ -100,8 +100,11 @@ public class CFUnaryExpression extends CFExpression implements java.io.Serializa
 		// sb.append("--");
 		// break;
 		}
-		
 		return sb.toString();
+	}
+	
+	public String toString() {
+		return Decompile(0);
 	}
 	
 	public int getKind() {

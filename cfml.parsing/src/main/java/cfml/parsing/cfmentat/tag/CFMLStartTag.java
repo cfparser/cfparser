@@ -130,7 +130,7 @@ public class CFMLStartTag extends StartTagTypeGenericImplementation {
 	
 	private void userMessage(int i, String string, String string2, String string3, Object object) {
 		// TODO Auto-generated method stub
-		System.out.println(string + string2);
+		// System.out.println(string + string2);
 	}
 	
 }

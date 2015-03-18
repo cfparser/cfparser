@@ -59,7 +59,10 @@ public class CFFunctionExpression extends CFMember {
 	}
 	
 	public String getFunctionName() {
-		return nameId == null ? "" : nameId.getName().toLowerCase();
+		if (nameId instanceof CFFullVarExpression) {
+			return ((CFFullVarExpression) nameId).getLastIdentifier().Decompile(0).toLowerCase();
+		}
+		return nameId == null ? "" : nameId.Decompile(0).toLowerCase();
 	}
 	
 	public boolean isUDF() {
