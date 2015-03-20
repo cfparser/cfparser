@@ -38,4 +38,15 @@ public class TestExpressionParser {
 		assertNotNull(scriptStatement);
 		assertEquals("this.param.datasource.napAS400=arguments.datasource", scriptStatement.Decompile(0));
 	}
+	
+	@Test
+	public void testNestedHash() {
+		String script = "x = #CGI.y#";
+		// String script = "x={name:\"attributes\",xx:-1}";
+		CFExpression scriptStatement = TestUtils.parseExpression(script);
+		TestUtils.printCFExpressionTree(scriptStatement, "");
+		assertNotNull(scriptStatement);
+		assertEquals("x=#CGI.y#", scriptStatement.Decompile(0));
+	}
+	
 }

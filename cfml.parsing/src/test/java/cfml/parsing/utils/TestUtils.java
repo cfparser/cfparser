@@ -38,10 +38,12 @@ import cfml.CFSCRIPTLexer;
 import cfml.CFSCRIPTParser;
 import cfml.CFSCRIPTParser.ScriptBlockContext;
 import cfml.parsing.CFMLParser;
+import cfml.parsing.cfscript.CFAssignmentExpression;
 import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFFullVarExpression;
 import cfml.parsing.cfscript.CFIdentifier;
 import cfml.parsing.cfscript.CFMember;
+import cfml.parsing.cfscript.CFNestedExpression;
 import cfml.parsing.cfscript.CFUnaryExpression;
 import cfml.parsing.cfscript.script.CFExpressionStatement;
 import cfml.parsing.cfscript.script.CFScriptStatement;
@@ -379,6 +381,16 @@ public class TestUtils {
 			CFUnaryExpression unaryExpression = (CFUnaryExpression) expression;
 			System.out.println(prefix + expression.getClass().getSimpleName());
 			printCFExpressionTree(unaryExpression.getSub(), prefix + "  ");
+		} else if (expression instanceof CFAssignmentExpression) {
+			CFAssignmentExpression assignExpression = (CFAssignmentExpression) expression;
+			System.out.println(prefix + assignExpression.getClass().getSimpleName());
+			printCFExpressionTree(assignExpression.getLeft(), prefix + "  ");
+			System.out.print(prefix + "   =  ");
+			printCFExpressionTree(assignExpression.getRight(), prefix + "  ");
+		} else if (expression instanceof CFNestedExpression) {
+			CFNestedExpression assignExpression = (CFNestedExpression) expression;
+			System.out.println(prefix + assignExpression.getClass().getSimpleName());
+			printCFExpressionTree(assignExpression.getSub(), prefix + "  ");
 		} else {
 			System.out.print(prefix + expression.getClass().getSimpleName());
 		}
