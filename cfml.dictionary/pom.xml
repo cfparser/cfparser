@@ -13,9 +13,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>jdom</groupId>
-			<artifactId>jdom</artifactId>
-			<version>b10</version>
+		    <groupId>jdom</groupId>
+		    <artifactId>jdom</artifactId>
+		    <version>1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>net.htmlparser</groupId>
