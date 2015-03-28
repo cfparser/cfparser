@@ -46,7 +46,7 @@ public class TestScriptParserForLoop {
 		scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
 		assertEquals(
-				"for( tag in e.tagcontext )   {    if(tag.template.startsWith('ram:') )       {tag.template=templatepath;      };  }",
+				"for( tag in e.tagcontext )   {    if(tag.template.startsWith('ram:') )       {tag.template = templatepath;      };  }",
 				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
@@ -66,6 +66,6 @@ public class TestScriptParserForLoop {
 		scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
 		TestUtils.printCFScriptTree(scriptStatement);
-		assertEquals("for(i=1;i <= n;i=i + 1)  {  }", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
+		assertEquals("for(i = 1;i <= n;i = i + 1)  {  }", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 }

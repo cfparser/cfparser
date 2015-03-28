@@ -24,7 +24,7 @@ public class TestScriptNestedAND {
 		String script = "result = fileExists(destfile) ? \"overwritten\" : \"created\";";
 		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("result=fileExists(destfile)?'overwritten':'created'", scriptStatement.Decompile(0));
+		assertEquals("result = fileExists(destfile)?'overwritten':'created'", scriptStatement.Decompile(0));
 	}
 	
 	@Test
@@ -32,7 +32,7 @@ public class TestScriptNestedAND {
 		String script = "result = (fileExists(destfile)) ? \"overwritten\" : \"created\";";
 		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("result=(fileExists(destfile))?'overwritten':'created'", scriptStatement.Decompile(0));
+		assertEquals("result = (fileExists(destfile))?'overwritten':'created'", scriptStatement.Decompile(0));
 	}
 	
 	@Test
@@ -41,7 +41,7 @@ public class TestScriptNestedAND {
 		String script = "result = a == b ? \"overwritten\" : \"created\";";
 		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("result=a == b?'overwritten':'created'", scriptStatement.Decompile(0));
+		assertEquals("result = a == b?'overwritten':'created'", scriptStatement.Decompile(0));
 	}
 	
 	@Test
@@ -49,7 +49,7 @@ public class TestScriptNestedAND {
 		String script = "result = a == b ? c > a ? 'c > a' : 'a > c' : 'b != a';";
 		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("result=a == b?c > a?'c > a':'a > c':'b != a'", scriptStatement.Decompile(0));
+		assertEquals("result = a == b?c > a?'c > a':'a > c':'b != a'", scriptStatement.Decompile(0));
 	}
 	
 }

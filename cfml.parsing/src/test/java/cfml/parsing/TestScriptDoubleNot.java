@@ -23,6 +23,6 @@ public class TestScriptDoubleNot {
 		String script = "if (!! xx) yy = 1;";
 		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("if(!!xx ) yy=1", scriptStatement.Decompile(0));
+		assertEquals("if(!!xx ) yy = 1", scriptStatement.Decompile(0));
 	}
 }

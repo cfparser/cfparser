@@ -231,7 +231,7 @@ public class TestCFMLParser {
 			e.printStackTrace();
 		}
 		assertNotNull(scriptStatement);
-		assertEquals("result=a == b?c > a?'c > a':'a > c':'b != a'", scriptStatement.Decompile(0));
+		assertEquals("result = a == b?c > a?'c > a':'a > c':'b != a'", scriptStatement.Decompile(0));
 	}
 	
 	@Test
@@ -351,7 +351,7 @@ public class TestCFMLParser {
 		}
 		
 		assertNotNull(scriptStatement);
-		assertEquals("runFunk=this[functionName]", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
+		assertEquals("runFunk = this[functionName]", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
 	}
 	
 	@Test
@@ -367,7 +367,7 @@ public class TestCFMLParser {
 		
 		assertNotNull(scriptStatement);
 		assertEquals(
-				"public function runFunction(functionName, argCol)   {runFunk=this[functionName];results=structNew();results.result=runFunk(argCol);results.debug=getDebugMessages();    return results;  }",
+				"public function runFunction(functionName, argCol)   {runFunk = this[functionName];results = structNew();results.result = runFunk(argCol);results.debug = getDebugMessages();    return results;  }",
 				scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
 	}
 	

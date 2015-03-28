@@ -36,7 +36,7 @@ public class TestExpressionParser {
 		// String script = "x={name:\"attributes\",xx:-1}";
 		CFExpression scriptStatement = TestUtils.parseExpression(script);
 		assertNotNull(scriptStatement);
-		assertEquals("this.param.datasource.napAS400=arguments.datasource", scriptStatement.Decompile(0));
+		assertEquals("this.param.datasource.napAS400 = arguments.datasource", scriptStatement.Decompile(0));
 	}
 	
 	@Test
@@ -46,7 +46,7 @@ public class TestExpressionParser {
 		CFExpression scriptStatement = TestUtils.parseExpression(script);
 		TestUtils.printCFExpressionTree(scriptStatement, "");
 		assertNotNull(scriptStatement);
-		assertEquals("x=#CGI.y#", scriptStatement.Decompile(0));
+		assertEquals("x = #CGI.y#", scriptStatement.Decompile(0));
 	}
 	
 }

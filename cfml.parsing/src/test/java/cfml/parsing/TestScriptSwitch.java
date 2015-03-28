@@ -15,7 +15,7 @@ public class TestScriptSwitch {
 		String script = "switch (prop.getType()){case 'date':case 'datetime':kronk=sqronk;break;default:flur;}}";
 		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("switch (prop.getType()){case 'date':case 'datetime':kronk=sqronk;break;default:flur;}",
+		assertEquals("switch (prop.getType()){case 'date':case 'datetime':kronk = sqronk;break;default:flur;}",
 				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
@@ -33,7 +33,7 @@ public class TestScriptSwitch {
 		String script = "savecontent variable='renderedcontent' {model = duplicate(_model);metadata = duplicate(_model);};";
 		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("savecontent variable='renderedcontent'{model=duplicate(_model);metadata=duplicate(_model);}",
+		assertEquals("savecontent variable='renderedcontent'{model = duplicate(_model);metadata = duplicate(_model);}",
 				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	

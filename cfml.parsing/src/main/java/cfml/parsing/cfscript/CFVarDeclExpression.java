@@ -29,6 +29,9 @@
 
 package cfml.parsing.cfscript;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.antlr.v4.runtime.Token;
 
 public class CFVarDeclExpression extends CFExpression {
@@ -37,6 +40,16 @@ public class CFVarDeclExpression extends CFExpression {
 	
 	private String name;
 	private CFExpression init; // null if none
+	List<CFIdentifier> otherVars = new ArrayList<CFIdentifier>();
+	List<CFIdentifier> otherIds = new ArrayList<CFIdentifier>();
+	
+	public List<CFIdentifier> getOtherVars() {
+		return otherVars;
+	}
+	
+	public List<CFIdentifier> getOtherIds() {
+		return otherIds;
+	}
 	
 	public CFVarDeclExpression(Token _t, CFIdentifier _var, CFExpression _init) {
 		super(_t);
@@ -47,13 +60,19 @@ public class CFVarDeclExpression extends CFExpression {
 	public String Decompile(int indent) {
 		StringBuilder s = new StringBuilder(Indent(indent));
 		s.append("var ");
-		
 		s.append(name);
+		for (CFIdentifier id : otherVars) {
+			s.append(" = var ");
+			s.append(id.Decompile(indent));
+		}
+		for (CFIdentifier id : otherIds) {
+			s.append(" = ");
+			s.append(id.Decompile(indent));
+		}
 		if (init != null) {
 			s.append(" = ");
 			s.append(init.Decompile(indent + 2));
 		}
-		
 		return s.toString();
 	}
 	

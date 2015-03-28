@@ -294,12 +294,15 @@ expression
 	;
 	
 localAssignmentExpression 
-	:	VAR identifier ( EQUALSOP startExpression )? //-> ^( VARLOCAL identifier ( EQUALSOP baseExpression )? ) 
+	:	VAR left=identifier ( (EQUALSOP otherIdentifiers)* EQUALSOP right=startExpression )? //-> ^( VARLOCAL identifier ( EQUALSOP baseExpression )? ) 
 	;
+	
+otherIdentifiers:
+VAR? otherid=identifier;
 
 assignmentExpression 
-  : left=startExpression
-     ( ( EQUALSOP | PLUSEQUALS | MINUSEQUALS | STAREQUALS | SLASHEQUALS | MODEQUALS | CONCATEQUALS )  
+  :  left=startExpression
+     ( ( (EQUALSOP (identifier EQUALSOP)*) | PLUSEQUALS | MINUSEQUALS | STAREQUALS | SLASHEQUALS | MODEQUALS | CONCATEQUALS )  
      	right = startExpression
      )
   ;

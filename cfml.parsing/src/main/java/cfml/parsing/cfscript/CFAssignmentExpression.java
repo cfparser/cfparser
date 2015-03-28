@@ -29,6 +29,9 @@
 
 package cfml.parsing.cfscript;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.antlr.v4.runtime.Token;
 
 public class CFAssignmentExpression extends CFExpression {
@@ -39,6 +42,11 @@ public class CFAssignmentExpression extends CFExpression {
 	private CFExpression right;
 	
 	private int type;
+	List<CFIdentifier> otherIds = new ArrayList<CFIdentifier>();
+	
+	public List<CFIdentifier> getOtherIds() {
+		return otherIds;
+	}
 	
 	public CFAssignmentExpression(Token t, CFExpression _left, CFExpression _right) {
 		super(t);
@@ -100,7 +108,15 @@ public class CFAssignmentExpression extends CFExpression {
 	}
 	
 	public String Decompile(int indent) {
-		return left.Decompile(0) + "=" + right.Decompile(0);
+		StringBuilder sb = new StringBuilder();
+		sb.append(left.Decompile(indent));
+		sb.append(" = ");
+		for (CFIdentifier id : otherIds) {
+			sb.append(id.Decompile(indent));
+			sb.append(" = ");
+		}
+		sb.append(right.Decompile(indent));
+		return sb.toString();
 	}
 	
 	public CFExpression getLeft() {

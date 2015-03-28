@@ -42,7 +42,7 @@ public class TestScriptNewComponent {
 		String script = "myvar = new my.path.cfc.Here();";
 		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("myvar=new my.path.cfc.Here()", scriptStatement.Decompile(0));
+		assertEquals("myvar = new my.path.cfc.Here()", scriptStatement.Decompile(0));
 		script = "var myvar = new my.path.cfc.Here(); var funk=newthing(wee);";
 		scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);

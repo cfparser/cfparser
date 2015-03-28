@@ -469,7 +469,7 @@ public class TestScriptParser {
 				.getExpression();
 		CFLiteral literal = (CFLiteral) assignmentExpr.getRight();
 		assertEquals(literal.getToken().getType(), CFSCRIPTLexer.FLOATING_POINT_LITERAL);
-		assertEquals("x=1.2", scriptStatement.Decompile(0));
+		assertEquals("x = 1.2", scriptStatement.Decompile(0));
 	}
 	
 	@Test
@@ -481,7 +481,7 @@ public class TestScriptParser {
 				.getExpression();
 		CFLiteral literal = (CFLiteral) assignmentExpr.getRight();
 		assertEquals(literal.getToken().getType(), CFSCRIPTLexer.FLOATING_POINT_LITERAL);
-		assertEquals("x=.2e10", scriptStatement.Decompile(0));
+		assertEquals("x = .2e10", scriptStatement.Decompile(0));
 	}
 	
 	@Test
@@ -493,7 +493,7 @@ public class TestScriptParser {
 				.getExpression();
 		CFLiteral literal = (CFLiteral) assignmentExpr.getRight();
 		assertEquals(literal.getToken().getType(), CFSCRIPTLexer.DOT);
-		assertEquals("x=.2", scriptStatement.Decompile(0));
+		assertEquals("x = .2", scriptStatement.Decompile(0));
 	}
 	
 	@Test

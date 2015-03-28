@@ -31,6 +31,7 @@ import cfml.CFSCRIPTParser.LocalAssignmentExpressionContext;
 import cfml.CFSCRIPTParser.MemberExpressionContext;
 import cfml.CFSCRIPTParser.MultipartIdentifierContext;
 import cfml.CFSCRIPTParser.NewComponentExpressionContext;
+import cfml.CFSCRIPTParser.OtherIdentifiersContext;
 import cfml.CFSCRIPTParser.ParameterAttributeContext;
 import cfml.CFSCRIPTParser.ParentheticalExpressionContext;
 import cfml.CFSCRIPTParser.ParentheticalMemberExpressionContext;
@@ -169,9 +170,19 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	@Override
 	public CFExpression visitLocalAssignmentExpression(LocalAssignmentExpressionContext ctx) {
 		// System.out.println("CFExpr.visitLocalAssignmentExpression");
-		CFIdentifier identifier = (CFIdentifier) visit(ctx.getChild(1));
-		CFExpression initExpression = visit(ctx.getChild(3));
+		CFIdentifier identifier = (CFIdentifier) visit(ctx.left);
+		CFExpression initExpression = visit(ctx.right);
 		CFVarDeclExpression retval = new CFVarDeclExpression(ctx.start, identifier, initExpression);
+		if (ctx.otherIdentifiers().size() > 0) {
+			for (OtherIdentifiersContext oi : ctx.otherIdentifiers()) {
+				CFIdentifier otherid = (CFIdentifier) visit(oi.identifier());
+				if (oi.VAR() != null) {
+					retval.getOtherVars().add(otherid);
+				} else {
+					retval.getOtherIds().add(otherid);
+				}
+			}
+		}
 		// return super.visitLocalAssignmentExpression(ctx);
 		return retval;
 	}
@@ -184,6 +195,10 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		} else {
 			CFAssignmentExpression assignmentExpression = new CFAssignmentExpression(getTerminalToken(ctx.getChild(1)),
 					visit(ctx.left), visit(ctx.right));
+			for (IdentifierContext oi : ctx.identifier()) {
+				CFIdentifier otherid = (CFIdentifier) visit(oi);
+				assignmentExpression.getOtherIds().add(otherid);
+			}
 			return assignmentExpression;
 		}
 	}
