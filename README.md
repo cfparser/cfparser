@@ -1,6 +1,5 @@
 cfparser
 ========
-[![Build Status](https://api.travis-ci.org/cfparser/cfparser.svg?branch=master)](https://travis-ci.org/rpgleparser/rpgleparser)
 
 To build use:
 mvn clean install
