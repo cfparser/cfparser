@@ -1,0 +1,65 @@
+/*===TOKENS===*/
+IMPORT                   <import>
+IDENTIFIER               <my>
+'.'                      <.>
+IDENTIFIER               <path>
+'.'                      <.>
+IDENTIFIER               <SomeComponent>
+';'                      <;>
+ML_COMMENT               </**
+* Hello world.
+*/>
+COMPONENT                <component>
+IDENTIFIER               <extends>
+'='                      <=>
+STRING_LITERAL           <"my.path.BaseComponent">
+IDENTIFIER               <accessors>
+'='                      <=>
+STRING_LITERAL           <"true">
+'{'                      <{>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (importStatement
+    import
+    (componentPath
+      (multipartIdentifier
+        (identifier my)
+        .
+        (identifierOrReservedWord (identifier path))
+        .
+        (identifierOrReservedWord (identifier SomeComponent))
+      )
+    )
+    ;
+  )
+  (componentDeclaration
+    component
+    (componentAttribute
+      (identifier extends)
+      =
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (primaryExpression (literalExpression "my.path.BaseComponent"))
+            )
+          )
+        )
+      )
+    )
+    (componentAttribute
+      (identifier accessors)
+      =
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression (primaryExpression (literalExpression "true")))
+          )
+        )
+      )
+    )
+    (componentGuts { })
+  )
+)
+/*======*/

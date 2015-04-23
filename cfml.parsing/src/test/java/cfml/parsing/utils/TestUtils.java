@@ -27,6 +27,8 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Parser;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.Vocabulary;
 import org.antlr.v4.runtime.atn.ATNConfigSet;
 import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.dfa.DFA;
@@ -396,4 +398,25 @@ public class TestUtils {
 		}
 		System.out.println(expression.getClass().getSimpleName());
 	}
+	
+	// public static void printTokens(List<? extends Token> tokens) {
+	// System.out.println(getTokenString(tokens, vocabulary));
+	// }
+	
+	public static String getTokenString(List<? extends Token> tokens, Vocabulary vocabulary) {
+		StringBuilder sb = new StringBuilder();
+		for (Token token : tokens) { // A token from a ParseTree object
+			String displayName = vocabulary.getDisplayName(token.getType());
+			sb.append(displayName);
+			if (displayName.length() < 25) {
+				sb.append("                         ".substring(displayName.length(), 25));
+			}
+			sb.append('<');
+			sb.append(token.getText());
+			sb.append('>');
+			sb.append("\r\n");
+		}
+		return sb.toString().trim();
+	}
+	
 }

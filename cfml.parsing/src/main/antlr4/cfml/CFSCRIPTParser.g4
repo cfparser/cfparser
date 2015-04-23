@@ -9,7 +9,9 @@ options { tokenVocab=CFSCRIPTLexer; }
 ////--- cfscript grammar rules
 
 scriptBlock
-  : componentDeclaration
+  : 
+  importStatement*
+  componentDeclaration
   | ( element )* endOfScriptBlock
   ; 
 
