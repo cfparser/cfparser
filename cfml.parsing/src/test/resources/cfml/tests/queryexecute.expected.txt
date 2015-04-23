@@ -1,0 +1,121 @@
+/*===TOKENS===*/
+VAR                      <var>
+IDENTIFIER               <result>
+'='                      <=>
+IDENTIFIER               <QueryExecute>
+'('                      <(>
+STRING_LITERAL           <"
+            SELECT info_card_id, document_num, revision_nm, title_nm
+            FROM tdc_doc_infocard
+            WHERE info_card_id = :sourceTemplateNum
+            ORDER BY UPPER(document_num) ASC, revision_seq DESC
+        ">
+','                      <,>
+'{'                      <{>
+IDENTIFIER               <sourceTemplateNum>
+'='                      <=>
+'{'                      <{>
+IDENTIFIER               <value>
+'='                      <=>
+STRING_LITERAL           <"#sourceTemplateNum#">
+','                      <,>
+IDENTIFIER               <cfsqltype>
+'='                      <=>
+STRING_LITERAL           <"cf_sql_varchar">
+'}'                      <}>
+'}'                      <}>
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (localAssignmentExpression
+        var
+        (identifier result)
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (memberExpression
+                  (functionCall
+                    (identifierOrReservedWord (identifier QueryExecute))
+                    (
+                    (argumentList
+                      (argument
+                        (startExpression
+                          (compareExpression
+                            (baseExpression
+                              (unaryExpression
+                                (primaryExpression
+                                  (literalExpression
+                                    "\r\n            SELECT info_card_id, document_num, revision_nm, title_nm\r\n            FROM tdc_doc_infocard\r\n            WHERE info_card_id = :sourceTemplateNum\r\n            ORDER BY UPPER(document_num) ASC, revision_seq DESC\r\n        "
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                      ,
+                      (argument
+                        (startExpression
+                          (compareExpression
+                            (baseExpression
+                              (unaryExpression
+                                (primaryExpression
+                                  (implicitStruct
+                                    {
+                                    (implicitStructElements
+                                      (implicitStructExpression
+                                        (implicitStructKeyExpression
+                                          (multipartIdentifier (identifier sourceTemplateNum))
+                                        )
+                                        =
+                                        (unaryExpression
+                                          (primaryExpression
+                                            (implicitStruct
+                                              {
+                                              (implicitStructElements
+                                                (implicitStructExpression
+                                                  (implicitStructKeyExpression (multipartIdentifier (identifier value)))
+                                                  =
+                                                  (unaryExpression (primaryExpression (literalExpression "#sourceTemplateNum#")))
+                                                )
+                                                ,
+                                                (implicitStructExpression
+                                                  (implicitStructKeyExpression (multipartIdentifier (identifier cfsqltype)))
+                                                  =
+                                                  (unaryExpression (primaryExpression (literalExpression "cf_sql_varchar")))
+                                                )
+                                              )
+                                              }
+                                            )
+                                          )
+                                        )
+                                      )
+                                    )
+                                    }
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (endOfScriptBlock <EOF>)
+)
+/*======*/
