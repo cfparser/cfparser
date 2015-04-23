@@ -1,5 +1,6 @@
 cfparser
 ========
+[![Build Status](https://travis-ci.org/cfparser/cfparser.svg?branch=master)](https://travis-ci.org/cfparser/cfparser.svg)
 
 To build use:
 mvn clean install
