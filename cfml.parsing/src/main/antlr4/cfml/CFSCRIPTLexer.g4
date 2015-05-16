@@ -211,6 +211,12 @@ COMPONENT: [cC][oO][mM][pP][oO][nN][eE][nN][tT];
 //    |   [lL][oO][cC][aA][lL] DOT
 //    |   [vV][aA][rR][iI][aA][bB][lL][eE][sS] DOT
 //    ;
+// -- tags as script
+LOG: [lL][oO][gG];
+TEXT: [tT][eE][xX][tT];
+TYPE: [tT][yY][pP][eE];
+APPLICATION: [aA][pP][pP][lL][iI][cC][aA][tT][iI][oO][nN];
+
 IDENTIFIER 
 	:	LETTER (LETTER|CF_DIGIT)*;
 	

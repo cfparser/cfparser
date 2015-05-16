@@ -104,8 +104,25 @@ statement
   |   localAssignmentExpression SEMICOLON
   |   assignmentExpression SEMICOLON
   |   startExpression SEMICOLON
+  |   tagEquivalent
   |   SEMICOLON // empty statement
   ;
+  
+tagEquivalent
+  :   logTag
+  ;
+  
+logTag
+  :   LOG
+  	  ( log_Text | log_File | log_Type | log_Application | log_Log)*
+  	  SEMICOLON
+  ;
+  
+log_Text:   TEXT EQUALSOP stringLiteral;
+log_File:   FILE EQUALSOP startExpression;
+log_Type:   TYPE EQUALSOP stringLiteral;
+log_Application:   APPLICATION EQUALSOP stringLiteral;
+log_Log:   LOG EQUALSOP stringLiteral;
   
 breakStatement 
   :BREAK ;
@@ -558,7 +575,12 @@ multipartIdentifier
 identifier
 	:	(COMPONENT
 	| IDENTIFIER
-  //| DOES 
+	//tags start
+	| LOG
+	| TEXT
+	| TYPE
+	| APPLICATION
+  // tags end
   | CONTAIN
   | VAR
   | TO
