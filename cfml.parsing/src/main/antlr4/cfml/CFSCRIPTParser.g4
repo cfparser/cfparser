@@ -629,12 +629,6 @@ multipartIdentifier
 identifier
 	:	(COMPONENT
 	| IDENTIFIER
-	//tags start
-	| LOG
-	//| TEXT
-	//| TYPE
-	//| APPLICATION
-  // tags end
   | CONTAIN
   | VAR
   | TO
