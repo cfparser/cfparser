@@ -323,7 +323,7 @@ lockStatement
   ;
 
 threadStatement
-  : lc=THREAD p=paramStatementAttributes (compoundStatement)? //-> ^(THREADSTATEMENT[$lc] paramStatementAttributes (compoundStatement)?)
+  : lc=THREAD p=paramStatementAttributes (compoundStatement | SEMICOLON) //-> ^(THREADSTATEMENT[$lc] paramStatementAttributes (compoundStatement)?)
   ;
 
 abortStatement
