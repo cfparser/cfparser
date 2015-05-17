@@ -104,25 +104,25 @@ statement
   |   localAssignmentExpression SEMICOLON
   |   assignmentExpression SEMICOLON
   |   startExpression SEMICOLON
-  |   tagEquivalent
+//  |   tagEquivalent
   |   SEMICOLON // empty statement
   ;
   
-tagEquivalent
-  :   logTag
-  ;
-  
-logTag
-  :   LOG
-  	  ( log_Text | log_File | log_Type | log_Application | log_Log)*
-  	  SEMICOLON
-  ;
-  
-log_Text:   TEXT EQUALSOP stringLiteral;
-log_File:   FILE EQUALSOP startExpression;
-log_Type:   TYPE EQUALSOP stringLiteral;
-log_Application:   APPLICATION EQUALSOP stringLiteral;
-log_Log:   LOG EQUALSOP stringLiteral;
+//tagEquivalent
+//  :   logTag
+//  ;
+//  
+//logTag
+//  :   LOG
+//  	  ( log_Text | log_File | log_Type | log_Application | log_Log)*
+//  	  SEMICOLON
+//  ;
+//  
+//log_Text:   TEXT EQUALSOP stringLiteral;
+//log_File:   FILE EQUALSOP startExpression;
+//log_Type:   TYPE EQUALSOP stringLiteral;
+//log_Application:   APPLICATION EQUALSOP stringLiteral;
+//log_Log:   LOG EQUALSOP stringLiteral;
   
 breakStatement 
   :BREAK ;
@@ -239,7 +239,7 @@ transactionStatement
   ;
   
 cfmlfunctionStatement
-  : cfmlFunction (paramStatementAttributes)? (compoundStatement)?//-> ^(CFMLFUNCTIONSTATEMENT cfmlFunction (param)* (compoundStatement)?)
+  : cfmlFunction (paramStatementAttributes)? (compoundStatement | SEMICOLON)//-> ^(CFMLFUNCTIONSTATEMENT cfmlFunction (param)* (compoundStatement)?)
   ;
   
 cfmlFunction
@@ -251,6 +251,60 @@ cfmlFunction
   | LOOP 
   | SETTING
   | QUERY
+  | LOG
+  | APPLET
+  | ASSOCIATE
+  | AUTHENTICATE
+  | CACHE
+  | COL
+  | COLLECTION
+  | CONTENT
+  | COOKIE
+  | ERROR
+  | EXECUTE
+  | FORM
+  | FTP
+  | GRID
+  | GRIDCOLUMN
+  | GRIDROW
+  | GRIDUPDATE
+  | HEADER
+  | HTMLHEAD
+  | HTTPPARAM
+  | IMPERSONATE
+  | INDEX
+  | INPUT
+  | INSERT
+  | LDAP
+  | LOCATION
+  | MAIL
+  | MAILPARAM
+  | MODULE
+  | OBJECT
+  | OUTPUT
+  | POP
+  | PROCESSINGDIRECTIVE
+  | PROCPARAM
+  | PROCRESULT
+  | QUERYPARAM
+  | REGISTRY
+  | REPORT
+  | SCHEDULE
+  | SCRIPT
+  | SEARCH
+  | SELECT
+  | SERVLET
+  | SERVLETPARAM
+  | SET
+  | SILENT
+  | SLIDER
+  | STOREDPROC
+  | TABLE
+  | TEXTINPUT
+  | TREE
+  | TREEITEM
+  | UPDATE
+  | WDDX
   ;
 
 /*
@@ -288,11 +342,11 @@ exitStatement
   ;
 
 paramStatement
-  : lc=PARAM paramStatementAttributes  //-> ^(PARAMSTATEMENT[$lc] paramStatementAttributes)
+  : lc=PARAM paramStatementAttributes SEMICOLON //-> ^(PARAMSTATEMENT[$lc] paramStatementAttributes)
   ;
   
 propertyStatement
-  : lc=PROPERTY paramStatementAttributes  //-> ^(PROPERTYSTATEMENT[$lc] paramStatementAttributes)
+  : lc=PROPERTY paramStatementAttributes SEMICOLON //-> ^(PROPERTYSTATEMENT[$lc] paramStatementAttributes)
   ;
   
 paramStatementAttributes
@@ -577,9 +631,9 @@ identifier
 	| IDENTIFIER
 	//tags start
 	| LOG
-	| TEXT
-	| TYPE
-	| APPLICATION
+	//| TEXT
+	//| TYPE
+	//| APPLICATION
   // tags end
   | CONTAIN
   | VAR

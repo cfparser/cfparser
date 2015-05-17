@@ -1,0 +1,603 @@
+/*===TOKENS===*/
+LOG                      <log>
+IDENTIFIER               <text>
+'='                      <=>
+STRING_LITERAL           <"Event Gateway #variables.id# started">
+FILE                     <file>
+'='                      <=>
+IDENTIFIER               <this>
+'.'                      <.>
+IDENTIFIER               <logfile>
+';'                      <;>
+LOG                      <log>
+IDENTIFIER               <text>
+'='                      <=>
+STRING_LITERAL           <"text">
+IDENTIFIER               <type>
+'='                      <=>
+STRING_LITERAL           <"information">
+IDENTIFIER               <application>
+'='                      <=>
+STRING_LITERAL           <"yes">
+FILE                     <file>
+'='                      <=>
+STRING_LITERAL           <"filename">
+LOG                      <log>
+'='                      <=>
+STRING_LITERAL           <"log type">
+';'                      <;>
+LOG                      <log>
+IDENTIFIER               <text>
+'='                      <=>
+STRING_LITERAL           <"Event Gateway #variables.id# error: #ex.message#">
+FILE                     <file>
+'='                      <=>
+IDENTIFIER               <this>
+'.'                      <.>
+IDENTIFIER               <logfile>
+IDENTIFIER               <type>
+'='                      <=>
+STRING_LITERAL           <"error">
+';'                      <;>
+PARAM                    <param>
+IDENTIFIER               <name>
+'='                      <=>
+STRING_LITERAL           <"url.age">
+IDENTIFIER               <type>
+'='                      <=>
+STRING_LITERAL           <"numeric">
+DEFAULT                  <default>
+'='                      <=>
+STRING_LITERAL           <"10">
+IDENTIFIER               <max>
+'='                      <=>
+STRING_LITERAL           <"100">
+IDENTIFIER               <min>
+'='                      <=>
+STRING_LITERAL           <"18">
+';'                      <;>
+LINE_COMMENT             <//How about cfhttp ?
+>
+HTTP                     <http>
+IDENTIFIER               <method>
+'='                      <=>
+STRING_LITERAL           <"GET">
+IDENTIFIER               <url>
+'='                      <=>
+STRING_LITERAL           <"http://www.google.com">
+IDENTIFIER               <result>
+'='                      <=>
+STRING_LITERAL           <"webPage">
+';'                      <;>
+MAIL                     <mail>
+IDENTIFIER               <from>
+'='                      <=>
+STRING_LITERAL           <"Mark@getrailo.com">
+TO                       <to>
+'='                      <=>
+STRING_LITERAL           <"gert@getrailo.com">
+IDENTIFIER               <subject>
+'='                      <=>
+STRING_LITERAL           <"Awesome! Tags in Script!">
+'{'                      <{>
+IDENTIFIER               <WriteOutput>
+'('                      <(>
+STRING_LITERAL           <"Hey Gert!
+Check out the code samples here! You can write tags in CFScript
+Mark
+">
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+LINE_COMMENT             <//Query a database
+>
+QUERY                    <query>
+IDENTIFIER               <name>
+'='                      <=>
+STRING_LITERAL           <"getUsers">
+IDENTIFIER               <dataSource>
+'='                      <=>
+STRING_LITERAL           <"myDatasource">
+'{'                      <{>
+IDENTIFIER               <echo>
+'('                      <(>
+STRING_LITERAL           <"SELECT * FROM tusers WHERE UserID =">
+')'                      <)>
+';'                      <;>
+QUERYPARAM               <queryparam>
+IDENTIFIER               <cfsqltype>
+'='                      <=>
+STRING_LITERAL           <"varchar">
+IDENTIFIER               <value>
+'='                      <=>
+STRING_LITERAL           <"6300EE15-1320-5CC2-F9F48B9DBBA54D9F">
+';'                      <;>
+'}'                      <}>
+IDENTIFIER               <dump>
+'('                      <(>
+IDENTIFIER               <getUsers>
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (tagOperatorStatement
+        (cfmlfunctionStatement
+          (cfmlFunction log)
+          (paramStatementAttributes
+            (param
+              (identifier text)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression (literalExpression "Event Gateway #variables.id# started"))
+                    )
+                  )
+                )
+              )
+            )
+            (param
+              (identifier (cfmlFunction file))
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (memberExpression (identifier this) . (identifier logfile)))
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+      )
+    )
+  )
+  (element
+    (statement
+      (tagOperatorStatement
+        (cfmlfunctionStatement
+          (cfmlFunction log)
+          (paramStatementAttributes
+            (param
+              (identifier text)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "text")))
+                  )
+                )
+              )
+            )
+            (param
+              (identifier type)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "information")))
+                  )
+                )
+              )
+            )
+            (param
+              (identifier application)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "yes")))
+                  )
+                )
+              )
+            )
+            (param
+              (identifier (cfmlFunction file))
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "filename")))
+                  )
+                )
+              )
+            )
+            (param
+              (identifier log)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "log type")))
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+      )
+    )
+  )
+  (element
+    (statement
+      (tagOperatorStatement
+        (cfmlfunctionStatement
+          (cfmlFunction log)
+          (paramStatementAttributes
+            (param
+              (identifier text)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression "Event Gateway #variables.id# error: #ex.message#")
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            (param
+              (identifier (cfmlFunction file))
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (memberExpression (identifier this) . (identifier logfile)))
+                  )
+                )
+              )
+            )
+            (param
+              (identifier type)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "error")))
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+      )
+    )
+  )
+  (element
+    (statement
+      (tagOperatorStatement
+        (paramStatement
+          param
+          (paramStatementAttributes
+            (param
+              (identifier name)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "url.age")))
+                  )
+                )
+              )
+            )
+            (param
+              (identifier type)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "numeric")))
+                  )
+                )
+              )
+            )
+            (param
+              (identifier default)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression "10"))))
+                )
+              )
+            )
+            (param
+              (identifier max)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "100")))
+                  )
+                )
+              )
+            )
+            (param
+              (identifier min)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression "18"))))
+                )
+              )
+            )
+          )
+          ;
+        )
+      )
+    )
+  )
+  (element
+    (statement
+      (tagOperatorStatement
+        (cfmlfunctionStatement
+          (cfmlFunction http)
+          (paramStatementAttributes
+            (param
+              (identifier method)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "GET")))
+                  )
+                )
+              )
+            )
+            (param
+              (identifier url)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression (literalExpression "http://www.google.com"))
+                    )
+                  )
+                )
+              )
+            )
+            (param
+              (identifier result)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "webPage")))
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+      )
+    )
+  )
+  (element
+    (statement
+      (tagOperatorStatement
+        (cfmlfunctionStatement
+          (cfmlFunction mail)
+          (paramStatementAttributes
+            (param
+              (identifier from)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "Mark@getrailo.com")))
+                  )
+                )
+              )
+            )
+            (param
+              (identifier to)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "gert@getrailo.com")))
+                  )
+                )
+              )
+            )
+            (param
+              (identifier subject)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression (literalExpression "Awesome! Tags in Script!"))
+                    )
+                  )
+                )
+              )
+            )
+          )
+          (compoundStatement
+            {
+            (statement
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifierOrReservedWord (identifier WriteOutput))
+                          (
+                          (argumentList
+                            (argument
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (primaryExpression
+                                        (literalExpression
+                                          "Hey Gert!\r\nCheck out the code samples here! You can write tags in CFScript\r\nMark\r\n"
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            }
+          )
+        )
+      )
+    )
+  )
+  (element
+    (statement
+      (tagOperatorStatement
+        (cfmlfunctionStatement
+          (cfmlFunction query)
+          (paramStatementAttributes
+            (param
+              (identifier name)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "getUsers")))
+                  )
+                )
+              )
+            )
+            (param
+              (identifier dataSource)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression "myDatasource")))
+                  )
+                )
+              )
+            )
+          )
+          (compoundStatement
+            {
+            (statement
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifierOrReservedWord (identifier echo))
+                          (
+                          (argumentList
+                            (argument
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (primaryExpression (literalExpression "SELECT * FROM tusers WHERE UserID ="))
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            (statement
+              (tagOperatorStatement
+                (cfmlfunctionStatement
+                  (cfmlFunction queryparam)
+                  (paramStatementAttributes
+                    (param
+                      (identifier cfsqltype)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression (primaryExpression (literalExpression "varchar")))
+                          )
+                        )
+                      )
+                    )
+                    (param
+                      (identifier value)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression (literalExpression "6300EE15-1320-5CC2-F9F48B9DBBA54D9F"))
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  ;
+                )
+              )
+            )
+            }
+          )
+        )
+      )
+    )
+  )
+  (element
+    (statement
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (memberExpression
+                (functionCall
+                  (identifierOrReservedWord (identifier dump))
+                  (
+                  (argumentList
+                    (argument
+                      (startExpression
+                        (compareExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier getUsers))))
+                        )
+                      )
+                    )
+                  )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (endOfScriptBlock <EOF>)
+)
+/*======*/

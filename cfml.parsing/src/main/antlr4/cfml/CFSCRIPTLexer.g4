@@ -213,9 +213,65 @@ COMPONENT: [cC][oO][mM][pP][oO][nN][eE][nN][tT];
 //    ;
 // -- tags as script
 LOG: [lL][oO][gG];
-TEXT: [tT][eE][xX][tT];
-TYPE: [tT][yY][pP][eE];
-APPLICATION: [aA][pP][pP][lL][iI][cC][aA][tT][iI][oO][nN];
+//TEXT: [tT][eE][xX][tT];
+//TYPE: [tT][yY][pP][eE];
+//APPLICATION: [aA][pP][pP][lL][iI][cC][aA][tT][iI][oO][nN];
+
+APPLET: [Aa][Pp][Pp][Ll][Ee][Tt];
+ASSOCIATE: [Aa][Ss][Ss][Oo][Cc][Ii][Aa][Tt][Ee];
+AUTHENTICATE: [Aa][Uu][Tt][Hh][Ee][Nn][Tt][Ii][Cc][Aa][Tt][Ee];
+CACHE: [Cc][Aa][Cc][Hh][Ee];
+COL: [Cc][Oo][Ll];
+COLLECTION: [Cc][Oo][Ll][Ll][Ee][Cc][Tt][Ii][Oo][Nn];
+CONTENT: [Cc][Oo][Nn][Tt][Ee][Nn][Tt];
+COOKIE: [Cc][Oo][Oo][Kk][Ii][Ee];
+ERROR: [Ee][Rr][Rr][Oo][Rr];
+EXECUTE: [Ee][Xx][Ee][Cc][Uu][Tt][Ee];
+FORM: [Ff][Oo][Rr][Mm];
+FTP: [Ff][Tt][Pp];
+GRID: [Gg][Rr][Ii][Dd];
+GRIDCOLUMN: [Gg][Rr][Ii][Dd][Cc][Oo][Ll][Uu][Mm][Nn];
+GRIDROW: [Gg][Rr][Ii][Dd][Rr][Oo][Ww];
+GRIDUPDATE: [Gg][Rr][Ii][Dd][Uu][Pp][Dd][Aa][Tt][Ee];
+HEADER: [Hh][Ee][Aa][Dd][Ee][Rr];
+HTMLHEAD: [Hh][Tt][Mm][Ll][Hh][Ee][Aa][Dd];
+HTTPPARAM: [Hh][Tt][Tt][Pp][Pp][Aa][Rr][Aa][Mm];
+IMPERSONATE: [Ii][Mm][Pp][Ee][Rr][Ss][Oo][Nn][Aa][Tt][Ee];
+INDEX: [Ii][Nn][Dd][Ee][Xx];
+INPUT: [Ii][Nn][Pp][Uu][Tt];
+INSERT: [Ii][Nn][Ss][Ee][Rr][Tt];
+LDAP: [Ll][Dd][Aa][Pp];
+LOCATION: [Ll][Oo][Cc][Aa][Tt][Ii][Oo][Nn];
+MAIL: [Mm][Aa][Ii][Ll];
+MAILPARAM: [Mm][Aa][Ii][Ll][Pp][Aa][Rr][Aa][Mm];
+MODULE: [Mm][Oo][Dd][Uu][Ll][Ee];
+OBJECT: [Oo][Bb][Jj][Ee][Cc][Tt];
+OUTPUT: [Oo][Uu][Tt][Pp][Uu][Tt];
+POP: [Pp][Oo][Pp];
+PROCESSINGDIRECTIVE: [Pp][Rr][Oo][Cc][Ee][Ss][Ss][Ii][Nn][Gg][Dd][Ii][Rr][Ee][Cc][Tt][Ii][Vv][Ee];
+PROCPARAM: [Pp][Rr][Oo][Cc][Pp][Aa][Rr][Aa][Mm];
+PROCRESULT: [Pp][Rr][Oo][Cc][Rr][Ee][Ss][Uu][Ll][Tt];
+QUERYPARAM: [Qq][Uu][Ee][Rr][Yy][Pp][Aa][Rr][Aa][Mm];
+REGISTRY: [Rr][Ee][Gg][Ii][Ss][Tt][Rr][Yy];
+REPORT: [Rr][Ee][Pp][Oo][Rr][Tt];
+SCHEDULE: [Ss][Cc][Hh][Ee][Dd][Uu][Ll][Ee];
+SCRIPT: [Ss][Cc][Rr][Ii][Pp][Tt];
+SEARCH: [Ss][Ee][Aa][Rr][Cc][Hh];
+SELECT: [Ss][Ee][Ll][Ee][Cc][Tt];
+SERVLET: [Ss][Ee][Rr][Vv][Ll][Ee][Tt];
+SERVLETPARAM: [Ss][Ee][Rr][Vv][Ll][Ee][Tt][Pp][Aa][Rr][Aa][Mm];
+SET: [Ss][Ee][Tt];
+SILENT: [Ss][Ii][Ll][Ee][Nn][Tt];
+SLIDER: [Ss][Ll][Ii][Dd][Ee][Rr];
+STOREDPROC: [Ss][Tt][Oo][Rr][Ee][Dd][Pp][Rr][Oo][Cc];
+TABLE: [Tt][Aa][Bb][Ll][Ee];
+TEXTINPUT: [Tt][Ee][Xx][Tt][Ii][Nn][Pp][Uu][Tt];
+TREE: [Tt][Rr][Ee][Ee];
+TREEITEM: [Tt][Rr][Ee][Ee][Ii][Tt][Ee][Mm];
+UPDATE: [Uu][Pp][Dd][Aa][Tt][Ee];
+WDDX: [Ww][Dd][Dd][Xx];
+
+
 
 IDENTIFIER 
 	:	LETTER (LETTER|CF_DIGIT)*;
