@@ -207,7 +207,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier log)
+              (identifier (cfmlFunction log))
               =
               (startExpression
                 (compareExpression

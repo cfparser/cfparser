@@ -1,0 +1,182 @@
+/*===TOKENS===*/
+IDENTIFIER               <securityNumber>
+'='                      <=>
+IDENTIFIER               <securityStruct>
+'['                      <[>
+STRING_LITERAL           <'Joe'>
+']'                      <]>
+'?'                      <?>
+':'                      <:>
+'-'                      <->
+INTEGER_LITERAL          <1>
+';'                      <;>
+LINE_COMMENT             <// Retrieving from a struct
+>
+IDENTIFIER               <colourCode>
+'='                      <=>
+IDENTIFIER               <colourArray>
+'['                      <[>
+INDEX                    <index>
+']'                      <]>
+'?'                      <?>
+':'                      <:>
+STRING_LITERAL           <"black">
+';'                      <;>
+LINE_COMMENT             <// Retrieving from an array
+>
+IDENTIFIER               <employeeName>
+'='                      <=>
+IDENTIFIER               <getEmployeeName>
+'('                      <(>
+IDENTIFIER               <ID>
+')'                      <)>
+'?'                      <?>
+':'                      <:>
+STRING_LITERAL           <"Joe">
+';'                      <;>
+LINE_COMMENT             <// A function call>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression (memberExpression (identifier securityNumber)))
+            )
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (elvisExpression
+                (unaryExpression
+                  (memberExpression
+                    (identifier securityStruct)
+                    (arrayMemberExpression
+                      [
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression (primaryExpression (literalExpression 'Joe')))
+                          )
+                        )
+                      )
+                      ]
+                    )
+                  )
+                )
+                ?
+                :
+                (baseOrTernaryExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression - (primaryExpression (literalExpression 1))))
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier colourCode))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (elvisExpression
+                (unaryExpression
+                  (memberExpression
+                    (identifier colourArray)
+                    (arrayMemberExpression
+                      [
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression (memberExpression (identifier (cfmlFunction index))))
+                          )
+                        )
+                      )
+                      ]
+                    )
+                  )
+                )
+                ?
+                :
+                (baseOrTernaryExpression
+                  (compareExpression
+                    (baseExpression
+                      (unaryExpression (primaryExpression (literalExpression "black")))
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier employeeName))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (elvisExpression
+                (unaryExpression
+                  (memberExpression
+                    (functionCall
+                      (identifierOrReservedWord (identifier getEmployeeName))
+                      (
+                      (argumentList
+                        (argument
+                          (startExpression
+                            (compareExpression
+                              (baseExpression (unaryExpression (memberExpression (identifier ID))))
+                            )
+                          )
+                        )
+                      )
+                      )
+                    )
+                  )
+                )
+                ?
+                :
+                (baseOrTernaryExpression
+                  (compareExpression
+                    (baseExpression
+                      (unaryExpression (primaryExpression (literalExpression "Joe")))
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (endOfScriptBlock <EOF>)
+)
+/*======*/

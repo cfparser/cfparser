@@ -1,0 +1,283 @@
+/*===TOKENS===*/
+IDENTIFIER               <cfhttp>
+'('                      <(>
+IDENTIFIER               <url>
+'='                      <=>
+STRING_LITERAL           <"www.google.com">
+','                      <,>
+IDENTIFIER               <method>
+'='                      <=>
+STRING_LITERAL           <"GET">
+')'                      <)>
+';'                      <;>
+IDENTIFIER               <Cfhttp>
+'('                      <(>
+IDENTIFIER               <URL>
+'='                      <=>
+HTTP                     <http>
+':'                      <:>
+LINE_COMMENT             <//#CGI.SERVER_NAME#.../target.cfm, method="GET")
+>
+'{'                      <{>
+IDENTIFIER               <cfhttpparam>
+'('                      <(>
+IDENTIFIER               <type>
+'='                      <=>
+STRING_LITERAL           <"url">
+','                      <,>
+IDENTIFIER               <name>
+'='                      <=>
+STRING_LITERAL           <'emp_name'>
+','                      <,>
+IDENTIFIER               <value>
+'='                      <=>
+STRING_LITERAL           <"Awdhesh">
+')'                      <)>
+';'                      <;>
+IDENTIFIER               <cfhttpparam>
+'('                      <(>
+IDENTIFIER               <type>
+'='                      <=>
+STRING_LITERAL           <"header">
+','                      <,>
+IDENTIFIER               <name>
+'='                      <=>
+STRING_LITERAL           <'myheader'>
+','                      <,>
+IDENTIFIER               <value>
+'='                      <=>
+STRING_LITERAL           <"My custom header">
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+IDENTIFIER               <Writeoutput>
+'('                      <(>
+IDENTIFIER               <cfhttp>
+'.'                      <.>
+IDENTIFIER               <filecontent>
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (memberExpression
+                (functionCall
+                  (identifierOrReservedWord (identifier cfhttp))
+                  (
+                  (argumentList
+                    (argument
+                      (identifier url)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression (primaryExpression (literalExpression "www.google.com")))
+                          )
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (identifier method)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression (primaryExpression (literalExpression "GET")))
+                          )
+                        )
+                      )
+                    )
+                  )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (element statement)
+  (element (statement Cfhttp))
+  (element (statement ())
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier URL))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression (memberExpression (identifier (cfmlFunction http)) :))
+            )
+          )
+        )
+      )
+      <missing ';'>
+    )
+  )
+  (element
+    (statement
+      (compoundStatement
+        {
+        (statement
+          (startExpression
+            (compareExpression
+              (baseExpression
+                (unaryExpression
+                  (memberExpression
+                    (functionCall
+                      (identifierOrReservedWord (identifier cfhttpparam))
+                      (
+                      (argumentList
+                        (argument
+                          (identifier type)
+                          =
+                          (startExpression
+                            (compareExpression
+                              (baseExpression
+                                (unaryExpression (primaryExpression (literalExpression "url")))
+                              )
+                            )
+                          )
+                        )
+                        ,
+                        (argument
+                          (identifier name)
+                          =
+                          (startExpression
+                            (compareExpression
+                              (baseExpression
+                                (unaryExpression (primaryExpression (literalExpression 'emp_name')))
+                              )
+                            )
+                          )
+                        )
+                        ,
+                        (argument
+                          (identifier value)
+                          =
+                          (startExpression
+                            (compareExpression
+                              (baseExpression
+                                (unaryExpression (primaryExpression (literalExpression "Awdhesh")))
+                              )
+                            )
+                          )
+                        )
+                      )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (startExpression
+            (compareExpression
+              (baseExpression
+                (unaryExpression
+                  (memberExpression
+                    (functionCall
+                      (identifierOrReservedWord (identifier cfhttpparam))
+                      (
+                      (argumentList
+                        (argument
+                          (identifier type)
+                          =
+                          (startExpression
+                            (compareExpression
+                              (baseExpression
+                                (unaryExpression (primaryExpression (literalExpression "header")))
+                              )
+                            )
+                          )
+                        )
+                        ,
+                        (argument
+                          (identifier name)
+                          =
+                          (startExpression
+                            (compareExpression
+                              (baseExpression
+                                (unaryExpression (primaryExpression (literalExpression 'myheader')))
+                              )
+                            )
+                          )
+                        )
+                        ,
+                        (argument
+                          (identifier value)
+                          =
+                          (startExpression
+                            (compareExpression
+                              (baseExpression
+                                (unaryExpression (primaryExpression (literalExpression "My custom header")))
+                              )
+                            )
+                          )
+                        )
+                      )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        }
+      )
+    )
+  )
+  (element
+    (statement
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (memberExpression
+                (functionCall
+                  (identifierOrReservedWord (identifier Writeoutput))
+                  (
+                  (argumentList
+                    (argument
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression (identifier cfhttp) . (identifier filecontent))
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (endOfScriptBlock <EOF>)
+)
+/*======*/

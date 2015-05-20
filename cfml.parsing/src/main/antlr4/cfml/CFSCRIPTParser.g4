@@ -395,8 +395,12 @@ baseExpression
 	| intDivisionExpression
 	| multiplicativeExpression
 	| powerOfExpression
+	| elvisExpression
 	| unaryExpression
 	;
+	
+elvisExpression:
+	unaryExpression QUESTIONMARK COLON baseOrTernaryExpression;	
 	
 compareExpression
 	: (
@@ -406,7 +410,7 @@ compareExpression
 		(operator=compareExpressionOperator right=compareExpression)?
 	) 
 	(QUESTIONMARK ternaryExpression1=startExpression COLON ternaryExpression2=startExpression)?
-	;	
+	;
 	
 compareExpressionOperator:
  OR 

@@ -1,0 +1,64 @@
+/*===TOKENS===*/
+LINE_COMMENT             <// cfm file based custom tags
+>
+IDENTIFIER               <Cf_happybirthday>
+'('                      <(>
+IDENTIFIER               <name>
+'='                      <=>
+STRING_LITERAL           <"john">
+','                      <,>
+IDENTIFIER               <birthdate>
+'='                      <=>
+STRING_LITERAL           <"December 5, 1987">
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (memberExpression
+                (functionCall
+                  (identifierOrReservedWord (identifier Cf_happybirthday))
+                  (
+                  (argumentList
+                    (argument
+                      (identifier name)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression (primaryExpression (literalExpression "john")))
+                          )
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (identifier birthdate)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression (primaryExpression (literalExpression "December 5, 1987")))
+                          )
+                        )
+                      )
+                    )
+                  )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (endOfScriptBlock <EOF>)
+)
+/*======*/
