@@ -30,12 +30,6 @@
 		</dependency>
 		<dependency>
 			<groupId>org.antlr</groupId>
-			<artifactId>antlr4-runtime</artifactId>
-			<version>4.5</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.antlr</groupId>
 			<artifactId>stringtemplate</artifactId>
 			<version>4.0.2</version>
 			<scope>compile</scope>
@@ -43,7 +37,7 @@
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr4</artifactId>
-			<version>4.5</version>
+			<version>4.5.1-1</version>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
@@ -79,7 +73,7 @@
 			<plugin>
 				<groupId>org.antlr</groupId>
 				<artifactId>antlr4-maven-plugin</artifactId>
-				<version>4.5</version>
+				<version>4.5.1</version>
 				<executions>
 					<execution>
 						<id>run antlr4</id>
