@@ -1,0 +1,198 @@
+/*===TOKENS===*/
+ML_COMMENT               </**
+* @author 
+*/>
+COMPONENT                <component>
+IDENTIFIER               <accessors>
+'='                      <=>
+STRING_LITERAL           <"true">
+'{'                      <{>
+LINE_COMMENT             <// The first name of the User
+>
+PROPERTY                 <property>
+IDENTIFIER               <type>
+'='                      <=>
+STRING_LITERAL           <"string">
+IDENTIFIER               <name>
+'='                      <=>
+STRING_LITERAL           <"firstName">
+';'                      <;>
+LINE_COMMENT             <// Last name of the User
+>
+PROPERTY                 <property>
+IDENTIFIER               <name>
+'='                      <=>
+STRING_LITERAL           <"lastName">
+';'                      <;>
+ML_COMMENT               </**
+  * Constructor
+  */>
+FUNCTION                 <function>
+IDENTIFIER               <init>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+RETURN                   <return>
+IDENTIFIER               <this>
+';'                      <;>
+'}'                      <}>
+ML_COMMENT               </**
+  * Submit an order
+  * @product.hint The product object
+  * @coupon.hint The Coupon code needed
+  * @results.hint The results object
+  */>
+FUNCTION                 <function>
+IDENTIFIER               <submitOrder>
+'('                      <(>
+REQUIRED                 <required>
+IDENTIFIER               <product>
+','                      <,>
+IDENTIFIER               <coupon>
+'='                      <=>
+STRING_LITERAL           <"">
+','                      <,>
+BOOLEAN                  <boolean>
+IDENTIFIER               <results>
+'='                      <=>
+BOOLEAN_LITERAL          <true>
+')'                      <)>
+'{'                      <{>
+'}'                      <}>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentAttribute
+      (identifier accessors)
+      =
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression (primaryExpression (literalExpression "true")))
+          )
+        )
+      )
+    )
+    (componentGuts
+      {
+      (element
+        (statement
+          (tagOperatorStatement
+            (propertyStatement
+              property
+              (paramStatementAttributes
+                (param
+                  (identifier type)
+                  =
+                  (startExpression
+                    (compareExpression
+                      (baseExpression
+                        (unaryExpression (primaryExpression (literalExpression "string")))
+                      )
+                    )
+                  )
+                )
+                (param
+                  (identifier name)
+                  =
+                  (startExpression
+                    (compareExpression
+                      (baseExpression
+                        (unaryExpression (primaryExpression (literalExpression "firstName")))
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+          )
+        )
+      )
+      (element
+        (statement
+          (tagOperatorStatement
+            (propertyStatement
+              property
+              (paramStatementAttributes
+                (param
+                  (identifier name)
+                  =
+                  (startExpression
+                    (compareExpression
+                      (baseExpression
+                        (unaryExpression (primaryExpression (literalExpression "lastName")))
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+          )
+        )
+      )
+      (element
+        (functionDeclaration
+          function
+          (identifier init)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (returnStatement
+                return
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier this))))
+                  )
+                )
+                ;
+              )
+            )
+            }
+          )
+        )
+      )
+      (element
+        (functionDeclaration
+          function
+          (identifier submitOrder)
+          (
+          (parameterList
+            (parameter required (identifier product))
+            ,
+            (parameter
+              (identifier coupon)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression ""))))
+                )
+              )
+            )
+            ,
+            (parameter
+              (parameterType (typeSpec (type boolean)))
+              (identifier results)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
+                )
+              )
+            )
+          )
+          )
+          (compoundStatement { })
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/

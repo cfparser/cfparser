@@ -347,6 +347,7 @@ paramStatement
   
 propertyStatement
   : lc=PROPERTY paramStatementAttributes SEMICOLON //-> ^(PROPERTYSTATEMENT[$lc] paramStatementAttributes)
+  | lc=PROPERTY type=type? name=identifier SEMICOLON 
   ;
   
 paramStatementAttributes

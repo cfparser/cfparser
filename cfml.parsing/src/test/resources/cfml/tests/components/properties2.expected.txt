@@ -1,0 +1,53 @@
+/*===TOKENS===*/
+ML_COMMENT               </**
+* @author 
+*/>
+COMPONENT                <component>
+IDENTIFIER               <accessors>
+'='                      <=>
+STRING_LITERAL           <"true">
+'{'                      <{>
+LINE_COMMENT             <// The first name of the User
+>
+PROPERTY                 <property>
+STRING                   <string>
+IDENTIFIER               <firstName>
+';'                      <;>
+PROPERTY                 <property>
+IDENTIFIER               <lastName>
+';'                      <;>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentAttribute
+      (identifier accessors)
+      =
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression (primaryExpression (literalExpression "true")))
+          )
+        )
+      )
+    )
+    (componentGuts
+      {
+      (element
+        (statement
+          (tagOperatorStatement
+            (propertyStatement property (type string) (identifier firstName) ;)
+          )
+        )
+      )
+      (element
+        (statement
+          (tagOperatorStatement (propertyStatement property (identifier lastName) ;))
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
