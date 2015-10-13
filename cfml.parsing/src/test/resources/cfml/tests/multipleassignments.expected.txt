@@ -1,0 +1,32 @@
+/*===TOKENS===*/
+IDENTIFIER               <x>
+'='                      <=>
+IDENTIFIER               <y>
+'='                      <=>
+INTEGER_LITERAL          <0>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier x))))
+          )
+        )
+        =
+        (identifier y)
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (endOfScriptBlock <EOF>)
+)
+/*======*/

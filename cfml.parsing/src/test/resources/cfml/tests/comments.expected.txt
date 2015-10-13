@@ -1,0 +1,48 @@
+/*===TOKENS===*/
+LINE_COMMENT             <//this is a test comment
+>
+VAR                      <var>
+IDENTIFIER               <x>
+'='                      <=>
+INTEGER_LITERAL          <123>
+';'                      <;>
+VAR                      <var>
+IDENTIFIER               <y>
+'='                      <=>
+IDENTIFIER               <x>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (localAssignmentExpression
+        var
+        (identifier x)
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (primaryExpression (literalExpression 123))))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (element
+    (statement
+      (localAssignmentExpression
+        var
+        (identifier y)
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier x))))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (endOfScriptBlock <EOF>)
+)
+/*======*/
