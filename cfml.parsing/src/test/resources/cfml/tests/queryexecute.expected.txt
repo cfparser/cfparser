@@ -73,24 +73,30 @@ STRING_LITERAL           <"cf_sql_varchar">
                                           (multipartIdentifier (identifier sourceTemplateNum))
                                         )
                                         =
-                                        (unaryExpression
-                                          (primaryExpression
-                                            (implicitStruct
-                                              {
-                                              (implicitStructElements
-                                                (implicitStructExpression
-                                                  (implicitStructKeyExpression (multipartIdentifier (identifier value)))
-                                                  =
-                                                  (unaryExpression (primaryExpression (literalExpression "#sourceTemplateNum#")))
+                                        (baseExpression
+                                          (unaryExpression
+                                            (primaryExpression
+                                              (implicitStruct
+                                                {
+                                                (implicitStructElements
+                                                  (implicitStructExpression
+                                                    (implicitStructKeyExpression (multipartIdentifier (identifier value)))
+                                                    =
+                                                    (baseExpression
+                                                      (unaryExpression (primaryExpression (literalExpression "#sourceTemplateNum#")))
+                                                    )
+                                                  )
+                                                  ,
+                                                  (implicitStructExpression
+                                                    (implicitStructKeyExpression (multipartIdentifier (identifier cfsqltype)))
+                                                    =
+                                                    (baseExpression
+                                                      (unaryExpression (primaryExpression (literalExpression "cf_sql_varchar")))
+                                                    )
+                                                  )
                                                 )
-                                                ,
-                                                (implicitStructExpression
-                                                  (implicitStructKeyExpression (multipartIdentifier (identifier cfsqltype)))
-                                                  =
-                                                  (unaryExpression (primaryExpression (literalExpression "cf_sql_varchar")))
-                                                )
+                                                }
                                               )
-                                              }
                                             )
                                           )
                                         )
