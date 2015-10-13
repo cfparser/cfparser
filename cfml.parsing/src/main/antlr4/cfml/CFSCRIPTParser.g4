@@ -721,7 +721,7 @@ implicitStructElements
   ;
 
 implicitStructExpression
-  : implicitStructKeyExpression ( COLON | EQUALSOP ) unaryExpression 
+  : implicitStructKeyExpression ( COLON | EQUALSOP ) baseExpression //unaryExpression 
   ;
   
 implicitStructKeyExpression

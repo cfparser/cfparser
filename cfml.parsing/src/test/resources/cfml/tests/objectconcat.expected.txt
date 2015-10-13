@@ -1,0 +1,114 @@
+/*===TOKENS===*/
+IDENTIFIER               <x>
+'='                      <=>
+'{'                      <{>
+IDENTIFIER               <name>
+':'                      <:>
+IDENTIFIER               <rc>
+'.'                      <.>
+IDENTIFIER               <ticket>
+'.'                      <.>
+IDENTIFIER               <getShortId>
+'('                      <(>
+')'                      <)>
+','                      <,>
+IDENTIFIER               <action>
+':'                      <:>
+STRING_LITERAL           <'support:tickets/view/id/'>
+'&'                      <&>
+IDENTIFIER               <rc>
+'.'                      <.>
+IDENTIFIER               <ticket>
+'.'                      <.>
+IDENTIFIER               <getShortId>
+'('                      <(>
+')'                      <)>
+'}'                      <}>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier x))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (primaryExpression
+                  (implicitStruct
+                    {
+                    (implicitStructElements
+                      (implicitStructExpression
+                        (implicitStructKeyExpression (multipartIdentifier (identifier name)))
+                        :
+                        (baseExpression
+                          (unaryExpression
+                            (memberExpression
+                              (identifier rc)
+                              .
+                              (identifier ticket)
+                              .
+                              (functionCall
+                                (identifierOrReservedWord (identifier getShortId))
+                                (
+                                argumentList
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                      ,
+                      (implicitStructExpression
+                        (implicitStructKeyExpression (multipartIdentifier (identifier action)))
+                        :
+                        (baseExpression
+                          (concatenationExpression
+                            (unaryExpression
+                              (primaryExpression (literalExpression 'support:tickets/view/id/'))
+                            )
+                            &
+                            (baseOrTernaryExpression
+                              (compareExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (memberExpression
+                                      (identifier rc)
+                                      .
+                                      (identifier ticket)
+                                      .
+                                      (functionCall
+                                        (identifierOrReservedWord (identifier getShortId))
+                                        (
+                                        argumentList
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    }
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (endOfScriptBlock <EOF>)
+)
+/*======*/
