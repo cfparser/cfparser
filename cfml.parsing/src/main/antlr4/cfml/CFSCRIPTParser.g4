@@ -73,8 +73,11 @@ componentAttribute
 //i=identifier EQUALSOP^ v=baseExpression
    
 functionAttribute
-  : identifier op=EQUALSOP startExpression //-> ^(FUNCTION_ATTRIBUTE[$op] identifier baseExpression)
+  : (prefix=IDENTIFIER COLON)? id=identifier op=EQUALSOP startExpression 
+   
   ;
+  
+
   
 parameterAttribute
   : identifier EQUALSOP startExpression //-> ^(PARAMETER_ATTRIBUTE identifier baseExpression)
@@ -347,7 +350,7 @@ paramStatement
   
 propertyStatement
   : lc=PROPERTY paramStatementAttributes SEMICOLON //-> ^(PROPERTYSTATEMENT[$lc] paramStatementAttributes)
-  | lc=PROPERTY type=type? name=identifier SEMICOLON 
+  | lc=PROPERTY type? name=identifier SEMICOLON 
   ;
   
 paramStatementAttributes
