@@ -55,4 +55,7 @@ public class CFReturnStatement extends CFParsedStatement {
 		return s.toString();
 	}
 	
+	public CFExpression getExpression() {
+		return _ret;
+	}
 }
