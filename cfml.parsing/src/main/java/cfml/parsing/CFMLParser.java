@@ -417,6 +417,7 @@ public class CFMLParser {
 		ScriptBlockContext scriptStatement = null;
 		CFSCRIPTParser parser = new CFSCRIPTParser(tokens);
 		
+		parser.getErrorListeners().clear();
 		lexer.addErrorListener(errorReporter);
 		parser.addErrorListener(errorReporter);
 		parser.reset();
