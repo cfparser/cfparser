@@ -419,8 +419,8 @@ public class CFMLParser {
 		
 		parser.getErrorListeners().clear();
 		lexer.addErrorListener(errorReporter);
-		parser.addErrorListener(errorReporter);
 		parser.reset();
+		// parser.addErrorListener(errorReporter);
 		parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
 		parser.setErrorHandler(new BailErrorStrategy());
 		try {
@@ -434,9 +434,10 @@ public class CFMLParser {
 			 * throw new ParseException(e.getOffendingToken(), "Unexpected \'" +
 			 * parser.getTokenErrorDisplay(e.getOffendingToken()) + "\' (" + e.getOffendingToken().getText() + ")");
 			 */
-			System.out.println("Stage 2!");
 			tokens.reset(); // rewind input stream
 			parser.reset();
+			parser.addErrorListener(errorReporter);
+			
 			parser.setErrorHandler(new DefaultErrorStrategy());
 			parser.getInterpreter().setPredictionMode(PredictionMode.LL);
 			scriptStatement = parser.scriptBlock(); // STAGE 2
