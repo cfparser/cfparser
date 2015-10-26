@@ -55,7 +55,8 @@ public class TestFiles {
 	@Test
 	public void test() throws IOException, URISyntaxException {
 		final String inputString = TestUtils.loadFile(sourceFile);
-		final File expectedFile = new File(sourceFile.getPath().replaceAll("\\.cfc", ".expected.txt"));
+		final File expectedFile = new File(sourceFile.getPath().replaceAll("\\.cfc", ".expected.txt")
+				.replaceAll("\\.cfm", ".expected.txt"));
 		final String expectedFileText = expectedFile.exists() ? TestUtils.loadFile(expectedFile) : null;
 		final String expectedTokens = getTokens(expectedFileText);
 		String expectedTree = getTree(expectedFileText);
@@ -172,7 +173,7 @@ public class TestFiles {
 				for (File subfile : file.listFiles()) {
 					fillResourceListing(subfile, retval);
 				}
-			} else if (file.getName().toLowerCase().endsWith(".cfc")) {
+			} else if (file.getName().toLowerCase().endsWith(".cfc") || file.getName().toLowerCase().endsWith(".cfm")) {
 				if (singleTestName == null || singleTestName.equals(file.getName())) {
 					retval.add(file);
 				} else if (singleTestName.equals("*LAST")) {

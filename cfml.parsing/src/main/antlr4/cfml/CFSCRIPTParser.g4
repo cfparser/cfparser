@@ -530,7 +530,8 @@ unaryExpression
 //  | parentheticalExpression
   | memberExpression
   | innerExpression
-  |  primaryExpression (MINUSMINUS | PLUSPLUS)?//-> ^(POSTMINUSMINUS memberExpression)
+  |  unaryExpression (MINUSMINUS | PLUSPLUS)
+  |  primaryExpression//-> ^(POSTMINUSMINUS memberExpression)
   ;
 
 innerExpression:
