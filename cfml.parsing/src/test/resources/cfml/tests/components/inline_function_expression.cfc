@@ -5,7 +5,7 @@ component {
 	}
 
 	function bar(){
-		dotrim(function("hello world"){
+		dotrim("hello world", function(result){
 			//...
 		});
 	}
