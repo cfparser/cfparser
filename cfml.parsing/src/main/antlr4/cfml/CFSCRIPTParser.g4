@@ -385,14 +385,7 @@ assignmentExpression
   ;
 
 baseExpression
-	:	
-/* 	| impliedExpression
-	| equivalentExpression
-	| xorExpression
-	| orExpression
-	| andExpression
-	| notExpression
-	| equalityExpression*/
+	:
 	 concatenationExpression
 	| additiveExpression
 	| modExpression
@@ -400,6 +393,7 @@ baseExpression
 	| multiplicativeExpression
 	| powerOfExpression
 	| elvisExpression
+	| anonymousFunctionDeclaration
 	| unaryExpression
 	;
 	
@@ -520,7 +514,8 @@ powerOfExpression
 	;
 	
 unaryExpression
-	: (MINUS | PLUS | MINUSMINUS | PLUSPLUS) primaryExpression //-> ^(MINUS memberExpression)
+	: (MINUS | PLUS) primaryExpression //-> ^(MINUS memberExpression)
+	| (MINUSMINUS | PLUSPLUS) unaryExpression
 	//| PLUS primaryExpression //-> ^(PLUS memberExpression)
 	//| MINUSMINUS primaryExpression //-> ^(MINUSMINUS memberExpression) 
 	//| PLUSPLUS primaryExpression //-> ^(PLUSPLUS memberExpression)
@@ -530,8 +525,8 @@ unaryExpression
 //  | parentheticalExpression
   | memberExpression
   | innerExpression
-  |  unaryExpression (MINUSMINUS | PLUSPLUS)
-  |  primaryExpression//-> ^(POSTMINUSMINUS memberExpression)
+  | unaryExpression (MINUSMINUS | PLUSPLUS)
+  | primaryExpression//-> ^(POSTMINUSMINUS memberExpression)
   ;
 
 innerExpression:

@@ -1,0 +1,173 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+FUNCTION                 <function>
+IDENTIFIER               <dotrim>
+'('                      <(>
+IDENTIFIER               <data>
+','                      <,>
+IDENTIFIER               <callback>
+')'                      <)>
+'{'                      <{>
+IDENTIFIER               <callback>
+'('                      <(>
+IDENTIFIER               <trim>
+'('                      <(>
+IDENTIFIER               <data>
+')'                      <)>
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+FUNCTION                 <function>
+IDENTIFIER               <bar>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+IDENTIFIER               <dotrim>
+'('                      <(>
+STRING_LITERAL           <"hello world">
+','                      <,>
+FUNCTION                 <function>
+'('                      <(>
+IDENTIFIER               <result>
+')'                      <)>
+'{'                      <{>
+LINE_COMMENT             <//...
+>
+'}'                      <}>
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          function
+          (identifier dotrim)
+          (
+          (parameterList
+            (parameter (identifier data))
+            ,
+            (parameter (identifier callback))
+          )
+          )
+          (compoundStatement
+            {
+            (statement
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifierOrReservedWord (identifier callback))
+                          (
+                          (argumentList
+                            (argument
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (memberExpression
+                                        (functionCall
+                                          (identifierOrReservedWord (identifier trim))
+                                          (
+                                          (argumentList
+                                            (argument
+                                              (startExpression
+                                                (compareExpression
+                                                  (baseExpression (unaryExpression (memberExpression (identifier data))))
+                                                )
+                                              )
+                                            )
+                                          )
+                                          )
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            }
+          )
+        )
+      )
+      (element
+        (functionDeclaration
+          function
+          (identifier bar)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifierOrReservedWord (identifier dotrim))
+                          (
+                          (argumentList
+                            (argument
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression (primaryExpression (literalExpression "hello world")))
+                                  )
+                                )
+                              )
+                            )
+                            ,
+                            (argument
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (anonymousFunctionDeclaration
+                                      function
+                                      (
+                                      (parameterList (parameter (identifier result)))
+                                      )
+                                      (compoundStatement { })
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
