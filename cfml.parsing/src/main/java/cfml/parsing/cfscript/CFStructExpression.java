@@ -65,4 +65,8 @@ public class CFStructExpression extends CFExpression implements java.io.Serializ
 		return sb.toString();
 	}
 	
+	public ArrayList getElements() {
+		return elements;
+	}
+	
 }

@@ -82,4 +82,12 @@ public class CFLockStatement extends CFParsedAttributeStatement implements java.
 		return sb.toString();
 	}
 	
+	public CFScriptStatement getBody() {
+		return body;
+	}
+	
+	public static HashSet<String> getSupportedAttributes() {
+		return supportedAttributes;
+	}
+	
 }

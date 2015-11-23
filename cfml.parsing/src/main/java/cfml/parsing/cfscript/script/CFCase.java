@@ -52,6 +52,14 @@ public class CFCase implements CFScriptStatement, java.io.Serializable {
 		constant = _constant;
 	}
 	
+	public CFExpression getConstant() {
+		return constant;
+	}
+	
+	public List<CFScriptStatement> getStatements() {
+		return statements;
+	}
+	
 	public CFCase(List<CFScriptStatement> _statement) {
 		statements = _statement;
 	}

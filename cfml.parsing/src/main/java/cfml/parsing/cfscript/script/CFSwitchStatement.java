@@ -43,6 +43,14 @@ public class CFSwitchStatement extends CFParsedStatement implements java.io.Seri
 	
 	private static final long serialVersionUID = 1L;
 	
+	public List<CFCase> getCases() {
+		return cases;
+	}
+	
+	public CFExpression getVariable() {
+		return variable;
+	}
+	
 	private List<CFCase> cases;
 	private CFExpression variable;
 	

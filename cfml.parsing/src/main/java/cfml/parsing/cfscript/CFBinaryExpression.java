@@ -84,4 +84,12 @@ public class CFBinaryExpression extends CFExpression implements java.io.Serializ
 		return _right;
 	}
 	
+	public int getKind() {
+		return _kind;
+	}
+	
+	public String getOperatorImage() {
+		return operatorImage;
+	}
+	
 }

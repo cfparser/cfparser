@@ -35,6 +35,7 @@ public class CFStatementResult {
 	
 	private static final int RETURN_TYPE = 0;
 	private static final int BREAK_TYPE = 1;
+	
 	private static final int CONTINUE_TYPE = 2;
 	
 	public static final CFStatementResult BREAK = new CFStatementResult(BREAK_TYPE);
@@ -66,5 +67,9 @@ public class CFStatementResult {
 	
 	public CFData getReturnValue() {
 		return returnValue;
+	}
+	
+	public int getResultType() {
+		return resultType;
 	}
 }

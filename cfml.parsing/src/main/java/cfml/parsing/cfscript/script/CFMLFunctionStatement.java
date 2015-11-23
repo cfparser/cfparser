@@ -79,4 +79,12 @@ public class CFMLFunctionStatement extends CFParsedAttributeStatement implements
 		return sb.toString();
 	}
 	
+	public CFScriptStatement getBody() {
+		return body;
+	}
+	
+	public static HashSet<String> getSupportedAttributes() {
+		return supportedAttributes;
+	}
+	
 }

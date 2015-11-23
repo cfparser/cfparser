@@ -62,4 +62,12 @@ public class CFNewExpression extends CFExpression implements java.io.Serializabl
 		
 		return sb.toString();
 	}
+	
+	public CFExpression getComponentPath() {
+		return componentPath;
+	}
+	
+	public Vector getArgs() {
+		return args;
+	}
 }

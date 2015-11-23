@@ -49,4 +49,12 @@ public class CFImportStatement extends CFParsedStatement implements java.io.Seri
 	public String Decompile(int indent) {
 		return "import " + path.Decompile(0) + (all ? ".*" : "");
 	}
+	
+	public CFExpression getPath() {
+		return path;
+	}
+	
+	public boolean isAll() {
+		return all;
+	}
 }

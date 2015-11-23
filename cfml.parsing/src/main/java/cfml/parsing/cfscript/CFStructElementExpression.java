@@ -57,4 +57,12 @@ public class CFStructElementExpression extends CFExpression implements java.io.S
 		return sb.toString();
 	}
 	
+	public CFIdentifier getKey() {
+		return key;
+	}
+	
+	public CFExpression getValue() {
+		return value;
+	}
+	
 }

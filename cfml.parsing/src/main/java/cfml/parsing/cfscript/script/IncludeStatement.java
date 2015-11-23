@@ -37,6 +37,10 @@ public class IncludeStatement extends CFParsedStatement implements java.io.Seria
 	
 	private static final long serialVersionUID = 1L;
 	
+	public CFExpression getTemplate() {
+		return template;
+	}
+	
 	private CFExpression template;
 	
 	public IncludeStatement(Token _t, CFExpression _template) {

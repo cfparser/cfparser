@@ -66,4 +66,8 @@ public class CFArrayExpression extends CFExpression implements java.io.Serializa
 		}
 	}
 	
+	public ArrayList<CFExpression> getElements() {
+		return elements;
+	}
+	
 }

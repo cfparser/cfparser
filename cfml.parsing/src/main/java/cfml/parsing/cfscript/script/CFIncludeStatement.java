@@ -48,4 +48,8 @@ public class CFIncludeStatement extends CFParsedStatement implements java.io.Ser
 		return "include " + template.Decompile(0);
 	}
 	
+	public CFExpression getTemplate() {
+		return template;
+	}
+	
 }

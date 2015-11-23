@@ -52,6 +52,14 @@ public class CFTransactionStatement extends CFParsedAttributeStatement implement
 		supportedAttributes.add("ISOLATION");
 	}
 	
+	public CFScriptStatement getBody() {
+		return body;
+	}
+	
+	public static HashSet<String> getSupportedAttributes() {
+		return supportedAttributes;
+	}
+	
 	public CFTransactionStatement(Token _t, Map<CFIdentifier, CFExpression> _attr, CFScriptStatement _body) {
 		super(_t, _attr);
 		

@@ -35,9 +35,6 @@ package cfml.parsing.cfscript;
  * (i.e. method name, and arguments being passed to it)
  */
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Vector;
 
 import org.antlr.v4.runtime.Token;
@@ -91,6 +88,18 @@ public class CFJavaMethodExpression extends CFExpression {
 		sb.append(")");
 		
 		return sb.toString();
+	}
+	
+	public CFExpression getName() {
+		return name;
+	}
+	
+	public Vector<CFExpression> getArgs() {
+		return args;
+	}
+	
+	public boolean isOnMissingMethod() {
+		return _onMissingMethod;
 	}
 	
 }

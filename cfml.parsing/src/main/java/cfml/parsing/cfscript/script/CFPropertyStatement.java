@@ -63,4 +63,8 @@ public class CFPropertyStatement extends CFParsedAttributeStatement implements j
 		DecompileAttributes(sb);
 		return sb.toString();
 	}
+	
+	public static HashSet<String> getValidAttributes() {
+		return validAttributes;
+	}
 }

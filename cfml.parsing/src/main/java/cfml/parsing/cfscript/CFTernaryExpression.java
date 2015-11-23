@@ -77,4 +77,16 @@ public class CFTernaryExpression extends CFAssignmentExpression implements java.
 		return _cond.Decompile(indent) + "?" + _left.Decompile(indent) + ":" + _right.Decompile(indent);
 	}
 	
+	public CFExpression getLeft() {
+		return _left;
+	}
+	
+	public CFExpression getRight() {
+		return _right;
+	}
+	
+	public CFExpression getCond() {
+		return _cond;
+	}
+	
 }

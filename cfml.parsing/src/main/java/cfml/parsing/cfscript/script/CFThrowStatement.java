@@ -25,6 +25,10 @@ public class CFThrowStatement extends CFParsedStatement implements java.io.Seria
 	
 	private static final long serialVersionUID = 1L;
 	
+	public CFExpression getMessage() {
+		return message;
+	}
+	
 	private CFExpression message;
 	
 	public CFThrowStatement(org.antlr.v4.runtime.Token t, CFExpression _message) {
