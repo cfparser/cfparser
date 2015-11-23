@@ -57,4 +57,8 @@ public class CFAnonymousFunctionExpression extends CFExpression implements java.
 		return funcDeclStatement;
 	}
 	
+	public CFFuncDeclStatement getFuncDeclStatement() {
+		return funcDeclStatement;
+	}
+	
 }

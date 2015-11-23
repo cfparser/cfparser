@@ -1,0 +1,83 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+FUNCTION                 <function>
+IDENTIFIER               <foo>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+VAR                      <var>
+IDENTIFIER               <foo>
+'='                      <=>
+FUNCTION                 <function>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+RETURN                   <return>
+STRING_LITERAL           <"bar!">
+';'                      <;>
+'}'                      <}>
+';'                      <;>
+'}'                      <}>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          function
+          (identifier foo)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (localAssignmentExpression
+                var
+                (identifier foo)
+                =
+                (startExpression
+                  (compareExpression
+                    (baseExpression
+                      (anonymousFunctionDeclaration
+                        function
+                        (
+                        parameterList
+                        )
+                        (compoundStatement
+                          {
+                          (statement
+                            (returnStatement
+                              return
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression (primaryExpression (literalExpression "bar!")))
+                                  )
+                                )
+                              )
+                              ;
+                            )
+                          )
+                          }
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import cfml.parsing.cfscript.script.CFScriptStatement;
@@ -116,6 +117,7 @@ public class TestCFMLFunctionStatement {
 	}
 	
 	@Test
+	@Ignore
 	public void testIncludeWithTemplateStatementFail() {
 		/* need to check if this is valid in OBD/ACF */
 		String script = "include template=\"/ram/#randName#\";";

@@ -45,6 +45,14 @@ public class CFDoWhileStatement extends CFParsedStatement implements java.io.Ser
 		body = _body;
 	}
 	
+	public CFExpression getCondition() {
+		return condition;
+	}
+	
+	public CFScriptStatement getBody() {
+		return body;
+	}
+	
 	public void checkIndirectAssignments(String[] scriptSource) {
 		body.checkIndirectAssignments(scriptSource);
 	}

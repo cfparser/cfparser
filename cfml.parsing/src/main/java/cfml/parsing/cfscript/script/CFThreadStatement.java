@@ -43,6 +43,14 @@ public class CFThreadStatement extends CFParsedAttributeStatement implements Ser
 	
 	private CFScriptStatement body;
 	
+	public CFScriptStatement getBody() {
+		return body;
+	}
+	
+	public static HashSet<String> getSupportedAttributes() {
+		return supportedAttributes;
+	}
+	
 	private static HashSet<String> supportedAttributes;
 	
 	static {

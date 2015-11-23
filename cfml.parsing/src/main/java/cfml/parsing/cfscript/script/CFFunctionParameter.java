@@ -79,4 +79,8 @@ public class CFFunctionParameter {
 		
 		return sb.toString();
 	}
+	
+	public CFExpression getDefaultExpression() {
+		return defaultExp;
+	}
 }

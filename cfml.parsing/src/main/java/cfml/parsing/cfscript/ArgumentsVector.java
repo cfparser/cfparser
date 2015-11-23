@@ -58,4 +58,8 @@ public class ArgumentsVector extends Vector<CFExpression> {
 		return (Set<String>) namedArgs.keySet();
 	}
 	
+	public SequencedHashMap getNamedArgs() {
+		return namedArgs;
+	}
+	
 }

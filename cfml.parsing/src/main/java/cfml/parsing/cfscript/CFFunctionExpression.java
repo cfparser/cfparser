@@ -97,4 +97,8 @@ public class CFFunctionExpression extends CFMember {
 		return nameId;
 	}
 	
+	public CFIdentifier getNameId() {
+		return nameId;
+	}
+	
 }

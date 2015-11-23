@@ -48,6 +48,15 @@ public class CFCompDeclStatement extends CFParsedStatement {
 	private CFScriptStatement body;
 	
 	private byte access;
+	
+	public byte getAccess() {
+		return access;
+	}
+	
+	public String getReturnType() {
+		return returnType;
+	}
+	
 	private String returnType;
 	
 	// TODO: prevent function declared inside function. May want to do this elsewhere

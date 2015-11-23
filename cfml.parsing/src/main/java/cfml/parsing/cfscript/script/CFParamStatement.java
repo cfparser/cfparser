@@ -63,4 +63,8 @@ public class CFParamStatement extends CFParsedAttributeStatement implements java
 		DecompileAttributes(sb);
 		return sb.toString();
 	}
+	
+	public static HashSet<String> getValidAttributes() {
+		return validAttributes;
+	}
 }

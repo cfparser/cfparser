@@ -40,4 +40,8 @@ public class CFExitStatement extends CFParsedStatement implements java.io.Serial
 			return "exit";
 		}
 	}
+	
+	public CFExpression getMethod() {
+		return methodArg;
+	}
 }

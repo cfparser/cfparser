@@ -40,6 +40,19 @@ public class CFTryCatchStatement extends CFParsedStatement implements java.io.Se
 	private static final long serialVersionUID = 1;
 	
 	private CFScriptStatement body; // body of the try block
+	
+	public CFScriptStatement getBody() {
+		return body;
+	}
+	
+	public List<CFCatchClause> getCatchStatements() {
+		return catchStatements;
+	}
+	
+	public CFScriptStatement getFinallyStatement() {
+		return finallyStatement;
+	}
+	
 	private List<CFCatchClause> catchStatements;
 	private CFScriptStatement finallyStatement;
 	

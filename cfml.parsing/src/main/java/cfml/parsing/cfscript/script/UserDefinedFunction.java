@@ -119,6 +119,26 @@ public class UserDefinedFunction implements java.io.Serializable {
 	public void dump(PrintWriter out) {
 	}
 	
+	public int getAccess() {
+		return access;
+	}
+	
+	public Map<CFIdentifier, CFExpression> getAttributes() {
+		return attributes;
+	}
+	
+	public CFScriptStatement getBody() {
+		return body;
+	}
+	
+	public List<CFFunctionParameter> getFormals() {
+		return formals;
+	}
+	
+	public Method getJavaMethod() {
+		return javaMethod;
+	}
+	
 	public String toString() {
 		StringWriter w = new StringWriter();
 		this.dump(new PrintWriter(w));

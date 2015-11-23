@@ -60,4 +60,8 @@ public class CFMember extends CFExpression implements java.io.Serializable {
 		return Decompile(0);
 	}
 	
+	public CFExpression getExpression() {
+		return expression;
+	}
+	
 }

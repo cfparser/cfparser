@@ -48,4 +48,8 @@ abstract class CFVarExpression extends CFExpression implements java.io.Serializa
 		return CFExpression.VARIABLE;
 	}
 	
+	public boolean isIndirect() {
+		return indirect;
+	}
+	
 }

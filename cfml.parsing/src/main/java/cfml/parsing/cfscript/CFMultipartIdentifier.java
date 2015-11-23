@@ -61,4 +61,8 @@ public class CFMultipartIdentifier extends CFIdentifier implements java.io.Seria
 		ids.add(id);
 	}
 	
+	public List<CFIdentifier> getIds() {
+		return ids;
+	}
+	
 }

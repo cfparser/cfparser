@@ -38,6 +38,14 @@ public class CFWhileStatement extends CFParsedStatement implements java.io.Seria
 	private CFExpression cond;
 	private CFScriptStatement body;
 	
+	public CFExpression getCond() {
+		return cond;
+	}
+	
+	public CFScriptStatement getBody() {
+		return body;
+	}
+	
 	public CFWhileStatement(Token t, CFExpression _cond, CFScriptStatement _body) {
 		super(t);
 		cond = _cond;
