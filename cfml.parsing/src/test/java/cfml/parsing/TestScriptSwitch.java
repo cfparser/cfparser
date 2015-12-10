@@ -20,12 +20,22 @@ public class TestScriptSwitch {
 	}
 	
 	@Test
+	public void testSwitchComponentMember() {
+		String script = "switch (prop.getType()){case Diagnostic.WARNING:case 'datetime':kronk=sqronk;break;default:flur;}}";
+		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		assertEquals(
+				"switch (prop.getType()){case Diagnostic.WARNING:case 'datetime':kronk = sqronk;break;default:flur;}",
+				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
+	}
+	
+	@Test
 	public void testSwitchEmpty() {
 		String script = "switch(prop) {case 'trunk' : case 'pleck' : break; case 'strunk' : break;}";
 		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("switch (prop){case 'trunk':case 'pleck':break;case 'strunk':break;}", scriptStatement
-				.Decompile(0).replaceAll("[\r\n]", ""));
+		assertEquals("switch (prop){case 'trunk':case 'pleck':break;case 'strunk':break;}",
+				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
 	@Test

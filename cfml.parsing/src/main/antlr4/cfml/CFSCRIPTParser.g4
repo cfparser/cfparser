@@ -203,7 +203,7 @@ switchStatement
   ;
 
 caseStatement
-  : ( CASE constantExpression COLON statement*) 
+  : ( CASE (constantExpression|memberExpression) COLON statement*) 
     | 
     ( DEFAULT COLON statement* ) 
   ;

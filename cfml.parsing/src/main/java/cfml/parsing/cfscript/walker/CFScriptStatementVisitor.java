@@ -348,8 +348,10 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		}
 		if (ctx.DEFAULT() != null) {
 			return new CFCase(statements);
-		} else {
+		} else if (ctx.constantExpression() != null) {
 			return new CFCase(cfExpressionVisitor.visit(ctx.constantExpression()), statements);
+		} else {
+			return new CFCase(cfExpressionVisitor.visit(ctx.memberExpression()), statements);
 		}
 	}
 	
