@@ -12,6 +12,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import net.htmlparser.jericho.Element;
+import net.htmlparser.jericho.StartTag;
+
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
