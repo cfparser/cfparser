@@ -1,0 +1,81 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+FUNCTION                 <function>
+IDENTIFIER               <setStatus>
+'('                      <(>
+IDENTIFIER               <rc>
+')'                      <)>
+IDENTIFIER               <my>
+':'                      <:>
+IDENTIFIER               <role>
+'='                      <=>
+STRING_LITERAL           <"support:admin">
+'{'                      <{>
+'}'                      <}>
+FUNCTION                 <function>
+IDENTIFIER               <setStatus2>
+'('                      <(>
+IDENTIFIER               <rc>
+')'                      <)>
+IDENTIFIER               <role>
+'='                      <=>
+STRING_LITERAL           <"support:admin">
+'{'                      <{>
+'}'                      <}>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          function
+          (identifier setStatus)
+          (
+          (parameterList (parameter (identifier rc)))
+          )
+          (functionAttribute
+            my
+            :
+            (identifier role)
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (primaryExpression (literalExpression "support:admin")))
+                )
+              )
+            )
+          )
+          (compoundStatement { })
+        )
+      )
+      (element
+        (functionDeclaration
+          function
+          (identifier setStatus2)
+          (
+          (parameterList (parameter (identifier rc)))
+          )
+          (functionAttribute
+            (identifier role)
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (primaryExpression (literalExpression "support:admin")))
+                )
+              )
+            )
+          )
+          (compoundStatement { })
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
