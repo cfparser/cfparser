@@ -74,7 +74,7 @@ public class ParseMessage {
 	public ParseMessage(int lineNum, int docStart, int docEnd, String data, String msg) {
 		lineNumber = lineNum;
 		docStartOffset = docStart;
-		docEnd = docStartOffset;
+		docEndOffset = docEnd;
 		docData = data;
 		message = msg;
 	}
@@ -100,7 +100,7 @@ public class ParseMessage {
 	public ParseMessage(int lineNum, int docStart, int docEnd, String data, String msg, boolean isFatal) {
 		lineNumber = lineNum;
 		docStartOffset = docStart;
-		docEnd = docStartOffset;
+		docEndOffset = docEnd;
 		docData = data;
 		message = msg;
 		fatal = isFatal;
