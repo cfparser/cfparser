@@ -12,9 +12,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import net.htmlparser.jericho.Element;
-import net.htmlparser.jericho.StartTag;
-
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
@@ -149,7 +146,7 @@ public class CFMLParser {
 	public CFMLParser(String dictionariesPath, String dictionary) {
 		fDictPrefs.setDictionaryDir(dictionariesPath);
 		fDictPrefs.setCFDictionary(dictionary);
-		// DictionaryManager.initDictionaries(fDictPrefs);
+		DictionaryManager.initDictionaries(fDictPrefs);
 		cfdic = DictionaryManager.getDictionaryByVersion(dictionary);
 		if (cfdic == null) {
 			throw new IllegalArgumentException("The syntax dictionary could not be loaded!");
