@@ -28,6 +28,7 @@ THE SOFTWARE.
  */
 public class DefaultCFMLDictionary implements ICFMLDictionary
 {
+	@Override
 	public boolean conatinsCFScript(String tagName)
 	{
 		if(tagName.toLowerCase().equals("cfscript"))
@@ -39,6 +40,7 @@ public class DefaultCFMLDictionary implements ICFMLDictionary
 	}
 	
 	
+	@Override
 	public boolean isColdFusionTag(String tagName)
 	{
 		boolean isColdFusion = tagName.toLowerCase().startsWith("cf"); 
@@ -48,6 +50,7 @@ public class DefaultCFMLDictionary implements ICFMLDictionary
 		return isColdFusion;
 	}
 
+	@Override
 	public boolean usesAttributes(String tagName)
 	{
 		tagName = tagName.toLowerCase();
@@ -58,6 +61,7 @@ public class DefaultCFMLDictionary implements ICFMLDictionary
 		return usesAttributes;
 	}
 
+	@Override
 	public boolean allowsCFMLAssignment(String tagName)
 	{
 		boolean assignment = tagName.toLowerCase().equals("cfset");
@@ -67,6 +71,7 @@ public class DefaultCFMLDictionary implements ICFMLDictionary
 		return assignment;
 	}
 
+	@Override
 	public boolean allowsCFMLCondition(String tagName)
 	{
 		boolean condition = tagName.equals("cfif") || tagName.equals("cfelseif") || tagName.equals("cfreturn");

@@ -83,27 +83,32 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 		}
 		
 		// per Map.Entry.getKey()
+		@Override
 		public Object getKey() {
 			return this.key;
 		}
 		
 		// per Map.Entry.getValue()
+		@Override
 		public Object getValue() {
 			return this.value;
 		}
 		
 		// per Map.Entry.setValue()
+		@Override
 		public Object setValue(Object value) {
 			Object oldValue = this.value;
 			this.value = value;
 			return oldValue;
 		}
 		
+		@Override
 		public int hashCode() {
 			// implemented per api docs for Map.Entry.hashCode()
 			return ((getKey() == null ? 0 : getKey().hashCode()) ^ (getValue() == null ? 0 : getValue().hashCode()));
 		}
 		
+		@Override
 		public boolean equals(Object obj) {
 			if (obj == null)
 				return false;
@@ -120,6 +125,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 					: getValue().equals(other.getValue())));
 		}
 		
+		@Override
 		public String toString() {
 			return "[" + getKey() + "=" + getValue() + "]";
 		}
@@ -197,6 +203,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 		putAll(m);
 	}
 	
+	@Override
 	public boolean isCaseSensitive() {
 		return entries.isCaseSensitive();
 	}
@@ -224,6 +231,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	/**
 	 * Implements {@link Map#size()}.
 	 */
+	@Override
 	public int size() {
 		// use the underlying Map's size since size is not maintained here.
 		return entries.size();
@@ -232,6 +240,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	/**
 	 * Implements {@link Map#isEmpty()}.
 	 */
+	@Override
 	public boolean isEmpty() {
 		// for quick check whether the map is entry, we can check the linked
 		// list
@@ -242,6 +251,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	/**
 	 * Implements {@link Map#containsKey(Object)}.
 	 */
+	@Override
 	public boolean containsKey(Object key) {
 		// pass on to underlying map implementation
 		return entries.containsKey(key);
@@ -250,6 +260,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	/**
 	 * Implements {@link Map#containsValue(Object)}.
 	 */
+	@Override
 	public boolean containsValue(Object value) {
 		// unfortunately, we cannot just pass this call to the underlying map
 		// because we are mapping keys to entries, not keys to values. The
@@ -277,6 +288,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	/**
 	 * Implements {@link Map#get(Object)}.
 	 */
+	@Override
 	public Object get(Object o) {
 		// find entry for the specified key object
 		Entry entry = (Entry) entries.get(o);
@@ -409,6 +421,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	/**
 	 * Implements {@link Map#put(Object, Object)}.
 	 */
+	@Override
 	public Object put(Object key, Object value) {
 		modCount++;
 		
@@ -449,6 +462,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	/**
 	 * Implements {@link Map#remove(Object)}.
 	 */
+	@Override
 	public Object remove(Object key) {
 		Entry e = removeImpl(key);
 		return (e == null) ? null : e.getValue();
@@ -478,6 +492,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	 * @exception NullPointerException
 	 *                if <code>t</code> is <code>null</code>
 	 **/
+	@Override
 	public void putAll(Map t) {
 		Iterator iter = t.entrySet().iterator();
 		while (iter.hasNext()) {
@@ -489,6 +504,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	/**
 	 * Implements {@link Map#clear()}.
 	 */
+	@Override
 	public void clear() {
 		modCount++;
 		
@@ -503,6 +519,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	/**
 	 * Implements {@link Map#equals(Object)}.
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj == null)
 			return false;
@@ -518,6 +535,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	/**
 	 * Implements {@link Map#hashCode()}.
 	 */
+	@Override
 	public int hashCode() {
 		return entrySet().hashCode();
 	}
@@ -528,6 +546,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	 * {@link #entrySet()}.{@link Set#iterator() iterator()} and iterate over the entries in the map formatting them as
 	 * appropriate.
 	 **/
+	@Override
 	public String toString() {
 		StringBuilder buf = new StringBuilder();
 		buf.append('[');
@@ -547,32 +566,39 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	/**
 	 * Implements {@link Map#keySet()}.
 	 */
+	@Override
 	public Set keySet() {
 		return new AbstractSet() {
 			
 			// required impls
+			@Override
 			public Iterator iterator() {
 				return new OrderedIterator(KEY);
 			}
 			
+			@Override
 			public boolean remove(Object o) {
 				Entry e = SequencedHashMap.this.removeImpl(o);
 				return (e != null);
 			}
 			
 			// more efficient impls than abstract set
+			@Override
 			public void clear() {
 				SequencedHashMap.this.clear();
 			}
 			
+			@Override
 			public int size() {
 				return SequencedHashMap.this.size();
 			}
 			
+			@Override
 			public boolean isEmpty() {
 				return SequencedHashMap.this.isEmpty();
 			}
 			
+			@Override
 			public boolean contains(Object o) {
 				return SequencedHashMap.this.containsKey(o);
 			}
@@ -583,13 +609,16 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	/**
 	 * Implements {@link Map#values()}.
 	 */
+	@Override
 	public Collection values() {
 		return new AbstractCollection() {
 			// required impl
+			@Override
 			public Iterator iterator() {
 				return new OrderedIterator(VALUE);
 			}
 			
+			@Override
 			public boolean remove(Object value) {
 				// do null comparison outside loop so we only need to do it
 				// once. This
@@ -616,18 +645,22 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 			}
 			
 			// more efficient impls than abstract collection
+			@Override
 			public void clear() {
 				SequencedHashMap.this.clear();
 			}
 			
+			@Override
 			public int size() {
 				return SequencedHashMap.this.size();
 			}
 			
+			@Override
 			public boolean isEmpty() {
 				return SequencedHashMap.this.isEmpty();
 			}
 			
+			@Override
 			public boolean contains(Object o) {
 				return SequencedHashMap.this.containsValue(o);
 			}
@@ -637,6 +670,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	/**
 	 * Implements {@link Map#entrySet()}.
 	 */
+	@Override
 	public Set entrySet() {
 		return new AbstractSet() {
 			// helper
@@ -655,10 +689,12 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 			}
 			
 			// required impl
+			@Override
 			public Iterator iterator() {
 				return new OrderedIterator(ENTRY);
 			}
 			
+			@Override
 			public boolean remove(Object o) {
 				Entry e = findEntry(o);
 				if (e == null)
@@ -668,18 +704,22 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 			}
 			
 			// more efficient impls than abstract collection
+			@Override
 			public void clear() {
 				SequencedHashMap.this.clear();
 			}
 			
+			@Override
 			public int size() {
 				return SequencedHashMap.this.size();
 			}
 			
+			@Override
 			public boolean isEmpty() {
 				return SequencedHashMap.this.isEmpty();
 			}
 			
+			@Override
 			public boolean contains(Object o) {
 				return findEntry(o) != null;
 			}
@@ -744,6 +784,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 		 * @return <code>true</code> if there are more elements left to be returned from the iterator;
 		 *         <code>false</code> otherwise.
 		 **/
+		@Override
 		public boolean hasNext() {
 			return pos.next != sentinel;
 		}
@@ -759,6 +800,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 		 * @exception ConcurrentModificationException
 		 *                if a modification occurs in the underlying map.
 		 **/
+		@Override
 		public Object next() {
 			if (modCount != expectedModCount) {
 				throw new ConcurrentModificationException();
@@ -795,6 +837,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 		 * @exception ConcurrentModificationException
 		 *                if a modification occurs in the underlying map.
 		 **/
+		@Override
 		public void remove() {
 			if ((returnType & REMOVED_MASK) != 0) {
 				throw new IllegalStateException("remove() must follow next()");
@@ -825,6 +868,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	 * @exception CloneNotSupportedException
 	 *                if clone is not supported by a subclass.
 	 */
+	@Override
 	public Object clone() throws CloneNotSupportedException {
 		// yes, calling super.clone() silly since we're just blowing away all
 		// the stuff that super might be doing anyway, but for motivations on
@@ -984,6 +1028,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	 * @throws ClassNotFoundException
 	 *             if the stream raises it
 	 */
+	@Override
 	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
 		int size = in.readInt();
 		for (int i = 0; i < size; i++) {
@@ -1001,6 +1046,7 @@ public class SequencedHashMap implements CaseSensitiveMap, Cloneable, Externaliz
 	 * @throws IOException
 	 *             if the stream raises it
 	 */
+	@Override
 	public void writeExternal(ObjectOutput out) throws IOException {
 		out.writeInt(size());
 		for (Entry pos = sentinel.next; pos != sentinel; pos = pos.next) {

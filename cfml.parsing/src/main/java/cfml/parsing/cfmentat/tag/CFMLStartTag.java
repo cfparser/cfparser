@@ -50,11 +50,13 @@ public class CFMLStartTag extends StartTagTypeGenericImplementation {
 		return INSTANCE;
 	}
 	
+	@Override
 	public boolean atEndOfAttributes(final Source source, final int pos, final boolean isClosingSlashIgnored) {
 		final ParseText parseText = source.getParseText();
 		return parseText.charAt(pos) == '>' || (parseText.containsAt("/>", pos));
 	}
 	
+	@Override
 	protected int getEnd(final Source source, final int pos) {
 		final ParseText text = source.getParseText();
 		int endStartTagEnd = pos;

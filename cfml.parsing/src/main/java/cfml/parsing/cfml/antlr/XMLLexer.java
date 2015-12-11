@@ -4,11 +4,6 @@ package cfml.parsing.cfml.antlr;
 
 
 import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
 
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class XMLLexer extends Lexer {
@@ -68,12 +63,14 @@ public class XMLLexer extends Lexer {
     public XMLLexer(CharStream input, RecognizerSharedState state) {
         super(input,state);
     }
-    public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XMLLexer.g"; }
+    @Override
+	public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XMLLexer.g"; }
 
-    public Token nextToken() {
+    @Override
+	public Token nextToken() {
         while (true) {
             if ( input.LA(1)==CharStream.EOF ) {
-                Token eof = new CommonToken((CharStream)input,Token.EOF,
+                Token eof = new CommonToken(input,Token.EOF,
                                             Token.DEFAULT_CHANNEL,
                                             input.index(),input.index());
                 eof.setLine(getLine());
@@ -109,14 +106,16 @@ public class XMLLexer extends Lexer {
         }
     }
 
-    public void memoize(IntStream input,
+    @Override
+	public void memoize(IntStream input,
     		int ruleIndex,
     		int ruleStartIndex)
     {
     if ( state.backtracking>1 ) super.memoize(input, ruleIndex, ruleStartIndex);
     }
 
-    public boolean alreadyParsedRule(IntStream input, int ruleIndex) {
+    @Override
+	public boolean alreadyParsedRule(IntStream input, int ruleIndex) {
     if ( state.backtracking>1 ) return super.alreadyParsedRule(input, ruleIndex);
     return false;
     }
@@ -973,7 +972,8 @@ public class XMLLexer extends Lexer {
     }
     // $ANTLR end "WS"
 
-    public void mTokens() throws RecognitionException {
+    @Override
+	public void mTokens() throws RecognitionException {
         // /Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XMLLexer.g:1:39: ( TAG_START_OPEN | TAG_EMPTY_CLOSE | TAG_CLOSE | TAG_END_OPEN | GENERIC_ID | STRING_LITERAL | WS )
         int alt9=7;
         int LA9_0 = input.LA(1);

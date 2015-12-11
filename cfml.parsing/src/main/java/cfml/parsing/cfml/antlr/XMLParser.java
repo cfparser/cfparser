@@ -2,14 +2,8 @@
 
 package cfml.parsing.cfml.antlr;
 
-import java.util.LinkedList;
-
-
 import org.antlr.runtime.*;
 import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
-
 import org.antlr.runtime.tree.*;
 
 
@@ -78,8 +72,10 @@ public void setTreeAdaptor(TreeAdaptor adaptor) {
 public TreeAdaptor getTreeAdaptor() {
     return adaptor;
 }
-    public String[] getTokenNames() { return XMLParser.tokenNames; }
-    public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XMLParser.g"; }
+    @Override
+	public String[] getTokenNames() { return XMLParser.tokenNames; }
+    @Override
+	public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XMLParser.g"; }
 
 
       protected boolean isColdFusionTag(String name)
@@ -108,7 +104,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class compilationUnit_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -165,7 +162,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class tag_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -246,7 +244,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class element_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -437,7 +436,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class startTag_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -531,7 +531,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(ELEMENT, name)
+                adaptor.create(ELEMENT, name)
                 , root_1);
 
                 // /Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XMLParser.g:76:29: ( attribute )*
@@ -575,7 +575,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class attribute_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -632,11 +633,11 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(ATTRIBUTE, aname)
+                adaptor.create(ATTRIBUTE, aname)
                 , root_1);
 
                 adaptor.addChild(root_1, 
-                (CommonTree)adaptor.create(ATTRIBUTENAME, aname)
+                adaptor.create(ATTRIBUTENAME, aname)
                 );
 
                 adaptor.addChild(root_1, 
@@ -677,7 +678,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class endTag_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -758,7 +760,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class emptyElement_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -841,7 +844,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(ELEMENT, el)
+                adaptor.create(ELEMENT, el)
                 , root_1);
 
                 // /Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XMLParser.g:103:27: ( attribute )*

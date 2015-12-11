@@ -13,6 +13,7 @@ final class StartTagTypeCFMail extends StartTagTypeGenericImplementation {
 		super("CFML mail", "<cfmail", ">", EndTagType.NORMAL, true, true, true);
 	}
 	
+	@Override
 	protected Tag constructTagAt(final Source source, final int pos) {
 		final StartTag startTag = (StartTag) super.constructTagAt(source, pos);
 		if (startTag == null)

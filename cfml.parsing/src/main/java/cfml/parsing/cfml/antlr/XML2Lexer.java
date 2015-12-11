@@ -4,9 +4,6 @@ package cfml.parsing.cfml.antlr;
 
 
 import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class XML2Lexer extends Lexer {
@@ -40,7 +37,8 @@ public class XML2Lexer extends Lexer {
     public XML2Lexer(CharStream input, RecognizerSharedState state) {
         super(input,state);
     }
-    public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XML2.g"; }
+    @Override
+	public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XML2.g"; }
 
     // $ANTLR start "ELEMENT"
     public final void mELEMENT() throws RecognitionException {
@@ -1230,7 +1228,8 @@ public class XML2Lexer extends Lexer {
     }
     // $ANTLR end "WS"
 
-    public void mTokens() throws RecognitionException {
+    @Override
+	public void mTokens() throws RecognitionException {
         // /Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XML2.g:1:8: ( ELEMENT | START_TAG | EMPTY_ELEMENT | ATTRIBUTE )
         int alt23=4;
         alt23 = dfa23.predict(input);
@@ -1459,10 +1458,12 @@ public class XML2Lexer extends Lexer {
             this.special = DFA23_special;
             this.transition = DFA23_transition;
         }
-        public String getDescription() {
+        @Override
+		public String getDescription() {
             return "1:1: Tokens : ( ELEMENT | START_TAG | EMPTY_ELEMENT | ATTRIBUTE );";
         }
-        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
+        @Override
+		public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {

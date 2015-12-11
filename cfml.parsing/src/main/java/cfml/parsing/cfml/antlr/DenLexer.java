@@ -4,9 +4,6 @@ package cfml.parsing.cfml.antlr;
 
 
 import org.antlr.runtime.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class DenLexer extends Lexer {
@@ -40,7 +37,8 @@ public class DenLexer extends Lexer {
     public DenLexer(CharStream input, RecognizerSharedState state) {
         super(input,state);
     }
-    public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/DenLexer.g"; }
+    @Override
+	public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/DenLexer.g"; }
 
     // $ANTLR start "TAG_START_OPEN"
     public final void mTAG_START_OPEN() throws RecognitionException {
@@ -544,7 +542,8 @@ public class DenLexer extends Lexer {
     }
     // $ANTLR end "WS"
 
-    public void mTokens() throws RecognitionException {
+    @Override
+	public void mTokens() throws RecognitionException {
         // /Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/DenLexer.g:1:8: ( TAG_START_OPEN | TAG_END_OPEN | TAG_CLOSE | TAG_EMPTY_CLOSE | ATTR_EQ | ATTR_VALUE | PCDATA | GENERIC_ID | WS )
         int alt6=9;
         alt6 = dfa6.predict(input);
@@ -712,10 +711,12 @@ public class DenLexer extends Lexer {
             this.special = DFA6_special;
             this.transition = DFA6_transition;
         }
-        public String getDescription() {
+        @Override
+		public String getDescription() {
             return "1:1: Tokens : ( TAG_START_OPEN | TAG_END_OPEN | TAG_CLOSE | TAG_EMPTY_CLOSE | ATTR_EQ | ATTR_VALUE | PCDATA | GENERIC_ID | WS );";
         }
-        public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
+        @Override
+		public int specialStateTransition(int s, IntStream _input) throws NoViableAltException {
             IntStream input = _input;
         	int _s = s;
             switch ( s ) {
