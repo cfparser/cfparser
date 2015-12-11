@@ -68,8 +68,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-	    <pluginManagement>
-		<plugins>
+	    <plugins>
 			<!-- Antlr sources -->
 			<plugin>
 				<groupId>org.antlr</groupId>
@@ -124,6 +123,5 @@
 	   	</configuration>
 			  </plugin>
 		</plugins>
-		</pluginManagement>
 	</build>
 </project>
