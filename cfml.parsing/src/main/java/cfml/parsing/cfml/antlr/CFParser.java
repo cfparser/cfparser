@@ -1,15 +1,8 @@
 // $ANTLR 3.4 /Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/CF.g 2012-10-27 03:10:04
 
 package cfml.parsing.cfml.antlr;
-import java.util.LinkedList;
-
-
-
 import org.antlr.runtime.*;
 import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
-
 import org.antlr.runtime.tree.*;
 
 
@@ -85,13 +78,16 @@ public void setTreeAdaptor(TreeAdaptor adaptor) {
 public TreeAdaptor getTreeAdaptor() {
     return adaptor;
 }
-    public String[] getTokenNames() { return CFParser.tokenNames; }
-    public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/CF.g"; }
+    @Override
+	public String[] getTokenNames() { return CFParser.tokenNames; }
+    @Override
+	public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/CF.g"; }
 
 
     public static class compilationUnit_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -148,7 +144,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class tag_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -339,7 +336,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class element_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -481,7 +479,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class startTag_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -572,7 +571,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(ELEMENT, name)
+                adaptor.create(ELEMENT, name)
                 , root_1);
 
                 // /Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/CF.g:209:29: ( attribute )*
@@ -619,7 +618,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class singleTag_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -748,7 +748,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(SINGLETAG, name)
+                adaptor.create(SINGLETAG, name)
                 , root_1);
 
                 // /Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/CF.g:219:31: ( attribute )*
@@ -795,7 +795,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class cfifTag_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -916,7 +917,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(CFIFTAG, name)
+                adaptor.create(CFIFTAG, name)
                 , root_1);
 
                 // /Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/CF.g:228:29: ( CFELSETAG )?
@@ -965,7 +966,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class stringLiteral_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -1022,7 +1024,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class attribute_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -1081,11 +1084,11 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(ATTRIBUTE, aname)
+                adaptor.create(ATTRIBUTE, aname)
                 , root_1);
 
                 adaptor.addChild(root_1, 
-                (CommonTree)adaptor.create(ATTRIBUTENAME, aname)
+                adaptor.create(ATTRIBUTENAME, aname)
                 );
 
                 adaptor.addChild(root_1, stream_stringLiteral.nextTree());
@@ -1124,7 +1127,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class endTag_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -1206,7 +1210,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class emptyElement_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -1289,7 +1294,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(ELEMENT, el)
+                adaptor.create(ELEMENT, el)
                 , root_1);
 
                 // /Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/CF.g:253:27: ( attribute )*
@@ -1385,7 +1390,8 @@ public TreeAdaptor getTreeAdaptor() {
             this.special = DFA5_special;
             this.transition = DFA5_transition;
         }
-        public String getDescription() {
+        @Override
+		public String getDescription() {
             return "189:1: element : ( startTag ^ ( element | PCDATA )* endTag !| emptyElement );";
         }
     }

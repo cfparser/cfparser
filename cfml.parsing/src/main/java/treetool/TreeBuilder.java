@@ -291,6 +291,7 @@ public class TreeBuilder extends JPanel implements MouseListener, ActionListener
 		tree.expandRow(0);
 	}
 	
+	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (tree.getLastSelectedPathComponent() instanceof TreeNode) {
 			TreeNode node = (TreeNode) tree.getLastSelectedPathComponent();
@@ -302,24 +303,29 @@ public class TreeBuilder extends JPanel implements MouseListener, ActionListener
 		}
 	}
 	
+	@Override
 	public void mouseEntered(MouseEvent e) {
 	}
 	
+	@Override
 	public void mouseExited(MouseEvent e) {
 	}
 	
+	@Override
 	public void mousePressed(MouseEvent e) {
 		if (e.isPopupTrigger() && tree.getLastSelectedPathComponent() != null) {
 			popup.show((JComponent) e.getSource(), e.getX(), e.getY());
 		}
 	}
 	
+	@Override
 	public void mouseReleased(MouseEvent e) {
 		if (e.isPopupTrigger() && tree.getLastSelectedPathComponent() != null) {
 			popup.show((JComponent) e.getSource(), e.getX(), e.getY());
 		}
 	}
 	
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
 		if ("expand".equals(cmd) || "collapse".equals(cmd)) {
@@ -372,6 +378,7 @@ class TreeNode extends DefaultMutableTreeNode {
 		this.isLeaf = isLeaf;
 	}
 	
+	@Override
 	public boolean isLeaf() {
 		return isLeaf;
 	}

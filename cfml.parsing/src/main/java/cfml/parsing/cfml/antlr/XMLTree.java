@@ -5,9 +5,6 @@
 
 import org.antlr.runtime.*;
 import org.antlr.runtime.tree.*;
-import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked"})
 public class XMLTree extends TreeParser {
@@ -45,8 +42,10 @@ public class XMLTree extends TreeParser {
         super(input, state);
     }
 
-    public String[] getTokenNames() { return XMLTree.tokenNames; }
-    public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XMLTree.g"; }
+    @Override
+	public String[] getTokenNames() { return XMLTree.tokenNames; }
+    @Override
+	public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XMLTree.g"; }
 
 
 

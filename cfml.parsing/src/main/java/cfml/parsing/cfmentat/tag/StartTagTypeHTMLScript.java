@@ -13,6 +13,7 @@ final class StartTagTypeHTMLScript extends StartTagTypeGenericImplementation {
 		super("HTML script", "<script", ">", EndTagType.NORMAL, false, false, false);
 	}
 	
+	@Override
 	protected Tag constructTagAt(final Source source, final int pos) {
 		final StartTag startTag = (StartTag) super.constructTagAt(source, pos);
 		

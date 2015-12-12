@@ -17,7 +17,7 @@ public class MainTree {
 			XMLParser.compilationUnit_return root = parser.compilationUnit();
 			System.out.println("tree=" + ((Tree) root.tree).toStringTree());
 			
-			CommonTreeNodeStream nodes = new CommonTreeNodeStream((Tree) root.tree);
+			CommonTreeNodeStream nodes = new CommonTreeNodeStream(root.tree);
 			XMLTree walker = new XMLTree(nodes);
 			walker.document();
 		} catch (Throwable t) {
