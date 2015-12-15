@@ -11,6 +11,9 @@ IDENTIFIER               <foo>
 '='                      <=>
 FUNCTION                 <function>
 '('                      <(>
+REQUIRED                 <required>
+STRING                   <string>
+IDENTIFIER               <baz>
 ')'                      <)>
 '{'                      <{>
 RETURN                   <return>
@@ -46,7 +49,9 @@ STRING_LITERAL           <"bar!">
                       (anonymousFunctionDeclaration
                         function
                         (
-                        parameterList
+                        (parameterList
+                          (parameter required (parameterType (typeSpec (type string))) (identifier baz))
+                        )
                         )
                         (compoundStatement
                           {

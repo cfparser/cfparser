@@ -1,0 +1,86 @@
+/*===TOKENS===*/
+LT                       <<>
+IDENTIFIER               <cfscript>
+GT                       <>>
+IDENTIFIER               <foo>
+'='                      <=>
+'{'                      <{>
+IDENTIFIER               <bar>
+':'                      <:>
+INTEGER_LITERAL          <1>
+'}'                      <}>
+';'                      <;>
+IDENTIFIER               <foo>
+'.'                      <.>
+IDENTIFIER               <bar>
+'++'                     <++>
+';'                      <;>
+LT                       <<>
+'/'                      </>
+IDENTIFIER               <cfscript>
+GT                       <>>
+/*===TREE===*/
+(scriptBlock
+  (element statement)
+  (element (statement <))
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier cfscript))))
+            (compareExpressionOperator >)
+            (compareExpression
+              (baseExpression (unaryExpression (memberExpression (identifier foo))))
+            )
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (primaryExpression
+                  (implicitStruct
+                    {
+                    (implicitStructElements
+                      (implicitStructExpression
+                        (implicitStructKeyExpression (multipartIdentifier (identifier bar)))
+                        :
+                        (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                      )
+                    )
+                    }
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (element
+    (statement
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (unaryExpression (memberExpression (identifier foo) . (identifier bar)))
+              ++
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (element statement)
+  (element (statement < /))
+  (element statement)
+  (element (statement cfscript))
+  (element (statement >))
+  (endOfScriptBlock <EOF>)
+)
+/*======*/

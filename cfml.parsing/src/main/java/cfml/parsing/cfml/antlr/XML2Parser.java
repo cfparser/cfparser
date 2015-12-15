@@ -2,16 +2,9 @@
 
 package cfml.parsing.cfml.antlr;
 
-import java.util.LinkedList;
 import treetool.TreeBuilder;
-import javax.swing.tree.DefaultMutableTreeNode;
-
-
 import org.antlr.runtime.*;
 import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
-
 import org.antlr.runtime.tree.*;
 
 
@@ -64,8 +57,10 @@ public void setTreeAdaptor(TreeAdaptor adaptor) {
 public TreeAdaptor getTreeAdaptor() {
     return adaptor;
 }
-    public String[] getTokenNames() { return XML2Parser.tokenNames; }
-    public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XML2.g"; }
+    @Override
+	public String[] getTokenNames() { return XML2Parser.tokenNames; }
+    @Override
+	public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/XML2.g"; }
 
 
         private TreeBuilder T;
@@ -77,7 +72,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class compilationUnit_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -134,7 +130,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class tag_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 

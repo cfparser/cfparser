@@ -2,14 +2,8 @@
 
 package cfml.parsing.cfml.antlr;
 
-import java.util.LinkedList;
-
-
 import org.antlr.runtime.*;
 import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
-
 import org.antlr.runtime.tree.*;
 
 
@@ -65,13 +59,16 @@ public void setTreeAdaptor(TreeAdaptor adaptor) {
 public TreeAdaptor getTreeAdaptor() {
     return adaptor;
 }
-    public String[] getTokenNames() { return DenParser.tokenNames; }
-    public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/DenParser.g"; }
+    @Override
+	public String[] getTokenNames() { return DenParser.tokenNames; }
+    @Override
+	public String getGrammarFileName() { return "/Users/valliant/Projects/java/CFML/cfml.parsing/antlr/concept/DenParser.g"; }
 
 
     public static class document_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -128,7 +125,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class tags_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -237,7 +235,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class element_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -383,7 +382,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class ifStatement_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -475,7 +475,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(ELEMENT, "ELEMENT")
+                adaptor.create(ELEMENT, "ELEMENT")
                 , root_1);
 
                 adaptor.addChild(root_1, 
@@ -523,7 +523,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class startTag_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -615,7 +616,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(ELEMENT, "ELEMENT")
+                adaptor.create(ELEMENT, "ELEMENT")
                 , root_1);
 
                 adaptor.addChild(root_1, 
@@ -663,7 +664,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class attribute_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -720,7 +722,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(ATTRIBUTE, "ATTRIBUTE")
+                adaptor.create(ATTRIBUTE, "ATTRIBUTE")
                 , root_1);
 
                 adaptor.addChild(root_1, 
@@ -765,7 +767,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class endTag_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -850,7 +853,8 @@ public TreeAdaptor getTreeAdaptor() {
 
     public static class emptyElement_return extends ParserRuleReturnScope {
         CommonTree tree;
-        public Object getTree() { return tree; }
+        @Override
+		public Object getTree() { return tree; }
     };
 
 
@@ -940,7 +944,7 @@ public TreeAdaptor getTreeAdaptor() {
                 {
                 CommonTree root_1 = (CommonTree)adaptor.nil();
                 root_1 = (CommonTree)adaptor.becomeRoot(
-                (CommonTree)adaptor.create(ELEMENT, "ELEMENT")
+                adaptor.create(ELEMENT, "ELEMENT")
                 , root_1);
 
                 adaptor.addChild(root_1, 
@@ -1041,7 +1045,8 @@ public TreeAdaptor getTreeAdaptor() {
             this.special = DFA3_special;
             this.transition = DFA3_transition;
         }
-        public String getDescription() {
+        @Override
+		public String getDescription() {
             return "30:7: ( startTag ^ ( element | PCDATA )* endTag !| emptyElement )";
         }
     }

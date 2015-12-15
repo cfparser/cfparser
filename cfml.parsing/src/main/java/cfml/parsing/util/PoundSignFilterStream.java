@@ -1,33 +1,6 @@
-/* 
- *  Copyright (C) 2000 - 2010 TagServlet Ltd
- *
- *  This file is part of Open BlueDragon (OpenBD) CFML Server Engine.
- *  
- *  OpenBD is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  Free Software Foundation,version 3.
- *  
- *  OpenBD is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *  
- *  You should have received a copy of the GNU General Public License
- *  along with OpenBD.  If not, see http://www.gnu.org/licenses/
- *  
- *  Additional permission under GNU GPL version 3 section 7
- *  
- *  If you modify this Program, or any covered work, by linking or combining 
- *  it with any of the JARS listed in the README.txt (or a modified version of 
- *  (that library), containing parts covered by the terms of that JAR, the 
- *  licensors of this Program grant you additional permission to convey the 
- *  resulting work. 
- *  README.txt @ http://www.openbluedragon.org/license/README.txt
- *  
- *  http://www.openbluedragon.org/
- */
-
 package cfml.parsing.util;
+
+import java.io.CharArrayWriter;
 
 /**
  * This class filters out strings containing pound signs replacing them with
@@ -37,9 +10,8 @@ package cfml.parsing.util;
  */
 
 import java.io.FilterReader;
-import java.io.CharArrayWriter;
-import java.io.Reader;
 import java.io.IOException;
+import java.io.Reader;
 
 public class PoundSignFilterStream extends FilterReader {
 	
@@ -57,6 +29,7 @@ public class PoundSignFilterStream extends FilterReader {
 		readChar();
 	}
 	
+	@Override
 	synchronized public int read() throws IOException {
 		// if the buffer is empty then
 		if (buffer == null) {
@@ -92,12 +65,13 @@ public class PoundSignFilterStream extends FilterReader {
 			bufferAt++;
 			if (bufferAt >= buffer.length)
 				buffer = null;
-			
+				
 			return bufferChar;
 		}
 		
 	}
 	
+	@Override
 	synchronized public int read(char[] cbuf, int off, int len) throws IOException {
 		int offset = off;
 		int actualLen = 0;
@@ -202,7 +176,7 @@ public class PoundSignFilterStream extends FilterReader {
 										return cout.toCharArray();
 									}
 								} else { // nextChar != endMarker
-								
+									
 									// end of string found
 									added--;
 									expression.writeTo(cout);
@@ -252,6 +226,7 @@ public class PoundSignFilterStream extends FilterReader {
 		throw new IOException("Unclosed string expression - missing " + endMarker + ".");
 	}
 	
+	@Override
 	public void close() throws IOException {
 		super.close();
 		this.isClosed = true;
@@ -323,7 +298,7 @@ public class PoundSignFilterStream extends FilterReader {
 				+ "  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n"
 				+ "  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n"
 				+ "  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/");
-		
+				
 		for (int i = 0; i < inputList.size(); i++) {
 			String input = (String) inputList.get(i);
 			try {

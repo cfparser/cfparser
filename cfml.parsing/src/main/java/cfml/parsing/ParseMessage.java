@@ -190,6 +190,7 @@ public class ParseMessage {
 		this.message = message;
 	}
 	
+	@Override
 	public String toString() {
 		return "Line: " + lineNumber + " offset:" + docStartOffset + " endoffset:" + docEndOffset + " message:"
 				+ message;

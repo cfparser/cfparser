@@ -27,7 +27,7 @@ import cfml.parsing.utils.TestUtils;
  * Run a test over each *.rpgle file in src/test/resources/org/rpgleparser/tests
  * 
  * @author ryaneberly
- *
+ * 		
  */
 @RunWith(Parameterized.class)
 public class TestFiles {
@@ -35,6 +35,7 @@ public class TestFiles {
 	File sourceFile;
 	boolean autoReplaceFailed = false;
 	static String singleTestName = null;
+	
 	static {
 		try {
 			singleTestName = ResourceBundle.getBundle("cfml.test").getString("RunSingleTest");
@@ -46,8 +47,8 @@ public class TestFiles {
 		super();
 		this.sourceFile = sourceFile;
 		try {
-			autoReplaceFailed = "Y".equalsIgnoreCase(ResourceBundle.getBundle("cfml.test").getString(
-					"AutoReplaceFailedTestResults"));
+			autoReplaceFailed = "Y"
+					.equalsIgnoreCase(ResourceBundle.getBundle("cfml.test").getString("AutoReplaceFailedTestResults"));
 		} catch (Exception e) {
 		}
 	}
@@ -55,8 +56,8 @@ public class TestFiles {
 	@Test
 	public void test() throws IOException, URISyntaxException {
 		final String inputString = TestUtils.loadFile(sourceFile);
-		final File expectedFile = new File(sourceFile.getPath().replaceAll("\\.cfc", ".expected.txt")
-				.replaceAll("\\.cfm", ".expected.txt"));
+		final File expectedFile = new File(
+				sourceFile.getPath().replaceAll("\\.cfc", ".expected.txt").replaceAll("\\.cfm", ".expected.txt"));
 		final String expectedFileText = expectedFile.exists() ? TestUtils.loadFile(expectedFile) : null;
 		final String expectedTokens = getTokens(expectedFileText);
 		String expectedTree = getTree(expectedFileText);
@@ -65,8 +66,13 @@ public class TestFiles {
 		final CFSCRIPTLexer lexer = new CFSCRIPTLexer(input);
 		
 		final String actualTokens = printTokens(lexer);
+		
 		if (expectedTokens != null && expectedTokens.trim().length() > 0) {
-			assertEquals("Token lists do not match", expectedTokens, actualTokens);
+			if (autoReplaceFailed && !expectedTokens.equals(actualTokens)) {
+				expectedTree = "";
+			} else {
+				assertEquals("Token lists do not match", expectedTokens, actualTokens);
+			}
 		}
 		lexer.reset();
 		
