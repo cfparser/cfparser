@@ -7,13 +7,13 @@ import java.util.Set;
 
 /**
  * Trigger - represents the attribute conditions required to trigger (allow) an attribute to be available. For example,
- * on the tag <cffile> the parameter 'source' is available when the 'append' attribute is set to either: copy,move or
- * rename.
+ * on the tag &lt;cffile&gt; the parameter 'source' is available when the 'append' attribute is set to either: copy,move
+ * or rename.
  * 
  * When that occurs it is not only available, but required as well.
  * 
  * @author Oliver Tupman
- * 
+ * 		
  */
 public class Trigger {
 	protected HashMap triggerParams = new HashMap();
@@ -128,7 +128,7 @@ public class Trigger {
 				return false;
 			if (m2.get(key) == null)
 				return false;
-			
+				
 			if (!m1.get(key).equals(m2.get(key))) {
 				return false;
 			}
@@ -142,11 +142,11 @@ public class Trigger {
 	 * 
 	 * @param params
 	 *            The attributes/parameters currently set.
-	 * @return PARAM_TRIGGERD | PARAM_REQUIRED (triggered & required) PARAM_TRIGGERED (simply triggered, therefore
+	 * @return PARAM_TRIGGERD | PARAM_REQUIRED (triggered &amp; required) PARAM_TRIGGERED (simply triggered, therefore
 	 *         optional) PARAM_NOTTRIGGERED (not triggered, technically optional)
 	 */
 	public int WillTrigger(HashMap params) {
-		// /System.out.print("  Trigger:WillTrigger() - ");
+		// /System.out.print(" Trigger:WillTrigger() - ");
 		
 		if (triggerParams.size() == 0) {
 			// System.out.println(" no trigger params, triggered and required");

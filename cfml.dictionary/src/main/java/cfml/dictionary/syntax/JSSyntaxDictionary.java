@@ -32,7 +32,7 @@ import cfml.dictionary.SyntaxDictionary;
 
 /**
  * @author Rob
- * 
+ * 		
  *         This is the javascript specific syntax dictionary dictionary
  */
 public class JSSyntaxDictionary extends SyntaxDictionary implements ISyntaxDictionary {
@@ -54,7 +54,6 @@ public class JSSyntaxDictionary extends SyntaxDictionary implements ISyntaxDicti
 	/**
 	 * gets any operators (lowercase only)
 	 * 
-	 * @param elementname
 	 * @return
 	 */
 	public Set getOperators() {
@@ -73,7 +72,6 @@ public class JSSyntaxDictionary extends SyntaxDictionary implements ISyntaxDicti
 	/**
 	 * gets all the functions (lowercase only)
 	 * 
-	 * @param elementname
 	 * @return
 	 */
 	public Set getFunctions() {
@@ -203,8 +201,8 @@ public class JSSyntaxDictionary extends SyntaxDictionary implements ISyntaxDicti
 		 * functions.put("escape","String Escape(String)"); functions.put("eval","Object Eval(codeString)");
 		 * functions.put("isFinite","boolean isFinite(testnumber)"); functions.put("isNaN","boolean isNaN(testvalue)");
 		 * functions.put("number","number Number(Object)"); functions.put("parseFloat","float parseFloat(String)");
-		 * functions.put( "parseInt","int parseInt(String, radix) || int parseInt(String)");
-		 * functions.put("string","boolean String(Object)"); functions.put("unescape","String Unescape(encodedString)");
+		 * functions.put( "parseInt","int parseInt(String, radix) || int parseInt(String)"); functions.put("string",
+		 * "boolean String(Object)"); functions.put("unescape","String Unescape(encodedString)");
 		 * 
 		 * functions.put("alert","void alert(String)"); functions.put("confirm","boolean confirm(String)");
 		 */

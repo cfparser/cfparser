@@ -46,7 +46,7 @@ public class Parameter implements Comparable {
 	 */
 	public static final int PARAM_TRIGGERED = 0x1;
 	/**
-	 * The Parameter is required (generally and'ed with PARAM_TRIGGERED to indicate that it is triggered & required
+	 * The Parameter is required (generally and'ed with PARAM_TRIGGERED to indicate that it is triggered &amp; required
 	 */
 	public static final int PARAM_REQUIRED = 0x2;
 	
@@ -69,7 +69,6 @@ public class Parameter implements Comparable {
 	 * 
 	 * @param newTriggerSet
 	 *            The new trigger to set
-	 * @see #cfml
 	 */
 	public void addTrigger(Trigger newTriggerSet) {
 		// System.out.println("Parameter::addTriger() - Param \' " + this.name +
@@ -89,7 +88,7 @@ public class Parameter implements Comparable {
 	 *            name/value string pairs of parameters currently entered
 	 * @return Whether the parameter is triggered or not (and whether it's required). Values will be one of:
 	 *         <ul>
-	 *         <li><code>PARAM_REQUIRED</code> - Parameter required & triggered (will be
+	 *         <li><code>PARAM_REQUIRED</code> - Parameter required &amp; triggered (will be
 	 *         <code>PARAM_REQUIRED | PARAM_TRIGGERED</code>)</li>
 	 *         <li><code>PARAM_TRIGGERED</code> - Parameter triggered</li>
 	 *         <li><code>PARAM_NOTTRIGGERED</code> - Parameter not triggered</li>

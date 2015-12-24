@@ -32,10 +32,10 @@ import cfml.dictionary.SyntaxDictionary;
 
 /**
  * @author Rob
- * 
+ * 		
  *         Extension of the SyntaxDictionary. Has cf specific items. This class is not used directly in cfe. There is
  *         one more level in the SQLSyntaxDictionary
- * 
+ * 		
  * @see SQLSyntaxDictionary
  */
 public class CFSyntaxDictionary extends SyntaxDictionary implements ISyntaxDictionary {
@@ -54,7 +54,6 @@ public class CFSyntaxDictionary extends SyntaxDictionary implements ISyntaxDicti
 	/**
 	 * gets any operators (eq, or, and) (lowercase only)
 	 * 
-	 * @param elementname
 	 * @return
 	 */
 	public Set getOperators() {

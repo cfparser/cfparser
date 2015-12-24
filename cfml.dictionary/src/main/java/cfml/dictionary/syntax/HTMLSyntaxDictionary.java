@@ -31,7 +31,7 @@ import cfml.dictionary.SyntaxDictionary;
 
 /**
  * @author Rob
- * 
+ * 		
  *         In charge of the HTML dictionary
  */
 public class HTMLSyntaxDictionary extends SyntaxDictionary implements ISyntaxDictionary {
@@ -39,7 +39,6 @@ public class HTMLSyntaxDictionary extends SyntaxDictionary implements ISyntaxDic
 	/**
 	 * gets any operators (eq, or, and) (lowercase only)
 	 * 
-	 * @param elementname
 	 * @return
 	 */
 	public Set getOperators() {
