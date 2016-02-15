@@ -2,7 +2,15 @@
 LOG                      <log>
 IDENTIFIER               <text>
 '='                      <=>
-STRING_LITERAL           <"Event Gateway #variables.id# started">
+OPEN_STRING              <">
+STRING_LITERAL           <Event Gateway >
+'#'                      <#>
+IDENTIFIER               <variables>
+'.'                      <.>
+IDENTIFIER               <id>
+'#'                      <#>
+STRING_LITERAL           < started>
+CLOSE_STRING             <">
 FILE                     <file>
 '='                      <=>
 IDENTIFIER               <this>
@@ -12,24 +20,47 @@ IDENTIFIER               <logfile>
 LOG                      <log>
 IDENTIFIER               <text>
 '='                      <=>
-STRING_LITERAL           <"text">
+OPEN_STRING              <">
+STRING_LITERAL           <text>
+CLOSE_STRING             <">
 IDENTIFIER               <type>
 '='                      <=>
-STRING_LITERAL           <"information">
+OPEN_STRING              <">
+STRING_LITERAL           <information>
+CLOSE_STRING             <">
 IDENTIFIER               <application>
 '='                      <=>
-STRING_LITERAL           <"yes">
+OPEN_STRING              <">
+STRING_LITERAL           <yes>
+CLOSE_STRING             <">
 FILE                     <file>
 '='                      <=>
-STRING_LITERAL           <"filename">
+OPEN_STRING              <">
+STRING_LITERAL           <filename>
+CLOSE_STRING             <">
 LOG                      <log>
 '='                      <=>
-STRING_LITERAL           <"log type">
+OPEN_STRING              <">
+STRING_LITERAL           <log type>
+CLOSE_STRING             <">
 ';'                      <;>
 LOG                      <log>
 IDENTIFIER               <text>
 '='                      <=>
-STRING_LITERAL           <"Event Gateway #variables.id# error: #ex.message#">
+OPEN_STRING              <">
+STRING_LITERAL           <Event Gateway >
+'#'                      <#>
+IDENTIFIER               <variables>
+'.'                      <.>
+IDENTIFIER               <id>
+'#'                      <#>
+STRING_LITERAL           < error: >
+'#'                      <#>
+IDENTIFIER               <ex>
+'.'                      <.>
+IDENTIFIER               <message>
+'#'                      <#>
+CLOSE_STRING             <">
 FILE                     <file>
 '='                      <=>
 IDENTIFIER               <this>
@@ -37,55 +68,81 @@ IDENTIFIER               <this>
 IDENTIFIER               <logfile>
 IDENTIFIER               <type>
 '='                      <=>
-STRING_LITERAL           <"error">
+OPEN_STRING              <">
+STRING_LITERAL           <error>
+CLOSE_STRING             <">
 ';'                      <;>
 PARAM                    <param>
 IDENTIFIER               <name>
 '='                      <=>
-STRING_LITERAL           <"url.age">
+OPEN_STRING              <">
+STRING_LITERAL           <url.age>
+CLOSE_STRING             <">
 IDENTIFIER               <type>
 '='                      <=>
-STRING_LITERAL           <"numeric">
+OPEN_STRING              <">
+STRING_LITERAL           <numeric>
+CLOSE_STRING             <">
 DEFAULT                  <default>
 '='                      <=>
-STRING_LITERAL           <"10">
+OPEN_STRING              <">
+STRING_LITERAL           <10>
+CLOSE_STRING             <">
 IDENTIFIER               <max>
 '='                      <=>
-STRING_LITERAL           <"100">
+OPEN_STRING              <">
+STRING_LITERAL           <100>
+CLOSE_STRING             <">
 IDENTIFIER               <min>
 '='                      <=>
-STRING_LITERAL           <"18">
+OPEN_STRING              <">
+STRING_LITERAL           <18>
+CLOSE_STRING             <">
 ';'                      <;>
 LINE_COMMENT             <//How about cfhttp ?
 >
 HTTP                     <http>
 IDENTIFIER               <method>
 '='                      <=>
-STRING_LITERAL           <"GET">
+OPEN_STRING              <">
+STRING_LITERAL           <GET>
+CLOSE_STRING             <">
 IDENTIFIER               <url>
 '='                      <=>
-STRING_LITERAL           <"http://www.google.com">
+OPEN_STRING              <">
+STRING_LITERAL           <http://www.google.com>
+CLOSE_STRING             <">
 IDENTIFIER               <result>
 '='                      <=>
-STRING_LITERAL           <"webPage">
+OPEN_STRING              <">
+STRING_LITERAL           <webPage>
+CLOSE_STRING             <">
 ';'                      <;>
 MAIL                     <mail>
 IDENTIFIER               <from>
 '='                      <=>
-STRING_LITERAL           <"Mark@getrailo.com">
+OPEN_STRING              <">
+STRING_LITERAL           <Mark@getrailo.com>
+CLOSE_STRING             <">
 TO                       <to>
 '='                      <=>
-STRING_LITERAL           <"gert@getrailo.com">
+OPEN_STRING              <">
+STRING_LITERAL           <gert@getrailo.com>
+CLOSE_STRING             <">
 IDENTIFIER               <subject>
 '='                      <=>
-STRING_LITERAL           <"Awesome! Tags in Script!">
+OPEN_STRING              <">
+STRING_LITERAL           <Awesome! Tags in Script!>
+CLOSE_STRING             <">
 '{'                      <{>
 IDENTIFIER               <WriteOutput>
 '('                      <(>
-STRING_LITERAL           <"Hey Gert!
+OPEN_STRING              <">
+STRING_LITERAL           <Hey Gert!
 Check out the code samples here! You can write tags in CFScript
 Mark
-">
+>
+CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
 '}'                      <}>
@@ -94,23 +151,33 @@ LINE_COMMENT             <//Query a database
 QUERY                    <query>
 IDENTIFIER               <name>
 '='                      <=>
-STRING_LITERAL           <"getUsers">
+OPEN_STRING              <">
+STRING_LITERAL           <getUsers>
+CLOSE_STRING             <">
 IDENTIFIER               <dataSource>
 '='                      <=>
-STRING_LITERAL           <"myDatasource">
+OPEN_STRING              <">
+STRING_LITERAL           <myDatasource>
+CLOSE_STRING             <">
 '{'                      <{>
 IDENTIFIER               <echo>
 '('                      <(>
-STRING_LITERAL           <"SELECT * FROM tusers WHERE UserID =">
+OPEN_STRING              <">
+STRING_LITERAL           <SELECT * FROM tusers WHERE UserID =>
+CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
 QUERYPARAM               <queryparam>
 IDENTIFIER               <cfsqltype>
 '='                      <=>
-STRING_LITERAL           <"varchar">
+OPEN_STRING              <">
+STRING_LITERAL           <varchar>
+CLOSE_STRING             <">
 IDENTIFIER               <value>
 '='                      <=>
-STRING_LITERAL           <"6300EE15-1320-5CC2-F9F48B9DBBA54D9F">
+OPEN_STRING              <">
+STRING_LITERAL           <6300EE15-1320-5CC2-F9F48B9DBBA54D9F>
+CLOSE_STRING             <">
 ';'                      <;>
 '}'                      <}>
 IDENTIFIER               <dump>
@@ -133,7 +200,25 @@ IDENTIFIER               <getUsers>
                 (compareExpression
                   (baseExpression
                     (unaryExpression
-                      (primaryExpression (literalExpression "Event Gateway #variables.id# started"))
+                      (primaryExpression
+                        (literalExpression
+                          (stringLiteral
+                            "
+                            'Event Gateway '
+                            #
+                            (startExpression
+                              (compareExpression
+                                (baseExpression
+                                  (unaryExpression (memberExpression (identifier variables) . (identifier id)))
+                                )
+                              )
+                            )
+                            #
+                            ' started'
+                            "
+                          )
+                        )
+                      )
                     )
                   )
                 )
@@ -168,7 +253,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "text")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " text ")))
+                    )
                   )
                 )
               )
@@ -179,7 +266,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "information")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " information ")))
+                    )
                   )
                 )
               )
@@ -190,7 +279,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "yes")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " yes ")))
+                    )
                   )
                 )
               )
@@ -201,7 +292,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "filename")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " filename ")))
+                    )
                   )
                 )
               )
@@ -212,7 +305,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "log type")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " log type ")))
+                    )
                   )
                 )
               )
@@ -237,7 +332,32 @@ IDENTIFIER               <getUsers>
                   (baseExpression
                     (unaryExpression
                       (primaryExpression
-                        (literalExpression "Event Gateway #variables.id# error: #ex.message#")
+                        (literalExpression
+                          (stringLiteral
+                            "
+                            'Event Gateway '
+                            #
+                            (startExpression
+                              (compareExpression
+                                (baseExpression
+                                  (unaryExpression (memberExpression (identifier variables) . (identifier id)))
+                                )
+                              )
+                            )
+                            #
+                            ' error: '
+                            #
+                            (startExpression
+                              (compareExpression
+                                (baseExpression
+                                  (unaryExpression (memberExpression (identifier ex) . (identifier message)))
+                                )
+                              )
+                            )
+                            #
+                            "
+                          )
+                        )
                       )
                     )
                   )
@@ -261,7 +381,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "error")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " error ")))
+                    )
                   )
                 )
               )
@@ -284,7 +406,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "url.age")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " url.age ")))
+                    )
                   )
                 )
               )
@@ -295,7 +419,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "numeric")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " numeric ")))
+                    )
                   )
                 )
               )
@@ -305,7 +431,11 @@ IDENTIFIER               <getUsers>
               =
               (startExpression
                 (compareExpression
-                  (baseExpression (unaryExpression (primaryExpression (literalExpression "10"))))
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " 10 ")))
+                    )
+                  )
                 )
               )
             )
@@ -315,7 +445,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "100")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " 100 ")))
+                    )
                   )
                 )
               )
@@ -325,7 +457,11 @@ IDENTIFIER               <getUsers>
               =
               (startExpression
                 (compareExpression
-                  (baseExpression (unaryExpression (primaryExpression (literalExpression "18"))))
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " 18 ")))
+                    )
+                  )
                 )
               )
             )
@@ -347,7 +483,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "GET")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " GET ")))
+                    )
                   )
                 )
               )
@@ -359,7 +497,9 @@ IDENTIFIER               <getUsers>
                 (compareExpression
                   (baseExpression
                     (unaryExpression
-                      (primaryExpression (literalExpression "http://www.google.com"))
+                      (primaryExpression
+                        (literalExpression (stringLiteral " http://www.google.com "))
+                      )
                     )
                   )
                 )
@@ -371,7 +511,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "webPage")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " webPage ")))
+                    )
                   )
                 )
               )
@@ -394,7 +536,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "Mark@getrailo.com")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " Mark@getrailo.com ")))
+                    )
                   )
                 )
               )
@@ -405,7 +549,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "gert@getrailo.com")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " gert@getrailo.com ")))
+                    )
                   )
                 )
               )
@@ -417,7 +563,9 @@ IDENTIFIER               <getUsers>
                 (compareExpression
                   (baseExpression
                     (unaryExpression
-                      (primaryExpression (literalExpression "Awesome! Tags in Script!"))
+                      (primaryExpression
+                        (literalExpression (stringLiteral " Awesome! Tags in Script! "))
+                      )
                     )
                   )
                 )
@@ -443,7 +591,11 @@ IDENTIFIER               <getUsers>
                                     (unaryExpression
                                       (primaryExpression
                                         (literalExpression
-                                          "Hey Gert!\r\nCheck out the code samples here! You can write tags in CFScript\r\nMark\r\n"
+                                          (stringLiteral
+                                            "
+                                            Hey Gert!\r\nCheck out the code samples here! You can write tags in CFScript\r\nMark\r\n
+                                            "
+                                          )
                                         )
                                       )
                                     )
@@ -479,7 +631,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "getUsers")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " getUsers ")))
+                    )
                   )
                 )
               )
@@ -490,7 +644,9 @@ IDENTIFIER               <getUsers>
               (startExpression
                 (compareExpression
                   (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression "myDatasource")))
+                    (unaryExpression
+                      (primaryExpression (literalExpression (stringLiteral " myDatasource ")))
+                    )
                   )
                 )
               )
@@ -513,7 +669,9 @@ IDENTIFIER               <getUsers>
                                 (compareExpression
                                   (baseExpression
                                     (unaryExpression
-                                      (primaryExpression (literalExpression "SELECT * FROM tusers WHERE UserID ="))
+                                      (primaryExpression
+                                        (literalExpression (stringLiteral " SELECT * FROM tusers WHERE UserID = "))
+                                      )
                                     )
                                   )
                                 )
@@ -540,7 +698,9 @@ IDENTIFIER               <getUsers>
                       (startExpression
                         (compareExpression
                           (baseExpression
-                            (unaryExpression (primaryExpression (literalExpression "varchar")))
+                            (unaryExpression
+                              (primaryExpression (literalExpression (stringLiteral " varchar ")))
+                            )
                           )
                         )
                       )
@@ -552,7 +712,9 @@ IDENTIFIER               <getUsers>
                         (compareExpression
                           (baseExpression
                             (unaryExpression
-                              (primaryExpression (literalExpression "6300EE15-1320-5CC2-F9F48B9DBBA54D9F"))
+                              (primaryExpression
+                                (literalExpression (stringLiteral " 6300EE15-1320-5CC2-F9F48B9DBBA54D9F "))
+                              )
                             )
                           )
                         )

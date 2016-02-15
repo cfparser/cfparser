@@ -3,50 +3,82 @@ IDENTIFIER               <cfhttp>
 '('                      <(>
 IDENTIFIER               <url>
 '='                      <=>
-STRING_LITERAL           <"www.google.com">
+OPEN_STRING              <">
+STRING_LITERAL           <www.google.com>
+CLOSE_STRING             <">
 ','                      <,>
 IDENTIFIER               <method>
 '='                      <=>
-STRING_LITERAL           <"GET">
+OPEN_STRING              <">
+STRING_LITERAL           <GET>
+CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
 IDENTIFIER               <Cfhttp>
 '('                      <(>
 IDENTIFIER               <URL>
 '='                      <=>
-HTTP                     <http>
-':'                      <:>
-LINE_COMMENT             <//#CGI.SERVER_NAME#.../target.cfm, method="GET")
->
+HTTP                     <http://>
+'#'                      <#>
+IDENTIFIER               <CGI>
+'.'                      <.>
+IDENTIFIER               <SERVER_NAME>
+'#'                      <#>
+'.'                      <.>
+'.'                      <.>
+'.'                      <.>
+'/'                      </>
+IDENTIFIER               <target>
+'.'                      <.>
+IDENTIFIER               <cfm>
+','                      <,>
+IDENTIFIER               <method>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <GET>
+CLOSE_STRING             <">
+')'                      <)>
 '{'                      <{>
 IDENTIFIER               <cfhttpparam>
 '('                      <(>
 IDENTIFIER               <type>
 '='                      <=>
-STRING_LITERAL           <"url">
+OPEN_STRING              <">
+STRING_LITERAL           <url>
+CLOSE_STRING             <">
 ','                      <,>
 IDENTIFIER               <name>
 '='                      <=>
-STRING_LITERAL           <'emp_name'>
+OPEN_STRING              <'>
+STRING_LITERAL           <emp_name>
+CLOSE_STRING             <'>
 ','                      <,>
 IDENTIFIER               <value>
 '='                      <=>
-STRING_LITERAL           <"Awdhesh">
+OPEN_STRING              <">
+STRING_LITERAL           <Awdhesh>
+CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
 IDENTIFIER               <cfhttpparam>
 '('                      <(>
 IDENTIFIER               <type>
 '='                      <=>
-STRING_LITERAL           <"header">
+OPEN_STRING              <">
+STRING_LITERAL           <header>
+CLOSE_STRING             <">
 ','                      <,>
 IDENTIFIER               <name>
 '='                      <=>
-STRING_LITERAL           <'myheader'>
+OPEN_STRING              <'>
+STRING_LITERAL           <myheader>
+CLOSE_STRING             <'>
 ','                      <,>
 IDENTIFIER               <value>
 '='                      <=>
-STRING_LITERAL           <"My custom header">
+OPEN_STRING              <">
+STRING_LITERAL           <My custom header>
+CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
 '}'                      <}>
@@ -76,7 +108,9 @@ IDENTIFIER               <filecontent>
                       (startExpression
                         (compareExpression
                           (baseExpression
-                            (unaryExpression (primaryExpression (literalExpression "www.google.com")))
+                            (unaryExpression
+                              (primaryExpression (literalExpression (stringLiteral " www.google.com ")))
+                            )
                           )
                         )
                       )
@@ -88,7 +122,9 @@ IDENTIFIER               <filecontent>
                       (startExpression
                         (compareExpression
                           (baseExpression
-                            (unaryExpression (primaryExpression (literalExpression "GET")))
+                            (unaryExpression
+                              (primaryExpression (literalExpression (stringLiteral " GET ")))
+                            )
                           )
                         )
                       )
@@ -119,7 +155,44 @@ IDENTIFIER               <filecontent>
         (startExpression
           (compareExpression
             (baseExpression
-              (unaryExpression (memberExpression (identifier (cfmlFunction http)) :))
+              (unaryExpression (memberExpression (identifier (cfmlFunction http://))))
+            )
+          )
+        )
+      )
+      <missing ';'>
+    )
+  )
+  (element statement)
+  (element (statement #))
+  element
+  (element CGI)
+  (element (statement .))
+  (element SERVER_NAME)
+  (element (statement #))
+  (element (statement .))
+  (element (statement .))
+  (element (statement . /))
+  element
+  (element target)
+  (element (statement .))
+  (element cfm ,)
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier method))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (primaryExpression (literalExpression (stringLiteral " GET ")))
+                )
+              )
             )
           )
         )
@@ -147,7 +220,9 @@ IDENTIFIER               <filecontent>
                           (startExpression
                             (compareExpression
                               (baseExpression
-                                (unaryExpression (primaryExpression (literalExpression "url")))
+                                (unaryExpression
+                                  (primaryExpression (literalExpression (stringLiteral " url ")))
+                                )
                               )
                             )
                           )
@@ -159,7 +234,9 @@ IDENTIFIER               <filecontent>
                           (startExpression
                             (compareExpression
                               (baseExpression
-                                (unaryExpression (primaryExpression (literalExpression 'emp_name')))
+                                (unaryExpression
+                                  (primaryExpression (literalExpression (stringLiteral ' emp_name ')))
+                                )
                               )
                             )
                           )
@@ -171,7 +248,9 @@ IDENTIFIER               <filecontent>
                           (startExpression
                             (compareExpression
                               (baseExpression
-                                (unaryExpression (primaryExpression (literalExpression "Awdhesh")))
+                                (unaryExpression
+                                  (primaryExpression (literalExpression (stringLiteral " Awdhesh ")))
+                                )
                               )
                             )
                           )
@@ -202,7 +281,9 @@ IDENTIFIER               <filecontent>
                           (startExpression
                             (compareExpression
                               (baseExpression
-                                (unaryExpression (primaryExpression (literalExpression "header")))
+                                (unaryExpression
+                                  (primaryExpression (literalExpression (stringLiteral " header ")))
+                                )
                               )
                             )
                           )
@@ -214,7 +295,9 @@ IDENTIFIER               <filecontent>
                           (startExpression
                             (compareExpression
                               (baseExpression
-                                (unaryExpression (primaryExpression (literalExpression 'myheader')))
+                                (unaryExpression
+                                  (primaryExpression (literalExpression (stringLiteral ' myheader ')))
+                                )
                               )
                             )
                           )
@@ -226,7 +309,9 @@ IDENTIFIER               <filecontent>
                           (startExpression
                             (compareExpression
                               (baseExpression
-                                (unaryExpression (primaryExpression (literalExpression "My custom header")))
+                                (unaryExpression
+                                  (primaryExpression (literalExpression (stringLiteral " My custom header ")))
+                                )
                               )
                             )
                           )

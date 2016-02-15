@@ -8,7 +8,9 @@ IDENTIFIER               <my>
 ':'                      <:>
 IDENTIFIER               <role>
 '='                      <=>
-STRING_LITERAL           <"support:admin">
+OPEN_STRING              <">
+STRING_LITERAL           <support:admin>
+CLOSE_STRING             <">
 '{'                      <{>
 '}'                      <}>
 FUNCTION                 <function>
@@ -18,7 +20,9 @@ IDENTIFIER               <rc>
 ')'                      <)>
 IDENTIFIER               <role>
 '='                      <=>
-STRING_LITERAL           <"support:admin">
+OPEN_STRING              <">
+STRING_LITERAL           <support:admin>
+CLOSE_STRING             <">
 '{'                      <{>
 '}'                      <}>
 /*===TREE===*/
@@ -38,7 +42,9 @@ STRING_LITERAL           <"support:admin">
         (startExpression
           (compareExpression
             (baseExpression
-              (unaryExpression (primaryExpression (literalExpression "support:admin")))
+              (unaryExpression
+                (primaryExpression (literalExpression (stringLiteral " support:admin ")))
+              )
             )
           )
         )
@@ -59,7 +65,9 @@ STRING_LITERAL           <"support:admin">
         (startExpression
           (compareExpression
             (baseExpression
-              (unaryExpression (primaryExpression (literalExpression "support:admin")))
+              (unaryExpression
+                (primaryExpression (literalExpression (stringLiteral " support:admin ")))
+              )
             )
           )
         )

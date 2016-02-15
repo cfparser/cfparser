@@ -5,11 +5,15 @@ IDENTIFIER               <Cf_happybirthday>
 '('                      <(>
 IDENTIFIER               <name>
 '='                      <=>
-STRING_LITERAL           <"john">
+OPEN_STRING              <">
+STRING_LITERAL           <john>
+CLOSE_STRING             <">
 ','                      <,>
 IDENTIFIER               <birthdate>
 '='                      <=>
-STRING_LITERAL           <"December 5, 1987">
+OPEN_STRING              <">
+STRING_LITERAL           <December 5, 1987>
+CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
 /*===TREE===*/
@@ -31,7 +35,9 @@ STRING_LITERAL           <"December 5, 1987">
                       (startExpression
                         (compareExpression
                           (baseExpression
-                            (unaryExpression (primaryExpression (literalExpression "john")))
+                            (unaryExpression
+                              (primaryExpression (literalExpression (stringLiteral " john ")))
+                            )
                           )
                         )
                       )
@@ -43,7 +49,9 @@ STRING_LITERAL           <"December 5, 1987">
                       (startExpression
                         (compareExpression
                           (baseExpression
-                            (unaryExpression (primaryExpression (literalExpression "December 5, 1987")))
+                            (unaryExpression
+                              (primaryExpression (literalExpression (stringLiteral " December 5, 1987 ")))
+                            )
                           )
                         )
                       )

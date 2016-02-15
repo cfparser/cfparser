@@ -1,0 +1,34 @@
+/*===TOKENS===*/
+IDENTIFIER               <filename>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <test>
+CLOSE_STRING             <">
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier filename))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (primaryExpression (literalExpression (stringLiteral " test ")))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (endOfScriptBlock <EOF>)
+)
+/*======*/

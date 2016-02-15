@@ -17,7 +17,9 @@ IDENTIFIER               <baz>
 ')'                      <)>
 '{'                      <{>
 RETURN                   <return>
-STRING_LITERAL           <"bar!">
+OPEN_STRING              <">
+STRING_LITERAL           <bar!>
+CLOSE_STRING             <">
 ';'                      <;>
 '}'                      <}>
 ';'                      <;>
@@ -61,7 +63,9 @@ STRING_LITERAL           <"bar!">
                               (startExpression
                                 (compareExpression
                                   (baseExpression
-                                    (unaryExpression (primaryExpression (literalExpression "bar!")))
+                                    (unaryExpression
+                                      (primaryExpression (literalExpression (stringLiteral " bar! ")))
+                                    )
                                   )
                                 )
                               )

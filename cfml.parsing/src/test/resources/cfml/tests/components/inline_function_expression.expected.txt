@@ -25,7 +25,9 @@ IDENTIFIER               <bar>
 '{'                      <{>
 IDENTIFIER               <dotrim>
 '('                      <(>
-STRING_LITERAL           <"hello world">
+OPEN_STRING              <">
+STRING_LITERAL           <hello world>
+CLOSE_STRING             <">
 ','                      <,>
 FUNCTION                 <function>
 '('                      <(>
@@ -131,7 +133,9 @@ LINE_COMMENT             <//...
                               (startExpression
                                 (compareExpression
                                   (baseExpression
-                                    (unaryExpression (primaryExpression (literalExpression "hello world")))
+                                    (unaryExpression
+                                      (primaryExpression (literalExpression (stringLiteral " hello world ")))
+                                    )
                                   )
                                 )
                               )

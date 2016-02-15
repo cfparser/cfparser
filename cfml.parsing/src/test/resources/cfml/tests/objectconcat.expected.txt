@@ -14,7 +14,9 @@ IDENTIFIER               <getShortId>
 ','                      <,>
 IDENTIFIER               <action>
 ':'                      <:>
-STRING_LITERAL           <'support:tickets/view/id/'>
+OPEN_STRING              <'>
+STRING_LITERAL           <support:tickets/view/id/>
+CLOSE_STRING             <'>
 '&'                      <&>
 IDENTIFIER               <rc>
 '.'                      <.>
@@ -71,7 +73,9 @@ IDENTIFIER               <getShortId>
                         (baseExpression
                           (concatenationExpression
                             (unaryExpression
-                              (primaryExpression (literalExpression 'support:tickets/view/id/'))
+                              (primaryExpression
+                                (literalExpression (stringLiteral ' support:tickets/view/id/ '))
+                              )
                             )
                             &
                             (baseOrTernaryExpression

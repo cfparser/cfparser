@@ -12,10 +12,14 @@ ML_COMMENT               </**
 COMPONENT                <component>
 IDENTIFIER               <extends>
 '='                      <=>
-STRING_LITERAL           <"my.path.BaseComponent">
+OPEN_STRING              <">
+STRING_LITERAL           <my.path.BaseComponent>
+CLOSE_STRING             <">
 IDENTIFIER               <accessors>
 '='                      <=>
-STRING_LITERAL           <"true">
+OPEN_STRING              <">
+STRING_LITERAL           <true>
+CLOSE_STRING             <">
 '{'                      <{>
 '}'                      <}>
 /*===TREE===*/
@@ -42,7 +46,9 @@ STRING_LITERAL           <"true">
         (compareExpression
           (baseExpression
             (unaryExpression
-              (primaryExpression (literalExpression "my.path.BaseComponent"))
+              (primaryExpression
+                (literalExpression (stringLiteral " my.path.BaseComponent "))
+              )
             )
           )
         )
@@ -54,7 +60,9 @@ STRING_LITERAL           <"true">
       (startExpression
         (compareExpression
           (baseExpression
-            (unaryExpression (primaryExpression (literalExpression "true")))
+            (unaryExpression
+              (primaryExpression (literalExpression (stringLiteral " true ")))
+            )
           )
         )
       )

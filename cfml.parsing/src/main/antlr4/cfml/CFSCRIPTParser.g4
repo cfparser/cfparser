@@ -51,7 +51,7 @@ typeSpec
   ;
   
 stringLiteral
-  :  STRING_LITERAL;
+  :  OPEN_STRING (STRING_LITERAL | POUND_SIGN startExpression POUND_SIGN)* CLOSE_STRING;
   
  
 parameterList
@@ -188,7 +188,7 @@ constantExpression
   | MINUS ( INTEGER_LITERAL | floatingPointExpression  )
   | INTEGER_LITERAL
   | floatingPointExpression
-  | STRING_LITERAL
+  | stringLiteral
   | BOOLEAN_LITERAL
 //  | NULL
   ;
@@ -594,7 +594,7 @@ primaryExpressionIRW
 	;
 	
 literalExpression
-	:	STRING_LITERAL
+	:	stringLiteral
 	|	BOOLEAN_LITERAL
 	|  floatingPointExpression
 	|  INTEGER_LITERAL;
