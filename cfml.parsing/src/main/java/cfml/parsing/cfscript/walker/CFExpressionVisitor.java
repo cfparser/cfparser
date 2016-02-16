@@ -53,6 +53,7 @@ import cfml.parsing.cfscript.CFLiteral;
 import cfml.parsing.cfscript.CFMember;
 import cfml.parsing.cfscript.CFNestedExpression;
 import cfml.parsing.cfscript.CFNewExpression;
+import cfml.parsing.cfscript.CFStringExpression;
 import cfml.parsing.cfscript.CFStructElementExpression;
 import cfml.parsing.cfscript.CFStructExpression;
 import cfml.parsing.cfscript.CFTernaryExpression;
@@ -164,7 +165,11 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	
 	@Override
 	public CFExpression visitStringLiteral(StringLiteralContext ctx) {
-		return new CFLiteral(ctx.STRING_LITERAL().getSymbol());
+		CFStringExpression stringExpression = new CFStringExpression(ctx.getStart());
+		for (ParseTree child : ctx.children) {
+			stringExpression.getSubExpressions().add(super.visit(child));
+		}
+		return stringExpression;
 	}
 	
 	@Override
@@ -514,10 +519,6 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		if (aggregate == null) {
 			return nextResult;
 		}
-		// System.out.println("CFExpr.aggregateResult --------------------------"
-		// + (aggregator.isEmpty() ? null : aggregator.peek().getClass()));
-		// System.out.println("agg:" + aggregate.getClass() + " -> " + aggregate.Decompile(0));
-		// System.out.println("next:" + nextResult.getClass() + " -> " + nextResult.Decompile(0));
 		
 		try {
 			if (aggregate instanceof CFNewExpression) {
