@@ -20,7 +20,9 @@ CLOSE_STRING             <">
           (compareExpression
             (baseExpression
               (unaryExpression
-                (primaryExpression (literalExpression (stringLiteral " test ")))
+                (primaryExpression
+                  (literalExpression (stringLiteral " (stringLiteralPart test) "))
+                )
               )
             )
           )

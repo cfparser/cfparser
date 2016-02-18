@@ -1,0 +1,66 @@
+/*===TOKENS===*/
+VAR                      <var>
+IDENTIFIER               <a>
+'='                      <=>
+IDENTIFIER               <find>
+'('                      <(>
+OPEN_STRING              <'>
+DOUBLEHASH               <##>
+CLOSE_STRING             <'>
+','                      <,>
+IDENTIFIER               <action>
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (localAssignmentExpression
+        var
+        (identifier a)
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (memberExpression
+                  (functionCall
+                    (identifierOrReservedWord (identifier find))
+                    (
+                    (argumentList
+                      (argument
+                        (startExpression
+                          (compareExpression
+                            (baseExpression
+                              (unaryExpression
+                                (primaryExpression
+                                  (literalExpression (stringLiteral ' (stringLiteralPart ##) '))
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                      ,
+                      (argument
+                        (startExpression
+                          (compareExpression
+                            (baseExpression (unaryExpression (memberExpression (identifier action))))
+                          )
+                        )
+                      )
+                    )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (endOfScriptBlock <EOF>)
+)
+/*======*/

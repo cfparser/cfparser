@@ -64,7 +64,9 @@ CLOSE_STRING             <">
                                 (compareExpression
                                   (baseExpression
                                     (unaryExpression
-                                      (primaryExpression (literalExpression (stringLiteral " bar! ")))
+                                      (primaryExpression
+                                        (literalExpression (stringLiteral " (stringLiteralPart bar!) "))
+                                      )
                                     )
                                   )
                                 )

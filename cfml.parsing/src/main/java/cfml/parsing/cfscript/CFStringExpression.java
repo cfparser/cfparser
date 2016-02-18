@@ -24,7 +24,14 @@ public class CFStringExpression extends CFExpression {
 		StringBuilder sb = new StringBuilder();
 		sb.append("'");
 		for (CFExpression expression : subExpressions) {
-			sb.append(expression.Decompile(0));
+			if (expression instanceof CFLiteral) {
+				final String txt = expression.Decompile(0);
+				sb.append(txt.substring(1, txt.length() - 1));
+			} else {
+				sb.append("#");
+				sb.append(expression.Decompile(0));
+				sb.append("#");
+			}
 		}
 		sb.append("'");
 		return sb.toString();

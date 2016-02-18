@@ -60,7 +60,9 @@ CLOSE_STRING             <">
                                   (literalExpression
                                     (stringLiteral
                                       "
-                                      '\r\n            SELECT info_card_id, document_num, revision_nm, title_nm\r\n            FROM tdc_doc_infocard\r\n            WHERE info_card_id = :sourceTemplateNum\r\n            ORDER BY UPPER(document_num) ASC, revision_seq DESC\r\n        '
+                                      (stringLiteralPart
+                                        '\r\n            SELECT info_card_id, document_num, revision_nm, title_nm\r\n            FROM tdc_doc_infocard\r\n            WHERE info_card_id = :sourceTemplateNum\r\n            ORDER BY UPPER(document_num) ASC, revision_seq DESC\r\n        '
+                                      )
                                       "
                                     )
                                   )
@@ -122,7 +124,9 @@ CLOSE_STRING             <">
                                                     =
                                                     (baseExpression
                                                       (unaryExpression
-                                                        (primaryExpression (literalExpression (stringLiteral " cf_sql_varchar ")))
+                                                        (primaryExpression
+                                                          (literalExpression (stringLiteral " (stringLiteralPart cf_sql_varchar) "))
+                                                        )
                                                       )
                                                     )
                                                   )

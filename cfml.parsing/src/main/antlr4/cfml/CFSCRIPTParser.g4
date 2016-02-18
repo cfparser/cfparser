@@ -51,7 +51,10 @@ typeSpec
   ;
   
 stringLiteral
-  :  OPEN_STRING (STRING_LITERAL | POUND_SIGN startExpression POUND_SIGN)* CLOSE_STRING;
+  :  OPEN_STRING (stringLiteralPart | POUND_SIGN startExpression POUND_SIGN)* CLOSE_STRING;
+
+stringLiteralPart
+  :  STRING_LITERAL | DOUBLEHASH;
   
  
 parameterList

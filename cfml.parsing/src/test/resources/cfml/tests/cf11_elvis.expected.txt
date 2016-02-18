@@ -67,7 +67,9 @@ LINE_COMMENT             <// A function call>
                         (compareExpression
                           (baseExpression
                             (unaryExpression
-                              (primaryExpression (literalExpression (stringLiteral ' Joe ')))
+                              (primaryExpression
+                                (literalExpression (stringLiteral ' (stringLiteralPart Joe) '))
+                              )
                             )
                           )
                         )
@@ -126,7 +128,9 @@ LINE_COMMENT             <// A function call>
                   (compareExpression
                     (baseExpression
                       (unaryExpression
-                        (primaryExpression (literalExpression (stringLiteral " black ")))
+                        (primaryExpression
+                          (literalExpression (stringLiteral " (stringLiteralPart black) "))
+                        )
                       )
                     )
                   )
@@ -176,7 +180,9 @@ LINE_COMMENT             <// A function call>
                   (compareExpression
                     (baseExpression
                       (unaryExpression
-                        (primaryExpression (literalExpression (stringLiteral " Joe ")))
+                        (primaryExpression
+                          (literalExpression (stringLiteral " (stringLiteralPart Joe) "))
+                        )
                       )
                     )
                   )

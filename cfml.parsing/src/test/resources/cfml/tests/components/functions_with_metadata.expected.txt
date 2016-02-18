@@ -50,7 +50,9 @@ CLOSE_STRING             <">
               (compareExpression
                 (baseExpression
                   (unaryExpression
-                    (primaryExpression (literalExpression (stringLiteral " support:admin ")))
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart support:admin) "))
+                    )
                   )
                 )
               )
@@ -73,7 +75,9 @@ CLOSE_STRING             <">
               (compareExpression
                 (baseExpression
                   (unaryExpression
-                    (primaryExpression (literalExpression (stringLiteral " support:admin ")))
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart support:admin) "))
+                    )
                   )
                 )
               )

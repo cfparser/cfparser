@@ -74,7 +74,9 @@ IDENTIFIER               <getShortId>
                           (concatenationExpression
                             (unaryExpression
                               (primaryExpression
-                                (literalExpression (stringLiteral ' support:tickets/view/id/ '))
+                                (literalExpression
+                                  (stringLiteral ' (stringLiteralPart support:tickets/view/id/) ')
+                                )
                               )
                             )
                             &

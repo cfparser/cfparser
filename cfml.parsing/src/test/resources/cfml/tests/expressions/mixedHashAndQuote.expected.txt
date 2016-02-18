@@ -78,7 +78,9 @@ CLOSE_STRING             <">
                                         (compareExpression
                                           (baseExpression
                                             (unaryExpression
-                                              (primaryExpression (literalExpression (stringLiteral " YY_MM_DD ")))
+                                              (primaryExpression
+                                                (literalExpression (stringLiteral " (stringLiteralPart YY_MM_DD) "))
+                                              )
                                             )
                                           )
                                         )
@@ -93,7 +95,7 @@ CLOSE_STRING             <">
                         )
                       )
                       #
-                      _
+                      (stringLiteralPart _)
                       #
                       (startExpression
                         (compareExpression
@@ -123,7 +125,9 @@ CLOSE_STRING             <">
                                         (compareExpression
                                           (baseExpression
                                             (unaryExpression
-                                              (primaryExpression (literalExpression (stringLiteral " HH_mm ")))
+                                              (primaryExpression
+                                                (literalExpression (stringLiteral " (stringLiteralPart HH_mm) "))
+                                              )
                                             )
                                           )
                                         )
@@ -138,7 +142,7 @@ CLOSE_STRING             <">
                         )
                       )
                       #
-                      _Company.xls
+                      (stringLiteralPart _Company.xls)
                       "
                     )
                   )

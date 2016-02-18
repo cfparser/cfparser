@@ -109,7 +109,9 @@ IDENTIFIER               <filecontent>
                         (compareExpression
                           (baseExpression
                             (unaryExpression
-                              (primaryExpression (literalExpression (stringLiteral " www.google.com ")))
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart www.google.com) "))
+                              )
                             )
                           )
                         )
@@ -123,7 +125,9 @@ IDENTIFIER               <filecontent>
                         (compareExpression
                           (baseExpression
                             (unaryExpression
-                              (primaryExpression (literalExpression (stringLiteral " GET ")))
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart GET) "))
+                              )
                             )
                           )
                         )
@@ -190,7 +194,9 @@ IDENTIFIER               <filecontent>
           (compareExpression
             (baseExpression
               (unaryExpression
-                (primaryExpression (literalExpression (stringLiteral " GET ")))
+                (primaryExpression
+                  (literalExpression (stringLiteral " (stringLiteralPart GET) "))
+                )
                 )
               )
             )
@@ -221,7 +227,9 @@ IDENTIFIER               <filecontent>
                             (compareExpression
                               (baseExpression
                                 (unaryExpression
-                                  (primaryExpression (literalExpression (stringLiteral " url ")))
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart url) "))
+                                  )
                                 )
                               )
                             )
@@ -235,7 +243,9 @@ IDENTIFIER               <filecontent>
                             (compareExpression
                               (baseExpression
                                 (unaryExpression
-                                  (primaryExpression (literalExpression (stringLiteral ' emp_name ')))
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral ' (stringLiteralPart emp_name) '))
+                                  )
                                 )
                               )
                             )
@@ -249,7 +259,9 @@ IDENTIFIER               <filecontent>
                             (compareExpression
                               (baseExpression
                                 (unaryExpression
-                                  (primaryExpression (literalExpression (stringLiteral " Awdhesh ")))
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart Awdhesh) "))
+                                  )
                                 )
                               )
                             )
@@ -282,7 +294,9 @@ IDENTIFIER               <filecontent>
                             (compareExpression
                               (baseExpression
                                 (unaryExpression
-                                  (primaryExpression (literalExpression (stringLiteral " header ")))
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart header) "))
+                                  )
                                 )
                               )
                             )
@@ -296,7 +310,9 @@ IDENTIFIER               <filecontent>
                             (compareExpression
                               (baseExpression
                                 (unaryExpression
-                                  (primaryExpression (literalExpression (stringLiteral ' myheader ')))
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral ' (stringLiteralPart myheader) '))
+                                  )
                                 )
                               )
                             )
@@ -310,7 +326,9 @@ IDENTIFIER               <filecontent>
                             (compareExpression
                               (baseExpression
                                 (unaryExpression
-                                  (primaryExpression (literalExpression (stringLiteral " My custom header ")))
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart My custom header) "))
+                                  )
                                 )
                               )
                             )

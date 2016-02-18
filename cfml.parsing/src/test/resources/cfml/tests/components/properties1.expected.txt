@@ -80,7 +80,9 @@ BOOLEAN_LITERAL          <true>
         (compareExpression
           (baseExpression
             (unaryExpression
-              (primaryExpression (literalExpression (stringLiteral " true ")))
+              (primaryExpression
+                (literalExpression (stringLiteral " (stringLiteralPart true) "))
+              )
             )
           )
         )
@@ -101,7 +103,9 @@ BOOLEAN_LITERAL          <true>
                     (compareExpression
                       (baseExpression
                         (unaryExpression
-                          (primaryExpression (literalExpression (stringLiteral " string ")))
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart string) "))
+                          )
                         )
                       )
                     )
@@ -114,7 +118,9 @@ BOOLEAN_LITERAL          <true>
                     (compareExpression
                       (baseExpression
                         (unaryExpression
-                          (primaryExpression (literalExpression (stringLiteral " firstName ")))
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart firstName) "))
+                          )
                         )
                       )
                     )
@@ -139,7 +145,9 @@ BOOLEAN_LITERAL          <true>
                     (compareExpression
                       (baseExpression
                         (unaryExpression
-                          (primaryExpression (literalExpression (stringLiteral " lastName ")))
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart lastName) "))
+                          )
                         )
                       )
                     )

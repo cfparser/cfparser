@@ -47,7 +47,9 @@ CLOSE_STRING             <">
           (baseExpression
             (unaryExpression
               (primaryExpression
-                (literalExpression (stringLiteral " my.path.BaseComponent "))
+                (literalExpression
+                  (stringLiteral " (stringLiteralPart my.path.BaseComponent) ")
+                )
               )
             )
           )
@@ -61,7 +63,9 @@ CLOSE_STRING             <">
         (compareExpression
           (baseExpression
             (unaryExpression
-              (primaryExpression (literalExpression (stringLiteral " true ")))
+              (primaryExpression
+                (literalExpression (stringLiteral " (stringLiteralPart true) "))
+              )
             )
           )
         )

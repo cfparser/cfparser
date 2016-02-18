@@ -134,7 +134,9 @@ LINE_COMMENT             <//...
                                 (compareExpression
                                   (baseExpression
                                     (unaryExpression
-                                      (primaryExpression (literalExpression (stringLiteral " hello world ")))
+                                      (primaryExpression
+                                        (literalExpression (stringLiteral " (stringLiteralPart hello world) "))
+                                      )
                                     )
                                   )
                                 )

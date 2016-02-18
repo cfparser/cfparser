@@ -36,7 +36,9 @@ CLOSE_STRING             <">
                         (compareExpression
                           (baseExpression
                             (unaryExpression
-                              (primaryExpression (literalExpression (stringLiteral " john ")))
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart john) "))
+                              )
                             )
                           )
                         )
@@ -50,7 +52,9 @@ CLOSE_STRING             <">
                         (compareExpression
                           (baseExpression
                             (unaryExpression
-                              (primaryExpression (literalExpression (stringLiteral " December 5, 1987 ")))
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart December 5, 1987) "))
+                              )
                             )
                           )
                         )

@@ -30,7 +30,9 @@ IDENTIFIER               <lastName>
         (compareExpression
           (baseExpression
             (unaryExpression
-              (primaryExpression (literalExpression (stringLiteral " true ")))
+              (primaryExpression
+                (literalExpression (stringLiteral " (stringLiteralPart true) "))
+              )
             )
           )
         )
