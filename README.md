@@ -1,6 +1,6 @@
 cfparser
 ========
-[![Build Status](https://travis-ci.org/cfparser/cfparser.svg?branch=master)](https://travis-ci.org/cfparser/cfparser.svg)
+[![Build Status](https://travis-ci.org/cfparser/cfparser.svg?branch=master)](https://travis-ci.org/cfparser/cfparser)
 
 CFParser 2.0.0 is now release on Maven Central!
 
