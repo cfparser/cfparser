@@ -4,12 +4,14 @@ IDENTIFIER               <result>
 '='                      <=>
 IDENTIFIER               <QueryExecute>
 '('                      <(>
-STRING_LITERAL           <"
+OPEN_STRING              <">
+STRING_LITERAL           <
             SELECT info_card_id, document_num, revision_nm, title_nm
             FROM tdc_doc_infocard
             WHERE info_card_id = :sourceTemplateNum
             ORDER BY UPPER(document_num) ASC, revision_seq DESC
-        ">
+        >
+CLOSE_STRING             <">
 ','                      <,>
 '{'                      <{>
 IDENTIFIER               <sourceTemplateNum>
@@ -17,11 +19,17 @@ IDENTIFIER               <sourceTemplateNum>
 '{'                      <{>
 IDENTIFIER               <value>
 '='                      <=>
-STRING_LITERAL           <"#sourceTemplateNum#">
+OPEN_STRING              <">
+'#'                      <#>
+IDENTIFIER               <sourceTemplateNum>
+'#'                      <#>
+CLOSE_STRING             <">
 ','                      <,>
 IDENTIFIER               <cfsqltype>
 '='                      <=>
-STRING_LITERAL           <"cf_sql_varchar">
+OPEN_STRING              <">
+STRING_LITERAL           <cf_sql_varchar>
+CLOSE_STRING             <">
 '}'                      <}>
 '}'                      <}>
 ')'                      <)>
@@ -50,7 +58,13 @@ STRING_LITERAL           <"cf_sql_varchar">
                               (unaryExpression
                                 (primaryExpression
                                   (literalExpression
-                                    "\r\n            SELECT info_card_id, document_num, revision_nm, title_nm\r\n            FROM tdc_doc_infocard\r\n            WHERE info_card_id = :sourceTemplateNum\r\n            ORDER BY UPPER(document_num) ASC, revision_seq DESC\r\n        "
+                                    (stringLiteral
+                                      "
+                                      (stringLiteralPart
+                                        '\r\n            SELECT info_card_id, document_num, revision_nm, title_nm\r\n            FROM tdc_doc_infocard\r\n            WHERE info_card_id = :sourceTemplateNum\r\n            ORDER BY UPPER(document_num) ASC, revision_seq DESC\r\n        '
+                                      )
+                                      "
+                                    )
                                   )
                                 )
                               )
@@ -83,7 +97,25 @@ STRING_LITERAL           <"cf_sql_varchar">
                                                     (implicitStructKeyExpression (multipartIdentifier (identifier value)))
                                                     =
                                                     (baseExpression
-                                                      (unaryExpression (primaryExpression (literalExpression "#sourceTemplateNum#")))
+                                                      (unaryExpression
+                                                        (primaryExpression
+                                                          (literalExpression
+                                                            (stringLiteral
+                                                              "
+                                                              #
+                                                              (startExpression
+                                                                (compareExpression
+                                                                  (baseExpression
+                                                                    (unaryExpression (memberExpression (identifier sourceTemplateNum)))
+                                                                  )
+                                                                )
+                                                              )
+                                                              #
+                                                              "
+                                                            )
+                                                          )
+                                                        )
+                                                      )
                                                     )
                                                   )
                                                   ,
@@ -91,7 +123,11 @@ STRING_LITERAL           <"cf_sql_varchar">
                                                     (implicitStructKeyExpression (multipartIdentifier (identifier cfsqltype)))
                                                     =
                                                     (baseExpression
-                                                      (unaryExpression (primaryExpression (literalExpression "cf_sql_varchar")))
+                                                      (unaryExpression
+                                                        (primaryExpression
+                                                          (literalExpression (stringLiteral " (stringLiteralPart cf_sql_varchar) "))
+                                                        )
+                                                      )
                                                     )
                                                   )
                                                 )

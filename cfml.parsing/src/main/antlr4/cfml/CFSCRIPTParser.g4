@@ -51,7 +51,10 @@ typeSpec
   ;
   
 stringLiteral
-  :  STRING_LITERAL;
+  :  OPEN_STRING (stringLiteralPart | POUND_SIGN startExpression POUND_SIGN)* CLOSE_STRING;
+
+stringLiteralPart
+  :  STRING_LITERAL | DOUBLEHASH;
   
  
 parameterList
@@ -68,7 +71,8 @@ parameterType
   ;
 
 componentAttribute
-  : (prefix=identifier COLON)? id=identifier op=EQUALSOP startExpression //-> ^(COMPONENT_ATTRIBUTE identifier (COLON identifier)? baseExpression)
+  : id=identifier //-> ^(COMPONENT_ATTRIBUTE identifier)
+  | (prefix=identifier COLON)? id=identifier op=EQUALSOP startExpression //-> ^(COMPONENT_ATTRIBUTE identifier (COLON identifier)? baseExpression)
   ;
 //i=identifier EQUALSOP^ v=baseExpression
    
@@ -188,7 +192,7 @@ constantExpression
   | MINUS ( INTEGER_LITERAL | floatingPointExpression  )
   | INTEGER_LITERAL
   | floatingPointExpression
-  | STRING_LITERAL
+  | stringLiteral
   | BOOLEAN_LITERAL
 //  | NULL
   ;
@@ -308,6 +312,7 @@ cfmlFunction
   | TREEITEM
   | UPDATE
   | WDDX
+  | ZIP
   ;
 
 /*
@@ -594,7 +599,7 @@ primaryExpressionIRW
 	;
 	
 literalExpression
-	:	STRING_LITERAL
+	:	stringLiteral
 	|	BOOLEAN_LITERAL
 	|  floatingPointExpression
 	|  INTEGER_LITERAL;

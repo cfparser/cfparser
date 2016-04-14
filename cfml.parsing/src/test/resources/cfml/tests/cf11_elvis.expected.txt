@@ -3,7 +3,9 @@ IDENTIFIER               <securityNumber>
 '='                      <=>
 IDENTIFIER               <securityStruct>
 '['                      <[>
-STRING_LITERAL           <'Joe'>
+OPEN_STRING              <'>
+STRING_LITERAL           <Joe>
+CLOSE_STRING             <'>
 ']'                      <]>
 '?'                      <?>
 ':'                      <:>
@@ -20,7 +22,9 @@ INDEX                    <index>
 ']'                      <]>
 '?'                      <?>
 ':'                      <:>
-STRING_LITERAL           <"black">
+OPEN_STRING              <">
+STRING_LITERAL           <black>
+CLOSE_STRING             <">
 ';'                      <;>
 LINE_COMMENT             <// Retrieving from an array
 >
@@ -32,7 +36,9 @@ IDENTIFIER               <ID>
 ')'                      <)>
 '?'                      <?>
 ':'                      <:>
-STRING_LITERAL           <"Joe">
+OPEN_STRING              <">
+STRING_LITERAL           <Joe>
+CLOSE_STRING             <">
 ';'                      <;>
 LINE_COMMENT             <// A function call>
 /*===TREE===*/
@@ -60,7 +66,11 @@ LINE_COMMENT             <// A function call>
                       (startExpression
                         (compareExpression
                           (baseExpression
-                            (unaryExpression (primaryExpression (literalExpression 'Joe')))
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral ' (stringLiteralPart Joe) '))
+                              )
+                            )
                           )
                         )
                       )
@@ -117,7 +127,11 @@ LINE_COMMENT             <// A function call>
                 (baseOrTernaryExpression
                   (compareExpression
                     (baseExpression
-                      (unaryExpression (primaryExpression (literalExpression "black")))
+                      (unaryExpression
+                        (primaryExpression
+                          (literalExpression (stringLiteral " (stringLiteralPart black) "))
+                        )
+                      )
                     )
                   )
                 )
@@ -165,7 +179,11 @@ LINE_COMMENT             <// A function call>
                 (baseOrTernaryExpression
                   (compareExpression
                     (baseExpression
-                      (unaryExpression (primaryExpression (literalExpression "Joe")))
+                      (unaryExpression
+                        (primaryExpression
+                          (literalExpression (stringLiteral " (stringLiteralPart Joe) "))
+                        )
+                      )
                     )
                   )
                 )

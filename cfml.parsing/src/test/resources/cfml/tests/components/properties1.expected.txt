@@ -5,24 +5,32 @@ ML_COMMENT               </**
 COMPONENT                <component>
 IDENTIFIER               <accessors>
 '='                      <=>
-STRING_LITERAL           <"true">
+OPEN_STRING              <">
+STRING_LITERAL           <true>
+CLOSE_STRING             <">
 '{'                      <{>
 LINE_COMMENT             <// The first name of the User
 >
 PROPERTY                 <property>
 IDENTIFIER               <type>
 '='                      <=>
-STRING_LITERAL           <"string">
+OPEN_STRING              <">
+STRING_LITERAL           <string>
+CLOSE_STRING             <">
 IDENTIFIER               <name>
 '='                      <=>
-STRING_LITERAL           <"firstName">
+OPEN_STRING              <">
+STRING_LITERAL           <firstName>
+CLOSE_STRING             <">
 ';'                      <;>
 LINE_COMMENT             <// Last name of the User
 >
 PROPERTY                 <property>
 IDENTIFIER               <name>
 '='                      <=>
-STRING_LITERAL           <"lastName">
+OPEN_STRING              <">
+STRING_LITERAL           <lastName>
+CLOSE_STRING             <">
 ';'                      <;>
 ML_COMMENT               </**
   * Constructor
@@ -50,7 +58,8 @@ IDENTIFIER               <product>
 ','                      <,>
 IDENTIFIER               <coupon>
 '='                      <=>
-STRING_LITERAL           <"">
+OPEN_STRING              <">
+CLOSE_STRING             <">
 ','                      <,>
 BOOLEAN                  <boolean>
 IDENTIFIER               <results>
@@ -70,7 +79,11 @@ BOOLEAN_LITERAL          <true>
       (startExpression
         (compareExpression
           (baseExpression
-            (unaryExpression (primaryExpression (literalExpression "true")))
+            (unaryExpression
+              (primaryExpression
+                (literalExpression (stringLiteral " (stringLiteralPart true) "))
+              )
+            )
           )
         )
       )
@@ -89,7 +102,11 @@ BOOLEAN_LITERAL          <true>
                   (startExpression
                     (compareExpression
                       (baseExpression
-                        (unaryExpression (primaryExpression (literalExpression "string")))
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart string) "))
+                          )
+                        )
                       )
                     )
                   )
@@ -100,7 +117,11 @@ BOOLEAN_LITERAL          <true>
                   (startExpression
                     (compareExpression
                       (baseExpression
-                        (unaryExpression (primaryExpression (literalExpression "firstName")))
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart firstName) "))
+                          )
+                        )
                       )
                     )
                   )
@@ -123,7 +144,11 @@ BOOLEAN_LITERAL          <true>
                   (startExpression
                     (compareExpression
                       (baseExpression
-                        (unaryExpression (primaryExpression (literalExpression "lastName")))
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart lastName) "))
+                          )
+                        )
                       )
                     )
                   )
@@ -171,7 +196,9 @@ BOOLEAN_LITERAL          <true>
               =
               (startExpression
                 (compareExpression
-                  (baseExpression (unaryExpression (primaryExpression (literalExpression ""))))
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression (stringLiteral " "))))
+                  )
                 )
               )
             )

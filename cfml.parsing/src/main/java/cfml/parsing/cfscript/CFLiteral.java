@@ -30,8 +30,8 @@ public class CFLiteral extends CFExpression implements java.io.Serializable {
 			// create a String, stripping off the surrounding quotes and
 			// replacing any escaped quotes with a single quote
 			String quote = _t.getText().substring(0, 1);
-			String str = _t.getText().substring(1, _t.getText().length() - 1);
-			str = str.replaceAll(quote + quote, quote);
+			String str = _t.getText();// .substring(1, _t.getText().length() - 1);
+			// str = str.replaceAll(quote + quote, quote);
 			image = str;
 			val = str;
 			break;

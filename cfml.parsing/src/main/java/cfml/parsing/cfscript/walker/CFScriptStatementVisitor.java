@@ -486,7 +486,18 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		Map<CFIdentifier, CFExpression> _attributes = new HashMap<CFIdentifier, CFExpression>();
 		CFPropertyStatement propertyStatement = new CFPropertyStatement(ctx.PROPERTY().getSymbol(), _attributes);
 		aggregator.push(propertyStatement);
-		visitChildren(ctx.paramStatementAttributes());
+		if (ctx.paramStatementAttributes() != null) {
+			visitChildren(ctx.paramStatementAttributes());
+		} else {
+			propertyStatement.setIsShortHand(true);
+			propertyStatement.setPropertyName(visitExpression(ctx.identifier()));
+			propertyStatement.setPropertyType(visitExpression(ctx.type()));
+			/*
+			 * if (ctx.type() != null) { propertyStatement.getAttributes().put(new CFIdentifier(ctx.type().start,
+			 * "type"), visitExpression(ctx.type())); } propertyStatement.getAttributes().put(new
+			 * CFIdentifier(ctx.identifier().start, "name"), visitExpression(ctx.identifier()));
+			 */
+		}
 		aggregator.pop();
 		return propertyStatement;
 	}

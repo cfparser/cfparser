@@ -5,7 +5,9 @@ ML_COMMENT               </**
 COMPONENT                <component>
 IDENTIFIER               <accessors>
 '='                      <=>
-STRING_LITERAL           <"true">
+OPEN_STRING              <">
+STRING_LITERAL           <true>
+CLOSE_STRING             <">
 '{'                      <{>
 LINE_COMMENT             <// The first name of the User
 >
@@ -27,7 +29,11 @@ IDENTIFIER               <lastName>
       (startExpression
         (compareExpression
           (baseExpression
-            (unaryExpression (primaryExpression (literalExpression "true")))
+            (unaryExpression
+              (primaryExpression
+                (literalExpression (stringLiteral " (stringLiteralPart true) "))
+              )
+            )
           )
         )
       )

@@ -1,5 +1,9 @@
 lexer grammar  CFSCRIPTLexer;
 
+START:
+  -> skip, pushMode(DefaultMode);
+
+mode DefaultMode;
 
 //Note: need case insensitive stream: http://www.antlr.org/wiki/pages/viewpage.action?pageId=1782
 
@@ -35,11 +39,20 @@ BOOLEAN_LITERAL
 	|	[yY][eE][sS] 
 	|	[nN][oO] 
 	;
-STRING_LITERAL
-	: '"' DoubleStringCharacter* '"'
-	| '\'' SingleStringCharacter* '\''
+OPEN_STRING
+	: '"'
+	-> pushMode(InDoubleQuotes)
+;	
+OPEN_STRING_SINGLE
+	: '\''
+	-> type(OPEN_STRING),pushMode(InSingleQuotes)
 	;
  
+//STRING_LITERAL
+//	: '"' DoubleStringCharacter* '"'
+//	| '\'' SingleStringCharacter* '\''
+//	; 
+
 fragment DoubleStringCharacter
 	: ~('"')
 	| '""'	
@@ -185,7 +198,7 @@ THREAD: [tT][hH][rR][eE][aA][dD];
 TRANSACTION: [tT][rR][aA][nN][sS][aA][cC][tT][iI][oO][nN];
 // cfmlfunction (tags you can call from script)
 SAVECONTENT: [sS][aA][vV][eE][cC][oO][nN][tT][eE][nN][tT];
-HTTP: [hH][tT][tT][pP];
+HTTP: [hH][tT][tT][pP][sS]?([:][/][/])?;
 FILE: [fF][iI][lL][eE];
 DIRECTORY: [dD][iI][rR][eE][cC][tT][oO][rR][yY];
 LOOP: [lL][oO][oO][pP]; 
@@ -270,6 +283,7 @@ TREE: [Tt][Rr][Ee][Ee];
 TREEITEM: [Tt][Rr][Ee][Ee][Ii][Tt][Ee][Mm];
 UPDATE: [Uu][Pp][Dd][Aa][Tt][Ee];
 WDDX: [Ww][Dd][Dd][Xx];
+ZIP: [Zz][Ii][Pp];
 
 
 
@@ -280,6 +294,7 @@ INTEGER_LITERAL
   : DecimalDigit+
   ;
   
+POUND_SIGN_1: '#' {_modeStack.contains(HashMode)}? -> type(POUND_SIGN),popMode,popMode;
 POUND_SIGN: '#';
 LESSTHAN: '<' -> type(LT);
 LESSTHANEQUALS: '<=' -> type(LTE);
@@ -299,4 +314,38 @@ FLOATING_POINT_LITERAL
   ;
 fragment ExponentPart
   : [eE] [+-]? DecimalDigit+
-  ;
+  ;  
+  
+  mode InDoubleQuotes;
+CLOSE_STRING
+	: '"'
+	-> popMode
+;	
+DOUBLEHASH
+	: '##' 
+;
+STRING_LITERAL
+	: ~["#]+
+;
+HASH
+	: '#' -> type(POUND_SIGN),pushMode(HashMode),pushMode(DefaultMode)
+;
+
+mode InSingleQuotes;
+CLOSE_STRING_SINGLE
+	: '\''
+	-> type(CLOSE_STRING),popMode
+;	
+DOUBLEHASH_SINGLE
+	: '##' -> type(DOUBLEHASH)
+;
+STRING_LITERAL_SINGLE
+	: ~['#]+ -> type(STRING_LITERAL)
+;
+HASH_SINGLE
+	: '#' -> type(POUND_SIGN),pushMode(HashMode),pushMode(DefaultMode)
+;
+
+mode HashMode;
+HashMode_ANY:  -> popMode,skip;
+ 

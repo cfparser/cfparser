@@ -51,8 +51,8 @@ public class TestScriptParser {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}
 		List<ParseTree> nodesList = TestUtils.getLeaves(scriptStatement);
-		assertTreeNodes(nodesList, "var", "x", "=", "1", ";", "y", "=", "5", ";", "createObject", "(", "'java'", ",",
-				"'java.lang.String'", ")", ";", "<EOF>");
+		assertTreeNodes(nodesList, "var", "x", "=", "1", ";", "y", "=", "5", ";", "createObject", "(", "'", "java",
+				"'", ",", "'", "java.lang.String", "'", ")", ";", "<EOF>");
 		assertNotNull(scriptStatement);
 	}
 	
