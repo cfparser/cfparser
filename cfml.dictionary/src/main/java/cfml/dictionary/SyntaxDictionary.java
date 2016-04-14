@@ -43,16 +43,16 @@ import org.xml.sax.XMLReader;
 
 /**
  * @author Rob
- * 
+ * 		
  *         Base class for dictionaries.
- * 
+ * 		
  *         The syntax dictionary keeps a name/object map of the tags and functions defined in the dictionary. It
- *         provides the methods for gaining access to the dictionary's defined functions & tags, plus access to the
+ *         provides the methods for gaining access to the dictionary's defined functions &amp; tags, plus access to the
  *         attributes that belong to a tag.
- * 
+ * 		
  *         I think, in future, the acces to the attributes should be done on an per-attribute basis, not gained from the
  *         syntax dictionary.
- * 
+ * 		
  */
 public abstract class SyntaxDictionary {
 	/** any tag based items in the dictionary */
@@ -78,7 +78,7 @@ public abstract class SyntaxDictionary {
 	 * loads the xml dictionary "filename" into this object. Note: if this dictionary already has tags defined the new
 	 * items will be added to this dictionary (not replaced)
 	 * 
-	 * @param filename
+	 * @param url
 	 */
 	public void loadDictionary(String url) {
 		setURL(url);
@@ -188,8 +188,8 @@ public abstract class SyntaxDictionary {
 		
 		if (this.syntaxelements == DictionaryManager.getDictionary(DictionaryManager.CFDIC_KEY)
 				&& !start.toLowerCase().startsWith("cf")) {
-			System.err
-					.println("SyntaxDictionary::getFilteredElements() - WARNING: Tag name requested that does NOT begin with CF. Tag name was \'"
+			System.err.println(
+					"SyntaxDictionary::getFilteredElements() - WARNING: Tag name requested that does NOT begin with CF. Tag name was \'"
 							+ start + "\'");
 		}
 		
@@ -247,15 +247,15 @@ public abstract class SyntaxDictionary {
 	public Tag getTag(String name) {
 		if (this.syntaxelements == DictionaryManager.getDictionary(DictionaryManager.CFDIC_KEY)
 				&& !name.toLowerCase().startsWith("cf")) {
-			System.err
-					.println("SyntaxDictionarY::getTag() - WARNING: Tag name requested that does NOT begin with CF. Tag name was \'"
+			System.err.println(
+					"SyntaxDictionarY::getTag() - WARNING: Tag name requested that does NOT begin with CF. Tag name was \'"
 							+ name + "\'");
 		}
 		
 		Object obj = syntaxelements.get(name.toLowerCase());
 		if (obj != null)
 			return (Tag) obj;
-		
+			
 		return null;
 	}
 	
@@ -283,8 +283,8 @@ public abstract class SyntaxDictionary {
 		
 		if (this.syntaxelements == DictionaryManager.getDictionary(DictionaryManager.CFDIC_KEY)
 				&& !tag.toLowerCase().startsWith("cf")) {
-			System.err
-					.println("SyntaxDictionarY::getFilteredAttributeValues() - WARNING: Tag name requested that does NOT begin with CF. Tag name was \'"
+			System.err.println(
+					"SyntaxDictionarY::getFilteredAttributeValues() - WARNING: Tag name requested that does NOT begin with CF. Tag name was \'"
 							+ tag + "\'");
 		}
 		
@@ -294,7 +294,7 @@ public abstract class SyntaxDictionary {
 			return null;
 		else if (attribs.size() == 0)
 			return null;
-		
+			
 		Object[] tempArray = attribs.toArray();
 		for (int i = 0; i < tempArray.length; i++) {
 			Parameter currParam = (Parameter) tempArray[i];
@@ -323,8 +323,8 @@ public abstract class SyntaxDictionary {
 		
 		if (this.syntaxelements == DictionaryManager.getDictionary(DictionaryManager.CFDIC_KEY)
 				&& !tag.toLowerCase().startsWith("cf")) {
-			System.err
-					.println("SyntaxDictionarY::getFilteredAttributes() - WARNING: Tag name requested that does NOT begin with CF. Tag name was \'"
+			System.err.println(
+					"SyntaxDictionarY::getFilteredAttributes() - WARNING: Tag name requested that does NOT begin with CF. Tag name was \'"
 							+ tag + "\'");
 		}
 		
@@ -335,7 +335,6 @@ public abstract class SyntaxDictionary {
 	 * Gets all the functions in a string Format (lowercase only). In other words the keyset of the function map not the
 	 * function objects
 	 * 
-	 * @param elementname
 	 * @return
 	 */
 	public Set getFunctions() {
@@ -384,7 +383,7 @@ public abstract class SyntaxDictionary {
 		Object obj = functions.get(name.toLowerCase());
 		if (obj != null)
 			return (Function) obj;
-		
+			
 		return null;
 	}
 	
@@ -397,14 +396,14 @@ public abstract class SyntaxDictionary {
 	public boolean tagExists(String name) {
 		if (this.syntaxelements == DictionaryManager.getDictionary(DictionaryManager.CFDIC_KEY)
 				&& !name.toLowerCase().startsWith("cf")) {
-			System.err
-					.println("SyntaxDictionarY::tagExists() - WARNING: Tag name requested that does NOT begin with CF. Tag name was \'"
+			System.err.println(
+					"SyntaxDictionarY::tagExists() - WARNING: Tag name requested that does NOT begin with CF. Tag name was \'"
 							+ name + "\'");
 		}
 		
 		if (syntaxelements == null)
 			return false;
-		
+			
 		return syntaxelements.containsKey(name.toLowerCase());
 	}
 	
@@ -417,7 +416,7 @@ public abstract class SyntaxDictionary {
 	public boolean functionExists(String name) {
 		if (functions == null)
 			return false;
-		
+			
 		return functions.containsKey(name.toLowerCase());
 	}
 	
@@ -503,8 +502,8 @@ public abstract class SyntaxDictionary {
 		
 		if (this.syntaxelements == DictionaryManager.getDictionary(DictionaryManager.CFDIC_KEY)
 				&& !elementname.toLowerCase().startsWith("cf")) {
-			System.err
-					.println("SyntaxDictionarY::getElementAttributes() - WARNING: Tag name requested that does NOT begin with CF. Tag name was \'"
+			System.err.println(
+					"SyntaxDictionarY::getElementAttributes() - WARNING: Tag name requested that does NOT begin with CF. Tag name was \'"
 							+ elementname + "\'");
 		}
 		
@@ -535,7 +534,7 @@ public abstract class SyntaxDictionary {
 		// System.err.println("loading dictionary: " + filename);
 		if (this.dictionaryURL == null)
 			throw new IOException("Dictionary file name can not be null!");
-		
+			
 		URL url = new URL(this.dictionaryURL);
 		URLConnection urlcon = url.openConnection();
 		BufferedInputStream xml = new BufferedInputStream(urlcon.getInputStream());
@@ -546,7 +545,7 @@ public abstract class SyntaxDictionary {
 		XMLReader xmlReader = factory.newSAXParser().getXMLReader();
 		
 		// setup the content handler and give it the maps for tags and functions
-		xmlReader.setContentHandler(new DictionaryContentHandler(syntaxelements, functions, scopeVars,scopes));
+		xmlReader.setContentHandler(new DictionaryContentHandler(syntaxelements, functions, scopeVars, scopes));
 		
 		InputSource input = new InputSource(xml);
 		// System.err.println("sid: " + url.toString() );

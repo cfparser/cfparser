@@ -1,10 +1,8 @@
 cfparser
 ========
-[![Build Status](https://travis-ci.org/cfparser/cfparser.svg?branch=master)](https://travis-ci.org/cfparser/cfparser.svg)
+[![Build Status](https://travis-ci.org/cfparser/cfparser.svg?branch=master)](https://travis-ci.org/cfparser/cfparser)
 
 CFParser 2.0.0 is now release on Maven Central!
-
-Thank you Ryan for the many hours updating the Parser to Antlr4.
 
 Please Note: CFParser license has been changed to BSD (http://www.opensource.org/licenses/bsd-license.html).
 

@@ -46,8 +46,8 @@ OPEN_STRING
 OPEN_STRING_SINGLE
 	: '\''
 	-> type(OPEN_STRING),pushMode(InSingleQuotes)
-	;
- 
+;
+
 //STRING_LITERAL
 //	: '"' DoubleStringCharacter* '"'
 //	| '\'' SingleStringCharacter* '\''
@@ -286,7 +286,6 @@ WDDX: [Ww][Dd][Dd][Xx];
 ZIP: [Zz][Ii][Pp];
 
 
-
 IDENTIFIER 
 	:	LETTER (LETTER|CF_DIGIT)*;
 	
@@ -314,7 +313,7 @@ FLOATING_POINT_LITERAL
   ;
 fragment ExponentPart
   : [eE] [+-]? DecimalDigit+
-  ;  
+  ;
   
   mode InDoubleQuotes;
 CLOSE_STRING

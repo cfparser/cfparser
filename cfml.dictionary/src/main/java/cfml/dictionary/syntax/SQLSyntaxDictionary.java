@@ -33,8 +33,8 @@ public class SQLSyntaxDictionary extends CFSyntaxDictionary implements ISyntaxDi
 	protected static Set sqlkeywords;
 	
 	/**
-     * 
-     */
+	 * 
+	 */
 	public SQLSyntaxDictionary() {
 		super();
 		sqlkeywords = new HashSet();
@@ -54,14 +54,14 @@ public class SQLSyntaxDictionary extends CFSyntaxDictionary implements ISyntaxDi
 	/**
 	 * load SQL keywords from the specified file; relative to dictionaryBaseURL
 	 * 
-	 * @param keywordFilename
+	 * @param keywordsURL
 	 *            The file to read from
 	 */
 	public void loadKeywords(URL keywordsURL) {
 		try {
 			if (keywordsURL == null)
 				throw new IOException("Keyword file name cannot be null!");
-			
+				
 			InputStream iStream = keywordsURL.openStream();
 			// InputStream iStream = DictionaryManager.class.getResourceAsStream("dictionary/" + keywordFilename);
 			BufferedReader fileReader = new BufferedReader(new InputStreamReader(iStream));

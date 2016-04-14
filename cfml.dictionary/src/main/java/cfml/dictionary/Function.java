@@ -32,7 +32,7 @@ import java.util.LinkedHashSet;
  * class but as mentioned a moment ago, it has a return value.
  * 
  * @author Rob
- * 
+ * 		
  */
 public class Function extends Procedure {
 	
@@ -60,7 +60,7 @@ public class Function extends Procedure {
 	public void addParameter(Parameter param) {
 		if (parameters == null)
 			parameters = new LinkedHashSet();
-		
+			
 		parameters.add(param);
 	}
 	
@@ -69,8 +69,9 @@ public class Function extends Procedure {
 	 * 
 	 * @param name
 	 *            the name
-	 * @param type
+	 * @param returntype
 	 *            the type typically string numeric or object
+	 * @param creator
 	 */
 	public Function(String name, String returntype, byte creator) {
 		this(name, creator);
