@@ -39,6 +39,7 @@ import cfml.CFSCRIPTParser.PrimaryExpressionContext;
 import cfml.CFSCRIPTParser.PrimaryExpressionIRWContext;
 import cfml.CFSCRIPTParser.StringLiteralContext;
 import cfml.CFSCRIPTParser.StringLiteralPartContext;
+import cfml.CFSCRIPTParser.TypeContext;
 import cfml.CFSCRIPTParser.UnaryExpressionContext;
 import cfml.CFSCRIPTParserBaseVisitor;
 import cfml.parsing.cfscript.ArgumentsVector;
@@ -78,14 +79,13 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		}
 		CFExpression compareExpression = null;
 		if (ctx.notExpression() != null) {
-			compareExpression = new CFUnaryExpression(getTerminalToken(ctx.notExpression().getChild(0)), visit(ctx
-					.notExpression().startExpression()));
+			compareExpression = new CFUnaryExpression(getTerminalToken(ctx.notExpression().getChild(0)),
+					visit(ctx.notExpression().startExpression()));
 		} else if (ctx.notNotExpression() != null) {
-			compareExpression = new CFUnaryExpression(getTerminalToken(ctx.notNotExpression().getChild(0)), visit(ctx
-					.notNotExpression().startExpression()));
+			compareExpression = new CFUnaryExpression(getTerminalToken(ctx.notNotExpression().getChild(0)),
+					visit(ctx.notNotExpression().startExpression()));
 		} else if (ctx.right != null) {
-			compareExpression = new CFBinaryExpression(getTerminalToken(ctx.operator), visit(ctx.left),
-					visit(ctx.right));
+			compareExpression = new CFBinaryExpression(getTerminalToken(ctx.operator), visit(ctx.left), visit(ctx.right));
 		} else {
 			compareExpression = visit(ctx.left);
 		}
@@ -126,8 +126,8 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	@Override
 	public CFExpression visitForInKey(ForInKeyContext ctx) {
 		if (ctx.VAR() != null) {
-			CFVarDeclExpression declExpression = new CFVarDeclExpression(ctx.VAR().getSymbol(),
-					(CFIdentifier) visitChildren(ctx), (CFExpression) null);
+			CFVarDeclExpression declExpression = new CFVarDeclExpression(ctx.VAR().getSymbol(), (CFIdentifier) visitChildren(ctx),
+					(CFExpression) null);
 			return declExpression;
 		}
 		return super.visitForInKey(ctx);
@@ -227,8 +227,7 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	@Override
 	public CFExpression visitParentheticalExpression(ParentheticalExpressionContext ctx) {
 		if (ctx.getChildCount() == 3) {
-			CFUnaryExpression unaryExpression = new CFUnaryExpression(getTerminalToken(ctx.getChild(0)),
-					visit(ctx.getChild(1)));
+			CFUnaryExpression unaryExpression = new CFUnaryExpression(getTerminalToken(ctx.getChild(0)), visit(ctx.getChild(1)));
 			return unaryExpression;
 			
 		} else {
@@ -296,6 +295,11 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 			return new CFIdentifier(ctx.start, ctx.getChild(0).getText(), ctx.getChild(1).getText());
 		else
 			return new CFIdentifier(ctx.start, ctx.getChild(0).getText());
+	}
+	
+	@Override
+	public CFExpression visitType(TypeContext ctx) {
+		return new CFIdentifier(ctx.start, ctx.getChild(0).getText());
 	}
 	
 	@Override
@@ -397,8 +401,7 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 				}
 			}
 		}
-		CFFunctionExpression cfFunctionExpression = new CFFunctionExpression((CFIdentifier) visit(ctx.getChild(0)),
-				args);
+		CFFunctionExpression cfFunctionExpression = new CFFunctionExpression((CFIdentifier) visit(ctx.getChild(0)), args);
 		return cfFunctionExpression;
 	}
 	

@@ -11,6 +11,9 @@ public class CFPropertyStatement extends CFParsedAttributeStatement implements j
 	private static final long serialVersionUID = 1L;
 	
 	private static HashSet<String> validAttributes;
+	private static boolean shorthand = false;
+	private static CFExpression propertyName;
+	private static CFExpression propertyType;
 	
 	static {
 		validAttributes = new HashSet<String>();
@@ -30,12 +33,31 @@ public class CFPropertyStatement extends CFParsedAttributeStatement implements j
 	@Override
 	public String Decompile(int indent) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("param");
-		DecompileAttributes(sb);
+		sb.append("property");
+		if (!shorthand) {
+			DecompileAttributes(sb);
+		} else {
+			sb.append(" ");
+			sb.append(propertyType.Decompile(0));
+			sb.append(" ");
+			sb.append(propertyName.Decompile(0));
+		}
 		return sb.toString();
 	}
 	
 	public static HashSet<String> getValidAttributes() {
 		return validAttributes;
+	}
+	
+	public void setIsShortHand(boolean b) {
+		shorthand = b;
+	}
+	
+	public void setPropertyName(CFExpression cfExpression) {
+		propertyName = cfExpression;
+	}
+	
+	public void setPropertyType(CFExpression cfExpression) {
+		propertyType = cfExpression;
 	}
 }

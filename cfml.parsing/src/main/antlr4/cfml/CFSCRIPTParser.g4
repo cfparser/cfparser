@@ -71,7 +71,8 @@ parameterType
   ;
 
 componentAttribute
-  : (prefix=identifier COLON)? id=identifier op=EQUALSOP startExpression //-> ^(COMPONENT_ATTRIBUTE identifier (COLON identifier)? baseExpression)
+  : id=identifier //-> ^(COMPONENT_ATTRIBUTE identifier)
+  | (prefix=identifier COLON)? id=identifier op=EQUALSOP startExpression //-> ^(COMPONENT_ATTRIBUTE identifier (COLON identifier)? baseExpression)
   ;
 //i=identifier EQUALSOP^ v=baseExpression
    
@@ -311,6 +312,7 @@ cfmlFunction
   | TREEITEM
   | UPDATE
   | WDDX
+  | ZIP
   ;
 
 /*
