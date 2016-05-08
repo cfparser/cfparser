@@ -1,7 +1,5 @@
 /*===TOKENS===*/
-LT                       <<>
-IDENTIFIER               <cfscript>
-GT                       <>>
+SCRIPTOPEN               <<cfscript>>
 IDENTIFIER               <foo>
 '='                      <=>
 '{'                      <{>
@@ -15,72 +13,61 @@ IDENTIFIER               <foo>
 IDENTIFIER               <bar>
 '++'                     <++>
 ';'                      <;>
-LT                       <<>
-'/'                      </>
-IDENTIFIER               <cfscript>
-GT                       <>>
+SCRIPTCLOSE              <</cfscript>>
 /*===TREE===*/
 (scriptBlock
-  (element statement)
-  (element (statement <))
-  (element
-    (statement
-      (assignmentExpression
-        (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier cfscript))))
-            (compareExpressionOperator >)
+  <cfscript>
+  (scriptBlock
+    (element
+      (statement
+        (assignmentExpression
+          (startExpression
             (compareExpression
               (baseExpression (unaryExpression (memberExpression (identifier foo))))
             )
           )
-        )
-        =
-        (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (primaryExpression
-                  (implicitStruct
-                    {
-                    (implicitStructElements
-                      (implicitStructExpression
-                        (implicitStructKeyExpression (multipartIdentifier (identifier bar)))
-                        :
-                        (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+          =
+          (startExpression
+            (compareExpression
+              (baseExpression
+                (unaryExpression
+                  (primaryExpression
+                    (implicitStruct
+                      {
+                      (implicitStructElements
+                        (implicitStructExpression
+                          (implicitStructKeyExpression (multipartIdentifier (identifier bar)))
+                          :
+                          (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                        )
                       )
+                      }
                     )
-                    }
                   )
                 )
               )
             )
           )
         )
+        ;
       )
-      ;
     )
-  )
-  (element
-    (statement
-      (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (unaryExpression (memberExpression (identifier foo) . (identifier bar)))
-              ++
+    (element
+      (statement
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (unaryExpression (memberExpression (identifier foo) . (identifier bar)))
+                ++
+              )
             )
           )
         )
+        ;
       )
-      ;
     )
+    (endOfScriptBlock </cfscript>)
   )
-  (element statement)
-  (element (statement < /))
-  (element statement)
-  (element (statement cfscript))
-  (element (statement >))
-  (endOfScriptBlock <EOF>)
 )
 /*======*/

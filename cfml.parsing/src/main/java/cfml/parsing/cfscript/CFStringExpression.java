@@ -26,7 +26,9 @@ public class CFStringExpression extends CFExpression {
 		for (CFExpression expression : subExpressions) {
 			if (expression instanceof CFLiteral) {
 				final String txt = expression.Decompile(0);
-				sb.append(txt.substring(1, txt.length() - 1));
+				if (txt != null) {
+					sb.append(txt.substring(1, txt.length() - 1));
+				}
 			} else {
 				sb.append("#");
 				sb.append(expression.Decompile(0));

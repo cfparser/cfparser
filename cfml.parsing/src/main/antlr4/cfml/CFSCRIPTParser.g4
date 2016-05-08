@@ -9,10 +9,11 @@ options { tokenVocab=CFSCRIPTLexer; }
 ////--- cfscript grammar rules
 
 scriptBlock
-  : 
+  :
   importStatement*
   componentDeclaration
   | ( element )* endOfScriptBlock
+  | SCRIPTOPEN scriptBlock
   ; 
 
 componentDeclaration
@@ -226,6 +227,7 @@ tagOperatorStatement
   | threadStatement
   | transactionStatement
   | cfmlfunctionStatement
+  | tagFunctionStatement
   ; 
   
 rethrowStatment:
@@ -238,7 +240,7 @@ includeStatement
   ;
 
 importStatement
-  : lc=IMPORT componentPath (DOT all=STAR)? SEMICOLON 
+  : lc=IMPORT componentPath (DOT all=STAR)? SEMICOLON
   ;
 
 transactionStatement
@@ -246,13 +248,16 @@ transactionStatement
   ;
   
 cfmlfunctionStatement
-  : cfmlFunction (paramStatementAttributes)? (compoundStatement | SEMICOLON)//-> ^(CFMLFUNCTIONSTATEMENT cfmlFunction (param)* (compoundStatement)?)
+  : cfmlFunction (paramStatementAttributes)? (compoundStatement | SEMICOLON) //-> ^(CFMLFUNCTIONSTATEMENT cfmlFunction (param)* (compoundStatement)?)
   ;
-  
+
+tagFunctionStatement
+  : cfmlFunction (LEFTPAREN parameterList RIGHTPAREN)? (compoundStatement | SEMICOLON)?
+  ;
+
 cfmlFunction
   : SAVECONTENT
-  | HTTP 
-  | FILE 
+  | FILE
   | PROPERTY
   | DIRECTORY
   | LOOP 
@@ -277,7 +282,10 @@ cfmlFunction
   | GRIDUPDATE
   | HEADER
   | HTMLHEAD
+  | HTTP
+  | CFHTTP
   | HTTPPARAM
+  | CFHTTPPARAM
   | IMPERSONATE
   | INDEX
   | INPUT
@@ -313,6 +321,7 @@ cfmlFunction
   | UPDATE
   | WDDX
   | ZIP
+  | CFCUSTOM_IDENTIFIER
   ;
 
 /*
@@ -413,6 +422,7 @@ compareExpression
 		(operator=compareExpressionOperator right=compareExpression)?
 	) 
 	(QUESTIONMARK ternaryExpression1=startExpression COLON ternaryExpression2=startExpression)?
+
 	;
 	
 compareExpressionOperator:

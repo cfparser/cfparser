@@ -1,0 +1,68 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+IDENTIFIER               <target>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <blank>
+CLOSE_STRING             <">
+'{'                      <{>
+IDENTIFIER               <color>
+'='                      <=>
+OPEN_STRING              <">
+DOUBLEHASH               <##>
+STRING_LITERAL           <000000>
+CLOSE_STRING             <">
+';'                      <;>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentAttribute
+      (identifier target)
+      =
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (primaryExpression
+                (literalExpression (stringLiteral " (stringLiteralPart blank) "))
+              )
+            )
+          )
+        )
+      )
+    )
+    (componentGuts
+      {
+      (element
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression (unaryExpression (memberExpression (identifier color))))
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression
+                        (stringLiteral " (stringLiteralPart ##) (stringLiteralPart 000000) ")
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/

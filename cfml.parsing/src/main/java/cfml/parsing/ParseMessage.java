@@ -77,6 +77,9 @@ public class ParseMessage {
 		docEndOffset = docEnd;
 		docData = data;
 		message = msg;
+		if (message == null) {
+			message = data;
+		}
 	}
 	
 	/**
@@ -192,7 +195,6 @@ public class ParseMessage {
 	
 	@Override
 	public String toString() {
-		return "Line: " + lineNumber + " offset:" + docStartOffset + " endoffset:" + docEndOffset + " message:"
-				+ message;
+		return "Line: " + lineNumber + " offset:" + docStartOffset + " endoffset:" + docEndOffset + " message:" + message;
 	}
 }
