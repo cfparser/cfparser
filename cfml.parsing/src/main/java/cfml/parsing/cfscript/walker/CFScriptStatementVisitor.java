@@ -167,9 +167,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 					cfExpressionVisitor.visit(attr.startExpression()));
 		}
 		
-		CFFuncDeclStatement funcDeclStatement = new CFFuncDeclStatement(ctx.FUNCTION().getSymbol(),
-				(CFIdentifier) null, getText(ctx.accessType()), getText(ctx.typeSpec()), parameters, attributes,
-				visit(ctx.body));
+		CFFuncDeclStatement funcDeclStatement = new CFFuncDeclStatement(ctx.FUNCTION().getSymbol(), (CFIdentifier) null,
+				getText(ctx.accessType()), getText(ctx.typeSpec()), parameters, attributes, visit(ctx.body));
 		return funcDeclStatement;
 	}
 	
@@ -178,8 +177,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	public CFScriptStatement visitParameter(ParameterContext ctx) {
 		// System.out.println("visitParameter");
 		
-		CFExpression defaultExpr = (ctx.startExpression() != null) ? cfExpressionVisitor.visitStartExpression(ctx
-				.startExpression()) : null;
+		CFExpression defaultExpr = (ctx.startExpression() != null)
+				? cfExpressionVisitor.visitStartExpression(ctx.startExpression()) : null;
 		CFFunctionParameter functionParameter = new CFFunctionParameter(
 				(CFIdentifier) cfExpressionVisitor.visitIdentifier(ctx.identifier()), ctx.REQUIRED() != null,
 				getText(ctx.parameterType()), defaultExpr);
@@ -236,7 +235,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 				|| ctx.getChild(0) instanceof AssignmentExpressionContext
 				|| ctx.getChild(0) instanceof BaseExpressionContext
 				|| ctx.getChild(0) instanceof CompareExpressionContext) {
-			CFExpressionStatement expressionStmt = new CFExpressionStatement(cfExpressionVisitor.visit(ctx.getChild(0)));
+			CFExpressionStatement expressionStmt = new CFExpressionStatement(
+					cfExpressionVisitor.visit(ctx.getChild(0)));
 			// System.out.println("visitStatement.b" + expressionStmt.Decompile(0));
 			return expressionStmt;
 		}
@@ -246,8 +246,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	@Override
 	public CFScriptStatement visitReturnStatement(ReturnStatementContext ctx) {
 		// System.out.println("visitReturnStatement");
-		CFReturnStatement returnStatement = new CFReturnStatement(ctx.getStart(), cfExpressionVisitor.visit(ctx
-				.getChild(1)));
+		CFReturnStatement returnStatement = new CFReturnStatement(ctx.getStart(),
+				cfExpressionVisitor.visit(ctx.getChild(1)));
 		return returnStatement;
 	}
 	
@@ -279,13 +279,15 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	public CFScriptStatement visitForStatement(ForStatementContext ctx) {
 		// System.out.println("visitForStatement");
 		if (ctx.forInKey() != null) {
-			CFForInStatement forInStatement = new CFForInStatement(ctx.FOR().getSymbol(), cfExpressionVisitor.visit(ctx
-					.forInKey()), cfExpressionVisitor.visit(ctx.inExpr), visit(ctx.statement()));
+			CFForInStatement forInStatement = new CFForInStatement(ctx.FOR().getSymbol(),
+					cfExpressionVisitor.visit(ctx.forInKey()), cfExpressionVisitor.visit(ctx.inExpr),
+					visit(ctx.statement()));
 			return forInStatement;
 		} else {
 			CFForStatement forStatement = new CFForStatement(ctx.FOR().getSymbol(),
-					cfExpressionVisitor.visit(ExpressionUtils.coalesce(ctx.localAssignmentExpression(),
-							ctx.initExpression)), cfExpressionVisitor.visit(ctx.condExpression),
+					cfExpressionVisitor
+							.visit(ExpressionUtils.coalesce(ctx.localAssignmentExpression(), ctx.initExpression)),
+					cfExpressionVisitor.visit(ctx.condExpression),
 					cfExpressionVisitor.visit(ExpressionUtils.coalesce(ctx.incrExpression, ctx.incrExpression2)),
 					visit(ctx.statement()));
 			return forStatement;
@@ -512,8 +514,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	public CFScriptStatement visitParam(ParamContext ctx) {
 		// System.out.println("visitParam");
 		if (!aggregator.isEmpty() && aggregator.peek() instanceof CFParsedAttributeStatement) {
-			((CFParsedAttributeStatement) aggregator.peek()).getAttributes().put(
-					(CFIdentifier) visitExpression(ctx.identifier()), visitExpression(ctx.startExpression()));
+			((CFParsedAttributeStatement) aggregator.peek()).getAttributes()
+					.put((CFIdentifier) visitExpression(ctx.identifier()), visitExpression(ctx.startExpression()));
 			return null;
 		} else {
 			return super.visitParam(ctx);

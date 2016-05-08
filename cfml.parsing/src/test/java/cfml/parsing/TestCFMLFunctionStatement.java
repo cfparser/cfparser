@@ -4,7 +4,6 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import cfml.parsing.cfscript.script.CFScriptStatement;
@@ -117,19 +116,14 @@ public class TestCFMLFunctionStatement {
 	}
 	
 	@Test
-	@Ignore
 	public void testIncludeWithTemplateStatementFail() {
-		/* need to check if this is valid in OBD/ACF */
 		String script = "include template=\"/ram/#randName#\";";
 		CFScriptStatement scriptStatement = null;
-		try {
-			scriptStatement = parseScript(script);
-			scriptStatement.Decompile(0);
-		} catch (Exception fail) {
-			return;
+		scriptStatement = parseScript(script);
+		scriptStatement.Decompile(0);
+		if (fCfmlParser.getMessages().size() != 1) {
+			fail("error expected");
 		}
-		fail("error expected");
-		
 	}
 	
 	@Test
@@ -146,14 +140,32 @@ public class TestCFMLFunctionStatement {
 	
 	@Test
 	public void testImportStatement() {
-		/* need to check if this is valid in OBD/ACF */
-		String script = "import projectshen.core.*;";
+		/* only valid in Lucee/Railo */
+		String script = "import projectshen.core.*; component {}";
 		CFScriptStatement scriptStatement = null;
 		scriptStatement = parseScript(script);
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}
 		assertNotNull(scriptStatement);
+		/* valid in ACF/Lucee/Railo */
+		script = "component { import projectshen.core.*; }";
+		scriptStatement = null;
+		scriptStatement = parseScript(script);
+		if (fCfmlParser.getMessages().size() > 0) {
+			fail("whoops! " + fCfmlParser.getMessages());
+		}
+		assertNotNull(scriptStatement);
+	}
+	
+	@Test
+	public void testImportStatementFail() {
+		/* need to check if this is valid in OBD/ACF */
+		String script = "import projectshen.core.*";
+		parseScript(script);
+		if (fCfmlParser.getMessages().size() != 1) {
+			fail("whoops! " + fCfmlParser.getMessages());
+		}
 	}
 	
 }

@@ -20,6 +20,7 @@ import org.junit.runners.Parameterized;
 
 import cfml.CFSCRIPTLexer;
 import cfml.CFSCRIPTParser;
+import cfml.parsing.reporting.ArrayErrorListener;
 import cfml.parsing.util.TreeUtils;
 import cfml.parsing.utils.TestUtils;
 
@@ -78,6 +79,7 @@ public class TestFiles {
 		
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
 		final CFSCRIPTParser parser = new CFSCRIPTParser(tokens);
+		parser.addErrorListener(new ArrayErrorListener(errors));
 		
 		CFSCRIPTParser.ScriptBlockContext parseTree = null;
 		parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
@@ -89,7 +91,6 @@ public class TestFiles {
 			parser.getInterpreter().setPredictionMode(PredictionMode.LL);
 			parseTree = parser.scriptBlock(); // STAGE 2
 		}
-		
 		final String actualTree = TreeUtils.printTree(parseTree, parser);
 		if (!errors.isEmpty()) {
 			System.out.println("/*===TOKENS===*/\r\n" + actualTokens + "\r\n");
@@ -108,6 +109,10 @@ public class TestFiles {
 			}
 			assertEquals("Parse trees do not match", expectedTree, actualTree);
 		}
+		if (!errors.isEmpty()) {
+			System.out.println(errors.toString());
+		}
+		assertEquals(true, errors.isEmpty());
 	}
 	
 	private void writeExpectFile(File expectedFile, String actualTokens, String actualTree) throws IOException {

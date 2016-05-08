@@ -15,6 +15,7 @@ Check out the code samples here! You can write tags in CFScript
 Mark
 ");
 }
+directory name="dir" directory=dir action="list";
 //Query a database
 query name="getUsers" dataSource="myDatasource"{
 echo("SELECT * FROM tusers WHERE UserID =");

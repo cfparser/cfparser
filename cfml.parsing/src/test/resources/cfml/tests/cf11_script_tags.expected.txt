@@ -1,5 +1,5 @@
 /*===TOKENS===*/
-IDENTIFIER               <cfhttp>
+CFHTTP                   <cfhttp>
 '('                      <(>
 IDENTIFIER               <url>
 '='                      <=>
@@ -14,23 +14,19 @@ STRING_LITERAL           <GET>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
-IDENTIFIER               <Cfhttp>
+CFHTTP                   <Cfhttp>
 '('                      <(>
 IDENTIFIER               <URL>
 '='                      <=>
-HTTP                     <http://>
+OPEN_STRING              <">
+STRING_LITERAL           <http://>
 '#'                      <#>
 IDENTIFIER               <CGI>
 '.'                      <.>
 IDENTIFIER               <SERVER_NAME>
 '#'                      <#>
-'.'                      <.>
-'.'                      <.>
-'.'                      <.>
-'/'                      </>
-IDENTIFIER               <target>
-'.'                      <.>
-IDENTIFIER               <cfm>
+STRING_LITERAL           <.../target.cfm>
+CLOSE_STRING             <">
 ','                      <,>
 IDENTIFIER               <method>
 '='                      <=>
@@ -39,7 +35,7 @@ STRING_LITERAL           <GET>
 CLOSE_STRING             <">
 ')'                      <)>
 '{'                      <{>
-IDENTIFIER               <cfhttpparam>
+CFHTTPPARAM              <cfhttpparam>
 '('                      <(>
 IDENTIFIER               <type>
 '='                      <=>
@@ -60,7 +56,7 @@ STRING_LITERAL           <Awdhesh>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
-IDENTIFIER               <cfhttpparam>
+CFHTTPPARAM              <cfhttpparam>
 '('                      <(>
 IDENTIFIER               <type>
 '='                      <=>
@@ -84,7 +80,7 @@ CLOSE_STRING             <">
 '}'                      <}>
 IDENTIFIER               <Writeoutput>
 '('                      <(>
-IDENTIFIER               <cfhttp>
+CFHTTP                   <cfhttp>
 '.'                      <.>
 IDENTIFIER               <filecontent>
 ')'                      <)>
@@ -93,24 +89,124 @@ IDENTIFIER               <filecontent>
 (scriptBlock
   (element
     (statement
-      (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (memberExpression
-                (functionCall
-                  (identifierOrReservedWord (identifier cfhttp))
+      (tagOperatorStatement
+        (tagFunctionStatement
+          (cfmlFunction cfhttp)
+          (
+          (parameterList
+            (parameter
+              (identifier url)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart www.google.com) "))
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            ,
+            (parameter
+              (identifier method)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart GET) "))
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          )
+          ;
+        )
+      )
+    )
+  )
+  (element
+    (statement
+      (tagOperatorStatement
+        (tagFunctionStatement
+          (cfmlFunction Cfhttp)
+          (
+          (parameterList
+            (parameter
+              (identifier URL)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression
+                          (stringLiteral
+                            "
+                            (stringLiteralPart http://)
+                            #
+                            (startExpression
+                              (compareExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (memberExpression (identifier CGI) . (identifier SERVER_NAME))
+                                  )
+                                )
+                              )
+                            )
+                            #
+                            (stringLiteralPart .../target.cfm)
+                            "
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            ,
+            (parameter
+              (identifier method)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart GET) "))
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          )
+          (compoundStatement
+            {
+            (statement
+              (tagOperatorStatement
+                (tagFunctionStatement
+                  (cfmlFunction cfhttpparam)
                   (
-                  (argumentList
-                    (argument
-                      (identifier url)
+                  (parameterList
+                    (parameter
+                      (identifier type)
                       =
                       (startExpression
                         (compareExpression
                           (baseExpression
                             (unaryExpression
                               (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart www.google.com) "))
+                                (literalExpression (stringLiteral " (stringLiteralPart url) "))
                               )
                             )
                           )
@@ -118,15 +214,31 @@ IDENTIFIER               <filecontent>
                       )
                     )
                     ,
-                    (argument
-                      (identifier method)
+                    (parameter
+                      (identifier name)
                       =
                       (startExpression
                         (compareExpression
                           (baseExpression
                             (unaryExpression
                               (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart GET) "))
+                                (literalExpression (stringLiteral ' (stringLiteralPart emp_name) '))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    ,
+                    (parameter
+                      (identifier value)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart Awdhesh) "))
                               )
                             )
                           )
@@ -135,216 +247,72 @@ IDENTIFIER               <filecontent>
                     )
                   )
                   )
+                  ;
                 )
               )
             )
-          )
-        )
-      )
-      ;
-    )
-  )
-  (element statement)
-  (element (statement Cfhttp))
-  (element (statement ())
-  (element
-    (statement
-      (assignmentExpression
-        (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier URL))))
-          )
-        )
-        =
-        (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression (memberExpression (identifier (cfmlFunction http://))))
-            )
-          )
-        )
-      )
-      <missing ';'>
-    )
-  )
-  (element statement)
-  (element (statement #))
-  element
-  (element CGI)
-  (element (statement .))
-  (element SERVER_NAME)
-  (element (statement #))
-  (element (statement .))
-  (element (statement .))
-  (element (statement . /))
-  element
-  (element target)
-  (element (statement .))
-  (element cfm ,)
-  (element
-    (statement
-      (assignmentExpression
-        (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier method))))
-          )
-        )
-        =
-        (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (primaryExpression
-                  (literalExpression (stringLiteral " (stringLiteralPart GET) "))
-                )
-                )
-              )
-            )
-          )
-        )
-      )
-      <missing ';'>
-    )
-  )
-  (element
-    (statement
-      (compoundStatement
-        {
-        (statement
-          (startExpression
-            (compareExpression
-              (baseExpression
-                (unaryExpression
-                  (memberExpression
-                    (functionCall
-                      (identifierOrReservedWord (identifier cfhttpparam))
-                      (
-                      (argumentList
-                        (argument
-                          (identifier type)
-                          =
-                          (startExpression
-                            (compareExpression
-                              (baseExpression
-                                (unaryExpression
-                                  (primaryExpression
-                                    (literalExpression (stringLiteral " (stringLiteralPart url) "))
-                                  )
-                                )
-                              )
-                            )
-                          )
-                        )
-                        ,
-                        (argument
-                          (identifier name)
-                          =
-                          (startExpression
-                            (compareExpression
-                              (baseExpression
-                                (unaryExpression
-                                  (primaryExpression
-                                    (literalExpression (stringLiteral ' (stringLiteralPart emp_name) '))
-                                  )
-                                )
-                              )
-                            )
-                          )
-                        )
-                        ,
-                        (argument
-                          (identifier value)
-                          =
-                          (startExpression
-                            (compareExpression
-                              (baseExpression
-                                (unaryExpression
-                                  (primaryExpression
-                                    (literalExpression (stringLiteral " (stringLiteralPart Awdhesh) "))
-                                  )
-                                )
+            (statement
+              (tagOperatorStatement
+                (tagFunctionStatement
+                  (cfmlFunction cfhttpparam)
+                  (
+                  (parameterList
+                    (parameter
+                      (identifier type)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart header) "))
                               )
                             )
                           )
                         )
                       )
+                    )
+                    ,
+                    (parameter
+                      (identifier name)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral ' (stringLiteralPart myheader) '))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    ,
+                    (parameter
+                      (identifier value)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart My custom header) "))
+                              )
+                            )
+                          )
+                        )
                       )
                     )
                   )
-                )
-              )
-            )
-          )
-          ;
-        )
-        (statement
-          (startExpression
-            (compareExpression
-              (baseExpression
-                (unaryExpression
-                  (memberExpression
-                    (functionCall
-                      (identifierOrReservedWord (identifier cfhttpparam))
-                      (
-                      (argumentList
-                        (argument
-                          (identifier type)
-                          =
-                          (startExpression
-                            (compareExpression
-                              (baseExpression
-                                (unaryExpression
-                                  (primaryExpression
-                                    (literalExpression (stringLiteral " (stringLiteralPart header) "))
-                                  )
-                                )
-                              )
-                            )
-                          )
-                        )
-                        ,
-                        (argument
-                          (identifier name)
-                          =
-                          (startExpression
-                            (compareExpression
-                              (baseExpression
-                                (unaryExpression
-                                  (primaryExpression
-                                    (literalExpression (stringLiteral ' (stringLiteralPart myheader) '))
-                                  )
-                                )
-                              )
-                            )
-                          )
-                        )
-                        ,
-                        (argument
-                          (identifier value)
-                          =
-                          (startExpression
-                            (compareExpression
-                              (baseExpression
-                                (unaryExpression
-                                  (primaryExpression
-                                    (literalExpression (stringLiteral " (stringLiteralPart My custom header) "))
-                                  )
-                                )
-                              )
-                            )
-                          )
-                        )
-                      )
-                      )
-                    )
                   )
+                  ;
                 )
               )
             )
+            }
           )
-          ;
         )
-        }
       )
     )
   )
@@ -364,7 +332,11 @@ IDENTIFIER               <filecontent>
                         (compareExpression
                           (baseExpression
                             (unaryExpression
-                              (memberExpression (identifier cfhttp) . (identifier filecontent))
+                              (memberExpression
+                                (identifier (cfmlFunction cfhttp))
+                                .
+                                (identifier filecontent)
+                              )
                             )
                           )
                         )

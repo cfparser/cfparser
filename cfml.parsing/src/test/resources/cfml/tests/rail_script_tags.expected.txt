@@ -146,6 +146,21 @@ CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
 '}'                      <}>
+DIRECTORY                <directory>
+IDENTIFIER               <name>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <dir>
+CLOSE_STRING             <">
+DIRECTORY                <directory>
+'='                      <=>
+IDENTIFIER               <dir>
+IDENTIFIER               <action>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <list>
+CLOSE_STRING             <">
+';'                      <;>
 LINE_COMMENT             <//Query a database
 >
 QUERY                    <query>
@@ -651,6 +666,57 @@ IDENTIFIER               <getUsers>
             )
             }
           )
+        )
+      )
+    )
+  )
+  (element
+    (statement
+      (tagOperatorStatement
+        (cfmlfunctionStatement
+          (cfmlFunction directory)
+          (paramStatementAttributes
+            (param
+              (identifier name)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart dir) "))
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            (param
+              (identifier (cfmlFunction directory))
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression (unaryExpression (memberExpression (identifier dir))))
+                )
+              )
+            )
+            (param
+              (identifier action)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart list) "))
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          ;
         )
       )
     )

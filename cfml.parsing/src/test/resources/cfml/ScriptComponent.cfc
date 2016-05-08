@@ -1,5 +1,7 @@
 component output="false" {
 
+	color="##000000";
+
 	string function headSpin(required anything, area="elavator") {
 		var toot = "se5ee6yye67tutuityit69t9imfuihki";
 		return funk;

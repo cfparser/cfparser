@@ -1,7 +1,7 @@
 /*===TOKENS===*/
 LINE_COMMENT             <// cfm file based custom tags
 >
-IDENTIFIER               <Cf_happybirthday>
+CFCUSTOM_IDENTIFIER      <Cf_happybirthday>
 '('                      <(>
 IDENTIFIER               <name>
 '='                      <=>
@@ -20,55 +20,47 @@ CLOSE_STRING             <">
 (scriptBlock
   (element
     (statement
-      (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (memberExpression
-                (functionCall
-                  (identifierOrReservedWord (identifier Cf_happybirthday))
-                  (
-                  (argumentList
-                    (argument
-                      (identifier name)
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart john) "))
-                              )
-                            )
-                          )
-                        )
-                      )
-                    )
-                    ,
-                    (argument
-                      (identifier birthdate)
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart December 5, 1987) "))
-                              )
-                            )
-                          )
-                        )
+      (tagOperatorStatement
+        (tagFunctionStatement
+          (cfmlFunction Cf_happybirthday)
+          (
+          (parameterList
+            (parameter
+              (identifier name)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart john) "))
                       )
                     )
                   )
+                )
+              )
+            )
+            ,
+            (parameter
+              (identifier birthdate)
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart December 5, 1987) "))
+                      )
+                    )
                   )
                 )
               )
             )
           )
+          )
+          ;
         )
       )
-      ;
     )
   )
   (endOfScriptBlock <EOF>)

@@ -150,7 +150,8 @@ SWITCH: [sS][wW][iI][tT][cC][hH];
 CASE: [cC][aA][sS][eE];
 DEFAULT: [dD][eE][fF][aA][uU][lL][tT];
 FINALLY: [fF][iI][nN][aA][lL][lL][yY];
-SCRIPTCLOSE: '</CFSCRIPT>'; 
+SCRIPTOPEN: '<' [cC] [fF] [sS] [cC] [rR] [iI] [pP] [tT] '>';
+SCRIPTCLOSE:'</' [cC] [fF] [sS] [cC] [rR] [iI] [pP] [tT] '>';
 // operators
 DOT: '.';
 STAR: '*';
@@ -199,6 +200,7 @@ TRANSACTION: [tT][rR][aA][nN][sS][aA][cC][tT][iI][oO][nN];
 // cfmlfunction (tags you can call from script)
 SAVECONTENT: [sS][aA][vV][eE][cC][oO][nN][tT][eE][nN][tT];
 HTTP: [hH][tT][tT][pP][sS]?([:][/][/])?;
+CFHTTP: [cC][fF] HTTP;
 FILE: [fF][iI][lL][eE];
 DIRECTORY: [dD][iI][rR][eE][cC][tT][oO][rR][yY];
 LOOP: [lL][oO][oO][pP]; 
@@ -249,6 +251,7 @@ GRIDUPDATE: [Gg][Rr][Ii][Dd][Uu][Pp][Dd][Aa][Tt][Ee];
 HEADER: [Hh][Ee][Aa][Dd][Ee][Rr];
 HTMLHEAD: [Hh][Tt][Mm][Ll][Hh][Ee][Aa][Dd];
 HTTPPARAM: [Hh][Tt][Tt][Pp][Pp][Aa][Rr][Aa][Mm];
+CFHTTPPARAM: [cC][fF] HTTPPARAM;
 IMPERSONATE: [Ii][Mm][Pp][Ee][Rr][Ss][Oo][Nn][Aa][Tt][Ee];
 INDEX: [Ii][Nn][Dd][Ee][Xx];
 INPUT: [Ii][Nn][Pp][Uu][Tt];
@@ -285,6 +288,7 @@ UPDATE: [Uu][Pp][Dd][Aa][Tt][Ee];
 WDDX: [Ww][Dd][Dd][Xx];
 ZIP: [Zz][Ii][Pp];
 
+CFCUSTOM_IDENTIFIER: [cC][fF]'_' IDENTIFIER+;
 
 IDENTIFIER 
 	:	LETTER (LETTER|CF_DIGIT)*;
@@ -324,7 +328,7 @@ DOUBLEHASH
 	: '##' 
 ;
 STRING_LITERAL
-	: ~["#]+
+	: (~["#]+ | '""' )*
 ;
 HASH
 	: '#' -> type(POUND_SIGN),pushMode(HashMode),pushMode(DefaultMode)
@@ -339,7 +343,7 @@ DOUBLEHASH_SINGLE
 	: '##' -> type(DOUBLEHASH)
 ;
 STRING_LITERAL_SINGLE
-	: ~['#]+ -> type(STRING_LITERAL)
+	: (~['#]+ | '\'\'' )* -> type(STRING_LITERAL)
 ;
 HASH_SINGLE
 	: '#' -> type(POUND_SIGN),pushMode(HashMode),pushMode(DefaultMode)
