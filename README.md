@@ -4,7 +4,7 @@ cfparser
 
 CFParser 2.0.0 is now release on Maven Central!
 
-Please Note: CFParser license has been changed to BSD (http://www.opensource.org/licenses/bsd-license.html).
+The CFParser license is BSD (http://www.opensource.org/licenses/bsd-license.html).
 
 To build use:
 mvn clean install
