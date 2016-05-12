@@ -2,7 +2,7 @@ cfparser
 ========
 [![Build Status](https://travis-ci.org/cfparser/cfparser.svg?branch=master)](https://travis-ci.org/cfparser/cfparser)
 
-CFParser 2.0.0 is now release on Maven Central!
+CFParser 2.2.1 is available on Maven Central!
 
 The CFParser license is BSD (http://www.opensource.org/licenses/bsd-license.html).
 
