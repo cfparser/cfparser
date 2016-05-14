@@ -17,7 +17,7 @@ IDENTIFIER               <x>
     (statement
       (localAssignmentExpression
         var
-        (identifier x)
+        (multipartIdentifier (identifier x))
         =
         (startExpression
           (compareExpression
@@ -32,7 +32,7 @@ IDENTIFIER               <x>
     (statement
       (localAssignmentExpression
         var
-        (identifier y)
+        (multipartIdentifier (identifier y))
         =
         (startExpression
           (compareExpression
