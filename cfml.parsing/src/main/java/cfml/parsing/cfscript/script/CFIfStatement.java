@@ -9,8 +9,7 @@ public class CFIfStatement extends CFParsedStatement implements java.io.Serializ
 	private CFScriptStatement thenStatement;
 	private CFScriptStatement elseStatement; // null if there is no else clause
 	
-	public CFIfStatement(org.antlr.v4.runtime.Token _t, CFExpression _cond, CFScriptStatement _then,
-			CFScriptStatement _else) {
+	public CFIfStatement(org.antlr.v4.runtime.Token _t, CFExpression _cond, CFScriptStatement _then, CFScriptStatement _else) {
 		super(_t);
 		cond = _cond;
 		thenStatement = _then;
@@ -32,7 +31,9 @@ public class CFIfStatement extends CFParsedStatement implements java.io.Serializ
 		s.append("if(");
 		s.append(cond.Decompile(indent));
 		s.append(" ) ");
-		s.append(thenStatement.Decompile(indent + 2));
+		if (thenStatement != null) {
+			s.append(thenStatement.Decompile(indent + 2));
+		}
 		if (elseStatement != null) {
 			s.append("\n");
 			s.append(Indent(indent));
