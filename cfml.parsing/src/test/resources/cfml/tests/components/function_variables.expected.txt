@@ -43,7 +43,7 @@ CLOSE_STRING             <">
             (statement
               (localAssignmentExpression
                 var
-                (identifier foo)
+                (multipartIdentifier (identifier foo))
                 =
                 (startExpression
                   (compareExpression

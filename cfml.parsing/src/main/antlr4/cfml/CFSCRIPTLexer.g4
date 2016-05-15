@@ -33,6 +33,11 @@ JAVADOC : '/**' ~[*]+ '*/'
 ML_COMMENT
     :   '/*' (.)*? '*/' -> channel(HIDDEN)
     ;
+
+TAG_COMMENT
+    :   '<!---' (.)*? '--->' -> channel(HIDDEN)
+    ;
+
 BOOLEAN_LITERAL
 	:	[tT][rR][uU][eE]
 	|	[fF][aA][lL][sS][eE] 

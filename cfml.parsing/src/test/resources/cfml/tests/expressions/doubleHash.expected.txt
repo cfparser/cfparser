@@ -17,7 +17,7 @@ IDENTIFIER               <action>
     (statement
       (localAssignmentExpression
         var
-        (identifier a)
+        (multipartIdentifier (identifier a))
         =
         (startExpression
           (compareExpression
