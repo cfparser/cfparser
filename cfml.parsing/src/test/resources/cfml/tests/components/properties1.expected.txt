@@ -97,7 +97,7 @@ BOOLEAN_LITERAL          <true>
               property
               (paramStatementAttributes
                 (param
-                  (identifier type)
+                  (multipartIdentifier (identifier type))
                   =
                   (startExpression
                     (compareExpression
@@ -112,7 +112,7 @@ BOOLEAN_LITERAL          <true>
                   )
                 )
                 (param
-                  (identifier name)
+                  (multipartIdentifier (identifier name))
                   =
                   (startExpression
                     (compareExpression
@@ -139,7 +139,7 @@ BOOLEAN_LITERAL          <true>
               property
               (paramStatementAttributes
                 (param
-                  (identifier name)
+                  (multipartIdentifier (identifier name))
                   =
                   (startExpression
                     (compareExpression
