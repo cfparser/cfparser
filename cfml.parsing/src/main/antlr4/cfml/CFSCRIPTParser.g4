@@ -440,6 +440,7 @@ compareExpressionOperator:
     |   GTE //-> ^(GTE)
     |   NEQ //-> ^(NEQ)
     |   CONTAINS //-> ^(CONTAINS)
+    |   DOESNOTCONTAIN
  ;
 	
 /*equivalentExpression

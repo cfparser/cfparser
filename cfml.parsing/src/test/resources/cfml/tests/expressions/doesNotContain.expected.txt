@@ -1,0 +1,149 @@
+/*===TOKENS===*/
+IF                       <if>
+'('                      <(>
+IDENTIFIER               <len>
+'('                      <(>
+IDENTIFIER               <cgi>
+'.'                      <.>
+IDENTIFIER               <HTTP_REFERER>
+')'                      <)>
+AND                      <and>
+OPEN_STRING              <">
+STRING_LITERAL           </>
+CLOSE_STRING             <">
+'&'                      <&>
+IDENTIFIER               <cgi>
+'.'                      <.>
+IDENTIFIER               <HTTP_REFERER>
+'&'                      <&>
+OPEN_STRING              <">
+STRING_LITERAL           </>
+CLOSE_STRING             <">
+DOESNOTCONTAIN           <does not contain>
+OPEN_STRING              <">
+STRING_LITERAL           </>
+CLOSE_STRING             <">
+'&'                      <&>
+IDENTIFIER               <cgi>
+'.'                      <.>
+IDENTIFIER               <HTTP_HOST>
+'&'                      <&>
+OPEN_STRING              <">
+STRING_LITERAL           </>
+CLOSE_STRING             <">
+')'                      <)>
+'{'                      <{>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (ifStatement
+        if
+        (condition
+          (
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (memberExpression
+                  (functionCall
+                    (identifierOrReservedWord (identifier len))
+                    (
+                    (argumentList
+                      (argument
+                        (startExpression
+                          (compareExpression
+                            (baseExpression
+                              (unaryExpression
+                                (memberExpression (identifier cgi) . (identifier HTTP_REFERER))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    )
+                  )
+                )
+              )
+            )
+            (compareExpressionOperator and)
+            (compareExpression
+              (baseExpression
+                (concatenationExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart /) "))
+                    )
+                  )
+                  &
+                  (baseOrTernaryExpression
+                    (compareExpression
+                      (baseExpression
+                        (concatenationExpression
+                          (unaryExpression
+                            (memberExpression (identifier cgi) . (identifier HTTP_REFERER))
+                          )
+                          &
+                          (baseOrTernaryExpression
+                            (compareExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart /) "))
+                                  )
+                                )
+                              )
+                              (compareExpressionOperator does not contain)
+                              (compareExpression
+                                (baseExpression
+                                  (concatenationExpression
+                                    (unaryExpression
+                                      (primaryExpression
+                                        (literalExpression (stringLiteral " (stringLiteralPart /) "))
+                                      )
+                                    )
+                                    &
+                                    (baseOrTernaryExpression
+                                      (compareExpression
+                                        (baseExpression
+                                          (concatenationExpression
+                                            (unaryExpression (memberExpression (identifier cgi) . (identifier HTTP_HOST)))
+                                            &
+                                            (baseOrTernaryExpression
+                                              (compareExpression
+                                                (baseExpression
+                                                  (unaryExpression
+                                                    (primaryExpression
+                                                      (literalExpression (stringLiteral " (stringLiteralPart /) "))
+                                                    )
+                                                  )
+                                                )
+                                              )
+                                            )
+                                          )
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          )
+        )
+        (statement (compoundStatement { }))
+      )
+    )
+  )
+  (endOfScriptBlock <EOF>)
+)
+/*======*/
