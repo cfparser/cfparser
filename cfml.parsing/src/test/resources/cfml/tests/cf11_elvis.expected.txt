@@ -80,11 +80,7 @@ LINE_COMMENT             <// A function call>
                 )
                 ?
                 :
-                (baseOrTernaryExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression - (primaryExpression (literalExpression 1))))
-                  )
-                )
+                (baseExpression (unaryExpression - (primaryExpression (literalExpression 1))))
               )
             )
           )
@@ -124,14 +120,10 @@ LINE_COMMENT             <// A function call>
                 )
                 ?
                 :
-                (baseOrTernaryExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (primaryExpression
-                          (literalExpression (stringLiteral " (stringLiteralPart black) "))
-                        )
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart black) "))
                     )
                   )
                 )
@@ -176,14 +168,10 @@ LINE_COMMENT             <// A function call>
                 )
                 ?
                 :
-                (baseOrTernaryExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (primaryExpression
-                          (literalExpression (stringLiteral " (stringLiteralPart Joe) "))
-                        )
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart Joe) "))
                     )
                   )
                 )

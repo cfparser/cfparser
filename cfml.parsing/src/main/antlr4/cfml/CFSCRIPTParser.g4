@@ -168,10 +168,10 @@ forStatement
   
 startExpression:
   compareExpression;
-  
+
 baseOrTernaryExpression:
   compareExpression;
-  
+
 forInKey
   : VAR? multipartIdentifier
   ;
@@ -394,10 +394,14 @@ VAR? otherid=identifier;
 
 assignmentExpression 
   :  left=startExpression
-     ( ( (EQUALSOP (identifier EQUALSOP)*) | PLUSEQUALS | MINUSEQUALS | STAREQUALS | SLASHEQUALS | MODEQUALS | CONCATEQUALS )  
+     ( ( (EQUALSOP (identifier EQUALSOP)*) | PLUSEQUALS | MINUSEQUALS | STAREQUALS | SLASHEQUALS | MODEQUALS | CONCATEQUALS )
      	right = startExpression
      )
   ;
+
+ternaryExpression
+    : QUESTIONMARK ternaryExpression1=startExpression COLON ternaryExpression2=startExpression
+    ;
 
 baseExpression
 	:
@@ -410,10 +414,11 @@ baseExpression
 	| elvisExpression
 	| anonymousFunctionDeclaration
 	| unaryExpression
+	| baseExpression ternaryExpression
 	;
 	
 elvisExpression:
-	unaryExpression QUESTIONMARK COLON baseOrTernaryExpression;	
+	unaryExpression QUESTIONMARK COLON baseExpression;
 	
 compareExpression
 	: (
@@ -421,9 +426,7 @@ compareExpression
 	| notNotExpression
 	| left=baseExpression 
 		(operator=compareExpressionOperator right=compareExpression)?
-	) 
-	(QUESTIONMARK ternaryExpression1=startExpression COLON ternaryExpression2=startExpression)?
-
+	)
 	;
 	
 compareExpressionOperator:
@@ -509,7 +512,7 @@ equalityOperator5
 concatenationExpression
 	:	unaryExpression CONCAT baseOrTernaryExpression
 	;
-	
+
 additiveExpression
 	:	unaryExpression (PLUS|MINUS) baseOrTernaryExpression
 	;
@@ -517,7 +520,7 @@ additiveExpression
 modExpression
 	:	unaryExpression  ( MOD baseOrTernaryExpression )
 	;
-	
+
 intDivisionExpression
 	:	unaryExpression ( BSLASH baseOrTernaryExpression )
 	;
@@ -525,16 +528,16 @@ intDivisionExpression
 multiplicativeExpression
 	:	unaryExpression ( (STAR|SLASH) baseOrTernaryExpression )
 	;
-	
+
 powerOfExpression
 	:	unaryExpression ( POWER baseOrTernaryExpression )
 	;
-	
+
 unaryExpression
 	: (MINUS | PLUS) primaryExpression //-> ^(MINUS memberExpression)
 	| (MINUSMINUS | PLUSPLUS) unaryExpression
 	//| PLUS primaryExpression //-> ^(PLUS memberExpression)
-	//| MINUSMINUS primaryExpression //-> ^(MINUSMINUS memberExpression) 
+	//| MINUSMINUS primaryExpression //-> ^(MINUSMINUS memberExpression)
 	//| PLUSPLUS primaryExpression //-> ^(PLUSPLUS memberExpression)
 	//| identifier (DOT primaryExpressionIRW (LEFTPAREN argumentList RIGHTPAREN)+)*
   //| primaryExpression PLUSPLUS //-> ^(POSTPLUSPLUS memberExpression)
@@ -553,9 +556,8 @@ memberExpression
   : ( //primaryExpression
     functionCall
   	| newComponentExpression
-    |firstidentifier=identifier 
-  	| parentheticalExpression//-> primaryExpression 
-  	
+    | firstidentifier=identifier
+  	| parentheticalExpression//-> primaryExpression
   ) // set return tree to just primary
   ( 
    //DOT javaCallMemberExpression //-> ^(JAVAMETHODCALL $memberExpressionB primaryExpressionIRW argumentList )
@@ -571,9 +573,6 @@ memberExpression
 identifierOrReservedWord:
 identifier | reservedWord;
 
-
-
-  
 arrayMemberExpression
 	:LEFTBRACKET startExpression RIGHTBRACKET 
 	;
@@ -734,7 +733,7 @@ implicitStructElements
   ;
 
 implicitStructExpression
-  : implicitStructKeyExpression ( COLON | EQUALSOP ) baseExpression //unaryExpression 
+  : implicitStructKeyExpression ( COLON | EQUALSOP ) baseExpression //unaryExpression
   ;
   
 implicitStructKeyExpression
