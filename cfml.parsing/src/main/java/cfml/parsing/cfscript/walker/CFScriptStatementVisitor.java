@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import cfml.CFSCRIPTParser.AbortStatementContext;
@@ -137,8 +138,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		}
 		
 		CFFuncDeclStatement funcDeclStatement = new CFFuncDeclStatement(ctx.FUNCTION().getSymbol(),
-				(CFIdentifier) visitExpression(ctx.identifier()), getText(ctx.accessType()), getText(ctx.typeSpec()),
-				parameters, attributes, visit(ctx.body));
+				(CFIdentifier) visitExpression(ctx.identifier()), getText(ctx.accessType()), getText(ctx.typeSpec()), parameters,
+				attributes, visit(ctx.body));
 		return funcDeclStatement;
 	}
 	
@@ -231,12 +232,9 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	@Override
 	public CFScriptStatement visitStatement(StatementContext ctx) {
 		// System.out.println("visitStatement");
-		if (ctx.getChild(0) instanceof LocalAssignmentExpressionContext
-				|| ctx.getChild(0) instanceof AssignmentExpressionContext
-				|| ctx.getChild(0) instanceof BaseExpressionContext
-				|| ctx.getChild(0) instanceof CompareExpressionContext) {
-			CFExpressionStatement expressionStmt = new CFExpressionStatement(
-					cfExpressionVisitor.visit(ctx.getChild(0)));
+		if (ctx.getChild(0) instanceof LocalAssignmentExpressionContext || ctx.getChild(0) instanceof AssignmentExpressionContext
+				|| ctx.getChild(0) instanceof BaseExpressionContext || ctx.getChild(0) instanceof CompareExpressionContext) {
+			CFExpressionStatement expressionStmt = new CFExpressionStatement(cfExpressionVisitor.visit(ctx.getChild(0)));
 			// System.out.println("visitStatement.b" + expressionStmt.Decompile(0));
 			return expressionStmt;
 		}
@@ -246,8 +244,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	@Override
 	public CFScriptStatement visitReturnStatement(ReturnStatementContext ctx) {
 		// System.out.println("visitReturnStatement");
-		CFReturnStatement returnStatement = new CFReturnStatement(ctx.getStart(),
-				cfExpressionVisitor.visit(ctx.getChild(1)));
+		CFReturnStatement returnStatement = new CFReturnStatement(ctx.getStart(), cfExpressionVisitor.visit(ctx.getChild(1)));
 		return returnStatement;
 	}
 	
@@ -262,16 +259,16 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	@Override
 	public CFScriptStatement visitWhileStatement(WhileStatementContext ctx) {
 		// System.out.println("visitWhileStatement");
-		CFWhileStatement whileStatement = new CFWhileStatement(ctx.WHILE().getSymbol(),
-				visitExpression(ctx.condition()), visit(ctx.statement()));
+		CFWhileStatement whileStatement = new CFWhileStatement(ctx.WHILE().getSymbol(), visitExpression(ctx.condition()),
+				visit(ctx.statement()));
 		return whileStatement;
 	}
 	
 	@Override
 	public CFScriptStatement visitDoWhileStatement(DoWhileStatementContext ctx) {
 		// System.out.println("visitDoWhileStatement");
-		CFDoWhileStatement doWhileStatement = new CFDoWhileStatement(ctx.DO().getSymbol(),
-				visitExpression(ctx.condition()), visit(ctx.statement()));
+		CFDoWhileStatement doWhileStatement = new CFDoWhileStatement(ctx.DO().getSymbol(), visitExpression(ctx.condition()),
+				visit(ctx.statement()));
 		return doWhileStatement;
 	}
 	
@@ -280,13 +277,12 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		// System.out.println("visitForStatement");
 		if (ctx.forInKey() != null) {
 			CFForInStatement forInStatement = new CFForInStatement(ctx.FOR().getSymbol(),
-					cfExpressionVisitor.visit(ctx.forInKey()), cfExpressionVisitor.visit(ctx.inExpr),
-					visit(ctx.statement()));
+					cfExpressionVisitor.visit(ctx.forInKey()), cfExpressionVisitor.visit(ctx.inExpr), visit(ctx.statement()));
 			return forInStatement;
 		} else {
-			CFForStatement forStatement = new CFForStatement(ctx.FOR().getSymbol(),
-					cfExpressionVisitor
-							.visit(ExpressionUtils.coalesce(ctx.localAssignmentExpression(), ctx.initExpression)),
+			ParserRuleContext localOrInit = ExpressionUtils.coalesce(ctx.localAssignmentExpression(), ctx.initExpression);
+			CFExpression LocalOrInitVisited = cfExpressionVisitor.visit(localOrInit);
+			CFForStatement forStatement = new CFForStatement(ctx.FOR().getSymbol(), LocalOrInitVisited,
 					cfExpressionVisitor.visit(ctx.condExpression),
 					cfExpressionVisitor.visit(ExpressionUtils.coalesce(ctx.incrExpression, ctx.incrExpression2)),
 					visit(ctx.statement()));
@@ -308,8 +304,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		List<CFCatchClause> _catches = new ArrayList<CFCatchClause>();
 		for (CatchConditionContext catchCond : ctx.catchCondition()) {
 			CFCatchStatement clause = new CFCatchStatement(getText(catchCond.typeSpec()),
-					(CFIdentifier) cfExpressionVisitor.visit(catchCond.identifier()),
-					visit(catchCond.compoundStatement()));
+					(CFIdentifier) cfExpressionVisitor.visit(catchCond.identifier()), visit(catchCond.compoundStatement()));
 			_catches.add(clause);
 			// System.out.println("visitTryCatchStatement." + visit(catchCond.compoundStatement()).Decompile(0));
 		}
@@ -384,8 +379,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	@Override
 	public CFScriptStatement visitImportStatement(ImportStatementContext ctx) {
 		// System.out.println("visitImportStatement");
-		CFImportStatement importStatement = new CFImportStatement(ctx.IMPORT().getSymbol(),
-				visitExpression(ctx.componentPath()), ctx.all != null);
+		CFImportStatement importStatement = new CFImportStatement(ctx.IMPORT().getSymbol(), visitExpression(ctx.componentPath()),
+				ctx.all != null);
 		return importStatement;
 	}
 	
@@ -407,8 +402,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	public CFScriptStatement visitCfmlfunctionStatement(CfmlfunctionStatementContext ctx) {
 		// System.out.println("visitCfmlfunctionStatement");
 		Map<CFIdentifier, CFExpression> _attr = new HashMap<CFIdentifier, CFExpression>();
-		CFMLFunctionStatement cfmlFunctionStatement = new CFMLFunctionStatement(ctx.start, ctx.cfmlFunction().start,
-				_attr, visitNullSafe(ctx.compoundStatement()));
+		CFMLFunctionStatement cfmlFunctionStatement = new CFMLFunctionStatement(ctx.start, ctx.cfmlFunction().start, _attr,
+				visitNullSafe(ctx.compoundStatement()));
 		if (ctx.paramStatementAttributes() != null) {
 			aggregator.push(cfmlFunctionStatement);
 			visitChildren(ctx.paramStatementAttributes());
@@ -427,8 +422,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	public CFScriptStatement visitLockStatement(LockStatementContext ctx) {
 		// System.out.println("visitLockStatement");
 		Map<CFIdentifier, CFExpression> _attr = new HashMap<CFIdentifier, CFExpression>();
-		CFLockStatement lockStatement = new CFLockStatement(ctx.LOCK().getSymbol(), _attr,
-				visit(ctx.compoundStatement()));
+		CFLockStatement lockStatement = new CFLockStatement(ctx.LOCK().getSymbol(), _attr, visit(ctx.compoundStatement()));
 		aggregator.push(lockStatement);
 		visitChildren(ctx.paramStatementAttributes());
 		aggregator.pop();
@@ -450,24 +444,21 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	@Override
 	public CFScriptStatement visitAbortStatement(AbortStatementContext ctx) {
 		// System.out.println("visitAbortStatement");
-		CFAbortStatement abortStatement = new CFAbortStatement(ctx.ABORT().getSymbol(),
-				visitExpression(ctx.memberExpression()));
+		CFAbortStatement abortStatement = new CFAbortStatement(ctx.ABORT().getSymbol(), visitExpression(ctx.memberExpression()));
 		return abortStatement;
 	}
 	
 	@Override
 	public CFScriptStatement visitThrowStatement(ThrowStatementContext ctx) {
 		// System.out.println("visitThrowStatement");
-		CFThrowStatement throwStatement = new CFThrowStatement(ctx.THROW().getSymbol(),
-				visitExpression(ctx.memberExpression()));
+		CFThrowStatement throwStatement = new CFThrowStatement(ctx.THROW().getSymbol(), visitExpression(ctx.memberExpression()));
 		return throwStatement;
 	}
 	
 	@Override
 	public CFScriptStatement visitExitStatement(ExitStatementContext ctx) {
 		// System.out.println("visitExitStatement");
-		CFExitStatement exitStatement = new CFExitStatement(ctx.EXIT().getSymbol(),
-				visitExpression(ctx.memberExpression()));
+		CFExitStatement exitStatement = new CFExitStatement(ctx.EXIT().getSymbol(), visitExpression(ctx.memberExpression()));
 		return exitStatement;
 	}
 	
@@ -515,7 +506,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		// System.out.println("visitParam");
 		if (!aggregator.isEmpty() && aggregator.peek() instanceof CFParsedAttributeStatement) {
 			((CFParsedAttributeStatement) aggregator.peek()).getAttributes()
-					.put((CFIdentifier) visitExpression(ctx.identifier()), visitExpression(ctx.startExpression()));
+					.put((CFIdentifier) visitExpression(ctx.multipartIdentifier()), visitExpression(ctx.startExpression()));
 			return null;
 		} else {
 			return super.visitParam(ctx);
@@ -578,8 +569,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		// }
 		
 		try {
-			if (!aggregator.isEmpty() && aggregator.peek() instanceof CFCompoundStatement
-					&& aggregate != aggregator.peek()) {
+			if (!aggregator.isEmpty() && aggregator.peek() instanceof CFCompoundStatement && aggregate != aggregator.peek()) {
 				((CFCompoundStatement) aggregator.peek()).add(aggregate);
 				((CFCompoundStatement) aggregator.peek()).add(nextResult);
 				return (CFCompoundStatement) aggregator.peek();

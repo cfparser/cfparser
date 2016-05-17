@@ -364,7 +364,7 @@ paramStatement
   
 propertyStatement
   : lc=PROPERTY paramStatementAttributes SEMICOLON //-> ^(PROPERTYSTATEMENT[$lc] paramStatementAttributes)
-  | lc=PROPERTY type? name=identifier SEMICOLON 
+  | lc=PROPERTY type? name=identifier SEMICOLON
   ;
   
 paramStatementAttributes
@@ -372,7 +372,8 @@ paramStatementAttributes
   ;
   
 param
-  : i=identifier EQUALSOP startExpression
+  : i=multipartIdentifier EQUALSOP startExpression
+
   ;
 
 
@@ -458,7 +459,7 @@ andExpression
 	;
 	*/
 notExpression
-	:	( NOT | NOTOP ) startExpression 
+	:	( NOT | NOTOP ) startExpression
 	;
 	
 notNotExpression

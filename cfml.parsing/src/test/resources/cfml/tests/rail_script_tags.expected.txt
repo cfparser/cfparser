@@ -209,7 +209,7 @@ IDENTIFIER               <getUsers>
           (cfmlFunction log)
           (paramStatementAttributes
             (param
-              (identifier text)
+              (multipartIdentifier (identifier text))
               =
               (startExpression
                 (compareExpression
@@ -240,7 +240,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier (cfmlFunction file))
+              (multipartIdentifier (identifier (cfmlFunction file)))
               =
               (startExpression
                 (compareExpression
@@ -263,7 +263,7 @@ IDENTIFIER               <getUsers>
           (cfmlFunction log)
           (paramStatementAttributes
             (param
-              (identifier text)
+              (multipartIdentifier (identifier text))
               =
               (startExpression
                 (compareExpression
@@ -278,7 +278,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier type)
+              (multipartIdentifier (identifier type))
               =
               (startExpression
                 (compareExpression
@@ -293,7 +293,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier application)
+              (multipartIdentifier (identifier application))
               =
               (startExpression
                 (compareExpression
@@ -308,7 +308,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier (cfmlFunction file))
+              (multipartIdentifier (identifier (cfmlFunction file)))
               =
               (startExpression
                 (compareExpression
@@ -323,7 +323,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier (cfmlFunction log))
+              (multipartIdentifier (identifier (cfmlFunction log)))
               =
               (startExpression
                 (compareExpression
@@ -350,7 +350,7 @@ IDENTIFIER               <getUsers>
           (cfmlFunction log)
           (paramStatementAttributes
             (param
-              (identifier text)
+              (multipartIdentifier (identifier text))
               =
               (startExpression
                 (compareExpression
@@ -390,7 +390,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier (cfmlFunction file))
+              (multipartIdentifier (identifier (cfmlFunction file)))
               =
               (startExpression
                 (compareExpression
@@ -401,7 +401,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier type)
+              (multipartIdentifier (identifier type))
               =
               (startExpression
                 (compareExpression
@@ -428,7 +428,7 @@ IDENTIFIER               <getUsers>
           param
           (paramStatementAttributes
             (param
-              (identifier name)
+              (multipartIdentifier (identifier name))
               =
               (startExpression
                 (compareExpression
@@ -443,7 +443,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier type)
+              (multipartIdentifier (identifier type))
               =
               (startExpression
                 (compareExpression
@@ -458,7 +458,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier default)
+              (multipartIdentifier (identifier default))
               =
               (startExpression
                 (compareExpression
@@ -473,7 +473,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier max)
+              (multipartIdentifier (identifier max))
               =
               (startExpression
                 (compareExpression
@@ -488,7 +488,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier min)
+              (multipartIdentifier (identifier min))
               =
               (startExpression
                 (compareExpression
@@ -515,7 +515,7 @@ IDENTIFIER               <getUsers>
           (cfmlFunction http)
           (paramStatementAttributes
             (param
-              (identifier method)
+              (multipartIdentifier (identifier method))
               =
               (startExpression
                 (compareExpression
@@ -530,7 +530,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier url)
+              (multipartIdentifier (identifier url))
               =
               (startExpression
                 (compareExpression
@@ -547,7 +547,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier result)
+              (multipartIdentifier (identifier result))
               =
               (startExpression
                 (compareExpression
@@ -574,7 +574,7 @@ IDENTIFIER               <getUsers>
           (cfmlFunction mail)
           (paramStatementAttributes
             (param
-              (identifier from)
+              (multipartIdentifier (identifier from))
               =
               (startExpression
                 (compareExpression
@@ -589,7 +589,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier to)
+              (multipartIdentifier (identifier to))
               =
               (startExpression
                 (compareExpression
@@ -604,7 +604,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier subject)
+              (multipartIdentifier (identifier subject))
               =
               (startExpression
                 (compareExpression
@@ -677,7 +677,7 @@ IDENTIFIER               <getUsers>
           (cfmlFunction directory)
           (paramStatementAttributes
             (param
-              (identifier name)
+              (multipartIdentifier (identifier name))
               =
               (startExpression
                 (compareExpression
@@ -692,7 +692,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier (cfmlFunction directory))
+              (multipartIdentifier (identifier (cfmlFunction directory)))
               =
               (startExpression
                 (compareExpression
@@ -701,7 +701,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier action)
+              (multipartIdentifier (identifier action))
               =
               (startExpression
                 (compareExpression
@@ -728,7 +728,7 @@ IDENTIFIER               <getUsers>
           (cfmlFunction query)
           (paramStatementAttributes
             (param
-              (identifier name)
+              (multipartIdentifier (identifier name))
               =
               (startExpression
                 (compareExpression
@@ -743,7 +743,7 @@ IDENTIFIER               <getUsers>
               )
             )
             (param
-              (identifier dataSource)
+              (multipartIdentifier (identifier dataSource))
               =
               (startExpression
                 (compareExpression
@@ -801,7 +801,7 @@ IDENTIFIER               <getUsers>
                   (cfmlFunction queryparam)
                   (paramStatementAttributes
                     (param
-                      (identifier cfsqltype)
+                      (multipartIdentifier (identifier cfsqltype))
                       =
                       (startExpression
                         (compareExpression
@@ -816,7 +816,7 @@ IDENTIFIER               <getUsers>
                       )
                     )
                     (param
-                      (identifier value)
+                      (multipartIdentifier (identifier value))
                       =
                       (startExpression
                         (compareExpression
