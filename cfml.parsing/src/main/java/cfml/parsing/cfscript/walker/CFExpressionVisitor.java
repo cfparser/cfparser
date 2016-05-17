@@ -39,6 +39,7 @@ import cfml.CFSCRIPTParser.PrimaryExpressionContext;
 import cfml.CFSCRIPTParser.PrimaryExpressionIRWContext;
 import cfml.CFSCRIPTParser.StringLiteralContext;
 import cfml.CFSCRIPTParser.StringLiteralPartContext;
+import cfml.CFSCRIPTParser.TernaryExpressionContext;
 import cfml.CFSCRIPTParser.TypeContext;
 import cfml.CFSCRIPTParser.UnaryExpressionContext;
 import cfml.CFSCRIPTParserBaseVisitor;
@@ -89,13 +90,7 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		} else {
 			compareExpression = visit(ctx.left);
 		}
-		if (ctx.ternaryExpression1 != null && ctx.ternaryExpression2 != null) {
-			CFTernaryExpression ternaryExpression = new CFTernaryExpression(ctx.getStart(), compareExpression,
-					visit(ctx.ternaryExpression1), visit(ctx.ternaryExpression2));
-			return ternaryExpression;
-		} else {
-			return compareExpression;
-		}
+		return compareExpression;
 	}
 	
 	@Override
@@ -205,13 +200,23 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		}
 		if (ctx.unaryExpression() != null) {
 			return visitUnaryExpression(ctx.unaryExpression());
-		} else if (ctx.getChild(0).getChildCount() == 3) {
+		} else if (ctx.ternaryExpression() != null) {
+			TernaryExpressionContext tex = ctx.ternaryExpression();
+			CFTernaryExpression ternaryExpression = new CFTernaryExpression(tex.getStart(), visit(ctx.baseExpression()),
+					visit(tex.ternaryExpression1), visit(tex.ternaryExpression2));
+			return ternaryExpression;
+		} else if (ctx.getChild(0).getChildCount() == 3)
+		
+		{
 			CFBinaryExpression binaryExpression = new CFBinaryExpression(getTerminalToken(ctx.getChild(0).getChild(1)),
 					visit(ctx.getChild(0).getChild(0)), visit(ctx.getChild(0).getChild(2)));
 			return binaryExpression;
-		} else {
+		} else
+		
+		{
 			return visitChildren(ctx);
 		}
+		
 	}
 	
 	@Override

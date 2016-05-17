@@ -1,0 +1,74 @@
+/*===TOKENS===*/
+IDENTIFIER               <someStruct>
+'='                      <=>
+'{'                      <{>
+IDENTIFIER               <someVariable>
+'='                      <=>
+IDENTIFIER               <someExpression>
+'?'                      <?>
+IDENTIFIER               <someExpression2>
+':'                      <:>
+IDENTIFIER               <someExpression3>
+'}'                      <}>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier someStruct))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (primaryExpression
+                  (implicitStruct
+                    {
+                    (implicitStructElements
+                      (implicitStructExpression
+                        (implicitStructKeyExpression (multipartIdentifier (identifier someVariable)))
+                        =
+                        (baseExpression
+                          (baseExpression
+                            (unaryExpression (memberExpression (identifier someExpression)))
+                          )
+                          (ternaryExpression
+                            ?
+                            (startExpression
+                              (compareExpression
+                                (baseExpression
+                                  (unaryExpression (memberExpression (identifier someExpression2)))
+                                )
+                              )
+                            )
+                            :
+                            (startExpression
+                              (compareExpression
+                                (baseExpression
+                                  (unaryExpression (memberExpression (identifier someExpression3)))
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    }
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (endOfScriptBlock <EOF>)
+)
+/*======*/
