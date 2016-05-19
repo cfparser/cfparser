@@ -209,6 +209,7 @@ CFHTTP: [cC][fF] HTTP;
 FILE: [fF][iI][lL][eE];
 DIRECTORY: [dD][iI][rR][eE][cC][tT][oO][rR][yY];
 LOOP: [lL][oO][oO][pP]; 
+CFLOOP: [cC][fF] LOOP -> type(LOOP);
 SETTING: [sS][eE][tT][tT][iI][nN][gG];
 QUERY: [qQ][uU][eE][rR][yY];
 //types

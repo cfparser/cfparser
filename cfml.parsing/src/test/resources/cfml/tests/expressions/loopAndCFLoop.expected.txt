@@ -1,0 +1,113 @@
+/*===TOKENS===*/
+LOOP                     <cfloop>
+'('                      <(>
+QUERY                    <query>
+'='                      <=>
+IDENTIFIER               <SiteRelatedTables>
+')'                      <)>
+'{'                      <{>
+IDENTIFIER               <loopy>
+'('                      <(>
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+LOOP                     <loop>
+'('                      <(>
+QUERY                    <query>
+'='                      <=>
+IDENTIFIER               <SiteRelatedTables>
+')'                      <)>
+'{'                      <{>
+IDENTIFIER               <loopy>
+'('                      <(>
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (tagOperatorStatement
+        (tagFunctionStatement
+          (cfmlFunction cfloop)
+          (
+          (parameterList
+            (parameter
+              (identifier (cfmlFunction query))
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (memberExpression (identifier SiteRelatedTables)))
+                  )
+                )
+              )
+            )
+          )
+          )
+          (compoundStatement
+            {
+            (statement
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall (identifierOrReservedWord (identifier loopy)) ( argumentList ))
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            }
+          )
+        )
+      )
+    )
+  )
+  (element
+    (statement
+      (tagOperatorStatement
+        (tagFunctionStatement
+          (cfmlFunction loop)
+          (
+          (parameterList
+            (parameter
+              (identifier (cfmlFunction query))
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression (memberExpression (identifier SiteRelatedTables)))
+                  )
+                )
+              )
+            )
+          )
+          )
+          (compoundStatement
+            {
+            (statement
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall (identifierOrReservedWord (identifier loopy)) ( argumentList ))
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            }
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
