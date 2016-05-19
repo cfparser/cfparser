@@ -350,6 +350,7 @@ abortStatement
 
 throwStatement
   : lc=THROW SEMICOLON //-> ^(THROWSTATEMENT[$lc])
+  | lc=THROW stringLiteral SEMICOLON //-> ^(THROWSTATEMENT[$lc] memberExpression)
   | lc=THROW memberExpression SEMICOLON //-> ^(THROWSTATEMENT[$lc] memberExpression)
   ;
 
