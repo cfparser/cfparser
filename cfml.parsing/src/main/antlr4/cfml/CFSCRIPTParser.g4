@@ -9,10 +9,17 @@ options { tokenVocab=CFSCRIPTLexer; }
 ////--- cfscript grammar rules
 
 scriptBlock
-  : importStatement* componentDeclaration
+  :
+  importStatement*
+  componentDeclaration
   | ( element )*
-  | SCRIPTOPEN scriptBlock SCRIPTCLOSE
-  ; 
+  | cfscriptBlock*
+  | EOF
+  ;
+
+cfscriptBlock
+  : SCRIPTOPEN scriptBlock SCRIPTCLOSE
+  ;
 
 componentDeclaration
   : COMPONENT componentAttribute* componentGuts //-> ( COMPDECL componentAttribute* componentGuts)
@@ -25,12 +32,12 @@ element
 
 functionDeclaration
   : accessType? typeSpec? FUNCTION identifier 
-  	LEFTPAREN parameterList? RIGHTPAREN 
+  	LEFTPAREN parameterList? RIGHTPAREN
   	functionAttribute* body=compoundStatement 
   ;
 anonymousFunctionDeclaration
   : accessType? typeSpec? FUNCTION //identifier? 
-  	LEFTPAREN parameterList? RIGHTPAREN 
+  	LEFTPAREN parameterList? RIGHTPAREN
   	functionAttribute* body=compoundStatement 
   ;
 
@@ -50,7 +57,7 @@ stringLiteral
 stringLiteralPart
   :  STRING_LITERAL | DOUBLEHASH;
   
- 
+
 parameterList
   : parameter ( COMMA parameter)*
   |
@@ -71,8 +78,8 @@ componentAttribute
 //i=identifier EQUALSOP^ v=baseExpression
    
 functionAttribute
-  : (prefix=IDENTIFIER COLON)? id=identifier op=EQUALSOP startExpression 
-   
+  : (prefix=IDENTIFIER COLON)? id=identifier op=EQUALSOP startExpression
+  | (prefix=IDENTIFIER COLON)? id=identifier
   ;
   
 
