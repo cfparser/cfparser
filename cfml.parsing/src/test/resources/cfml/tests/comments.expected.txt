@@ -43,6 +43,5 @@ IDENTIFIER               <x>
       ;
     )
   )
-  (endOfScriptBlock <EOF>)
 )
 /*======*/

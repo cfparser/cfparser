@@ -27,6 +27,5 @@ INTEGER_LITERAL          <0>
       ;
     )
   )
-  (endOfScriptBlock <EOF>)
 )
 /*======*/

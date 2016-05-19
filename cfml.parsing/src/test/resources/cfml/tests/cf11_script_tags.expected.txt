@@ -353,6 +353,5 @@ IDENTIFIER               <filecontent>
       ;
     )
   )
-  (endOfScriptBlock <EOF>)
 )
 /*======*/

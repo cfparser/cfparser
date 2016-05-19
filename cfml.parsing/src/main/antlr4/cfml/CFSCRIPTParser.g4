@@ -9,22 +9,15 @@ options { tokenVocab=CFSCRIPTLexer; }
 ////--- cfscript grammar rules
 
 scriptBlock
-  :
-  importStatement*
-  componentDeclaration
-  | ( element )* endOfScriptBlock
-  | SCRIPTOPEN scriptBlock
+  : importStatement* componentDeclaration
+  | ( element )*
+  | SCRIPTOPEN scriptBlock SCRIPTCLOSE
   ; 
 
 componentDeclaration
   : COMPONENT componentAttribute* componentGuts //-> ( COMPDECL componentAttribute* componentGuts)
   ;
 
-endOfScriptBlock
-  : SCRIPTCLOSE 
-  | EOF
-  ;
-   
 element
   : functionDeclaration
   | statement

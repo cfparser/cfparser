@@ -144,6 +144,5 @@ CLOSE_STRING             <">
       )
     )
   )
-  (endOfScriptBlock <EOF>)
 )
 /*======*/

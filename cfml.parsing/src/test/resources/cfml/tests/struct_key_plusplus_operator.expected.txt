@@ -67,7 +67,7 @@ SCRIPTCLOSE              <</cfscript>>
         ;
       )
     )
-    (endOfScriptBlock </cfscript>)
   )
+  </cfscript>
 )
 /*======*/

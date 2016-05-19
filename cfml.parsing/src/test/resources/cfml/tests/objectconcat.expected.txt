@@ -115,6 +115,5 @@ IDENTIFIER               <getShortId>
       ;
     )
   )
-  (endOfScriptBlock <EOF>)
 )
 /*======*/

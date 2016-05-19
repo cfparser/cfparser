@@ -872,6 +872,5 @@ IDENTIFIER               <getUsers>
       ;
     )
   )
-  (endOfScriptBlock <EOF>)
 )
 /*======*/
