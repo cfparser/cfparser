@@ -12,19 +12,19 @@ scriptBlock
   :
   importStatement*
   componentDeclaration
-  | ( element )* endOfScriptBlock
-  | SCRIPTOPEN scriptBlock
-  ; 
+  | ( element )*
+  | cfscriptBlock*
+  | EOF
+  ;
+
+cfscriptBlock
+  : SCRIPTOPEN scriptBlock SCRIPTCLOSE
+  ;
 
 componentDeclaration
   : COMPONENT componentAttribute* componentGuts //-> ( COMPDECL componentAttribute* componentGuts)
   ;
 
-endOfScriptBlock
-  : SCRIPTCLOSE 
-  | EOF
-  ;
-   
 element
   : functionDeclaration
   | statement
@@ -32,12 +32,12 @@ element
 
 functionDeclaration
   : accessType? typeSpec? FUNCTION identifier 
-  	LEFTPAREN parameterList? RIGHTPAREN 
+  	LEFTPAREN parameterList? RIGHTPAREN
   	functionAttribute* body=compoundStatement 
   ;
 anonymousFunctionDeclaration
   : accessType? typeSpec? FUNCTION //identifier? 
-  	LEFTPAREN parameterList? RIGHTPAREN 
+  	LEFTPAREN parameterList? RIGHTPAREN
   	functionAttribute* body=compoundStatement 
   ;
 
@@ -57,7 +57,7 @@ stringLiteral
 stringLiteralPart
   :  STRING_LITERAL | DOUBLEHASH;
   
- 
+
 parameterList
   : parameter ( COMMA parameter)*
   |
@@ -78,8 +78,8 @@ componentAttribute
 //i=identifier EQUALSOP^ v=baseExpression
    
 functionAttribute
-  : (prefix=IDENTIFIER COLON)? id=identifier op=EQUALSOP startExpression 
-   
+  : (prefix=IDENTIFIER COLON)? id=identifier op=EQUALSOP startExpression
+  | (prefix=IDENTIFIER COLON)? id=identifier
   ;
   
 
@@ -350,6 +350,7 @@ abortStatement
 
 throwStatement
   : lc=THROW SEMICOLON //-> ^(THROWSTATEMENT[$lc])
+  | lc=THROW stringLiteral SEMICOLON //-> ^(THROWSTATEMENT[$lc] memberExpression)
   | lc=THROW memberExpression SEMICOLON //-> ^(THROWSTATEMENT[$lc] memberExpression)
   ;
 

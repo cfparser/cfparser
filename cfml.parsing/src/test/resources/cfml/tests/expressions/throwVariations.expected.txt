@@ -1,0 +1,128 @@
+/*===TOKENS===*/
+THROW                    <throw>
+';'                      <;>
+THROW                    <throw>
+OPEN_STRING              <">
+STRING_LITERAL           <some amazing error>
+CLOSE_STRING             <">
+';'                      <;>
+THROW                    <throw>
+'('                      <(>
+OPEN_STRING              <">
+STRING_LITERAL           <woohoo>
+CLOSE_STRING             <">
+')'                      <)>
+';'                      <;>
+THROW                    <throw>
+'('                      <(>
+IDENTIFIER               <type>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <wow>
+CLOSE_STRING             <">
+','                      <,>
+IDENTIFIER               <message>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <that escalated quickly>
+CLOSE_STRING             <">
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element (statement (tagOperatorStatement (throwStatement throw ;))))
+  (element
+    (statement
+      (tagOperatorStatement
+        (throwStatement
+          throw
+          (stringLiteral " (stringLiteralPart some amazing error) ")
+          ;
+        )
+      )
+    )
+  )
+  (element
+    (statement
+      (tagOperatorStatement
+        (throwStatement
+          throw
+          (memberExpression
+            (parentheticalExpression
+              (
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart woohoo) "))
+                      )
+                    )
+                  )
+                )
+              )
+              )
+            )
+          )
+          ;
+        )
+      )
+    )
+  )
+  (element
+    (statement
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (memberExpression
+                (functionCall
+                  (identifierOrReservedWord (identifier throw))
+                  (
+                  (argumentList
+                    (argument
+                      (identifier type)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart wow) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (identifier message)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression
+                                  (stringLiteral " (stringLiteralPart that escalated quickly) ")
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/

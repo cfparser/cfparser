@@ -69,6 +69,5 @@ IDENTIFIER               <someExpression3>
       ;
     )
   )
-  (endOfScriptBlock <EOF>)
 )
 /*======*/

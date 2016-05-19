@@ -61,6 +61,5 @@ IDENTIFIER               <action>
       ;
     )
   )
-  (endOfScriptBlock <EOF>)
 )
 /*======*/

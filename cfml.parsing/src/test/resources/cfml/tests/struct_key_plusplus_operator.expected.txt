@@ -16,58 +16,60 @@ IDENTIFIER               <bar>
 SCRIPTCLOSE              <</cfscript>>
 /*===TREE===*/
 (scriptBlock
-  <cfscript>
-  (scriptBlock
-    (element
-      (statement
-        (assignmentExpression
-          (startExpression
-            (compareExpression
-              (baseExpression (unaryExpression (memberExpression (identifier foo))))
+  (cfscriptBlock
+    <cfscript>
+    (scriptBlock
+      (element
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression (unaryExpression (memberExpression (identifier foo))))
+              )
             )
-          )
-          =
-          (startExpression
-            (compareExpression
-              (baseExpression
-                (unaryExpression
-                  (primaryExpression
-                    (implicitStruct
-                      {
-                      (implicitStructElements
-                        (implicitStructExpression
-                          (implicitStructKeyExpression (multipartIdentifier (identifier bar)))
-                          :
-                          (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (implicitStruct
+                        {
+                        (implicitStructElements
+                          (implicitStructExpression
+                            (implicitStructKeyExpression (multipartIdentifier (identifier bar)))
+                            :
+                            (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                          )
                         )
+                        }
                       )
-                      }
                     )
                   )
                 )
               )
             )
           )
+          ;
         )
-        ;
       )
-    )
-    (element
-      (statement
-        (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (unaryExpression (memberExpression (identifier foo) . (identifier bar)))
-                ++
+      (element
+        (statement
+          (startExpression
+            (compareExpression
+              (baseExpression
+                (unaryExpression
+                  (unaryExpression (memberExpression (identifier foo) . (identifier bar)))
+                  ++
+                )
               )
             )
           )
+          ;
         )
-        ;
       )
     )
-    (endOfScriptBlock </cfscript>)
+    </cfscript>
   )
 )
 /*======*/

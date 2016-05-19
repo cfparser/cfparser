@@ -97,8 +97,8 @@ public class TestFiles {
 			System.out.println("/*===TOKENS===*/\r\n" + actualTree + "\r\n/*======*/");
 		}
 		// assertThat(errors, is(empty()));
-		
-		if (expectedTree == null || expectedTree.trim().length() == 0) {
+		boolean iKnowThisIsAllGoodSoReplaceIt = false;
+		if (expectedTree == null || expectedTree.trim().length() == 0 || iKnowThisIsAllGoodSoReplaceIt) {
 			writeExpectFile(expectedFile, actualTokens, actualTree);
 			System.out.println("Tree written to " + expectedFile);
 		} else {

@@ -25,6 +25,24 @@ STRING_LITERAL           <support:admin>
 CLOSE_STRING             <">
 '{'                      <{>
 '}'                      <}>
+FUNCTION                 <function>
+IDENTIFIER               <setStatus2>
+'('                      <(>
+IDENTIFIER               <rc>
+')'                      <)>
+IDENTIFIER               <role>
+'{'                      <{>
+'}'                      <}>
+FUNCTION                 <function>
+IDENTIFIER               <setStatus2>
+'('                      <(>
+IDENTIFIER               <rc>
+')'                      <)>
+IDENTIFIER               <role>
+':'                      <:>
+IDENTIFIER               <support>
+'{'                      <{>
+'}'                      <}>
 /*===TREE===*/
 (scriptBlock
   (element
@@ -79,6 +97,27 @@ CLOSE_STRING             <">
       (compoundStatement { })
     )
   )
-  (endOfScriptBlock <EOF>)
+  (element
+    (functionDeclaration
+      function
+      (identifier setStatus2)
+      (
+      (parameterList (parameter (identifier rc)))
+      )
+      (functionAttribute (identifier role))
+      (compoundStatement { })
+    )
+  )
+  (element
+    (functionDeclaration
+      function
+      (identifier setStatus2)
+      (
+      (parameterList (parameter (identifier rc)))
+      )
+      (functionAttribute role : (identifier support))
+      (compoundStatement { })
+    )
+  )
 )
 /*======*/
