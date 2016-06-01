@@ -1,0 +1,101 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+FUNCTION                 <function>
+IDENTIFIER               <processLogin>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+IDENTIFIER               <p>
+'='                      <=>
+OPEN_STRING              <'>
+CLOSE_STRING             <'>
+';'                      <;>
+LOCATION                 <location>
+'('                      <(>
+IDENTIFIER               <x>
+'='                      <=>
+BOOLEAN_LITERAL          <true>
+','                      <,>
+IDENTIFIER               <y>
+'='                      <=>
+BOOLEAN_LITERAL          <false>
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          function
+          (identifier processLogin)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (assignmentExpression
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier p))))
+                  )
+                )
+                =
+                (startExpression
+                  (compareExpression
+                    (baseExpression
+                      (unaryExpression (primaryExpression (literalExpression (stringLiteral ' '))))
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            (statement
+              (tagOperatorStatement
+                (tagFunctionStatement
+                  (cfmlFunction location)
+                  (
+                  (parameterList
+                    (parameter
+                      (identifier x)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
+                        )
+                      )
+                    )
+                    ,
+                    (parameter
+                      (identifier y)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression (primaryExpression (literalExpression false)))
+                          )
+                        )
+                      )
+                    )
+                  )
+                  )
+                  ;
+                )
+              )
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/

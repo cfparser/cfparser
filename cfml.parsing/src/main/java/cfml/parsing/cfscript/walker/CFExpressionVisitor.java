@@ -11,6 +11,7 @@ import cfml.CFSCRIPTParser.ArgumentContext;
 import cfml.CFSCRIPTParser.ArrayMemberExpressionContext;
 import cfml.CFSCRIPTParser.AssignmentExpressionContext;
 import cfml.CFSCRIPTParser.BaseExpressionContext;
+import cfml.CFSCRIPTParser.CfmlFunctionContext;
 import cfml.CFSCRIPTParser.CompareExpressionContext;
 import cfml.CFSCRIPTParser.ComponentAttributeContext;
 import cfml.CFSCRIPTParser.ComponentGutsContext;
@@ -33,12 +34,15 @@ import cfml.CFSCRIPTParser.MultipartIdentifierContext;
 import cfml.CFSCRIPTParser.NewComponentExpressionContext;
 import cfml.CFSCRIPTParser.OtherIdentifiersContext;
 import cfml.CFSCRIPTParser.ParameterAttributeContext;
+import cfml.CFSCRIPTParser.ParameterContext;
 import cfml.CFSCRIPTParser.ParentheticalExpressionContext;
 import cfml.CFSCRIPTParser.ParentheticalMemberExpressionContext;
 import cfml.CFSCRIPTParser.PrimaryExpressionContext;
 import cfml.CFSCRIPTParser.PrimaryExpressionIRWContext;
 import cfml.CFSCRIPTParser.StringLiteralContext;
 import cfml.CFSCRIPTParser.StringLiteralPartContext;
+import cfml.CFSCRIPTParser.TagFunctionStatementContext;
+import cfml.CFSCRIPTParser.TagOperatorStatementContext;
 import cfml.CFSCRIPTParser.TernaryExpressionContext;
 import cfml.CFSCRIPTParser.TypeContext;
 import cfml.CFSCRIPTParser.UnaryExpressionContext;
@@ -407,6 +411,36 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 			}
 		}
 		CFFunctionExpression cfFunctionExpression = new CFFunctionExpression((CFIdentifier) visit(ctx.getChild(0)), args);
+		return cfFunctionExpression;
+	}
+	
+	@Override
+	public CFExpression visitTagOperatorStatement(TagOperatorStatementContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitTagOperatorStatement(ctx);
+	}
+	
+	@Override
+	public CFExpression visitCfmlFunction(CfmlFunctionContext ctx) {
+		return new CFIdentifier(ctx.start, ctx.getChild(0).getText());
+	}
+	
+	@Override
+	public CFExpression visitTagFunctionStatement(TagFunctionStatementContext ctx) {
+		// TODO Auto-generated method stub
+		// return super.visitTagFunctionStatement(ctx);
+		ArgumentsVector args = new ArgumentsVector();
+		if (ctx.parameterList() != null) {
+			for (ParameterContext argCtx : ctx.parameterList().parameter()) {
+				if (argCtx.name != null) {
+					args.putNamedArg(argCtx.name.getText(), visit(argCtx.startExpression()));
+				} else {
+					args.add(visit(argCtx));
+				}
+			}
+		}
+		CFFunctionExpression cfFunctionExpression = new CFFunctionExpression((CFIdentifier) visit(ctx.getChild(0)), args);
+		System.out.println(cfFunctionExpression.Decompile(0));
 		return cfFunctionExpression;
 	}
 	
