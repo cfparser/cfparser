@@ -44,7 +44,6 @@ import cfml.CFSCRIPTParser.ScriptBlockContext;
 import cfml.CFSCRIPTParser.StartExpressionContext;
 import cfml.CFSCRIPTParser.StatementContext;
 import cfml.CFSCRIPTParser.SwitchStatementContext;
-import cfml.CFSCRIPTParser.TagOperatorStatementContext;
 import cfml.CFSCRIPTParser.ThreadStatementContext;
 import cfml.CFSCRIPTParser.ThrowStatementContext;
 import cfml.CFSCRIPTParser.TransactionStatementContext;
@@ -235,7 +234,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		// System.out.println("visitStatement");
 		if (ctx.getChild(0) instanceof LocalAssignmentExpressionContext || ctx.getChild(0) instanceof AssignmentExpressionContext
 				|| ctx.getChild(0) instanceof BaseExpressionContext || ctx.getChild(0) instanceof CompareExpressionContext
-				|| ctx.getChild(0) instanceof TagOperatorStatementContext) {
+		// || ctx.getChild(0) instanceof TagOperatorStatementContext
+		) {
 			CFExpressionStatement expressionStmt = new CFExpressionStatement(cfExpressionVisitor.visit(ctx.getChild(0)));
 			// System.out.println("visitStatement.b" + expressionStmt.Decompile(0));
 			return expressionStmt;
