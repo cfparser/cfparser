@@ -8,6 +8,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
 
 import cfml.CFSCRIPTParser.AnonymousFunctionDeclarationContext;
 import cfml.CFSCRIPTParser.ArgumentContext;
+import cfml.CFSCRIPTParser.ArrayContext;
 import cfml.CFSCRIPTParser.ArrayMemberExpressionContext;
 import cfml.CFSCRIPTParser.AssignmentExpressionContext;
 import cfml.CFSCRIPTParser.BaseExpressionContext;
@@ -35,6 +36,7 @@ import cfml.CFSCRIPTParser.NewComponentExpressionContext;
 import cfml.CFSCRIPTParser.OtherIdentifiersContext;
 import cfml.CFSCRIPTParser.ParameterAttributeContext;
 import cfml.CFSCRIPTParser.ParameterContext;
+import cfml.CFSCRIPTParser.ParameterTypeContext;
 import cfml.CFSCRIPTParser.ParentheticalExpressionContext;
 import cfml.CFSCRIPTParser.ParentheticalMemberExpressionContext;
 import cfml.CFSCRIPTParser.PrimaryExpressionContext;
@@ -45,6 +47,7 @@ import cfml.CFSCRIPTParser.TagFunctionStatementContext;
 import cfml.CFSCRIPTParser.TagOperatorStatementContext;
 import cfml.CFSCRIPTParser.TernaryExpressionContext;
 import cfml.CFSCRIPTParser.TypeContext;
+import cfml.CFSCRIPTParser.TypeSpecContext;
 import cfml.CFSCRIPTParser.UnaryExpressionContext;
 import cfml.CFSCRIPTParserBaseVisitor;
 import cfml.parsing.cfscript.ArgumentsVector;
@@ -98,8 +101,19 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	}
 	
 	@Override
+	public CFExpression visitParameterType(ParameterTypeContext ctx) {
+		return super.visitParameterType(ctx);
+	}
+	
+	@Override
 	public CFExpression visitComponentAttribute(ComponentAttributeContext ctx) {
 		return super.visitComponentAttribute(ctx);
+	}
+	
+	@Override
+	public CFExpression visitTypeSpec(TypeSpecContext ctx) {
+		// TODO Auto-generated method stub
+		return super.visitTypeSpec(ctx);
 	}
 	
 	@Override
@@ -457,6 +471,11 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 				aggregator.pop();
 			}
 		}
+	}
+	
+	@Override
+	public CFExpression visitArray(ArrayContext ctx) {
+		return new CFIdentifier(ctx.start, ctx.start.getText() + ctx.stop.getText());
 	}
 	
 	@Override

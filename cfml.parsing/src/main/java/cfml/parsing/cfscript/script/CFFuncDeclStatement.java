@@ -20,10 +20,10 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 	private CFScriptStatement body;
 	
 	private byte access;
-	private String returnType;
+	private CFIdentifier returnType;
 	
 	// TODO: prevent function declared inside function. May want to do this elsewhere
-	public CFFuncDeclStatement(Token _t, CFIdentifier _name, String _access, String _returnType,
+	public CFFuncDeclStatement(Token _t, CFIdentifier _name, String _access, CFIdentifier _returnType,
 			List<CFFunctionParameter> _formals, Map<CFIdentifier, CFExpression> _attr, CFScriptStatement _body) {
 		super(_t);
 		name = _name;
@@ -62,7 +62,7 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 	}
 	
 	public UserDefinedFunction getUDF() {
-		return new UserDefinedFunction(name, access, returnType, formals, attributes, body);
+		return new UserDefinedFunction(name, access, returnType.Decompile(0), formals, attributes, body);
 	}
 	
 	public CFStatementResult Exec(CFContext context) {
@@ -92,7 +92,7 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 		
 		if (returnType != null) {
 			sb.append(" ");
-			sb.append(returnType);
+			sb.append(returnType.Decompile(indent));
 		}
 		
 		sb.append(" function ");
@@ -106,13 +106,8 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 				sb.append(", ");
 			}
 		}
-		// sb.append(") {\n");
 		sb.append(") ");
 		sb.append(body.Decompile(indent + 2));
-		// sb.append("\n");
-		// sb.append(Indent(indent));
-		// sb.append("}");
-		
 		return sb.toString();
 	}
 	
@@ -132,7 +127,7 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 		return access;
 	}
 	
-	public String getReturnType() {
+	public CFIdentifier getReturnType() {
 		return returnType;
 	}
 }

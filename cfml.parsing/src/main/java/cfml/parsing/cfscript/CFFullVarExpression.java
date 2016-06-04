@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
+import cfml.CFSCRIPTLexer;
+
 public class CFFullVarExpression extends CFIdentifier implements Serializable {
 	
 	private static final long serialVersionUID = 1;
@@ -49,7 +51,10 @@ public class CFFullVarExpression extends CFIdentifier implements Serializable {
 		StringBuilder sb = new StringBuilder();
 		for (CFExpression expression : expressions) {
 			if (sb.length() > 0) {
-				if (expression.getType() == CFExpression.IDENTIFIER || expression.getType() == CFExpression.LITERAL) {
+				if (expression.getType() == CFExpression.IDENTIFIER
+						&& expression.getToken().getType() == CFSCRIPTLexer.LEFTBRACKET) {
+					// Array notation []
+				} else if (expression.getType() == CFExpression.IDENTIFIER || expression.getType() == CFExpression.LITERAL) {
 					sb.append(".");
 				} else if (expression instanceof CFFunctionExpression
 						&& ((CFFunctionExpression) expression).getIdentifier() != null) {

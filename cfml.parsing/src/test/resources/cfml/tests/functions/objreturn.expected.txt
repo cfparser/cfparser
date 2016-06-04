@@ -1,0 +1,72 @@
+/*===TOKENS===*/
+PUBLIC                   <public>
+IDENTIFIER               <obj>
+'.'                      <.>
+IDENTIFIER               <domain>
+'.'                      <.>
+CONTENT                  <content>
+'.'                      <.>
+IDENTIFIER               <News>
+FUNCTION                 <function>
+IDENTIFIER               <findAll>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+RETURN                   <return>
+IDENTIFIER               <newsService>
+'.'                      <.>
+IDENTIFIER               <findAll>
+'('                      <(>
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (functionDeclaration
+      (accessType public)
+      (typeSpec
+        (multipartIdentifier
+          (identifier obj)
+          .
+          (identifierOrReservedWord (identifier domain))
+          .
+          (identifierOrReservedWord (identifier (cfmlFunction content)))
+          .
+          (identifierOrReservedWord (identifier News))
+        )
+      )
+      function
+      (identifier findAll)
+      (
+      parameterList
+      )
+      (compoundStatement
+        {
+        (statement
+          (returnStatement
+            return
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (identifier newsService)
+                      .
+                      (functionCall (identifierOrReservedWord (identifier findAll)) ( argumentList ))
+                    )
+                  )
+                )
+              )
+            )
+            ;
+          )
+        )
+        }
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+/*======*/

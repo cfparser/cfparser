@@ -138,8 +138,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		}
 		
 		CFFuncDeclStatement funcDeclStatement = new CFFuncDeclStatement(ctx.FUNCTION().getSymbol(),
-				(CFIdentifier) visitExpression(ctx.identifier()), getText(ctx.accessType()), getText(ctx.typeSpec()), parameters,
-				attributes, visit(ctx.body));
+				(CFIdentifier) visitExpression(ctx.identifier()), getText(ctx.accessType()),
+				(CFIdentifier) visitExpression(ctx.typeSpec()), parameters, attributes, visit(ctx.body));
 		return funcDeclStatement;
 	}
 	
@@ -169,7 +169,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		}
 		
 		CFFuncDeclStatement funcDeclStatement = new CFFuncDeclStatement(ctx.FUNCTION().getSymbol(), (CFIdentifier) null,
-				getText(ctx.accessType()), getText(ctx.typeSpec()), parameters, attributes, visit(ctx.body));
+				getText(ctx.accessType()), (CFIdentifier) visitExpression(ctx.typeSpec()), parameters, attributes,
+				visit(ctx.body));
 		return funcDeclStatement;
 	}
 	

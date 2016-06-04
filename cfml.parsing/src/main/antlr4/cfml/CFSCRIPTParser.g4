@@ -46,10 +46,14 @@ accessType
 	;
 
 typeSpec
-  : type
-  | multipartIdentifier
+  : (type
+  | multipartIdentifier) array?
   | stringLiteral
   ;
+  
+array
+  : LEFTBRACKET RIGHTBRACKET
+  ; 
   
 stringLiteral
   :  OPEN_STRING (stringLiteralPart | POUND_SIGN startExpression POUND_SIGN)* CLOSE_STRING;
