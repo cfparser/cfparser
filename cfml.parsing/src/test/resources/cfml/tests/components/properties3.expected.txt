@@ -1,7 +1,4 @@
 /*===TOKENS===*/
-ML_COMMENT               </**
-* @author 
-*/>
 COMPONENT                <component>
 IDENTIFIER               <accessors>
 '='                      <=>
@@ -9,18 +6,15 @@ OPEN_STRING              <">
 STRING_LITERAL           <true>
 CLOSE_STRING             <">
 '{'                      <{>
-LINE_COMMENT             <// The first name of the User
->
 PROPERTY                 <property>
-STRING                   <string>
-IDENTIFIER               <firstName>
-';'                      <;>
-PROPERTY                 <property>
-STRING                   <string>
-IDENTIFIER               <middleName>
-';'                      <;>
-PROPERTY                 <property>
-IDENTIFIER               <lastName>
+IDENTIFIER               <obj>
+'.'                      <.>
+IDENTIFIER               <infrastructure>
+'.'                      <.>
+CONTENT                  <content>
+'.'                      <.>
+IDENTIFIER               <NewsRepository>
+IDENTIFIER               <newsRepository>
 ';'                      <;>
 '}'                      <}>
 /*===TREE===*/
@@ -47,20 +41,23 @@ IDENTIFIER               <lastName>
       (element
         (statement
           (tagOperatorStatement
-            (propertyStatement property (typeSpec (type string)) (identifier firstName) ;)
+            (propertyStatement
+              property
+              (typeSpec
+                (multipartIdentifier
+                  (identifier obj)
+                  .
+                  (identifierOrReservedWord (identifier infrastructure))
+                  .
+                  (identifierOrReservedWord (identifier (cfmlFunction content)))
+                  .
+                  (identifierOrReservedWord (identifier NewsRepository))
+                )
+              )
+              (identifier newsRepository)
+              ;
+            )
           )
-        )
-      )
-      (element
-        (statement
-          (tagOperatorStatement
-            (propertyStatement property (typeSpec (type string)) (identifier middleName) ;)
-          )
-        )
-      )
-      (element
-        (statement
-          (tagOperatorStatement (propertyStatement property (identifier lastName) ;))
         )
       )
       }
@@ -70,11 +67,6 @@ IDENTIFIER               <lastName>
 /*======*/
 /*===DECOMPILE===*/
 component accessors='true' {
-  {
-property string firstName;
-property string middleName;
-property lastName;
-
-  }
+property obj.infrastructure.content.NewsRepository newsRepository
 }
 /*======*/

@@ -126,6 +126,7 @@ public class TestFiles {
 			
 			CFScriptStatementVisitor scriptVisitor = new CFScriptStatementVisitor();
 			CFScriptStatement result = scriptVisitor.visit(parseTree);
+			System.out.println(result.getClass());
 			assertEquals(normalizeWhite(expectedText), normalizeWhite(result.Decompile(0)));
 		}
 	}
@@ -142,9 +143,13 @@ public class TestFiles {
 		if (actualTree.length() < 3000) {
 			CFScriptStatementVisitor scriptVisitor = new CFScriptStatementVisitor();
 			CFScriptStatement result = scriptVisitor.visit(parseTree);
-			fos.write("\r\n/*===DECOMPILE===*/\r\n".getBytes());
-			fos.write(result.Decompile(0).getBytes());
-			fos.write("\r\n/*======*/".getBytes());
+			try {
+				String resulttext = result.Decompile(0);
+				fos.write("\r\n/*===DECOMPILE===*/\r\n".getBytes());
+				fos.write(resulttext.getBytes());
+				fos.write("\r\n/*======*/".getBytes());
+			} catch (Exception e) {
+			}
 		}
 		fos.close();
 		

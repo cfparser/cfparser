@@ -22,6 +22,7 @@ public class CFCompoundStatement extends CFParsedStatement implements CFScriptSt
 	}
 	
 	public void add(CFScriptStatement s) {
+		System.out.println("add:: " + s.Decompile(0));
 		_v.add(s);
 	}
 	
@@ -50,7 +51,7 @@ public class CFCompoundStatement extends CFParsedStatement implements CFScriptSt
 		s.append(Indent(indent));
 		s.append("{\n");
 		for (int i = 0; i < _v.size(); i++) {
-			s.append(_v.get(i).Decompile(indent + 2)).append(";");
+			s.append(_v.get(i).Decompile(indent + 2)).append(";\n");
 		}
 		s.append("\n");
 		s.append(Indent(indent));

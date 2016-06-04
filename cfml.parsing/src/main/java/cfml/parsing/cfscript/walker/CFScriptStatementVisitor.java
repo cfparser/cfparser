@@ -487,7 +487,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		} else {
 			propertyStatement.setIsShortHand(true);
 			propertyStatement.setPropertyName(visitExpression(ctx.identifier()));
-			propertyStatement.setPropertyType(visitExpression(ctx.type()));
+			propertyStatement.setPropertyType(visitExpression(ctx.typeSpec()));
 			/*
 			 * if (ctx.type() != null) { propertyStatement.getAttributes().put(new CFIdentifier(ctx.type().start,
 			 * "type"), visitExpression(ctx.type())); } propertyStatement.getAttributes().put(new
