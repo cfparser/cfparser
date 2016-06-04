@@ -1,5 +1,6 @@
 package cfml.parsing;
 
+import static cfml.parsing.utils.TestUtils.normalizeWhite;
 import static org.junit.Assert.assertEquals;
 
 import java.io.File;
@@ -20,6 +21,8 @@ import org.junit.runners.Parameterized;
 
 import cfml.CFSCRIPTLexer;
 import cfml.CFSCRIPTParser;
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.cfscript.walker.CFScriptStatementVisitor;
 import cfml.parsing.reporting.ArrayErrorListener;
 import cfml.parsing.util.TreeUtils;
 import cfml.parsing.utils.TestUtils;
@@ -28,7 +31,7 @@ import cfml.parsing.utils.TestUtils;
  * Run a test over each *.rpgle file in src/test/resources/org/rpgleparser/tests
  * 
  * @author ryaneberly
- * 		
+ * 
  */
 @RunWith(Parameterized.class)
 public class TestFiles {
@@ -59,6 +62,8 @@ public class TestFiles {
 		final String inputString = TestUtils.loadFile(sourceFile);
 		final File expectedFile = new File(
 				sourceFile.getPath().replaceAll("\\.cfc", ".expected.txt").replaceAll("\\.cfm", ".expected.txt"));
+		// final File decompileFile = new File(
+		// sourceFile.getPath().replaceAll("\\.cfc", ".decompile.txt").replaceAll("\\.cfm", ".decompile.txt"));
 		final String expectedFileText = expectedFile.exists() ? TestUtils.loadFile(expectedFile) : null;
 		final String expectedTokens = getTokens(expectedFileText);
 		String expectedTree = getTree(expectedFileText);
@@ -99,13 +104,13 @@ public class TestFiles {
 		// assertThat(errors, is(empty()));
 		boolean iKnowThisIsAllGoodSoReplaceIt = false;
 		if (expectedTree == null || expectedTree.trim().length() == 0 || iKnowThisIsAllGoodSoReplaceIt) {
-			writeExpectFile(expectedFile, actualTokens, actualTree);
+			writeExpectFile(expectedFile, actualTokens, actualTree, parseTree);
 			System.out.println("Tree written to " + expectedFile);
 		} else {
 			if (autoReplaceFailed && !actualTree.equals(expectedTree)) {
 				System.out.println("Replaced content of " + expectedFile);
 				expectedTree = actualTree;
-				writeExpectFile(expectedFile, actualTokens, actualTree);
+				writeExpectFile(expectedFile, actualTokens, actualTree, parseTree);
 			}
 			assertEquals("Parse trees do not match", expectedTree, actualTree);
 		}
@@ -113,15 +118,34 @@ public class TestFiles {
 			System.out.println(errors.toString());
 		}
 		assertEquals(true, errors.isEmpty());
+		final String expectedDecompileText = getDecompileExpression(expectedFileText);
+		
+		if (expectedDecompileText != null) {
+			// An empty /*===DECOMPILE===*/ says the decompile must match the input exactly
+			final String expectedText = expectedDecompileText.trim().length() == 0 ? inputString : expectedDecompileText;
+			
+			CFScriptStatementVisitor scriptVisitor = new CFScriptStatementVisitor();
+			CFScriptStatement result = scriptVisitor.visit(parseTree);
+			assertEquals(normalizeWhite(expectedText), normalizeWhite(result.Decompile(0)));
+		}
 	}
 	
-	private void writeExpectFile(File expectedFile, String actualTokens, String actualTree) throws IOException {
+	private void writeExpectFile(File expectedFile, String actualTokens, String actualTree,
+			CFSCRIPTParser.ScriptBlockContext parseTree) throws IOException {
 		final FileOutputStream fos = new FileOutputStream(expectedFile, false);
 		fos.write("/*===TOKENS===*/\r\n".getBytes());
 		fos.write(actualTokens.getBytes());
 		fos.write("\r\n/*===TREE===*/\r\n".getBytes());
 		fos.write(actualTree.getBytes());
 		fos.write("\r\n/*======*/".getBytes());
+		// If it's small auto-gen the decompile as well.
+		if (actualTree.length() < 3000) {
+			CFScriptStatementVisitor scriptVisitor = new CFScriptStatementVisitor();
+			CFScriptStatement result = scriptVisitor.visit(parseTree);
+			fos.write("\r\n/*===DECOMPILE===*/\r\n".getBytes());
+			fos.write(result.Decompile(0).getBytes());
+			fos.write("\r\n/*======*/".getBytes());
+		}
 		fos.close();
 		
 	}
@@ -160,6 +184,28 @@ public class TestFiles {
 				}
 				return expectedFileText.substring(startIdx, endIndex);
 			}
+		}
+		if (expectedFileText != null && expectedFileText.contains("/*===")) {
+			return null;
+		}
+		return expectedFileText;
+	}
+	
+	private String getDecompileExpression(String expectedFileText) {
+		if (expectedFileText != null && expectedFileText.contains("/*===DECOMPILE===*/")) {
+			int startIdx = expectedFileText.indexOf("/*===DECOMPILE===*/") + 19;
+			while (expectedFileText.charAt(startIdx) == '\r' || expectedFileText.charAt(startIdx) == '\n') {
+				startIdx++;
+			}
+			int endIndex = expectedFileText.indexOf("/*======*/", startIdx);
+			if (endIndex > startIdx) {
+				while (expectedFileText.charAt(endIndex - 1) == '\r' || expectedFileText.charAt(endIndex - 1) == '\n') {
+					endIndex--;
+				}
+				return expectedFileText.substring(startIdx, endIndex);
+			}
+			// return empty string.
+			return "";
 		}
 		if (expectedFileText != null && expectedFileText.contains("/*===")) {
 			return null;
