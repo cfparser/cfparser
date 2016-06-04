@@ -52,8 +52,9 @@ import cfml.parsing.cfscript.script.CFScriptStatement;
 
 public class TestUtils {
 	public static String _pad280(String input) {
-		return (input + "                                                                                                                  ")
-				.substring(0, 112);
+		return (input
+				+ "                                                                                                                  ")
+						.substring(0, 112);
 	}
 	
 	public static String pad280(String input) {
@@ -114,8 +115,7 @@ public class TestUtils {
 		return runX(inputstr, null, true, true);
 	}
 	
-	public static List<CommonToken> runX(String inputstr, final List<String> errors, final boolean quietly,
-			final boolean gui) {
+	public static List<CommonToken> runX(String inputstr, final List<String> errors, final boolean quietly, final boolean gui) {
 		ANTLRInputStream input = new ANTLRInputStream(inputstr);
 		CFSCRIPTLexer lexer = new CFSCRIPTLexer(input);
 		CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -124,8 +124,8 @@ public class TestUtils {
 		if (errors != null) {
 			parser.addErrorListener(new ANTLRErrorListener() {
 				
-				public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line,
-						int charPositionInLine, String msg, RecognitionException e) {
+				public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine,
+						String msg, RecognitionException e) {
 					errors.add("Line:" + line + " " + msg + parser.getDFAStrings());
 					
 				}
@@ -142,8 +142,8 @@ public class TestUtils {
 					
 				}
 				
-				public void reportContextSensitivity(Parser recognizer, DFA dfa, int startIndex, int stopIndex,
-						int prediction, ATNConfigSet configs) {
+				public void reportContextSensitivity(Parser recognizer, DFA dfa, int startIndex, int stopIndex, int prediction,
+						ATNConfigSet configs) {
 					// TODO Auto-generated method stub
 					
 				}
@@ -325,15 +325,15 @@ public class TestUtils {
 			scriptStatement = fCfmlParser.parseCFExpression(script, new ANTLRErrorListener() {
 				
 				@Override
-				public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line,
-						int charPositionInLine, String msg, RecognitionException e) {
+				public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine,
+						String msg, RecognitionException e) {
 					System.out.println("se");
 					
 				}
 				
 				@Override
-				public void reportContextSensitivity(Parser recognizer, DFA dfa, int startIndex, int stopIndex,
-						int prediction, ATNConfigSet configs) {
+				public void reportContextSensitivity(Parser recognizer, DFA dfa, int startIndex, int stopIndex, int prediction,
+						ATNConfigSet configs) {
 					System.out.println("cs");
 					
 				}
@@ -399,10 +399,6 @@ public class TestUtils {
 		System.out.println(expression.getClass().getSimpleName());
 	}
 	
-	// public static void printTokens(List<? extends Token> tokens) {
-	// System.out.println(getTokenString(tokens, vocabulary));
-	// }
-	
 	public static String getTokenString(List<? extends Token> tokens, Vocabulary vocabulary) {
 		StringBuilder sb = new StringBuilder();
 		for (Token token : tokens) { // A token from a ParseTree object
@@ -417,6 +413,16 @@ public class TestUtils {
 			sb.append("\r\n");
 		}
 		return sb.toString().trim();
+	}
+	
+	public static String normalizeWhite(String input) {
+		return normalizeNewLines(input.trim().replaceAll("( )+", " "));
+	}
+	
+	static final String NEW_LINE = System.getProperty("line.separator");
+	
+	public static String normalizeNewLines(String input) {
+		return input.replaceAll("(\\\\r)?\\\\n|\r?\n", NEW_LINE);
 	}
 	
 }
