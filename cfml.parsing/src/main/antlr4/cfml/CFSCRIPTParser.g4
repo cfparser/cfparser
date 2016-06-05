@@ -541,13 +541,6 @@ powerOfExpression
 unaryExpression
 	: (MINUS | PLUS) primaryExpression //-> ^(MINUS memberExpression)
 	| (MINUSMINUS | PLUSPLUS) unaryExpression
-	//| PLUS primaryExpression //-> ^(PLUS memberExpression)
-	//| MINUSMINUS primaryExpression //-> ^(MINUSMINUS memberExpression)
-	//| PLUSPLUS primaryExpression //-> ^(PLUSPLUS memberExpression)
-	//| identifier (DOT primaryExpressionIRW (LEFTPAREN argumentList RIGHTPAREN)+)*
-  //| primaryExpression PLUSPLUS //-> ^(POSTPLUSPLUS memberExpression)
-  //| primaryExpression
-//  | parentheticalExpression
   | memberExpression
   | innerExpression
   | unaryExpression (MINUSMINUS | PLUSPLUS)
@@ -565,13 +558,10 @@ memberExpression
   	| parentheticalExpression//-> primaryExpression
   ) // set return tree to just primary
   ( 
-   //DOT javaCallMemberExpression //-> ^(JAVAMETHODCALL $memberExpressionB primaryExpressionIRW argumentList )
     DOT functionCall
-    //| parentheticalMemberExpression //-> ^(FUNCTIONCALL $memberExpressionB argumentList)
-    | arrayMemberExpression parentheticalMemberExpression?//-> ^(LEFTBRACKET $memberExpressionB baseExpression)
-    | DOT primaryExpressionIRW //-> ^(DOT $memberExpressionB primaryExpressionIRW)
+    | arrayMemberExpression parentheticalMemberExpression?
+    | DOT primaryExpressionIRW 
     | DOT identifier
-    //| DOT identifierWithTypeKeyword
   )*
   ;
   
@@ -608,7 +598,9 @@ indexSuffix
   ; 
   
 primaryExpressionIRW
-	:	literalExpression
+	:	stringLiteral
+	|	BOOLEAN_LITERAL
+	|  INTEGER_LITERAL
 	| implicitArray
 	| implicitStruct
 	| reservedWord

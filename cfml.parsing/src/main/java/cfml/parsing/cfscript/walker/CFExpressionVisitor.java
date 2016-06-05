@@ -6,6 +6,7 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import cfml.CFSCRIPTLexer;
 import cfml.CFSCRIPTParser.AnonymousFunctionDeclarationContext;
 import cfml.CFSCRIPTParser.ArgumentContext;
 import cfml.CFSCRIPTParser.ArrayContext;
@@ -303,6 +304,9 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	
 	@Override
 	public CFExpression visitPrimaryExpressionIRW(PrimaryExpressionIRWContext ctx) {
+		if (ctx.start.getType() == CFSCRIPTLexer.BOOLEAN_LITERAL || ctx.start.getType() == CFSCRIPTLexer.INTEGER_LITERAL) {
+			return new CFLiteral(ctx.start);
+		}
 		return super.visitPrimaryExpressionIRW(ctx);
 	}
 	
