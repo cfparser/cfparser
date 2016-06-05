@@ -83,13 +83,17 @@ public class CFAssignmentExpression extends CFExpression {
 	@Override
 	public String Decompile(int indent) {
 		StringBuilder sb = new StringBuilder();
-		sb.append(left.Decompile(indent));
+		if (left != null) {
+			sb.append(left.Decompile(indent));
+		}
 		sb.append(" = ");
 		for (CFIdentifier id : otherIds) {
 			sb.append(id.Decompile(indent));
 			sb.append(" = ");
 		}
-		sb.append(right.Decompile(indent));
+		if (right != null) {
+			sb.append(right.Decompile(indent));
+		}
 		return sb.toString();
 	}
 	

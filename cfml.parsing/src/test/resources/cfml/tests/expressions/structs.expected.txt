@@ -1,0 +1,87 @@
+/*===TOKENS===*/
+IDENTIFIER               <struABC>
+'='                      <=>
+'{'                      <{>
+INTEGER_LITERAL          <0>
+'='                      <=>
+INTEGER_LITERAL          <0>
+'}'                      <}>
+';'                      <;>
+IDENTIFIER               <struABC>
+'.'                      <.>
+INTEGER_LITERAL          <1>
+'='                      <=>
+'{'                      <{>
+'}'                      <}>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier struABC))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (primaryExpression
+                  (implicitStruct
+                    {
+                    (implicitStructElements
+                      (implicitStructExpression
+                        (implicitStructKeyExpression (literalExpression 0))
+                        =
+                        (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+                      )
+                    )
+                    }
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (memberExpression
+                  (identifier struABC)
+                  .
+                  (primaryExpressionIRW (literalExpression 1))
+                )
+              )
+            )
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (primaryExpression (implicitStruct { }))))
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+{
+struABC = {0:0};
+struABC.1 = {};
+
+}
+/*======*/

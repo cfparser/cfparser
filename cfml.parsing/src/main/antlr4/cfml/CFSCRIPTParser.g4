@@ -744,7 +744,8 @@ implicitStructExpression
 implicitStructKeyExpression
   : multipartIdentifier
  // | additiveExpression ( CONCAT additiveExpression )*
-  | stringLiteral
+  | literalExpression
+  | reservedWord
   ;
 
 newComponentExpression
