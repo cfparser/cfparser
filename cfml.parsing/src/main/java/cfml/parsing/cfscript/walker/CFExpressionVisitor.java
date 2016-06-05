@@ -270,7 +270,7 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		if (ctx.argumentList() != null) {
 			for (ArgumentContext argCtx : ctx.argumentList().argument()) {
 				if (argCtx.name != null) {
-					args.putNamedArg(argCtx.name.getText(), visit(argCtx.startExpression()));
+					args.addNamedArg(visit(argCtx.name), visit(argCtx.startExpression()));
 				} else {
 					args.add(visit(argCtx));
 				}
@@ -418,7 +418,7 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		if (ctx.argumentList() != null) {
 			for (ArgumentContext argCtx : ctx.argumentList().argument()) {
 				if (argCtx.name != null) {
-					args.putNamedArg(argCtx.name.getText(), visit(argCtx.startExpression()));
+					args.addNamedArg(visit(argCtx.name), visit(argCtx.startExpression()));
 				} else {
 					args.add(visit(argCtx));
 				}
@@ -447,7 +447,7 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		if (ctx.parameterList() != null) {
 			for (ParameterContext argCtx : ctx.parameterList().parameter()) {
 				if (argCtx.name != null) {
-					args.putNamedArg(argCtx.name.getText(), visit(argCtx.startExpression()));
+					args.addNamedArg(visit(argCtx.name), visit(argCtx.startExpression()));
 				} else {
 					args.add(visit(argCtx));
 				}

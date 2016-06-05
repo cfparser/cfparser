@@ -1,0 +1,62 @@
+/*===TOKENS===*/
+IDENTIFIER               <doSomething>
+'('                      <(>
+IDENTIFIER               <x>
+'='                      <=>
+BOOLEAN_LITERAL          <true>
+','                      <,>
+IDENTIFIER               <y>
+'='                      <=>
+BOOLEAN_LITERAL          <false>
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (memberExpression
+                (functionCall
+                  (identifierOrReservedWord (identifier doSomething))
+                  (
+                  (argumentList
+                    (argument
+                      (identifier x)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (identifier y)
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression (primaryExpression (literalExpression false)))
+                          )
+                        )
+                      )
+                    )
+                  )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+doSomething(x = true, y = false)
+/*======*/
