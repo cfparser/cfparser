@@ -2,6 +2,7 @@ package cfml.parsing;
 
 import static cfml.parsing.utils.TestUtils.normalizeWhite;
 import static org.junit.Assert.assertEquals;
+import static org.slf4j.LoggerFactory.getLogger;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -18,6 +19,7 @@ import org.antlr.v4.runtime.atn.PredictionMode;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
+import org.slf4j.Logger;
 
 import cfml.CFSCRIPTLexer;
 import cfml.CFSCRIPTParser;
@@ -36,6 +38,7 @@ import cfml.parsing.utils.TestUtils;
 @RunWith(Parameterized.class)
 public class TestFiles {
 	
+	final Logger logger = getLogger(TestFiles.class);
 	File sourceFile;
 	boolean autoReplaceFailed = false;
 	static String singleTestName = null;
@@ -98,24 +101,24 @@ public class TestFiles {
 		}
 		final String actualTree = TreeUtils.printTree(parseTree, parser);
 		if (!errors.isEmpty()) {
-			System.out.println("/*===TOKENS===*/\r\n" + actualTokens + "\r\n");
-			System.out.println("/*===TOKENS===*/\r\n" + actualTree + "\r\n/*======*/");
+			logger.info("/*===TOKENS===*/\r\n" + actualTokens + "\r\n");
+			logger.info("/*===TOKENS===*/\r\n" + actualTree + "\r\n/*======*/");
 		}
 		// assertThat(errors, is(empty()));
 		boolean iKnowThisIsAllGoodSoReplaceIt = false;
 		if (expectedTree == null || expectedTree.trim().length() == 0 || iKnowThisIsAllGoodSoReplaceIt) {
 			writeExpectFile(expectedFile, actualTokens, actualTree, parseTree);
-			System.out.println("Tree written to " + expectedFile);
+			logger.info("Tree written to " + expectedFile);
 		} else {
 			if (autoReplaceFailed && !actualTree.equals(expectedTree)) {
-				System.out.println("Replaced content of " + expectedFile);
+				logger.info("Replaced content of " + expectedFile);
 				expectedTree = actualTree;
 				writeExpectFile(expectedFile, actualTokens, actualTree, parseTree);
 			}
 			assertEquals("Parse trees do not match", expectedTree, actualTree);
 		}
 		if (!errors.isEmpty()) {
-			System.out.println(errors.toString());
+			logger.info(errors.toString());
 		}
 		assertEquals(true, errors.isEmpty());
 		final String expectedDecompileText = getDecompileExpression(expectedFileText);
@@ -126,7 +129,7 @@ public class TestFiles {
 			
 			CFScriptStatementVisitor scriptVisitor = new CFScriptStatementVisitor();
 			CFScriptStatement result = scriptVisitor.visit(parseTree);
-			System.out.println(result.getClass());
+			logger.info(result == null ? "" : result.getClass().toString());
 			assertEquals(normalizeWhite(expectedText), normalizeWhite(result.Decompile(0)));
 		}
 	}
