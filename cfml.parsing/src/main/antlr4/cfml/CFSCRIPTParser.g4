@@ -194,12 +194,9 @@ finallyStatement
   
 constantExpression
   : LEFTPAREN constantExpression RIGHTPAREN
-  | MINUS ( INTEGER_LITERAL | floatingPointExpression  )
-  | INTEGER_LITERAL
-  | floatingPointExpression
+  | MINUS? ( INTEGER_LITERAL | floatingPointExpression  )
   | stringLiteral
   | BOOLEAN_LITERAL
-//  | NULL
   ;
   
 switchStatement
@@ -614,7 +611,8 @@ literalExpression
 	
 floatingPointExpression
     : FLOATING_POINT_LITERAL
-    | DOT INTEGER_LITERAL;
+    | left=INTEGER_LITERAL? DOT right=INTEGER_LITERAL
+    | leftonly=INTEGER_LITERAL DOT;
 	
 reservedWord
   : CONTAINS //| IS | EQUAL | GE | LE | EQUALS  

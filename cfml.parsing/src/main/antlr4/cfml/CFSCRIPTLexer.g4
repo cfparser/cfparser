@@ -317,9 +317,9 @@ fragment DecimalDigit
   : ('0'..'9')
   ;
 FLOATING_POINT_LITERAL
-  : DecimalDigit+ '.' DecimalDigit* ExponentPart?
+  : DecimalDigit+ '.' DecimalDigit* ExponentPart
   | '.' DecimalDigit+ ExponentPart
-  | DecimalDigit+ ExponentPart?
+  | DecimalDigit+ ExponentPart
   ;
 fragment ExponentPart
   : [eE] [+-]? DecimalDigit+

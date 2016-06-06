@@ -1,0 +1,153 @@
+/*===TOKENS===*/
+IDENTIFIER               <x>
+'='                      <=>
+INTEGER_LITERAL          <1>
+'.'                      <.>
+INTEGER_LITERAL          <23>
+';'                      <;>
+IDENTIFIER               <y>
+'='                      <=>
+'-'                      <->
+INTEGER_LITERAL          <33>
+'.'                      <.>
+INTEGER_LITERAL          <0>
+';'                      <;>
+IDENTIFIER               <z>
+'='                      <=>
+INTEGER_LITERAL          <2>
+'.'                      <.>
+';'                      <;>
+IDENTIFIER               <a>
+'='                      <=>
+FLOATING_POINT_LITERAL   <121E10>
+';'                      <;>
+IDENTIFIER               <b>
+'='                      <=>
+'.'                      <.>
+INTEGER_LITERAL          <12>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier x))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (primaryExpression (literalExpression (floatingPointExpression 1 . 23)))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier y))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                -
+                (primaryExpression (literalExpression (floatingPointExpression 33 . 0)))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier z))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (primaryExpression (literalExpression (floatingPointExpression 2 .)))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier a))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (primaryExpression (literalExpression (floatingPointExpression 121E10)))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier b))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (primaryExpression (literalExpression (floatingPointExpression . 12)))
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+{
+x = 1.23;
+y = -33.0;
+z = 2.;
+a = 121E10;
+b = .12;
+
+}
+/*======*/

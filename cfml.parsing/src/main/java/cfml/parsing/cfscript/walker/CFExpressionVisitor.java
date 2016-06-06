@@ -409,8 +409,10 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	
 	@Override
 	public CFExpression visitFloatingPointExpression(FloatingPointExpressionContext ctx) {
-		if (ctx.INTEGER_LITERAL() != null) {
-			return new CFLiteral(ctx.start, "." + ctx.INTEGER_LITERAL().getText());
+		if (ctx.right != null) {
+			return new CFLiteral(ctx.start, (ctx.left != null ? ctx.left.getText() : "") + "." + ctx.right.getText());
+		} else if (ctx.leftonly != null) {
+			return new CFLiteral(ctx.leftonly, ctx.leftonly.getText() + ".");
 		} else {
 			return new CFLiteral(ctx.start);
 		}

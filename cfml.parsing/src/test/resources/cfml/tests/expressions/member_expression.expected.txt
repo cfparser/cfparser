@@ -1,0 +1,45 @@
+/*===TOKENS===*/
+IDENTIFIER               <struABC>
+'.'                      <.>
+INTEGER_LITERAL          <1>
+'.'                      <.>
+IDENTIFIER               <a>
+'='                      <=>
+'-'                      <->
+INTEGER_LITERAL          <1>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (memberExpression
+                  (identifier struABC)
+                  .
+                  (primaryExpressionIRW 1)
+                  .
+                  (identifier a)
+                )
+              )
+            )
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression - (primaryExpression (literalExpression 1))))
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+struABC.1.a = -1
+/*======*/
