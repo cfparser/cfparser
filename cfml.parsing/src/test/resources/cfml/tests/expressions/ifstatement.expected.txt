@@ -1,0 +1,119 @@
+/*===TOKENS===*/
+IF                       <if>
+'('                      <(>
+IDENTIFIER               <Now>
+'('                      <(>
+')'                      <)>
+GT                       <gt>
+IDENTIFIER               <dateadd>
+'('                      <(>
+OPEN_STRING              <">
+STRING_LITERAL           <d>
+CLOSE_STRING             <">
+','                      <,>
+'-'                      <->
+IDENTIFIER               <val>
+'('                      <(>
+IDENTIFIER               <iDiff>
+')'                      <)>
+','                      <,>
+IDENTIFIER               <startDate>
+')'                      <)>
+')'                      <)>
+'{'                      <{>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (ifStatement
+        if
+        (condition
+          (
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (memberExpression
+                  (functionCall (identifierOrReservedWord (identifier Now)) ( argumentList ))
+                )
+              )
+            )
+            (compareExpressionOperator gt)
+            (compareExpression
+              (baseExpression
+                (unaryExpression
+                  (memberExpression
+                    (functionCall
+                      (identifierOrReservedWord (identifier dateadd))
+                      (
+                      (argumentList
+                        (argument
+                          (startExpression
+                            (compareExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart d) "))
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                        ,
+                        (argument
+                          (startExpression
+                            (compareExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (memberExpression
+                                    -
+                                    (functionCall
+                                      (identifierOrReservedWord (identifier val))
+                                      (
+                                      (argumentList
+                                        (argument
+                                          (startExpression
+                                            (compareExpression
+                                              (baseExpression (unaryExpression (memberExpression (identifier iDiff))))
+                                            )
+                                          )
+                                        )
+                                      )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                        ,
+                        (argument
+                          (startExpression
+                            (compareExpression
+                              (baseExpression (unaryExpression (memberExpression (identifier startDate))))
+                            )
+                          )
+                        )
+                      )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          )
+        )
+        (statement (compoundStatement { }))
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+if(Now() gt dateadd('d', -val(iDiff), startDate) ) {
+
+ }
+/*======*/

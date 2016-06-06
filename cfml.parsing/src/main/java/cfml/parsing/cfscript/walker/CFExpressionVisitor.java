@@ -287,7 +287,10 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		aggregator.push(fullVarExpression);
 		CFExpression retval = visitChildren(ctx);
 		aggregator.pop();
-		// return fullVarExpression;
+		// negative if minus present
+		if (ctx.MINUS() != null) {
+			retval = new CFUnaryExpression(ctx.MINUS().getSymbol(), retval);
+		}
 		return retval;
 	}
 	

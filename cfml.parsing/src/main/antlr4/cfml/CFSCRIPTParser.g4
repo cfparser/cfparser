@@ -548,7 +548,7 @@ innerExpression:
 	POUND_SIGN baseOrTernaryExpression POUND_SIGN;
 	
 memberExpression
-  : ( //primaryExpression
+  : MINUS? ( //primaryExpression
     functionCall
   	| newComponentExpression
     | firstidentifier=identifier
