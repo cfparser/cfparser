@@ -80,12 +80,14 @@ public class DictionaryManager {
 	private static Document dictionaryConfig = null;
 	private static DictionaryPreferences fPrefs;
 	private static String fBuiltInDictionaryPath;
-	
+
+	private static boolean initialized;
+
 	private DictionaryManager(DictionaryPreferences prefs) {
 		fPrefs = prefs;
 		init();
 	}
-	
+
 	static private void init() {
 		try {
 			fBuiltInDictionaryPath = "jar:"
@@ -99,7 +101,7 @@ public class DictionaryManager {
 		DICTIONARY_DIR = fPrefs.getDictionaryDir();
 		CF_DICTIONARY = fPrefs.getCFDictionary();
 	}
-	
+
 	/**
 	 * Loads the dictionary config file. The config file lists all the dictionary files that are available to the system
 	 */
@@ -133,12 +135,14 @@ public class DictionaryManager {
 			e.printStackTrace(System.err);
 		}
 	}
-	
+
 	/**
 	 * Tell the dictionaries to load based on the config file
 	 */
 	public static void initDictionaries() {
-		
+		if (initialized) {
+			return;
+		}
 		// long time = System.currentTimeMillis();
 		// System.out.println("Dictionaries initialized start");
 		
@@ -169,6 +173,8 @@ public class DictionaryManager {
 		
 		// System.out.println("Dictionaries initialized in " +
 		// (System.currentTimeMillis() - time) + " ms");
+
+		initialized = true;
 	}
 	
 	/**
