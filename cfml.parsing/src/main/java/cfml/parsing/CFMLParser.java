@@ -467,4 +467,8 @@ public class CFMLParser {
 		this.errorReporter = errorReporter;
 	}
 	
+	public void reset() {
+		expressionVisitor.clear();
+		scriptVisitor.clear();
+	}
 }

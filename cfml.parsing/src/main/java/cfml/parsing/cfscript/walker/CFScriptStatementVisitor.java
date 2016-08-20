@@ -641,4 +641,9 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		return null;
 	}
 	
+	public void clear() {
+		aggregator.clear();
+		cfExpressionVisitor.clear();
+	}
+	
 }

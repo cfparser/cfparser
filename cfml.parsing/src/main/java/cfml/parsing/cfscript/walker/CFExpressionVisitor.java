@@ -574,4 +574,8 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		return null;
 	}
 	
+	public void clear() {
+		aggregator.clear();
+	}
+	
 }
