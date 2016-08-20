@@ -98,6 +98,7 @@ public class TestCFMLFunctionStatement {
 		String script = "query name=\"funk\" { writeOutput('SELECT * FROM FUNK'); }";
 		CFScriptStatement scriptStatement = null;
 		scriptStatement = parseScript(script);
+		System.out.println(scriptStatement.Decompile(0));
 		if (fCfmlParser.getMessages().size() > 0) {
 			fail("whoops! " + fCfmlParser.getMessages());
 		}

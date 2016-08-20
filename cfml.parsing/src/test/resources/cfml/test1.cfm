@@ -3,6 +3,12 @@
 		<cfargument name="fred" test="test"/>
 		<cfscript>
 			WriteOutput("FREDFREDFRED");
+
+			var updateArt = new query();
+			transaction
+        	{
+        		updateArt.execute(sql="update art set artistid=4 where artid = 60");
+        	}
 		</cfscript>
 		<cfif thisisatest is 1>
 			<cfoutput>asdfasdf</cfoutput>
@@ -11,7 +17,7 @@
 
 	<cfset fred = 2>
 	<cfset test(fred)/>
-	<cfquery name="funstuff" dbtype="query">
+	<cfquery name="funstuff1" dbtype="query">
 		SELECT BLAH.WOO, BLAH.HOO FROM BLAH
 	</cfquery>
 	<cffunction name="test" >
@@ -21,7 +27,7 @@
 	<cfoutput>
 		This is a <b>test</b>
 	</cfoutput>
-	<cfquery name="funstuff" datasource="blah">
+	<cfquery name="funstuff2" datasource="blah">
 		SELECT BLAH.WOO, BLAH.HOO FROM BLAH WHERE wee = #hee#
 	</cfquery>
 	<cfquery>

@@ -12,9 +12,6 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import net.htmlparser.jericho.Element;
-import net.htmlparser.jericho.StartTag;
-
 import org.antlr.v4.runtime.ANTLRErrorListener;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BailErrorStrategy;
@@ -41,6 +38,8 @@ import cfml.parsing.cfscript.walker.CFExpressionVisitor;
 import cfml.parsing.cfscript.walker.CFScriptStatementVisitor;
 import cfml.parsing.reporting.IErrorReporter;
 import cfml.parsing.reporting.ParseException;
+import net.htmlparser.jericho.Element;
+import net.htmlparser.jericho.StartTag;
 
 public class CFMLParser {
 	
@@ -121,7 +120,7 @@ public class CFMLParser {
 			return expressionVisitor.visit(expressionContext);
 		} else
 			return null;
-		
+			
 	}
 	
 	private static String readFileAsString(String filePath) throws java.io.IOException {
@@ -140,6 +139,7 @@ public class CFMLParser {
 	
 	public CFMLParser() {
 		DictionaryManager.initDictionaries();
+		System.out.println(fDictPrefs.getDictionaryDir());
 		cfdic = DictionaryManager.getDictionaryByVersion(fDictPrefs.getCFDictionary());
 		if (cfdic == null) {
 			throw new IllegalArgumentException("The syntax dictionary could not be loaded!");
@@ -240,7 +240,7 @@ public class CFMLParser {
 		if (newMsg instanceof ParseError) {
 			if (((ParseError) newMsg).isFatal())
 				hadFatal = true;
-			
+				
 			errCount++;
 		}
 		
@@ -261,7 +261,7 @@ public class CFMLParser {
 			if (currMsg instanceof ParseError) {
 				if (((ParseError) currMsg).isFatal())
 					hadFatal = true;
-				
+					
 				errCount++;
 			}
 			messages.add(currMsg);
@@ -367,15 +367,13 @@ public class CFMLParser {
 		}
 		
 		@Override
-		public void reportAmbiguity(Parser arg0, DFA arg1, int arg2, int arg3, boolean arg4, BitSet arg5,
-				ATNConfigSet arg6) {
+		public void reportAmbiguity(Parser arg0, DFA arg1, int arg2, int arg3, boolean arg4, BitSet arg5, ATNConfigSet arg6) {
 			// TODO Auto-generated method stub
 			
 		}
 		
 		@Override
-		public void reportAttemptingFullContext(Parser arg0, DFA arg1, int arg2, int arg3, BitSet arg4,
-				ATNConfigSet arg5) {
+		public void reportAttemptingFullContext(Parser arg0, DFA arg1, int arg2, int arg3, BitSet arg4, ATNConfigSet arg5) {
 			// TODO Auto-generated method stub
 			
 		}
@@ -387,10 +385,9 @@ public class CFMLParser {
 		}
 		
 		@Override
-		public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine,
-				String msg, RecognitionException re) {
-			addMessage(new ParseError(line, charPositionInLine, charPositionInLine, msg, re == null ? null
-					: re.getMessage()));
+		public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg,
+				RecognitionException re) {
+			addMessage(new ParseError(line, charPositionInLine, charPositionInLine, msg, re == null ? null : re.getMessage()));
 			
 		}
 		

@@ -24,6 +24,45 @@
             <possiblecombinations/>
         </tag>
         <!--
+    cfadmin
+    	action = ""
+        type = "exception_type "
+        password = "message"
+-->
+        <tag endtagrequired="false" name="cfadmin" single="true"
+             xmlstyle="false" client="true">
+            <help><![CDATA[
+        Used internally by Lucee (and Railo) in the administrator to apply settings. This tag is considered undocumented / subject to change.
+        options:
+                type = "web"
+                type = "server"
+    ]]></help>
+            <parameter name="type" required="true" type="String">
+                <help><![CDATA[
+            The admin context: web or server
+            * web
+            * server
+        ]]></help>
+                <values>
+                    <value option="web"/>
+                    <value option="server"/>
+                </values>
+            </parameter>
+            <parameter name="password" required="true" type="String">
+                <help><![CDATA[
+            The admin password.
+        ]]></help>
+                <values/>
+            </parameter>
+            <parameter name="action" required="true" type="String">
+                <help><![CDATA[
+            The administrative action to perform.
+        ]]></help>
+                <values/>
+            </parameter>
+            <possiblecombinations/>
+        </tag>
+        <!--
     cfapplet
         appletSource = "applet_name"
         name = "form_variable_name"
