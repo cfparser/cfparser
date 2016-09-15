@@ -120,7 +120,7 @@ public class CFMLParser {
 			return expressionVisitor.visit(expressionContext);
 		} else
 			return null;
-		
+			
 	}
 	
 	private static String readFileAsString(String filePath) throws java.io.IOException {
@@ -139,6 +139,7 @@ public class CFMLParser {
 	
 	public CFMLParser() {
 		DictionaryManager.initDictionaries();
+		System.out.println(fDictPrefs.getDictionaryDir());
 		cfdic = DictionaryManager.getDictionaryByVersion(fDictPrefs.getCFDictionary());
 		if (cfdic == null) {
 			throw new IllegalArgumentException("The syntax dictionary could not be loaded!");
@@ -239,7 +240,7 @@ public class CFMLParser {
 		if (newMsg instanceof ParseError) {
 			if (((ParseError) newMsg).isFatal())
 				hadFatal = true;
-			
+				
 			errCount++;
 		}
 		
@@ -260,7 +261,7 @@ public class CFMLParser {
 			if (currMsg instanceof ParseError) {
 				if (((ParseError) currMsg).isFatal())
 					hadFatal = true;
-				
+					
 				errCount++;
 			}
 			messages.add(currMsg);

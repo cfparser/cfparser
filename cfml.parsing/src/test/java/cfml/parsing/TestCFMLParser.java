@@ -83,7 +83,7 @@ public class TestCFMLParser {
 	}
 	
 	@Test
-	@Ignore
+	// @Ignore
 	// TODO: org.junit.ComparisonFailure: expected:<cf[function]> but was:<cf[query]>
 	public void testGetEnclosingTag() {
 		String path = "";
@@ -93,13 +93,13 @@ public class TestCFMLParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ParserTag parserTag = fCfmlParser.getCFMLSource(path).getEnclosingTag(355);
+		ParserTag parserTag = fCfmlParser.getCFMLSource(path).getEnclosingTag(527);
 		System.out.println(fCfmlParser.printMessages());
 		assertEquals("cffunction", parserTag.getName());
 	}
 	
 	@Test
-	@Ignore
+	// @Ignore
 	// TODO:org.junit.ComparisonFailure: expected:<cf[argument]> but was:<cf[function]>
 	public void testGetNextTag() {
 		String path = "";
@@ -109,21 +109,24 @@ public class TestCFMLParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ParserTag parserTag = fCfmlParser.getCFMLSource(path).getNextTag(355);
+		ParserTag parserTag = fCfmlParser.getCFMLSource(path).getNextTag(547);
 		System.out.println(fCfmlParser.printMessages());
 		assertEquals("cfargument", parserTag.getName());
 	}
 	
 	@Test
+	// @Ignore
+	// NullPointerException
 	public void testGetPreviousTag() {
 		String path = "";
+		System.out.println(sourceUrlFile);
 		try {
 			path = new URL(sourceUrlFile).getPath();
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ParserTag parserTag = fCfmlParser.getCFMLSource(path).getPreviousTag(355);
+		ParserTag parserTag = fCfmlParser.getCFMLSource(path).getPreviousTag(833);
 		System.out.println(fCfmlParser.printMessages());
 		assertEquals("cfquery", parserTag.getName());
 	}
@@ -215,7 +218,7 @@ public class TestCFMLParser {
 		assertNotNull(scriptStatement);
 		CFAssignmentExpression expressionStatement = (CFAssignmentExpression) ((CFExpressionStatement) scriptStatement)
 				.getExpression();
-		
+				
 		assertEquals("a == b?'overwritten':'created'", expressionStatement.getRight().Decompile(1));
 	}
 	
@@ -381,6 +384,62 @@ public class TestCFMLParser {
 		}
 		assertNotNull(scriptStatement);
 		assertEquals("try{throw ('funk');}catch(Any e{woot();}", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
+	}
+	
+	@Test
+	public void testParseScriptLocation() {
+		String script = "location(url='test', addtoken=false);";
+		CFScriptStatement scriptStatement = null;
+		try {
+			scriptStatement = fCfmlParser.parseScript(script);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertNotNull(scriptStatement);
+		assertEquals("{'test';false;}", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
+	}
+	
+	@Test
+	public void testParseScriptlLocationHash() {
+		String script = "location(url='#url#', addtoken=false, 404);";
+		CFScriptStatement scriptStatement = null;
+		try {
+			scriptStatement = fCfmlParser.parseScript(script);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertNotNull(scriptStatement);
+		assertEquals("location(url = '#url#', addtoken = false, 404)", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
+	}
+	
+	@Test
+	public void testParseScriptlLocationVariable() {
+		String script = "location(url, false, 404);";
+		CFScriptStatement scriptStatement = null;
+		try {
+			scriptStatement = fCfmlParser.parseScript(script);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertNotNull(scriptStatement);
+		assertEquals("location(url, false, 404)", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
+	}
+	
+	@Test
+	public void testParseScriptlAdmin() {
+		String script = "admin action=\"getRegional\" type=\"test\" password=\"test\" returnVariable=\"rtn\";";
+		CFScriptStatement scriptStatement = null;
+		try {
+			scriptStatement = fCfmlParser.parseScript(script);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertNotNull(scriptStatement);
+		assertEquals("amdin action='getRegional' password='test' returnVariable='rtn' type='test'", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
 	}
 	
 	@Test

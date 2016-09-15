@@ -22,7 +22,7 @@ public class CFCompoundStatement extends CFParsedStatement implements CFScriptSt
 	}
 	
 	public void add(CFScriptStatement s) {
-		System.out.println("add:: " + s.Decompile(0));
+		// System.out.println("add:: " + s.Decompile(0));
 		_v.add(s);
 	}
 	

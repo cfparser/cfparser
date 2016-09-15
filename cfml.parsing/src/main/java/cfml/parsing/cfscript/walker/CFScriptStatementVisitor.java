@@ -10,6 +10,7 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import cfml.CFSCRIPTParser.AbortStatementContext;
+import cfml.CFSCRIPTParser.AdminStatementContext;
 import cfml.CFSCRIPTParser.AnonymousFunctionDeclarationContext;
 import cfml.CFSCRIPTParser.AssignmentExpressionContext;
 import cfml.CFSCRIPTParser.BaseExpressionContext;
@@ -54,6 +55,7 @@ import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFFullVarExpression;
 import cfml.parsing.cfscript.CFIdentifier;
 import cfml.parsing.cfscript.script.CFAbortStatement;
+import cfml.parsing.cfscript.script.CFAdminStatement;
 import cfml.parsing.cfscript.script.CFBreakStatement;
 import cfml.parsing.cfscript.script.CFCase;
 import cfml.parsing.cfscript.script.CFCatchClause;
@@ -449,6 +451,17 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		// System.out.println("visitAbortStatement");
 		CFAbortStatement abortStatement = new CFAbortStatement(ctx.ABORT().getSymbol(), visitExpression(ctx.memberExpression()));
 		return abortStatement;
+	}
+	
+	@Override
+	public CFScriptStatement visitAdminStatement(AdminStatementContext ctx) {
+		// System.out.println("visitAbortStatement");
+		Map<CFIdentifier, CFExpression> _attr = new HashMap<CFIdentifier, CFExpression>();
+		CFAdminStatement adminStatement = new CFAdminStatement(ctx.ADMIN().getSymbol(), _attr);
+		aggregator.push(adminStatement);
+		visitChildren(ctx.paramStatementAttributes());
+		aggregator.pop();
+		return adminStatement;
 	}
 	
 	@Override
