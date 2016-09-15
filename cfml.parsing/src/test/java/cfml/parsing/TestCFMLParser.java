@@ -93,7 +93,7 @@ public class TestCFMLParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ParserTag parserTag = fCfmlParser.getCFMLSource(path).getEnclosingTag(527);
+		ParserTag parserTag = fCfmlParser.getCFMLSource(path).getEnclosingTag(592);
 		System.out.println(fCfmlParser.printMessages());
 		assertEquals("cffunction", parserTag.getName());
 	}
@@ -439,7 +439,8 @@ public class TestCFMLParser {
 			e.printStackTrace();
 		}
 		assertNotNull(scriptStatement);
-		assertEquals("amdin action='getRegional' password='test' returnVariable='rtn' type='test'", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
+		assertEquals("amdin action='getRegional' password='test' returnVariable='rtn' type='test'",
+				scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
 	}
 	
 	@Test
