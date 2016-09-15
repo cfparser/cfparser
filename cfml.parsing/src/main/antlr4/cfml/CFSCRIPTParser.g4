@@ -185,7 +185,7 @@ tryCatchStatement
   ;
   
 catchCondition
-  : CATCH LEFTPAREN typeSpec identifier RIGHTPAREN compoundStatement
+  : CATCH LEFTPAREN typeSpec? identifier RIGHTPAREN compoundStatement
   ;
 
 finallyStatement
@@ -219,6 +219,7 @@ tagOperatorStatement
   : includeStatement
   | importStatement
   | abortStatement
+  | adminStatement
   | throwStatement
   | rethrowStatment //-> ^(RETHROWSTATEMENT)
   | exitStatement
@@ -347,6 +348,10 @@ threadStatement
 abortStatement
   : lc=ABORT SEMICOLON //-> ^(ABORTSTATEMENT[$lc])
   | lc=ABORT memberExpression SEMICOLON //-> ^(ABORTSTATEMENT[$lc] memberExpression)
+  ;
+  
+adminStatement
+  : lc=ADMIN p=paramStatementAttributes SEMICOLON //-> ^(ADMINSTATEMENT[$lc] paramStatementAttributes)
   ;
 
 throwStatement
@@ -651,6 +656,7 @@ identifier
   | INCLUDE
   | NEW
   | ABORT
+  | ADMIN
   | THROW
   | RETHROW
   | PARAM

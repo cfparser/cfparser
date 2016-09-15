@@ -34,8 +34,6 @@ FUNCTION                 <function>
 IDENTIFIER               <result>
 ')'                      <)>
 '{'                      <{>
-LINE_COMMENT             <//...
->
 '}'                      <}>
 ')'                      <)>
 ';'                      <;>

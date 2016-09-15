@@ -6,7 +6,7 @@ component {
 
 	function bar(){
 		dotrim("hello world", function(result){
-			//...
+
 		});
 	}
 
