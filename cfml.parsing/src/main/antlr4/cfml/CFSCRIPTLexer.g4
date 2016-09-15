@@ -194,6 +194,7 @@ QUESTIONMARK: '?';
 INCLUDE: [iI][nN][cC][lL][uU][dD][eE];
 IMPORT: [iI][mM][pP][oO][rR][tT];
 ABORT: [aA][bB][oO][rR][tT];
+ADMIN: [aA][dD][mM][iI][nN];
 THROW: [tT][hH][rR][oO][wW];
 RETHROW: [rR][eE][tT][hH][rR][oO][wW];
 EXIT: [eE][xX][iI][tT];

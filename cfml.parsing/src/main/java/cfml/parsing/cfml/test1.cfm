@@ -8,6 +8,9 @@
 			<cfoutput>asdfasdf</cfoutput>
 		</cfif>
 	</cffunction>
+	<cfloop query="TEST">
+
+	</cfloop>
 
 	<cfset fred = 2>
 	<cfset test(fred)/>
