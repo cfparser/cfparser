@@ -400,7 +400,8 @@ public class CFMLParser {
 		CommonTokenStream tokens = createTokenStream(cfscript);
 		ScriptBlockContext scriptBlockContext = parseScriptBlockContext(tokens);
 		CFScriptStatement result = scriptVisitor.visit(scriptBlockContext);
-		result.setTokens(tokens);
+		if (result != null)
+			result.setTokens(tokens);
 		return result;
 		
 	}
