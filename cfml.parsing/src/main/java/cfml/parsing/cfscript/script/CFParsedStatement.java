@@ -1,5 +1,7 @@
 package cfml.parsing.cfscript.script;
 
+import org.antlr.v4.runtime.CommonTokenStream;
+
 /**
  * Abstract class that takes care of the line and column positions of parsed
  * elements.
@@ -13,6 +15,7 @@ abstract public class CFParsedStatement implements CFScriptStatement, java.io.Se
 	protected int _line;
 	protected int _col;
 	protected Token token = null;
+	CommonTokenStream tokens;
 	
 	protected CFParsedStatement(int line, int col) {
 		_line = line;
@@ -46,5 +49,13 @@ abstract public class CFParsedStatement implements CFScriptStatement, java.io.Se
 			sb.append(' ');
 		}
 		return sb.toString();
+	}
+	
+	public CommonTokenStream getTokens() {
+		return tokens;
+	}
+	
+	public void setTokens(CommonTokenStream tokens) {
+		this.tokens = tokens;
 	}
 }

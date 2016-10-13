@@ -397,23 +397,34 @@ public class CFMLParser {
 	}
 	
 	public CFScriptStatement parseScript(String cfscript) throws ParseException, IOException {
-		ScriptBlockContext scriptBlockContext = parseScriptBlockContext(cfscript);
-		
+		CommonTokenStream tokens = createTokenStream(cfscript);
+		ScriptBlockContext scriptBlockContext = parseScriptBlockContext(tokens);
 		CFScriptStatement result = scriptVisitor.visit(scriptBlockContext);
+		result.setTokens(tokens);
 		return result;
+		
+	}
+	
+	public CommonTokenStream createTokenStream(String cfscript) throws ParseException, IOException {
+		final ANTLRInputStream input = new ANTLRInputStream(cfscript);
+		final CFSCRIPTLexer lexer = new CFSCRIPTLexer(input);
+		return new CommonTokenStream(lexer);
 	}
 	
 	public ScriptBlockContext parseScriptBlockContext(String cfscript) throws ParseException, IOException {
-		
-		ANTLRInputStream input = new ANTLRInputStream(cfscript);
-		CFSCRIPTLexer lexer = new CFSCRIPTLexer(input);
-		CommonTokenStream tokens = new CommonTokenStream(lexer);
+		CommonTokenStream tokens = createTokenStream(cfscript);
+		return parseScriptBlockContext(tokens);
+	}
+	
+	public ScriptBlockContext parseScriptBlockContext(final CommonTokenStream tokens) throws ParseException, IOException {
 		
 		ScriptBlockContext scriptStatement = null;
 		CFSCRIPTParser parser = new CFSCRIPTParser(tokens);
 		
 		parser.getErrorListeners().clear();
-		lexer.addErrorListener(errorReporter);
+		if (tokens.getTokenSource() instanceof CFSCRIPTLexer) {
+			((CFSCRIPTLexer) tokens.getTokenSource()).addErrorListener(errorReporter);
+		}
 		parser.reset();
 		// parser.addErrorListener(errorReporter);
 		parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
