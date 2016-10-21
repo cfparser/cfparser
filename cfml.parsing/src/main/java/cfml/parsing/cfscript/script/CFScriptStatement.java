@@ -1,6 +1,7 @@
 package cfml.parsing.cfscript.script;
 
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.Token;
 
 public interface CFScriptStatement {
 	
@@ -12,4 +13,5 @@ public interface CFScriptStatement {
 	
 	public void setTokens(CommonTokenStream tokens);
 	
+	public Token getToken();
 }

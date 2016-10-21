@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import cfml.parsing.cfmentat.tag.CFMLTags;
+import cfml.parsing.preferences.ParserPreferences;
 import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.OutputDocument;
 import net.htmlparser.jericho.Source;
@@ -13,8 +15,6 @@ import net.htmlparser.jericho.SourceFormatter;
 import net.htmlparser.jericho.StartTag;
 import net.htmlparser.jericho.StartTagType;
 import net.htmlparser.jericho.Tag;
-import cfml.parsing.cfmentat.tag.CFMLTags;
-import cfml.parsing.preferences.ParserPreferences;
 
 public class CFMLSource {
 	

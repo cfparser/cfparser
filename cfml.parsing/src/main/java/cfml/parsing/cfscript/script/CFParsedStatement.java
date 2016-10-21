@@ -58,4 +58,9 @@ abstract public class CFParsedStatement implements CFScriptStatement, java.io.Se
 	public void setTokens(CommonTokenStream tokens) {
 		this.tokens = tokens;
 	}
+	
+	public Token getToken() {
+		return token;
+	}
+	
 }
