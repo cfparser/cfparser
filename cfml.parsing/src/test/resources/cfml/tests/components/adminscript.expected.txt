@@ -1,0 +1,142 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+FUNCTION                 <function>
+IDENTIFIER               <foo>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+ADMIN                    <admin>
+IDENTIFIER               <action>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <getRegional>
+CLOSE_STRING             <">
+IDENTIFIER               <type>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <test>
+CLOSE_STRING             <">
+IDENTIFIER               <password>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <test>
+CLOSE_STRING             <">
+IDENTIFIER               <returnVariable>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <rtn>
+CLOSE_STRING             <">
+';'                      <;>
+RETURN                   <return>
+IDENTIFIER               <returnVariable>
+';'                      <;>
+'}'                      <}>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          function
+          (identifier foo)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (tagOperatorStatement
+                (adminStatement
+                  admin
+                  (paramStatementAttributes
+                    (param
+                      (multipartIdentifier (identifier action))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart getRegional) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    (param
+                      (multipartIdentifier (identifier type))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart test) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    (param
+                      (multipartIdentifier (identifier password))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart test) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    (param
+                      (multipartIdentifier (identifier returnVariable))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart rtn) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  ;
+                )
+              )
+            )
+            (statement
+              (returnStatement
+                return
+                (startExpression
+                  (compareExpression
+                    (baseExpression
+                      (unaryExpression (memberExpression (identifier returnVariable)))
+                    )
+                  )
+                )
+                ;
+              )
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
