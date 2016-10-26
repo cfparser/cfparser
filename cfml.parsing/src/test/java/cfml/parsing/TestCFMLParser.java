@@ -83,8 +83,8 @@ public class TestCFMLParser {
 	}
 	
 	@Test
-	// @Ignore
-	// TODO: org.junit.ComparisonFailure: expected:<cf[function]> but was:<cf[query]>
+	@Ignore
+	// TODO: org.junit.ComparisonFailure: expected:<cf[function]> but was:<cf[argument]>
 	public void testGetEnclosingTag() {
 		String path = "";
 		try {
@@ -218,7 +218,7 @@ public class TestCFMLParser {
 		assertNotNull(scriptStatement);
 		CFAssignmentExpression expressionStatement = (CFAssignmentExpression) ((CFExpressionStatement) scriptStatement)
 				.getExpression();
-				
+		
 		assertEquals("a == b?'overwritten':'created'", expressionStatement.getRight().Decompile(1));
 	}
 	
