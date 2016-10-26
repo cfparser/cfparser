@@ -115,7 +115,7 @@ public class TestCFMLParser {
 	}
 	
 	@Test
-	// @Ignore
+	@Ignore
 	// NullPointerException
 	public void testGetPreviousTag() {
 		String path = "";
