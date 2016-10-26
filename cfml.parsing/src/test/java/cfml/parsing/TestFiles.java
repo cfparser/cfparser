@@ -80,6 +80,7 @@ public class TestFiles {
 			if (autoReplaceFailed && !expectedTokens.equals(actualTokens)) {
 				expectedTree = "";
 			} else {
+				System.out.println(sourceFile);
 				assertEquals("Token lists do not match", expectedTokens, actualTokens);
 			}
 		}
