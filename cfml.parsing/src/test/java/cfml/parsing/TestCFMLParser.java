@@ -99,7 +99,7 @@ public class TestCFMLParser {
 	}
 	
 	@Test
-	// @Ignore
+	@Ignore
 	// TODO:org.junit.ComparisonFailure: expected:<cf[argument]> but was:<cf[function]>
 	public void testGetNextTag() {
 		String path = "";
