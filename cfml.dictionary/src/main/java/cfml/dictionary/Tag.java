@@ -52,6 +52,8 @@ public class Tag extends Procedure {
 	protected boolean hybrid = false;
 	/** Can this tag take any attribute like a &lt;cfif&gt; */
 	protected boolean anyAttribute = false;
+	/** endtagrequired */
+	protected boolean endtagrequired = false;
 	
 	/** w3c form tag */
 	public static final byte FORM = 16;
@@ -108,12 +110,14 @@ public class Tag extends Procedure {
 	 * @param anyAttribute
 	 *            Can the tag take any attribute
 	 */
-	public Tag(String name, boolean single, boolean style, byte creator, boolean hybrid, boolean anyAttribute) {
+	public Tag(String name, boolean single, boolean style, byte creator, boolean hybrid, boolean anyAttribute,
+			boolean endtagrequired) {
 		this(name, single);
 		this.creator = creator;
 		xmlstyle = style;
 		this.hybrid = hybrid;
 		this.anyAttribute = anyAttribute;
+		this.endtagrequired = endtagrequired;
 	}
 	
 	/**
@@ -163,6 +167,15 @@ public class Tag extends Procedure {
 	 */
 	public boolean isHybrid() {
 		return hybrid;
+	}
+	
+	/**
+	 * Does this tag required an end tag?
+	 * 
+	 * @return
+	 */
+	public boolean isEndtagrequired() {
+		return endtagrequired;
 	}
 	
 	/**

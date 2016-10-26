@@ -1,0 +1,1 @@
+<cfftp action="open" connection="objConnection" attributeCollection="#objFTPProperties#" timeout="300" />

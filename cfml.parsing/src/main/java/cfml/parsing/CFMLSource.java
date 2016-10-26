@@ -9,6 +9,7 @@ import java.util.List;
 import cfml.parsing.cfmentat.tag.CFMLTags;
 import cfml.parsing.preferences.ParserPreferences;
 import net.htmlparser.jericho.Element;
+import net.htmlparser.jericho.Logger;
 import net.htmlparser.jericho.OutputDocument;
 import net.htmlparser.jericho.Source;
 import net.htmlparser.jericho.SourceFormatter;
@@ -16,32 +17,37 @@ import net.htmlparser.jericho.StartTag;
 import net.htmlparser.jericho.StartTagType;
 import net.htmlparser.jericho.Tag;
 
-public class CFMLSource {
+public class CFMLSource implements Logger {
 	
 	private Source fSource;
+	private List<String> messages = new ArrayList<String>();
 	
 	public CFMLSource(String contents) {
 		CFMLTags.register();
 		fSource = new Source(contents);
 		fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
+		fSource.setLogger(this);
 	}
 	
 	public CFMLSource(String contents, ParserPreferences prefs) {
 		CFMLTags.register(prefs);
 		fSource = new Source(contents);
 		fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
+		fSource.setLogger(this);
 	}
 	
 	public CFMLSource(URL url) throws IOException {
 		CFMLTags.register();
 		fSource = new Source(url);
 		fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
+		fSource.setLogger(this);
 	}
 	
 	public CFMLSource(URL url, ParserPreferences prefs) throws IOException {
 		CFMLTags.register(prefs);
 		fSource = new Source(url);
 		fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
+		fSource.setLogger(this);
 	}
 	
 	public String getDebuggingInfo() {
@@ -138,5 +144,49 @@ public class CFMLSource {
 		ParserTag newTag = new ParserTag(tag);
 		return newTag;
 		
+	}
+	
+	@Override
+	public void error(String message) {
+		messages.add(message);
+	}
+	
+	@Override
+	public void warn(String message) {
+		
+	}
+	
+	@Override
+	public void info(String message) {
+		
+	}
+	
+	@Override
+	public void debug(String message) {
+		
+	}
+	
+	@Override
+	public boolean isErrorEnabled() {
+		return true;
+	}
+	
+	@Override
+	public boolean isWarnEnabled() {
+		return true;
+	}
+	
+	@Override
+	public boolean isInfoEnabled() {
+		return false;
+	}
+	
+	@Override
+	public boolean isDebugEnabled() {
+		return false;
+	}
+	
+	public List<String> getMessages() {
+		return messages;
 	}
 }
