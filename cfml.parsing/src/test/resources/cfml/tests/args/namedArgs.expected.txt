@@ -1,0 +1,193 @@
+/*===TOKENS===*/
+FUNCTION                 <function>
+IDENTIFIER               <x>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+VAR                      <var>
+IDENTIFIER               <callRate>
+'='                      <=>
+IDENTIFIER               <getServiceLocator>
+'('                      <(>
+')'                      <)>
+'.'                      <.>
+IDENTIFIER               <get>
+'('                      <(>
+OPEN_STRING              <">
+STRING_LITERAL           <object.cps.CallRate>
+CLOSE_STRING             <">
+')'                      <)>
+';'                      <;>
+IDENTIFIER               <callRate>
+'.'                      <.>
+IDENTIFIER               <init>
+'('                      <(>
+IDENTIFIER               <crid>
+'='                      <=>
+IDENTIFIER               <CallRateId>
+','                      <,>
+IDENTIFIER               <newName>
+'='                      <=>
+IDENTIFIER               <Name>
+','                      <,>
+IDENTIFIER               <newDescription>
+'='                      <=>
+IDENTIFIER               <Description>
+')'                      <)>
+';'                      <;>
+IDENTIFIER               <ArrayAppend>
+'('                      <(>
+IDENTIFIER               <result>
+','                      <,>
+IDENTIFIER               <callRate>
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (functionDeclaration
+      function
+      (identifier x)
+      (
+      parameterList
+      )
+      (compoundStatement
+        {
+        (statement
+          (localAssignmentExpression
+            var
+            (multipartIdentifier (identifier callRate))
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (functionCall
+                        (identifierOrReservedWord (identifier getServiceLocator))
+                        (
+                        argumentList
+                        )
+                      )
+                      .
+                      (functionCall
+                        (identifierOrReservedWord (identifier get))
+                        (
+                        (argumentList
+                          (argument
+                            (startExpression
+                              (compareExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (primaryExpression
+                                      (literalExpression (stringLiteral " (stringLiteralPart object.cps.CallRate) "))
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (startExpression
+            (compareExpression
+              (baseExpression
+                (unaryExpression
+                  (memberExpression
+                    (identifier callRate)
+                    .
+                    (functionCall
+                      (identifierOrReservedWord (identifier init))
+                      (
+                      (argumentList
+                        (argument
+                          (identifier crid)
+                          =
+                          (startExpression
+                            (compareExpression
+                              (baseExpression (unaryExpression (memberExpression (identifier CallRateId))))
+                            )
+                          )
+                        )
+                        ,
+                        (argument
+                          (identifier newName)
+                          =
+                          (startExpression
+                            (compareExpression
+                              (baseExpression (unaryExpression (memberExpression (identifier Name))))
+                            )
+                          )
+                        )
+                        ,
+                        (argument
+                          (identifier newDescription)
+                          =
+                          (startExpression
+                            (compareExpression
+                              (baseExpression (unaryExpression (memberExpression (identifier Description))))
+                            )
+                          )
+                        )
+                      )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (startExpression
+            (compareExpression
+              (baseExpression
+                (unaryExpression
+                  (memberExpression
+                    (functionCall
+                      (identifierOrReservedWord (identifier ArrayAppend))
+                      (
+                      (argumentList
+                        (argument
+                          (startExpression
+                            (compareExpression
+                              (baseExpression (unaryExpression (memberExpression (identifier result))))
+                            )
+                          )
+                        )
+                        ,
+                        (argument
+                          (startExpression
+                            (compareExpression
+                              (baseExpression (unaryExpression (memberExpression (identifier callRate))))
+                            )
+                          )
+                        )
+                      )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        }
+      )
+    )
+  )
+)
+/*======*/

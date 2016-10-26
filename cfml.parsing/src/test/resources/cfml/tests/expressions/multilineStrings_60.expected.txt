@@ -1,0 +1,84 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+FUNCTION                 <function>
+IDENTIFIER               <name>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+VAR                      <var>
+IDENTIFIER               <sql>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <INSERT INTO thingTbl(
+      thingId,
+      name) VALUES (
+      :thingId,
+      :name>
+CLOSE_STRING             <">
+';'                      <;>
+'}'                      <}>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          function
+          (identifier name)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (localAssignmentExpression
+                var
+                (multipartIdentifier (identifier sql))
+                =
+                (startExpression
+                  (compareExpression
+                    (baseExpression
+                      (unaryExpression
+                        (primaryExpression
+                          (literalExpression
+                            (stringLiteral
+                              "
+                              (stringLiteralPart
+                                INSERT INTO thingTbl(\r\n      thingId,\r\n      name) VALUES (\r\n      :thingId,\r\n      :name
+                              )
+                              "
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public function name()     {
+      var sql = 'INSERT INTO thingTbl(
+      thingId,
+      name) VALUES (
+      :thingId,
+      :name';
+
+    }
+}
+/*======*/

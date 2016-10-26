@@ -1526,17 +1526,19 @@ RETHROW                  <rethrow>
                             )
                             (compareExpressionOperator AND)
                             (compareExpression
-                              (notExpression
-                                NOT
-                                (startExpression
-                                  (compareExpression
-                                    (baseExpression
-                                      (unaryExpression
-                                        (memberExpression
-                                          (functionCall
-                                            (identifierOrReservedWord (identifier isTrustedSource))
-                                            (
-                                            argumentList
+                              (baseExpression
+                                (notExpression
+                                  NOT
+                                  (startExpression
+                                    (compareExpression
+                                      (baseExpression
+                                        (unaryExpression
+                                          (memberExpression
+                                            (functionCall
+                                              (identifierOrReservedWord (identifier isTrustedSource))
+                                              (
+                                              argumentList
+                                              )
                                             )
                                           )
                                         )

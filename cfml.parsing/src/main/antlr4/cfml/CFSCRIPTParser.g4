@@ -407,7 +407,9 @@ ternaryExpression
 
 baseExpression
 	:
-	 concatenationExpression
+	notExpression
+	| notNotExpression
+	| concatenationExpression
 	| additiveExpression
 	| modExpression
 	| intDivisionExpression
@@ -424,9 +426,7 @@ elvisExpression:
 	
 compareExpression
 	: (
-	notExpression
-	| notNotExpression
-	| left=baseExpression 
+	left=baseExpression 
 		(operator=compareExpressionOperator right=compareExpression)?
 	)
 	;

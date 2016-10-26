@@ -87,13 +87,7 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 			return null;
 		}
 		CFExpression compareExpression = null;
-		if (ctx.notExpression() != null) {
-			compareExpression = new CFUnaryExpression(getTerminalToken(ctx.notExpression().getChild(0)),
-					visit(ctx.notExpression().startExpression()));
-		} else if (ctx.notNotExpression() != null) {
-			compareExpression = new CFUnaryExpression(getTerminalToken(ctx.notNotExpression().getChild(0)),
-					visit(ctx.notNotExpression().startExpression()));
-		} else if (ctx.right != null) {
+		if (ctx.right != null) {
 			compareExpression = new CFBinaryExpression(getTerminalToken(ctx.operator), visit(ctx.left), visit(ctx.right));
 		} else {
 			compareExpression = visit(ctx.left);
@@ -217,7 +211,13 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		if (ctx.getChildCount() == 0) {
 			return null;
 		}
-		if (ctx.unaryExpression() != null) {
+		if (ctx.notExpression() != null) {
+			return new CFUnaryExpression(getTerminalToken(ctx.notExpression().getChild(0)),
+					visit(ctx.notExpression().startExpression()));
+		} else if (ctx.notNotExpression() != null) {
+			return new CFUnaryExpression(getTerminalToken(ctx.notNotExpression().getChild(0)),
+					visit(ctx.notNotExpression().startExpression()));
+		} else if (ctx.unaryExpression() != null) {
 			return visitUnaryExpression(ctx.unaryExpression());
 		} else if (ctx.ternaryExpression() != null) {
 			TernaryExpressionContext tex = ctx.ternaryExpression();

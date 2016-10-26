@@ -25,4 +25,15 @@ public class TestCFMLParse {
 		System.out.println(cfmlSource.getAllElements());
 		System.out.println(cfmlSource.getChildElements());
 	}
+	
+	@Test
+	public void testContinueTag() {
+		final String source = "<cfloop query=\"qResults\">\r\n" + "    <cfif refind( \"^\\.\", qResults.name )>\r\n"
+				+ "        <cfcontinue>\r\n" + "    </cfif>\r\n" + "</cfloop>";
+		final CFMLSource cfmlSource = new CFMLSource(source);
+		System.out.println(cfmlSource.getAllCFMLTags());
+		System.out.println(cfmlSource.getAllElements());
+		System.out.println(cfmlSource.getChildElements());
+		
+	}
 }
