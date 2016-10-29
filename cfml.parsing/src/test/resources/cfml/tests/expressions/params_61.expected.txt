@@ -1,0 +1,206 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+PUBLIC                   <public>
+IDENTIFIER               <void>
+FUNCTION                 <function>
+IDENTIFIER               <test>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+PARAM                    <param>
+STRING                   <string>
+IDENTIFIER               <parse_error>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <but works>
+CLOSE_STRING             <">
+';'                      <;>
+PARAM                    <param>
+IDENTIFIER               <type>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <string>
+CLOSE_STRING             <">
+IDENTIFIER               <name>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <parses_fine>
+CLOSE_STRING             <">
+DEFAULT                  <default>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <works as expected>
+CLOSE_STRING             <">
+';'                      <;>
+IDENTIFIER               <writeDump>
+'('                      <(>
+IDENTIFIER               <parse_error>
+')'                      <)>
+';'                      <;>
+IDENTIFIER               <writeDump>
+'('                      <(>
+IDENTIFIER               <parses_fine>
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          (accessType public)
+          (typeSpec (multipartIdentifier (identifier void)))
+          function
+          (identifier test)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (tagOperatorStatement
+                (paramStatement
+                  param
+                  (paramExpression
+                    (type string)
+                    (multipartIdentifier (identifier parse_error))
+                    =
+                    (startExpression
+                      (compareExpression
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart but works) "))
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  ;
+                )
+              )
+            )
+            (statement
+              (tagOperatorStatement
+                (paramStatement
+                  param
+                  (paramStatementAttributes
+                    (param
+                      (multipartIdentifier (identifier type))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart string) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    (param
+                      (multipartIdentifier (identifier name))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart parses_fine) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    (param
+                      (multipartIdentifier (identifier default))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart works as expected) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  ;
+                )
+              )
+            )
+            (statement
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifierOrReservedWord (identifier writeDump))
+                          (
+                          (argumentList
+                            (argument
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression (unaryExpression (memberExpression (identifier parse_error))))
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            (statement
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifierOrReservedWord (identifier writeDump))
+                          (
+                          (argumentList
+                            (argument
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression (unaryExpression (memberExpression (identifier parses_fine))))
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/

@@ -366,9 +366,12 @@ exitStatement
   ;
 
 paramStatement
-  : lc=PARAM paramStatementAttributes SEMICOLON //-> ^(PARAMSTATEMENT[$lc] paramStatementAttributes)
+  : lc=PARAM (paramStatementAttributes | paramExpression) SEMICOLON //-> ^(PARAMSTATEMENT[$lc] paramStatementAttributes)
   ;
   
+paramExpression
+  : type? multipartIdentifier EQUALSOP startExpression
+  ;
 propertyStatement
   : lc=PROPERTY paramStatementAttributes SEMICOLON //-> ^(PROPERTYSTATEMENT[$lc] paramStatementAttributes)
   | lc=PROPERTY typeSpec? name=identifier SEMICOLON
