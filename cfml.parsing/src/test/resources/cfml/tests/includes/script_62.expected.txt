@@ -1,0 +1,30 @@
+/*===TOKENS===*/
+INCLUDE                  <include>
+OPEN_STRING              <">
+STRING_LITERAL           <mypage.cfm>
+CLOSE_STRING             <">
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (tagOperatorStatement
+        (includeStatement
+          include
+          (baseExpression
+            (unaryExpression
+              (primaryExpression
+                (literalExpression (stringLiteral " (stringLiteralPart mypage.cfm) "))
+              )
+            )
+          )
+          ;
+        )
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+include 'mypage.cfm'
+/*======*/

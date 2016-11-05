@@ -1,0 +1,44 @@
+/*===TOKENS===*/
+INCLUDE                  <include>
+OPEN_STRING              <">
+STRING_LITERAL           <mypage.cfm>
+CLOSE_STRING             <">
+IDENTIFIER               <runonce>
+'='                      <=>
+BOOLEAN_LITERAL          <true>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (tagOperatorStatement
+        (includeStatement
+          include
+          (baseExpression
+            (unaryExpression
+              (primaryExpression
+                (literalExpression (stringLiteral " (stringLiteralPart mypage.cfm) "))
+              )
+            )
+          )
+          (paramStatementAttributes
+            (param
+              (multipartIdentifier (identifier runonce))
+              =
+              (startExpression
+                (compareExpression
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
+                )
+              )
+            )
+          )
+          ;
+        )
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+include 'mypage.cfm'
+/*======*/

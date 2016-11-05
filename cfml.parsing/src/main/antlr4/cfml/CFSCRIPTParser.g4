@@ -238,7 +238,7 @@ rethrowStatment:
 // component  
 
 includeStatement
-  : lc=INCLUDE baseExpression SEMICOLON  //-> ^(INCLUDE  baseExpression* ) 
+  : lc=INCLUDE baseExpression (paramStatementAttributes)? SEMICOLON  //-> ^(INCLUDE  baseExpression* ) 
   ;
 
 importStatement
