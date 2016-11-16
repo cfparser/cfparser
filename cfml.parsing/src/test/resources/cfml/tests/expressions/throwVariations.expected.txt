@@ -81,7 +81,7 @@ CLOSE_STRING             <">
                   (
                   (argumentList
                     (argument
-                      (identifier type)
+                      (argumentName (identifier type))
                       =
                       (startExpression
                         (compareExpression
@@ -97,7 +97,7 @@ CLOSE_STRING             <">
                     )
                     ,
                     (argument
-                      (identifier message)
+                      (argumentName (identifier message))
                       =
                       (startExpression
                         (compareExpression
@@ -125,4 +125,13 @@ CLOSE_STRING             <">
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+{
+throw;
+throw;
+throw ('woohoo');
+throw(type = 'wow', message = 'that escalated quickly');
+
+}
 /*======*/

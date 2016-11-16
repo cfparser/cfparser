@@ -112,7 +112,7 @@ IDENTIFIER               <callRate>
                       (
                       (argumentList
                         (argument
-                          (identifier crid)
+                          (argumentName (identifier crid))
                           =
                           (startExpression
                             (compareExpression
@@ -122,7 +122,7 @@ IDENTIFIER               <callRate>
                         )
                         ,
                         (argument
-                          (identifier newName)
+                          (argumentName (identifier newName))
                           =
                           (startExpression
                             (compareExpression
@@ -132,7 +132,7 @@ IDENTIFIER               <callRate>
                         )
                         ,
                         (argument
-                          (identifier newDescription)
+                          (argumentName (identifier newDescription))
                           =
                           (startExpression
                             (compareExpression

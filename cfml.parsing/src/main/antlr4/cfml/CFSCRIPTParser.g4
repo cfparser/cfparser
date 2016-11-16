@@ -638,12 +638,16 @@ argumentList
   ;
 
 argument
-  : ( name=identifier COLON startExpression //-> ^( COLON identifier baseExpression ) 
+  : ( (name=argumentName) COLON startExpression //-> ^( COLON identifier baseExpression ) 
   )
-  | ( name=identifier EQUALSOP startExpression //-> ^( COLON identifier baseExpression ) 
+  | ( (name=argumentName) EQUALSOP startExpression //-> ^( COLON identifier baseExpression ) 
   )
   | startExpression 
   | anonymousFunctionDeclaration
+  ;
+  
+argumentName
+  : identifier | stringLiteral
   ;
 
 multipartIdentifier

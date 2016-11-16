@@ -1,13 +1,19 @@
 /*===TOKENS===*/
-IDENTIFIER               <doSomething>
+IDENTIFIER               <foo>
+'.'                      <.>
+IDENTIFIER               <bar>
 '('                      <(>
-IDENTIFIER               <x>
+OPEN_STRING              <">
+STRING_LITERAL           <argNameOne>
+CLOSE_STRING             <">
 '='                      <=>
-BOOLEAN_LITERAL          <true>
+IDENTIFIER               <argValueOne>
 ','                      <,>
-IDENTIFIER               <y>
+OPEN_STRING              <">
+STRING_LITERAL           <argNameTwo>
+CLOSE_STRING             <">
 '='                      <=>
-BOOLEAN_LITERAL          <false>
+IDENTIFIER               <argValueTwo>
 ')'                      <)>
 ';'                      <;>
 /*===TREE===*/
@@ -19,28 +25,28 @@ BOOLEAN_LITERAL          <false>
           (baseExpression
             (unaryExpression
               (memberExpression
+                (identifier foo)
+                .
                 (functionCall
-                  (identifierOrReservedWord (identifier doSomething))
+                  (identifierOrReservedWord (identifier bar))
                   (
                   (argumentList
                     (argument
-                      (argumentName (identifier x))
+                      (argumentName (stringLiteral " (stringLiteralPart argNameOne) "))
                       =
                       (startExpression
                         (compareExpression
-                          (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
+                          (baseExpression (unaryExpression (memberExpression (identifier argValueOne))))
                         )
                       )
                     )
                     ,
                     (argument
-                      (argumentName (identifier y))
+                      (argumentName (stringLiteral " (stringLiteralPart argNameTwo) "))
                       =
                       (startExpression
                         (compareExpression
-                          (baseExpression
-                            (unaryExpression (primaryExpression (literalExpression false)))
-                          )
+                          (baseExpression (unaryExpression (memberExpression (identifier argValueTwo))))
                         )
                       )
                     )
@@ -58,5 +64,5 @@ BOOLEAN_LITERAL          <false>
 )
 /*======*/
 /*===DECOMPILE===*/
-doSomething(x = true, y = false)
+foo.bar('argNameOne' = argValueOne, 'argNameTwo' = argValueTwo)
 /*======*/
