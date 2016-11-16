@@ -149,6 +149,7 @@ condition
 returnStatement
   : RETURN SEMICOLON
   | RETURN startExpression SEMICOLON
+  | RETURN assignmentExpression SEMICOLON
   ;
   
 ifStatement

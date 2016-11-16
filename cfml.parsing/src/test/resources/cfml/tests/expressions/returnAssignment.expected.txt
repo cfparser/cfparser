@@ -1,0 +1,70 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+PUBLIC                   <public>
+IDENTIFIER               <void>
+FUNCTION                 <function>
+IDENTIFIER               <test>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+RETURN                   <return>
+IDENTIFIER               <foo>
+'='                      <=>
+IDENTIFIER               <bar>
+';'                      <;>
+'}'                      <}>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          (accessType public)
+          (typeSpec (multipartIdentifier (identifier void)))
+          function
+          (identifier test)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (returnStatement
+                return
+                (assignmentExpression
+                  (startExpression
+                    (compareExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier foo))))
+                    )
+                  )
+                  =
+                  (startExpression
+                    (compareExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier bar))))
+                    )
+                  )
+                )
+                ;
+              )
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public void function test()     {
+      return foo = bar;
+
+    }
+}
+/*======*/
