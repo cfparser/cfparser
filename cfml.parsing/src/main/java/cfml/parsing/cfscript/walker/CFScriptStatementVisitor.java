@@ -2,6 +2,7 @@ package cfml.parsing.cfscript.walker;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
@@ -102,7 +103,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	
 	@Override
 	public CFScriptStatement visitComponentDeclaration(ComponentDeclarationContext ctx) {
-		Map<CFExpression, CFExpression> _attr = new HashMap<CFExpression, CFExpression>();
+		Map<CFExpression, CFExpression> _attr = new LinkedHashMap<CFExpression, CFExpression>();
 		CFCompDeclStatement compDeclStatement = new CFCompDeclStatement(ctx.COMPONENT().getSymbol(), _attr,
 				visit(ctx.componentGuts()));
 		for (ComponentAttributeContext attr : ctx.componentAttribute()) {
@@ -133,7 +134,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		visitChildren(ctx.parameterList());
 		aggregator.pop();
 		
-		Map<CFExpression, CFExpression> attributes = new HashMap<CFExpression, CFExpression>();
+		Map<CFExpression, CFExpression> attributes = new LinkedHashMap<CFExpression, CFExpression>();
 		for (FunctionAttributeContext attr : ctx.functionAttribute()) {
 			ParserRuleContext idAttr = attr.identifierWithColon() != null ? attr.identifierWithColon() : attr.id;
 			CFExpression name = (CFExpression) cfExpressionVisitor.visit(idAttr);
@@ -167,7 +168,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		visitChildren(ctx.parameterList());
 		aggregator.pop();
 		
-		Map<CFExpression, CFExpression> attributes = new HashMap<CFExpression, CFExpression>();
+		Map<CFExpression, CFExpression> attributes = new LinkedHashMap<CFExpression, CFExpression>();
 		for (FunctionAttributeContext attr : ctx.functionAttribute()) {
 			ParserRuleContext idAttr = attr.identifierWithColon() != null ? attr.identifierWithColon() : attr.id;
 			CFExpression name = (CFExpression) cfExpressionVisitor.visit(idAttr);

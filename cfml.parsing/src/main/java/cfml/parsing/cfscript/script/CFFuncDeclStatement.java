@@ -3,7 +3,6 @@ package cfml.parsing.cfscript.script;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.antlr.v4.runtime.Token;
 
@@ -109,12 +108,12 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 			}
 		}
 		sb.append(") ");
-		Iterator<Entry<CFExpression, CFExpression>> attribs = attributes.entrySet().iterator();
+		Iterator<CFExpression> attribs = attributes.keySet().iterator();
 		while (attribs.hasNext()) {
-			Entry<CFExpression, CFExpression> attrib = attribs.next();
-			sb.append(attrib.getKey().Decompile(0).replace('.', ':'));
-			if (attrib.getValue() != null)
-				sb.append("=" + attrib.getValue().Decompile(0));
+			CFExpression key = attribs.next();
+			sb.append(key.Decompile(0).replace('.', ':'));
+			if (attributes.get(key) != null)
+				sb.append("=" + attributes.get(key).Decompile(0));
 			if (attribs.hasNext()) {
 				sb.append(" ");
 			}
