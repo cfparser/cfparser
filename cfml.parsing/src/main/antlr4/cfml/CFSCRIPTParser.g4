@@ -82,12 +82,14 @@ componentAttribute
 //i=identifier EQUALSOP^ v=baseExpression
    
 functionAttribute
-  : (prefix=IDENTIFIER COLON)? id=identifier op=EQUALSOP startExpression
-  | (prefix=IDENTIFIER COLON)? id=identifier
+  : identifierWithColon op=EQUALSOP (value=identifier | valueString=stringLiteral)
+  | id=identifier ( op=(EQUALSOP|COLON) (value=identifier | valueString=stringLiteral) )?
   ;
-  
 
-  
+identifierWithColon
+: identifier COLON identifier
+;
+
 parameterAttribute
   : identifier EQUALSOP startExpression //-> ^(PARAMETER_ATTRIBUTE identifier baseExpression)
   | identifier

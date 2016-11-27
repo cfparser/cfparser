@@ -22,7 +22,7 @@ public class UserDefinedFunction implements java.io.Serializable {
 	protected int access = -1;
 	private String returnType;
 	
-	private Map<CFIdentifier, CFExpression> attributes; // the function attributes
+	private Map<CFExpression, CFExpression> attributes; // the function attributes
 	
 	// the following attribute is only used for CFFUNCTION-based UDFs
 	
@@ -38,7 +38,7 @@ public class UserDefinedFunction implements java.io.Serializable {
 	
 	// for creating CFSCRIPT-based UDFs
 	public UserDefinedFunction(CFIdentifier _name, byte _access, String _returnType, List<CFFunctionParameter> _formals,
-			Map<CFIdentifier, CFExpression> attributes2, CFScriptStatement _body) {
+			Map<CFExpression, CFExpression> attributes2, CFScriptStatement _body) {
 		name = _name;
 		access = _access;
 		formals = _formals;
@@ -94,7 +94,7 @@ public class UserDefinedFunction implements java.io.Serializable {
 		return access;
 	}
 	
-	public Map<CFIdentifier, CFExpression> getAttributes() {
+	public Map<CFExpression, CFExpression> getAttributes() {
 		return attributes;
 	}
 	

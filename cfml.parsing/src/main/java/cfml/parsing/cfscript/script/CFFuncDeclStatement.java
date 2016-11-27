@@ -1,7 +1,9 @@
 package cfml.parsing.cfscript.script;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.antlr.v4.runtime.Token;
 
@@ -16,7 +18,7 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 	
 	private CFIdentifier name;
 	private List<CFFunctionParameter> formals; // Vector of String's
-	private Map<CFIdentifier, CFExpression> attributes;
+	private Map<CFExpression, CFExpression> attributes;
 	private CFScriptStatement body;
 	
 	private byte access;
@@ -24,7 +26,7 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 	
 	// TODO: prevent function declared inside function. May want to do this elsewhere
 	public CFFuncDeclStatement(Token _t, CFIdentifier _name, String _access, CFIdentifier _returnType,
-			List<CFFunctionParameter> _formals, Map<CFIdentifier, CFExpression> _attr, CFScriptStatement _body) {
+			List<CFFunctionParameter> _formals, Map<CFExpression, CFExpression> _attr, CFScriptStatement _body) {
 		super(_t);
 		name = _name;
 		formals = _formals;
@@ -107,6 +109,16 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 			}
 		}
 		sb.append(") ");
+		Iterator<Entry<CFExpression, CFExpression>> attribs = attributes.entrySet().iterator();
+		while (attribs.hasNext()) {
+			Entry<CFExpression, CFExpression> attrib = attribs.next();
+			sb.append(attrib.getKey().Decompile(0).replace('.', ':'));
+			if (attrib.getValue() != null)
+				sb.append("=" + attrib.getValue().Decompile(0));
+			if (attribs.hasNext()) {
+				sb.append(" ");
+			}
+		}
 		sb.append(body.Decompile(indent + 2));
 		return sb.toString();
 	}
@@ -119,7 +131,7 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 		return name;
 	}
 	
-	public Map<CFIdentifier, CFExpression> getAttributes() {
+	public Map<CFExpression, CFExpression> getAttributes() {
 		return attributes;
 	}
 	

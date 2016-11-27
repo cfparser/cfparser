@@ -1,9 +1,10 @@
-antlr4.antlrRegisteredTools=4.4@C\:\\Users\\eberlyrh\\AppData\\Local\\Temp\\antlr-4.4-complete.jar\:4.5@C\:\\downloads\\lib\\antlr-4.5-complete.jar
-antlr4.antlrToolPath=C\:\\downloads\\lib\\antlr-4.5-complete.jar
+antlr4.antlrRegisteredTools=4.4@C\:\\Users\\eberlyrh\\AppData\\Local\\Temp\\antlr-4.4-complete.jar\:4.4@/home/valliant/workspace-cfe/antlr/antlr-4.4-complete.jar
+antlr4.antlrToolPath=/home/valliant/workspace-cfe/antlr/antlr-4.4-complete.jar
 antlr4.encoding=UTF-8
 antlr4.listener=true
 antlr4.visitor=true
 antlr4.vmArgs=
+antlr4ide.is_project_specific=true
 autobuilding=true
 eclipse.preferences.version=1
 is_project_specific=true
