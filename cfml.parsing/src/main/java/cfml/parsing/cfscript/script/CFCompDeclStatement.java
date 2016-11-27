@@ -68,8 +68,7 @@ public class CFCompDeclStatement extends CFParsedStatement {
 		sb.append("component ");
 		for (Entry<CFExpression, CFExpression> entry : attributes.entrySet()) {
 			sb.append(entry.getKey().Decompile(0));
-			sb.append("=");
-			sb.append(entry.getValue().Decompile(0));
+			sb.append(entry.getValue() == null ? "" : "=" + entry.getValue().Decompile(0));
 			sb.append(" ");
 		}
 		sb.append("{\n");
