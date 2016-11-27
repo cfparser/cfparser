@@ -49,8 +49,12 @@ public class CFCompoundStatement extends CFParsedStatement implements CFScriptSt
 		StringBuilder s = new StringBuilder();
 		s.append(Indent(indent));
 		s.append("{\n");
-		for (int i = 0; i < _v.size(); i++) {
-			s.append(_v.get(i).Decompile(indent + 2)).append(";\n");
+		for (int i = 0; i < numOfStatements(); i++) {
+			CFScriptStatement statement = _v.get(i);
+			// prevent endless loop
+			if (statement != this) {
+				s.append(statement.Decompile(indent + 2)).append(";\n");
+			}
 		}
 		s.append("\n");
 		s.append(Indent(indent));
