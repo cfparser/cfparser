@@ -105,7 +105,6 @@ public class TestFiles {
 			logger.info("/*===TOKENS===*/\r\n" + actualTokens + "\r\n");
 			logger.info("/*===TOKENS===*/\r\n" + actualTree + "\r\n/*======*/");
 		}
-		// assertThat(errors, is(empty()));
 		boolean iKnowThisIsAllGoodSoReplaceIt = false;
 		if (expectedTree == null || expectedTree.trim().length() == 0 || iKnowThisIsAllGoodSoReplaceIt) {
 			writeExpectFile(expectedFile, actualTokens, actualTree, parseTree);
@@ -122,15 +121,17 @@ public class TestFiles {
 			logger.info(errors.toString());
 		}
 		assertEquals(true, errors.isEmpty());
+		CFScriptStatement result;
+		CFScriptStatementVisitor scriptVisitor = new CFScriptStatementVisitor();
+		result = scriptVisitor.visit(parseTree);
+		String blah = result == null ? "" : result.Decompile(0);
+		
 		final String expectedDecompileText = getDecompileExpression(expectedFileText);
 		
 		if (expectedDecompileText != null) {
 			// An empty /*===DECOMPILE===*/ says the decompile must match the input exactly
 			final String expectedText = expectedDecompileText.trim().length() == 0 ? inputString : expectedDecompileText;
-			
-			CFScriptStatementVisitor scriptVisitor = new CFScriptStatementVisitor();
-			CFScriptStatement result = scriptVisitor.visit(parseTree);
-			logger.info(result == null ? "" : result.getClass().toString());
+			logger.info(result == null ? "" : "decompileText was null for " + result.getClass().toString());
 			assertEquals(normalizeWhite(expectedText), normalizeWhite(result.Decompile(0)));
 		}
 	}
