@@ -16,8 +16,8 @@ public class TestScriptParserForLoop {
 		CFScriptStatement scriptStatement = null;
 		scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("for( widget in thingWithWidgets.getWidgets() )   {writeOutput(widget);  }", scriptStatement
-				.Decompile(0).replaceAll("[\r\n]", ""));
+		assertEquals("for( widget in thingWithWidgets.getWidgets() )   {writeOutput(widget);  }",
+				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
 	@Test
@@ -26,8 +26,8 @@ public class TestScriptParserForLoop {
 		CFScriptStatement scriptStatement = null;
 		scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
-		assertEquals("for( var widget in thingWithWidgets.getWidgets() )   {writeOutput(widget);  }", scriptStatement
-				.Decompile(0).replaceAll("[\r\n]", ""));
+		assertEquals("for( var widget in thingWithWidgets.getWidgets() )   {writeOutput(widget);  }",
+				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 	
 	@Test
@@ -67,5 +67,15 @@ public class TestScriptParserForLoop {
 		assertNotNull(scriptStatement);
 		TestUtils.printCFScriptTree(scriptStatement);
 		assertEquals("for(i = 1;i <= n;i = i + 1)  {  }", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
+	}
+	
+	@Test
+	public void testForInStatementNoInitial() {
+		String script = "for (; i <= n; i = i + 1 ) {}";
+		CFScriptStatement scriptStatement = null;
+		scriptStatement = TestUtils.parseScript(script);
+		assertNotNull(scriptStatement);
+		TestUtils.printCFScriptTree(scriptStatement);
+		assertEquals("for(;i <= n;i = i + 1)  {  }", scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 	}
 }

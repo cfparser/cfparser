@@ -53,21 +53,9 @@ IDENTIFIER               <support>
       (parameterList (parameter (identifier rc)))
       )
       (functionAttribute
-        my
-        :
-        (identifier role)
+        (identifierWithColon (identifier my) : (identifier role))
         =
-        (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (primaryExpression
-                  (literalExpression (stringLiteral " (stringLiteralPart support:admin) "))
-                )
-              )
-            )
-          )
-        )
+        (stringLiteral " (stringLiteralPart support:admin) ")
       )
       (compoundStatement { })
     )
@@ -82,17 +70,7 @@ IDENTIFIER               <support>
       (functionAttribute
         (identifier role)
         =
-        (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (primaryExpression
-                  (literalExpression (stringLiteral " (stringLiteralPart support:admin) "))
-                )
-              )
-            )
-          )
-        )
+        (stringLiteral " (stringLiteralPart support:admin) ")
       )
       (compoundStatement { })
     )
@@ -115,9 +93,26 @@ IDENTIFIER               <support>
       (
       (parameterList (parameter (identifier rc)))
       )
-      (functionAttribute role : (identifier support))
+      (functionAttribute (identifier role) : (identifier support))
       (compoundStatement { })
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+{
+  public function setStatus2(rc) role='support:admin'    {
+
+    };
+  public function setStatus(rc) my:role='support:admin'    {
+
+    };
+  public function setStatus2(rc) role    {
+
+    };
+  public function setStatus2(rc) role=support    {
+
+    };
+
+}
 /*======*/

@@ -409,19 +409,7 @@ RETHROW                  <rethrow>
           (functionAttribute
             (identifier hint)
             =
-            (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression
-                    (primaryExpression
-                      (literalExpression
-                        (stringLiteral " (stringLiteralPart compile dynamic source) ")
-                      )
-                    )
-                  )
-                )
-              )
-            )
+            (stringLiteral " (stringLiteralPart compile dynamic source) ")
           )
           (compoundStatement
             {

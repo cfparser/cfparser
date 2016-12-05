@@ -2,6 +2,7 @@ package cfml.parsing.cfscript.walker;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
@@ -102,7 +103,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	
 	@Override
 	public CFScriptStatement visitComponentDeclaration(ComponentDeclarationContext ctx) {
-		Map<CFExpression, CFExpression> _attr = new HashMap<CFExpression, CFExpression>();
+		Map<CFExpression, CFExpression> _attr = new LinkedHashMap<CFExpression, CFExpression>();
 		CFCompDeclStatement compDeclStatement = new CFCompDeclStatement(ctx.COMPONENT().getSymbol(), _attr,
 				visit(ctx.componentGuts()));
 		for (ComponentAttributeContext attr : ctx.componentAttribute()) {
@@ -133,10 +134,13 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		visitChildren(ctx.parameterList());
 		aggregator.pop();
 		
-		Map<CFIdentifier, CFExpression> attributes = new HashMap<CFIdentifier, CFExpression>();
+		Map<CFExpression, CFExpression> attributes = new LinkedHashMap<CFExpression, CFExpression>();
 		for (FunctionAttributeContext attr : ctx.functionAttribute()) {
-			attributes.put((CFIdentifier) cfExpressionVisitor.visitIdentifier(attr.identifier()),
-					cfExpressionVisitor.visit(attr.startExpression()));
+			ParserRuleContext idAttr = attr.identifierWithColon() != null ? attr.identifierWithColon() : attr.id;
+			CFExpression name = (CFExpression) cfExpressionVisitor.visit(idAttr);
+			CFExpression value = attr.value != null ? cfExpressionVisitor.visit(attr.value) : null;
+			CFExpression stringValue = attr.valueString != null ? cfExpressionVisitor.visit(attr.valueString) : null;
+			attributes.put(name, value != null ? value : stringValue);
 		}
 		
 		CFFuncDeclStatement funcDeclStatement = new CFFuncDeclStatement(ctx.FUNCTION().getSymbol(),
@@ -164,10 +168,13 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		visitChildren(ctx.parameterList());
 		aggregator.pop();
 		
-		Map<CFIdentifier, CFExpression> attributes = new HashMap<CFIdentifier, CFExpression>();
+		Map<CFExpression, CFExpression> attributes = new LinkedHashMap<CFExpression, CFExpression>();
 		for (FunctionAttributeContext attr : ctx.functionAttribute()) {
-			attributes.put((CFIdentifier) cfExpressionVisitor.visitIdentifier(attr.identifier()),
-					cfExpressionVisitor.visit(attr.startExpression()));
+			ParserRuleContext idAttr = attr.identifierWithColon() != null ? attr.identifierWithColon() : attr.id;
+			CFExpression name = (CFExpression) cfExpressionVisitor.visit(idAttr);
+			CFExpression value = attr.value != null ? cfExpressionVisitor.visit(attr.value) : null;
+			CFExpression stringValue = attr.valueString != null ? cfExpressionVisitor.visit(attr.valueString) : null;
+			attributes.put(name, value != null ? value : stringValue);
 		}
 		
 		CFFuncDeclStatement funcDeclStatement = new CFFuncDeclStatement(ctx.FUNCTION().getSymbol(), (CFIdentifier) null,
@@ -286,7 +293,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 			return forInStatement;
 		} else {
 			ParserRuleContext localOrInit = ExpressionUtils.coalesce(ctx.localAssignmentExpression(), ctx.initExpression);
-			CFExpression LocalOrInitVisited = cfExpressionVisitor.visit(localOrInit);
+			CFExpression LocalOrInitVisited = localOrInit != null ? cfExpressionVisitor.visit(localOrInit) : null;
 			CFForStatement forStatement = new CFForStatement(ctx.FOR().getSymbol(), LocalOrInitVisited,
 					cfExpressionVisitor.visit(ctx.condExpression),
 					cfExpressionVisitor.visit(ExpressionUtils.coalesce(ctx.incrExpression, ctx.incrExpression2)),
@@ -484,7 +491,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		Map<CFIdentifier, CFExpression> _attributes = new HashMap<CFIdentifier, CFExpression>();
 		CFParamStatement paramStatement = new CFParamStatement(ctx.PARAM().getSymbol(), _attributes);
 		aggregator.push(paramStatement);
-		visitChildren(ctx.paramStatementAttributes());
+		if (ctx.paramStatementAttributes() != null)
+			visitChildren(ctx.paramStatementAttributes());
 		aggregator.pop();
 		return paramStatement;
 	}
