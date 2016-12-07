@@ -43,35 +43,35 @@ import org.xml.sax.XMLReader;
 
 /**
  * @author Rob
- * 		
+ * 
  *         Base class for dictionaries.
- * 		
+ * 
  *         The syntax dictionary keeps a name/object map of the tags and functions defined in the dictionary. It
  *         provides the methods for gaining access to the dictionary's defined functions &amp; tags, plus access to the
  *         attributes that belong to a tag.
- * 		
+ * 
  *         I think, in future, the acces to the attributes should be done on an per-attribute basis, not gained from the
  *         syntax dictionary.
- * 		
+ * 
  */
 public abstract class SyntaxDictionary {
 	/** any tag based items in the dictionary */
-	protected Map syntaxelements;
+	protected Map<String, Object> syntaxelements;
 	/** any function based elements */
-	protected Map functions;
+	protected Map<String, Object> functions;
 	/** any scope variables including user defined components */
-	protected Map scopeVars;
+	protected Map<String, Object> scopeVars;
 	/** any scope variables */
-	protected Map scopes;
+	protected Map<String, Object> scopes;
 	
 	/** the file name for this dictionary */
 	protected String dictionaryURL = null;
 	
 	public SyntaxDictionary() {
-		syntaxelements = new HashMap();
-		functions = new HashMap();
-		scopeVars = new HashMap();
-		scopes = new HashMap();
+		syntaxelements = new HashMap<String, Object>();
+		functions = new HashMap<String, Object>();
+		scopeVars = new HashMap<String, Object>();
+		scopes = new HashMap<String, Object>();
 	}
 	
 	/**
@@ -100,7 +100,7 @@ public abstract class SyntaxDictionary {
 	 * 
 	 * @return set of all the tag names using the keys
 	 */
-	public Set getAllElements() {
+	public Set<String> getAllElements() {
 		return syntaxelements.keySet();
 	}
 	
@@ -109,15 +109,15 @@ public abstract class SyntaxDictionary {
 	 * 
 	 * @return a set of all the tag objects
 	 */
-	public Set getAllTags() {
-		Set total = new HashSet();
-		Set keys = getAllElements();
+	public Set<Tag> getAllTags() {
+		Set<Tag> total = new HashSet<Tag>();
+		Set<String> keys = getAllElements();
 		if (keys == null) {
 			return total;
 		}
-		Iterator it = keys.iterator();
+		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
-			total.add(syntaxelements.get((String) it.next()));
+			total.add((Tag) syntaxelements.get((String) it.next()));
 		}
 		
 		return total;
@@ -128,12 +128,12 @@ public abstract class SyntaxDictionary {
 	 * 
 	 * @return a set of all the tag objects
 	 */
-	public Set getAllFunctions() {
-		Set total = new HashSet();
-		Set keys = getFunctions();
-		Iterator it = keys.iterator();
+	public Set<Function> getAllFunctions() {
+		Set<Function> total = new HashSet<Function>();
+		Set<String> keys = getFunctions();
+		Iterator<String> it = keys.iterator();
 		while (it.hasNext()) {
-			total.add(functions.get((String) it.next()));
+			total.add((Function) functions.get(it.next()));
 		}
 		
 		return total;
@@ -144,10 +144,10 @@ public abstract class SyntaxDictionary {
 	 * 
 	 * @return a set of all the scope objects
 	 */
-	public Set getAllScopes() {
-		Set total = new HashSet();
-		Set keys = scopes.keySet();
-		Iterator it = keys.iterator();
+	public Set<Object> getAllScopes() {
+		Set<Object> total = new HashSet<Object>();
+		Set<String> keys = scopes.keySet();
+		Iterator<String> it = keys.iterator();
 		String name = null;
 		while (it.hasNext()) {
 			name = (String) it.next().toString();
@@ -163,13 +163,13 @@ public abstract class SyntaxDictionary {
 	 * 
 	 * @return a set of all the scope var objects
 	 */
-	public Set getAllScopeVars() {
-		Set total = new HashSet();
-		Set keys = scopeVars.keySet();
-		Iterator it = keys.iterator();
+	public Set<Object> getAllScopeVars() {
+		Set<Object> total = new HashSet<Object>();
+		Set<String> keys = scopeVars.keySet();
+		Iterator<String> it = keys.iterator();
 		String name = null;
 		while (it.hasNext()) {
-			name = (String) it.next();
+			name = it.next();
 			// System.out.println("Added " + name);
 			total.add(scopeVars.get(name));
 		}
@@ -184,7 +184,7 @@ public abstract class SyntaxDictionary {
 	 *            the string to filter by (i.e. "cfou" will return all tags beginning with "cfou"
 	 * @return set of matching elements.
 	 */
-	public Set getFilteredElements(String start) {
+	public Set<Object> getFilteredElements(String start) {
 		
 		if (this.syntaxelements == DictionaryManager.getDictionary(DictionaryManager.CFDIC_KEY)
 				&& !start.toLowerCase().startsWith("cf")) {
@@ -192,8 +192,17 @@ public abstract class SyntaxDictionary {
 					"SyntaxDictionary::getFilteredElements() - WARNING: Tag name requested that does NOT begin with CF. Tag name was \'"
 							+ start + "\'");
 		}
+		Set<Object> elements = new HashSet<Object>();
+		Set<String> keys = getAllElements();
+		if (keys == null) {
+			return elements;
+		}
+		Iterator<String> it = keys.iterator();
+		while (it.hasNext()) {
+			elements.add(syntaxelements.get((String) it.next()));
+		}
 		
-		return limitSet(getAllTags(), start);
+		return limitSet(elements, start);
 		// return limitSet(getAllElements(),start);
 	}
 	
@@ -204,7 +213,7 @@ public abstract class SyntaxDictionary {
 	 *            the string to filter by (i.e. "cfou" will return all tags beginning with "cfou"
 	 * @return set of matching elements.
 	 */
-	public Set getFilteredScopeVars(String start) {
+	public Set<Object> getFilteredScopeVars(String start) {
 		return limitSet(getAllScopeVars(), start);
 		// return limitSet(getAllElements(),start);
 	}
@@ -216,9 +225,9 @@ public abstract class SyntaxDictionary {
 	 *            the function whose params should be returned
 	 * @return set of matching elements.
 	 */
-	public Set getFunctionParams(String functionName) {
-		Set entries = functions.keySet();
-		Iterator i = entries.iterator();
+	public Set<Object> getFunctionParams(String functionName) {
+		Set<String> entries = functions.keySet();
+		Iterator<String> i = entries.iterator();
 		try {
 			while (i.hasNext()) {
 				Object o = i.next();
@@ -255,7 +264,7 @@ public abstract class SyntaxDictionary {
 		Object obj = syntaxelements.get(name.toLowerCase());
 		if (obj != null)
 			return (Tag) obj;
-			
+		
 		return null;
 	}
 	
@@ -273,7 +282,7 @@ public abstract class SyntaxDictionary {
 	 *            - A partial or full value to filter by
 	 * @return set of filtered attribute values
 	 */
-	public Set getFilteredAttributeValues(String tag, String attribute, String start) {
+	public Set<Object> getFilteredAttributeValues(String tag, String attribute, String start) {
 		if (tag == null || attribute == null || start == null) {
 			throw new IllegalArgumentException("tag, attribute, or start is null");
 		}
@@ -288,13 +297,13 @@ public abstract class SyntaxDictionary {
 							+ tag + "\'");
 		}
 		
-		Set attribs = getElementAttributes(tag);
+		Set<Object> attribs = getElementAttributes(tag);
 		
 		if (attribs == null)
 			return null;
 		else if (attribs.size() == 0)
 			return null;
-			
+		
 		Object[] tempArray = attribs.toArray();
 		for (int i = 0; i < tempArray.length; i++) {
 			Parameter currParam = (Parameter) tempArray[i];
@@ -314,7 +323,7 @@ public abstract class SyntaxDictionary {
 	 *            - attribute text that we wish to filter by
 	 * @return The filtered set of Parameters or null if the tag is not found.
 	 */
-	public Set getFilteredAttributes(String tag, String start) {
+	public Set<Object> getFilteredAttributes(String tag, String start) {
 		if (tag == null) {
 			throw new IllegalArgumentException("tag is null");
 		}
@@ -337,7 +346,7 @@ public abstract class SyntaxDictionary {
 	 * 
 	 * @return
 	 */
-	public Set getFunctions() {
+	public Set<String> getFunctions() {
 		// Assert.isNotNull(functions, "Private member functions is null");
 		return functions.keySet();
 	}
@@ -383,7 +392,7 @@ public abstract class SyntaxDictionary {
 		Object obj = functions.get(name.toLowerCase());
 		if (obj != null)
 			return (Function) obj;
-			
+		
 		return null;
 	}
 	
@@ -403,7 +412,7 @@ public abstract class SyntaxDictionary {
 		
 		if (syntaxelements == null)
 			return false;
-			
+		
 		return syntaxelements.containsKey(name.toLowerCase());
 	}
 	
@@ -416,7 +425,7 @@ public abstract class SyntaxDictionary {
 	public boolean functionExists(String name) {
 		if (functions == null)
 			return false;
-			
+		
 		return functions.containsKey(name.toLowerCase());
 	}
 	
@@ -429,12 +438,12 @@ public abstract class SyntaxDictionary {
 	 *            the string to use as a limiter
 	 * @return everything in the set that starts with start in the format passed in
 	 */
-	public static Set limitSet(Set st, String start) {
-		Set filterset = new HashSet();
-		Set fullset = st;
+	public static Set<Object> limitSet(Set<Object> st, String start) {
+		Set<Object> filterset = new HashSet<Object>();
+		Set<Object> fullset = st;
 		
 		if (fullset != null) {
-			Iterator it = fullset.iterator();
+			Iterator<Object> it = fullset.iterator();
 			while (it.hasNext()) {
 				Object item = it.next();
 				String possible = "";
@@ -452,7 +461,7 @@ public abstract class SyntaxDictionary {
 				} else if (item instanceof ScopeVar) {
 					possible = ((ScopeVar) item).getName();
 				} else if (item instanceof Component) {
-					Iterator i = ((Component) item).getScopes().iterator();
+					Iterator<?> i = ((Component) item).getScopes().iterator();
 					ScopeVar val;
 					// Component c;
 					while (i.hasNext()) {
@@ -464,7 +473,7 @@ public abstract class SyntaxDictionary {
 							val.setHelp(((Component) item).getHelp());
 							filterset.add(new ScopeVar("componentscope", possible));
 						} else if ((possible + ".").toUpperCase().equals(start.toUpperCase())) {
-							Iterator j = ((Component) item).getMethods().iterator();
+							Iterator<?> j = ((Component) item).getMethods().iterator();
 							while (j.hasNext()) {
 								filterset.add(j.next());
 							}
@@ -495,7 +504,7 @@ public abstract class SyntaxDictionary {
 	 *            The tag or function whose attributes we're after.
 	 * @return The set of parameters/attributes for the element, otherwise null.
 	 */
-	public Set getElementAttributes(String elementname) {
+	public Set<Object> getElementAttributes(String elementname) {
 		// Assert.isNotNull(this.syntaxelements,
 		// "Private member syntaxelements is null. Has this dictionary been loaded?");
 		// Assert.isNotNull(elementname, "Parameter elementname supplied is null");
@@ -513,7 +522,7 @@ public abstract class SyntaxDictionary {
 				p = (Procedure) syntaxelements.get(elementname.toLowerCase());
 			}
 			if (p != null) {
-				Set st = p.getParameters();
+				Set<Object> st = p.getParameters();
 				return st;
 			}
 		} catch (Throwable ex) {
@@ -534,7 +543,7 @@ public abstract class SyntaxDictionary {
 		// System.err.println("loading dictionary: " + filename);
 		if (this.dictionaryURL == null)
 			throw new IOException("Dictionary file name can not be null!");
-			
+		
 		URL url = new URL(this.dictionaryURL);
 		URLConnection urlcon = url.openConnection();
 		BufferedInputStream xml = new BufferedInputStream(urlcon.getInputStream());

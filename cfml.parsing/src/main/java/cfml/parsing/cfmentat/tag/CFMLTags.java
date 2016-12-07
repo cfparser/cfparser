@@ -29,8 +29,6 @@ public class CFMLTags {
 	public static final StartTagType CFML_MAIL = StartTagTypeCFMail.INSTANCE;
 	public static final StartTagType CFML_QUERY = StartTagTypeCFQuery.INSTANCE;
 	
-	private static SyntaxDictionary cfdic;
-	
 	private CFMLTags() {
 	}
 	
@@ -44,7 +42,7 @@ public class CFMLTags {
 			return;
 		
 		DictionaryManager.initDictionaries();
-		cfdic = DictionaryManager.getDictionary("CF_DICTIONARY");
+		SyntaxDictionary cfdic = DictionaryManager.getDictionary("CF_DICTIONARY");
 		Set<Tag> cfTags = cfdic.getAllTags();
 		CFMLStartTag cftag;
 		for (Tag tag : cfTags) {
@@ -76,7 +74,7 @@ public class CFMLTags {
 		dictPrefs.setDictionaryDir(prefs.getDictionaryDir());
 		dictPrefs.setCFDictionary(prefs.getCFDictionary());
 		DictionaryManager.initDictionaries(dictPrefs);
-		cfdic = DictionaryManager.getDictionary("CF_DICTIONARY");
+		SyntaxDictionary cfdic = DictionaryManager.getDictionary("CF_DICTIONARY");
 		Set<Tag> cfTags = cfdic.getAllTags();
 		CFMLStartTag cftag;
 		for (Tag tag : cfTags) {
