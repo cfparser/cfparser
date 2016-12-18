@@ -463,7 +463,6 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 			}
 		}
 		CFFunctionExpression cfFunctionExpression = new CFFunctionExpression((CFIdentifier) visit(ctx.getChild(0)), args);
-		System.out.println(cfFunctionExpression.Decompile(0));
 		return cfFunctionExpression;
 	}
 	

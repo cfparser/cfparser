@@ -131,7 +131,7 @@ public class TestFiles {
 		if (expectedDecompileText != null) {
 			// An empty /*===DECOMPILE===*/ says the decompile must match the input exactly
 			final String expectedText = expectedDecompileText.trim().length() == 0 ? inputString : expectedDecompileText;
-			logger.info(result == null ? "" : "decompileText was null for " + result.getClass().toString());
+			//logger.info(result == null ? "" : "decompileText was null for " + result.getClass().toString());
 			assertEquals(normalizeWhite(expectedText), normalizeWhite(result.Decompile(0)));
 		}
 	}
@@ -145,7 +145,7 @@ public class TestFiles {
 		fos.write(actualTree.getBytes());
 		fos.write("\r\n/*======*/".getBytes());
 		// If it's small auto-gen the decompile as well.
-		if (actualTree.length() < 3000) {
+		if (actualTree.length() < 30000) {
 			CFScriptStatementVisitor scriptVisitor = new CFScriptStatementVisitor();
 			CFScriptStatement result = scriptVisitor.visit(parseTree);
 			try {
