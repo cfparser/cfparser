@@ -1,5 +1,5 @@
 <cfloop query="qResults">
-    <cfcontinue>
+    <cfcontinue></cfcontinue>
     <CFCONTINUE>
     <cfcontinue/>
 </cfloop>
