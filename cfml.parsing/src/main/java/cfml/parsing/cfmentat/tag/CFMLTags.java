@@ -50,7 +50,7 @@ public class CFMLTags {
 				HTMLElements.getEndTagForbiddenElementNames().add(tag.getName());
 			}
 			
-			if (!tag.getName().equals("cfif") && tag.getName().equals("cfcomment")) {
+			if (!tag.getName().equals("cfif") && !tag.getName().equals("cfcomment")) {
 				if (tag.isSingle()) {
 					cftag = new CFMLStartTag(tag.getHelp(), "<" + tag.getName(), ">", null, false, tag.hasParameters(),
 							tag.isXMLStyle());
