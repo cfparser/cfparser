@@ -1,5 +1,4 @@
 /*===TOKENS===*/
-SCRIPTOPEN               <<cfscript>>
 PRIVATE                  <private>
 IDENTIFIER               <void>
 FUNCTION                 <function>
@@ -87,204 +86,197 @@ IDENTIFIER               <id>
 ')'                      <)>
 ';'                      <;>
 '}'                      <}>
-SCRIPTCLOSE              <</cfscript>>
 /*===TREE===*/
 (scriptBlock
-  (cfscriptBlock
-    <cfscript>
-    (scriptBlock
-      (element
-        (functionDeclaration
-          (accessType private)
-          (typeSpec (multipartIdentifier (identifier void)))
-          function
-          (identifier s)
-          (
-          parameterList
+  (element
+    (functionDeclaration
+      (accessType private)
+      (typeSpec (multipartIdentifier (identifier void)))
+      function
+      (identifier s)
+      (
+      parameterList
+      )
+      (compoundStatement
+        {
+        (statement
+          (localAssignmentExpression
+            var
+            (multipartIdentifier (identifier args))
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression (unaryExpression (primaryExpression (implicitStruct { }))))
+              )
+            )
           )
-          (compoundStatement
-            {
-            (statement
-              (localAssignmentExpression
-                var
-                (multipartIdentifier (identifier args))
-                =
-                (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (primaryExpression (implicitStruct { }))))
+          ;
+        )
+        (statement
+          (localAssignmentExpression
+            var
+            (multipartIdentifier (identifier x))
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression (unaryExpression (primaryExpression (implicitStruct { }))))
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier x) . (identifier id)))
+                )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (identifier request) . (identifier x) . (identifier id))
                   )
                 )
               )
-              ;
             )
-            (statement
-              (localAssignmentExpression
-                var
-                (multipartIdentifier (identifier x))
-                =
-                (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (primaryExpression (implicitStruct { }))))
+          )
+          ;
+        )
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier x) . (identifier a)))
+                )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (identifier request) . (identifier x) . (identifier a))
                   )
                 )
               )
-              ;
             )
-            (statement
-              (assignmentExpression
-                (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression (memberExpression (identifier x) . (identifier id)))
-                    )
-                  )
+          )
+          ;
+        )
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier x) . (identifier b)))
                 )
-                =
-                (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (memberExpression (identifier request) . (identifier x) . (identifier id))
-                      )
-                    )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (identifier request) . (identifier x) . (identifier b))
                   )
                 )
               )
-              ;
             )
-            (statement
-              (assignmentExpression
-                (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression (memberExpression (identifier x) . (identifier a)))
-                    )
-                  )
+          )
+          ;
+        )
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier x) . (identifier c)))
                 )
-                =
-                (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (memberExpression (identifier request) . (identifier x) . (identifier a))
-                      )
-                    )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (identifier request) . (identifier x) . (identifier c))
                   )
                 )
               )
-              ;
             )
-            (statement
-              (assignmentExpression
-                (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression (memberExpression (identifier x) . (identifier b)))
-                    )
-                  )
+          )
+          ;
+        )
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier x) . (identifier d)))
                 )
-                =
-                (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (memberExpression (identifier request) . (identifier x) . (identifier b))
-                      )
-                    )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (identifier request) . (identifier x) . (identifier d))
                   )
                 )
               )
-              ;
             )
-            (statement
-              (assignmentExpression
-                (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression (memberExpression (identifier x) . (identifier c)))
-                    )
-                  )
-                )
-                =
-                (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (memberExpression (identifier request) . (identifier x) . (identifier c))
-                      )
-                    )
-                  )
-                )
-              )
-              ;
-            )
-            (statement
-              (assignmentExpression
-                (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression (memberExpression (identifier x) . (identifier d)))
-                    )
-                  )
-                )
-                =
-                (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (memberExpression (identifier request) . (identifier x) . (identifier d))
-                      )
-                    )
-                  )
-                )
-              )
-              ;
-            )
-            (statement
-              (tagOperatorStatement
-                (tagFunctionStatement
-                  (cfmlFunction module)
-                  (
-                  (parameterList
-                    (parameter
-                      (identifier template)
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart some.cfm) "))
-                              )
-                            )
-                          )
-                        )
-                      )
-                    )
-                    ,
-                    (parameter
-                      (identifier xid)
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression (memberExpression (identifier x) . (identifier id)))
+          )
+          ;
+        )
+        (statement
+          (tagOperatorStatement
+            (tagFunctionStatement
+              (cfmlFunction module)
+              (
+              (parameterList
+                (parameter
+                  (identifier template)
+                  =
+                  (startExpression
+                    (compareExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart some.cfm) "))
                           )
                         )
                       )
                     )
                   )
+                )
+                ,
+                (parameter
+                  (identifier xid)
+                  =
+                  (startExpression
+                    (compareExpression
+                      (baseExpression
+                        (unaryExpression (memberExpression (identifier x) . (identifier id)))
+                      )
+                    )
                   )
-                  ;
                 )
               )
+              )
+              ;
             )
-            }
           )
         )
+        }
       )
     )
-    </cfscript>
   )
 )
 /*======*/

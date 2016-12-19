@@ -1,4 +1,3 @@
-<cfscript>
 private void function s() {
 		var args = {};
 
@@ -14,5 +13,3 @@ private void function s() {
 			xid 		= x.id
 		);
 }
-
-</cfscript>
