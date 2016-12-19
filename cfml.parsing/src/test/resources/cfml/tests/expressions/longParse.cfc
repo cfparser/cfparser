@@ -12,4 +12,5 @@ private void function s() {
 			template	= "some.cfm",
 			xid 		= x.id
 		);
+		x.e				= request.x.e;
 }

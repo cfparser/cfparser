@@ -85,6 +85,16 @@ IDENTIFIER               <x>
 IDENTIFIER               <id>
 ')'                      <)>
 ';'                      <;>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <e>
+'='                      <=>
+IDENTIFIER               <request>
+'.'                      <.>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <e>
+';'                      <;>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock
@@ -274,6 +284,28 @@ IDENTIFIER               <id>
             )
           )
         )
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier x) . (identifier e)))
+                )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (identifier request) . (identifier x) . (identifier e))
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
         }
       )
     )
@@ -290,6 +322,7 @@ x.b = request.x.b;
 x.c = request.x.c;
 x.d = request.x.d;
 module(template = 'some.cfm', xid = x.id);
+x.e = request.x.e;
 
   }
 /*======*/
