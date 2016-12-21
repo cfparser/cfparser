@@ -30,7 +30,7 @@ public class CFMLSource implements Logger {
 			fSource = new Source(contents);
 		}
 		fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
-		fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_COMMENT));
+		// fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_COMMENT));
 		fSource.setLogger(this);
 	}
 	
