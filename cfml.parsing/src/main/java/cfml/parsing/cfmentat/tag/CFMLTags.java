@@ -29,8 +29,6 @@ public class CFMLTags {
 	public static final StartTagType CFML_MAIL = StartTagTypeCFMail.INSTANCE;
 	public static final StartTagType CFML_QUERY = StartTagTypeCFQuery.INSTANCE;
 	
-	private static SyntaxDictionary cfdic;
-	
 	private CFMLTags() {
 	}
 	
@@ -44,7 +42,7 @@ public class CFMLTags {
 			return;
 		
 		DictionaryManager.initDictionaries();
-		cfdic = DictionaryManager.getDictionary("CF_DICTIONARY");
+		SyntaxDictionary cfdic = DictionaryManager.getDictionary("CF_DICTIONARY");
 		Set<Tag> cfTags = cfdic.getAllTags();
 		CFMLStartTag cftag;
 		for (Tag tag : cfTags) {
@@ -52,7 +50,7 @@ public class CFMLTags {
 				HTMLElements.getEndTagForbiddenElementNames().add(tag.getName());
 			}
 			
-			if (!tag.getName().equals("cfif") && tag.getName().equals("cfcomment")) {
+			if (!tag.getName().equals("cfif") && !tag.getName().equals("cfcomment")) {
 				if (tag.isSingle()) {
 					cftag = new CFMLStartTag(tag.getHelp(), "<" + tag.getName(), ">", null, false, tag.hasParameters(),
 							tag.isXMLStyle());
@@ -76,7 +74,7 @@ public class CFMLTags {
 		dictPrefs.setDictionaryDir(prefs.getDictionaryDir());
 		dictPrefs.setCFDictionary(prefs.getCFDictionary());
 		DictionaryManager.initDictionaries(dictPrefs);
-		cfdic = DictionaryManager.getDictionary("CF_DICTIONARY");
+		SyntaxDictionary cfdic = DictionaryManager.getDictionary("CF_DICTIONARY");
 		Set<Tag> cfTags = cfdic.getAllTags();
 		CFMLStartTag cftag;
 		for (Tag tag : cfTags) {

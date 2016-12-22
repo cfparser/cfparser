@@ -397,7 +397,7 @@ public class TestCFMLParser {
 			e.printStackTrace();
 		}
 		assertNotNull(scriptStatement);
-		assertEquals("{'test';false;}", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
+		assertEquals("location(url = 'test', addtoken = false)", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
 	}
 	
 	@Test

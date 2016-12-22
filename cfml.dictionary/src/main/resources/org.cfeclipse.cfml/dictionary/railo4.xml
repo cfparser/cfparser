@@ -7534,7 +7534,7 @@ Used inside a cftry tag. Code in the cffinally block is processed after the main
 occurs, the cfcatch code. The cffinally block code always executes, whether or not there is an exception.
     ]]></help>
         </tag>
-<tag endtagrequired="false" canHaveAttributeCollection="false" name="cfcontinue" single="false"
+<tag endtagrequired="false" canHaveAttributeCollection="false" name="cfcontinue" single="true"
              xmlstyle="false">
             <help><![CDATA[
 Used within a cfloop tag. Returns processing to the top of a loop.

@@ -1,0 +1,328 @@
+/*===TOKENS===*/
+PRIVATE                  <private>
+IDENTIFIER               <void>
+FUNCTION                 <function>
+IDENTIFIER               <s>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+VAR                      <var>
+IDENTIFIER               <args>
+'='                      <=>
+'{'                      <{>
+'}'                      <}>
+';'                      <;>
+VAR                      <var>
+IDENTIFIER               <x>
+'='                      <=>
+'{'                      <{>
+'}'                      <}>
+';'                      <;>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <id>
+'='                      <=>
+IDENTIFIER               <request>
+'.'                      <.>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <id>
+';'                      <;>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <a>
+'='                      <=>
+IDENTIFIER               <request>
+'.'                      <.>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <a>
+';'                      <;>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <b>
+'='                      <=>
+IDENTIFIER               <request>
+'.'                      <.>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <b>
+';'                      <;>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <c>
+'='                      <=>
+IDENTIFIER               <request>
+'.'                      <.>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <c>
+';'                      <;>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <d>
+'='                      <=>
+IDENTIFIER               <request>
+'.'                      <.>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <d>
+';'                      <;>
+LINE_COMMENT             <// comment
+>
+MODULE                   <module>
+'('                      <(>
+IDENTIFIER               <template>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <some.cfm>
+CLOSE_STRING             <">
+','                      <,>
+IDENTIFIER               <xid>
+'='                      <=>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <id>
+')'                      <)>
+';'                      <;>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <e>
+'='                      <=>
+IDENTIFIER               <request>
+'.'                      <.>
+IDENTIFIER               <x>
+'.'                      <.>
+IDENTIFIER               <e>
+';'                      <;>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (functionDeclaration
+      (accessType private)
+      (typeSpec (multipartIdentifier (identifier void)))
+      function
+      (identifier s)
+      (
+      parameterList
+      )
+      (compoundStatement
+        {
+        (statement
+          (localAssignmentExpression
+            var
+            (multipartIdentifier (identifier args))
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression (unaryExpression (primaryExpression (implicitStruct { }))))
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (localAssignmentExpression
+            var
+            (multipartIdentifier (identifier x))
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression (unaryExpression (primaryExpression (implicitStruct { }))))
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier x) . (identifier id)))
+                )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (identifier request) . (identifier x) . (identifier id))
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier x) . (identifier a)))
+                )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (identifier request) . (identifier x) . (identifier a))
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier x) . (identifier b)))
+                )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (identifier request) . (identifier x) . (identifier b))
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier x) . (identifier c)))
+                )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (identifier request) . (identifier x) . (identifier c))
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier x) . (identifier d)))
+                )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (identifier request) . (identifier x) . (identifier d))
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (tagOperatorStatement
+            (tagFunctionStatement
+              (cfmlFunction module)
+              (
+              (parameterList
+                (parameter
+                  (identifier template)
+                  =
+                  (startExpression
+                    (compareExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart some.cfm) "))
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+                ,
+                (parameter
+                  (identifier xid)
+                  =
+                  (startExpression
+                    (compareExpression
+                      (baseExpression
+                        (unaryExpression (memberExpression (identifier x) . (identifier id)))
+                      )
+                    )
+                  )
+                )
+              )
+              )
+              ;
+            )
+          )
+        )
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier x) . (identifier e)))
+                )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (identifier request) . (identifier x) . (identifier e))
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        }
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+private void function s()   {
+    var args = {};
+    var x = {};
+x.id = request.x.id;
+x.a = request.x.a;
+x.b = request.x.b;
+x.c = request.x.c;
+x.d = request.x.d;
+module(template = 'some.cfm', xid = x.id);
+x.e = request.x.e;
+
+  }
+/*======*/

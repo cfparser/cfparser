@@ -117,13 +117,9 @@ public class CFMLStartTag extends StartTagTypeGenericImplementation {
 				attribute[0] = attributeName;
 				attribute[1] = attributeValue;
 				attributes.add(attribute);
-				// System.out.println(attributeName + " = " +attributeValue);
 			} else {
-				System.out.println("CFParser::stripAttributes() - failed on |" + inData + "| with "
-						+ matcher.groupCount() + " matches");
-				// for (int i = 0; i<=matcher.groupCount(); i++) {
-				// System.out.println("Match " + i + " : " + matcher.group(i));
-				// }
+				// System.out.println("CFParser::stripAttributes() - failed on |" + inData + "| with "
+				// + matcher.groupCount() + " matches");
 			}
 		}
 		

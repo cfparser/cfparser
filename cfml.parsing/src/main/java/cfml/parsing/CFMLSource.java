@@ -24,8 +24,13 @@ public class CFMLSource implements Logger {
 	
 	public CFMLSource(String contents) {
 		CFMLTags.register();
-		fSource = new Source(contents);
+		if (contents != null && contents.contains("<!---")) {
+			fSource = new Source(contents);
+		} else {
+			fSource = new Source(contents);
+		}
 		fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
+		// fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_COMMENT));
 		fSource.setLogger(this);
 	}
 	
