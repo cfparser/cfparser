@@ -135,7 +135,7 @@
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.6.2</version>
+				<version>1.6.7</version>
 				<extensions>true</extensions>
 				<configuration>
 					<serverId>ossrh</serverId>
@@ -186,7 +186,7 @@
 	<!-- Sonatype: mvn clean package -P deploy -->
 	<!-- Sonatype: mvn verify gpg:sign -DskipTests -P deploy -->
 	<!-- Sonatype: mvn deploy -DskipTests -P deploy -->
-	<!-- Sonatype: mvn nexus-staging:release -DskipTests -->
+	<!-- Sonatype: mvn nexus-staging:release -P deploy -DskipTests -->
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
