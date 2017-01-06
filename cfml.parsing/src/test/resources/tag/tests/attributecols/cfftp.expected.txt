@@ -1,0 +1,4 @@
+START:cfftp
+  =========TAG=================
+  <cfftp action="open" connection="objConnection" attributeCollection="#objFTPProperties#" timeout="300" />
+END:cfftp

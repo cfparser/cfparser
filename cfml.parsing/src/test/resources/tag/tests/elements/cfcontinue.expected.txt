@@ -1,0 +1,20 @@
+START:cfloop
+  =========TAG=================
+  <cfloop query="qResults">
+    <cfcontinue></cfcontinue>
+    <CFCONTINUE>
+    <cfcontinue/>
+</cfloop>
+  START:cfcontinue
+    =========TAG=================
+    <cfcontinue>
+  END:cfcontinue
+  START:cfcontinue
+    =========TAG=================
+    <CFCONTINUE>
+  END:cfcontinue
+  START:cfcontinue
+    =========TAG=================
+    <cfcontinue/>
+  END:cfcontinue
+END:cfloop

@@ -1,0 +1,21 @@
+START:cfif
+  =========TAG=================
+  <cfif "foo" ==== "bar">Foo</cfif>
+  TAG
+  =========ERRORs=================
+  [SyntaxError: Line1:12 no viable alternative at input '"foo"===="']
+  ==========Tokens==============
+  OPEN_STRING              <">
+  STRING_LITERAL           <foo>
+  CLOSE_STRING             <">
+  EQ                       <==>
+  EQ                       <==>
+  OPEN_STRING              <">
+  STRING_LITERAL           <bar>
+  CLOSE_STRING             <">
+  ===========Tree================
+  (expression " foo " == == " bar ")
+  ===========Expression===============
+  null
+  ==================================
+END:cfif

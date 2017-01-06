@@ -1,0 +1,9 @@
+START:cfdump
+  =========TAG=================
+  <cfdump var="#test#">
+END:cfdump
+START:cfquery
+  =========TAG=================
+  <cfquery>
+</cfquery>
+END:cfquery

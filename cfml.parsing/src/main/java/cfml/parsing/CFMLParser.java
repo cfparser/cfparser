@@ -32,6 +32,7 @@ import cfml.CFSCRIPTParser.ScriptBlockContext;
 import cfml.dictionary.DictionaryManager;
 import cfml.dictionary.SyntaxDictionary;
 import cfml.dictionary.preferences.DictionaryPreferences;
+import cfml.parsing.cfml.CFMLVisitor;
 import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.script.CFScriptStatement;
 import cfml.parsing.cfscript.walker.CFExpressionVisitor;
@@ -121,6 +122,54 @@ public class CFMLParser {
 		} else
 			return null;
 		
+	}
+	
+	public void visit(final Element elem, final int level, CFMLVisitor visitor) throws Exception {
+		visitor.visitElementStart(elem);
+		if (elem.getName().equalsIgnoreCase("cfset") || elem.getName().equalsIgnoreCase("cfif")
+				|| elem.getName().equalsIgnoreCase("cfelseif") || elem.getName().equalsIgnoreCase("cfreturn")) {
+			// final Pattern p = Pattern.compile("<\\w+\\s(.*[^/])/?>", Pattern.MULTILINE | Pattern.DOTALL);
+			// final String expr = elem.getFirstStartTag().toString();
+			// final Matcher m = p.matcher(expr);
+			// if (m.matches()) {
+			
+			// TODO if LUCEE?
+			final int uglyNotPos = elem.toString().lastIndexOf("<>");
+			int endPos = elem.getStartTag().getEnd() - 1;
+			
+			if (uglyNotPos > 0) {
+				final int nextPos = elem.toString().indexOf(">", uglyNotPos + 2);
+				if (nextPos > 0 && nextPos < elem.getEndTag().getBegin()) {
+					endPos = nextPos;
+				}
+			}
+			
+			final String cfscript = elem.toString().substring(elem.getName().length() + 1, endPos);
+			if (visitor.visitPreParseExpression("TAG", cfscript)) {
+				final CFExpression expression = parseCFExpression(cfscript, visitor);
+				
+				if (expression == null) {
+					throw new NullPointerException("expression is null, parsing error");
+				}
+				visitor.visitExpression("TAG", expression);
+			}
+			// }
+		} else if (elem.getName().equalsIgnoreCase("cfargument")) {
+		} else if (elem.getName().equalsIgnoreCase("cfscript")) {
+			final String cfscript = elem.getContent().toString();
+			final CFScriptStatement scriptStatement = parseScript(cfscript);
+			
+			visitor.visitScript(scriptStatement);
+		} else if (elem.getName().equalsIgnoreCase("cffunction")) {
+		} else if (elem.getName().equalsIgnoreCase("cfcomponent")) {
+		} else if (elem.getName().equalsIgnoreCase("cfquery")) {
+		} else if (elem.getName().equalsIgnoreCase("cfqueryparam")) {
+		} else {
+		}
+		for (Element child : elem.getChildElements()) {
+			visit(child, level + 1, visitor);
+		}
+		visitor.visitElementEnd(elem);
 	}
 	
 	private static String readFileAsString(String filePath) throws java.io.IOException {

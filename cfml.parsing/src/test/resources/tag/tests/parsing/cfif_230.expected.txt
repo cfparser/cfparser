@@ -1,0 +1,41 @@
+START:cfif
+  =========TAG=================
+  <cfif "foo" <> "bar">Foo</cfif>
+  TAG
+  ==========Tokens==============
+  OPEN_STRING              <">
+  STRING_LITERAL           <foo>
+  CLOSE_STRING             <">
+  NEQ                      <<>>
+  OPEN_STRING              <">
+  STRING_LITERAL           <bar>
+  CLOSE_STRING             <">
+  ===========Tree================
+  (expression
+    (startExpression
+      (compareExpression
+        (baseExpression
+          (unaryExpression
+            (primaryExpression
+              (literalExpression (stringLiteral " (stringLiteralPart foo) "))
+            )
+          )
+        )
+        (compareExpressionOperator <>)
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (primaryExpression
+                (literalExpression (stringLiteral " (stringLiteralPart bar) "))
+              )
+            )
+          )
+        )
+      )
+    )
+    <EOF>
+  )
+  ===========Expression===============
+  'foo' <> 'bar'
+  ==================================
+END:cfif
