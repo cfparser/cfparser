@@ -121,7 +121,7 @@ EQ: [eE][qQ];
 EQUAL: [eE][qQ][uU][aA][lL] -> type(EQ);
 EQUALS: [eE][qQ][uU][aA][lL][sS] -> type(EQ);
 NOT_EQUALS: [nN][oO][tT][ ]+[eE][qQ][uU][aA][lL][sS] -> type(NEQ);
-NEQ: ([nN][eE][qQ] | '<>') -> type(NEQ);
+NEQ: ([nN][eE][qQ] | '<>');
 LESS: [lL][eE][sS][sS];
 LESS_THAN : [lL][eE][sS][sS][ ]+[tT][hH][aA][nN] -> type(LT);
 GREATER_THAN : [gG][rR][eE][aA][tT][eE][rR][ ]+[tT][hH][aA][nN] -> type(GT);
