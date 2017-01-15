@@ -20,6 +20,7 @@ import cfml.CFSCRIPTParser.ComponentGutsContext;
 import cfml.CFSCRIPTParser.ComponentPathContext;
 import cfml.CFSCRIPTParser.ConditionContext;
 import cfml.CFSCRIPTParser.ConstantExpressionContext;
+import cfml.CFSCRIPTParser.ElvisExpressionContext;
 import cfml.CFSCRIPTParser.FloatingPointExpressionContext;
 import cfml.CFSCRIPTParser.ForInKeyContext;
 import cfml.CFSCRIPTParser.FunctionAttributeContext;
@@ -56,6 +57,7 @@ import cfml.parsing.cfscript.CFAnonymousFunctionExpression;
 import cfml.parsing.cfscript.CFArrayExpression;
 import cfml.parsing.cfscript.CFAssignmentExpression;
 import cfml.parsing.cfscript.CFBinaryExpression;
+import cfml.parsing.cfscript.CFElvisExpression;
 import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFFullVarExpression;
 import cfml.parsing.cfscript.CFFunctionExpression;
@@ -365,6 +367,14 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 			structExpression.addElement((CFStructElementExpression) retval);
 		}
 		return structExpression;
+	}
+	
+	@Override
+	public CFExpression visitElvisExpression(ElvisExpressionContext ctx) {
+		// TODO Auto-generated method stub
+		CFElvisExpression expr = new CFElvisExpression(ctx.getStart(), visit(ctx.getChild(0)), visit(ctx.getChild(3)));
+		// return super.visitElvisExpression(ctx);
+		return expr;
 	}
 	
 	@Override
