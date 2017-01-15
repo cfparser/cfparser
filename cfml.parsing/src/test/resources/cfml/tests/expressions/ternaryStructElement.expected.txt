@@ -33,24 +33,26 @@ IDENTIFIER               <someExpression3>
                       (implicitStructExpression
                         (implicitStructKeyExpression (multipartIdentifier (identifier someVariable)))
                         =
-                        (baseExpression
+                        (compareExpression
                           (baseExpression
-                            (unaryExpression (memberExpression (identifier someExpression)))
-                          )
-                          (ternaryExpression
-                            ?
-                            (startExpression
-                              (compareExpression
-                                (baseExpression
-                                  (unaryExpression (memberExpression (identifier someExpression2)))
+                            (baseExpression
+                              (unaryExpression (memberExpression (identifier someExpression)))
+                            )
+                            (ternaryExpression
+                              ?
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression (memberExpression (identifier someExpression2)))
+                                  )
                                 )
                               )
-                            )
-                            :
-                            (startExpression
-                              (compareExpression
-                                (baseExpression
-                                  (unaryExpression (memberExpression (identifier someExpression3)))
+                              :
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression (memberExpression (identifier someExpression3)))
+                                  )
                                 )
                               )
                             )
@@ -70,4 +72,7 @@ IDENTIFIER               <someExpression3>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+someStruct = {someVariable:someExpression?someExpression2:someExpression3}
 /*======*/

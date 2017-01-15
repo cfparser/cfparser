@@ -100,43 +100,49 @@ IDENTIFIER               <getName>
                               (implicitStructExpression
                                 (implicitStructKeyExpression (multipartIdentifier (identifier thingId)))
                                 =
-                                (baseExpression
-                                  (unaryExpression
-                                    (primaryExpression
-                                      (implicitStruct
-                                        {
-                                        (implicitStructElements
-                                          (implicitStructExpression
-                                            (implicitStructKeyExpression
-                                              (literalExpression (stringLiteral " (stringLiteralPart value) "))
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (primaryExpression
+                                        (implicitStruct
+                                          {
+                                          (implicitStructElements
+                                            (implicitStructExpression
+                                              (implicitStructKeyExpression
+                                                (literalExpression (stringLiteral " (stringLiteralPart value) "))
+                                              )
+                                              =
+                                              (compareExpression
+                                                (baseExpression
+                                                  (unaryExpression
+                                                    (memberExpression
+                                                      (identifier thing)
+                                                      .
+                                                      (functionCall (identifierOrReservedWord (identifier getID)) ( argumentList ))
+                                                    )
+                                                  )
+                                                )
+                                              )
                                             )
-                                            =
-                                            (baseExpression
-                                              (unaryExpression
-                                                (memberExpression
-                                                  (identifier thing)
-                                                  .
-                                                  (functionCall (identifierOrReservedWord (identifier getID)) ( argumentList ))
+                                            ,
+                                            (implicitStructExpression
+                                              (implicitStructKeyExpression
+                                                (literalExpression (stringLiteral " (stringLiteralPart cfsqltype) "))
+                                              )
+                                              =
+                                              (compareExpression
+                                                (baseExpression
+                                                  (unaryExpression
+                                                    (primaryExpression
+                                                      (literalExpression (stringLiteral " (stringLiteralPart CF_SQL_INTEGER) "))
+                                                    )
+                                                  )
                                                 )
                                               )
                                             )
                                           )
-                                          ,
-                                          (implicitStructExpression
-                                            (implicitStructKeyExpression
-                                              (literalExpression (stringLiteral " (stringLiteralPart cfsqltype) "))
-                                            )
-                                            =
-                                            (baseExpression
-                                              (unaryExpression
-                                                (primaryExpression
-                                                  (literalExpression (stringLiteral " (stringLiteralPart CF_SQL_INTEGER) "))
-                                                )
-                                              )
-                                            )
-                                          )
+                                          }
                                         )
-                                        }
                                       )
                                     )
                                   )
@@ -146,73 +152,81 @@ IDENTIFIER               <getName>
                               (implicitStructExpression
                                 (implicitStructKeyExpression (multipartIdentifier (identifier name)))
                                 =
-                                (baseExpression
-                                  (unaryExpression
-                                    (primaryExpression
-                                      (implicitStruct
-                                        {
-                                        (implicitStructElements
-                                          (implicitStructExpression
-                                            (implicitStructKeyExpression
-                                              (literalExpression (stringLiteral " (stringLiteralPart value) "))
-                                            )
-                                            =
-                                            (baseExpression
-                                              (unaryExpression
-                                                (memberExpression
-                                                  (identifier thing)
-                                                  .
-                                                  (functionCall (identifierOrReservedWord (identifier getName)) ( argumentList ))
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (primaryExpression
+                                        (implicitStruct
+                                          {
+                                          (implicitStructElements
+                                            (implicitStructExpression
+                                              (implicitStructKeyExpression
+                                                (literalExpression (stringLiteral " (stringLiteralPart value) "))
+                                              )
+                                              =
+                                              (compareExpression
+                                                (baseExpression
+                                                  (unaryExpression
+                                                    (memberExpression
+                                                      (identifier thing)
+                                                      .
+                                                      (functionCall (identifierOrReservedWord (identifier getName)) ( argumentList ))
+                                                    )
+                                                  )
                                                 )
                                               )
                                             )
-                                          )
-                                          ,
-                                          (implicitStructExpression
-                                            (implicitStructKeyExpression
-                                              (literalExpression (stringLiteral " (stringLiteralPart cfsqltype) "))
-                                            )
-                                            =
-                                            (baseExpression
-                                              (unaryExpression
-                                                (primaryExpression
-                                                  (literalExpression (stringLiteral " (stringLiteralPart CF_SQL_VARCHAR) "))
+                                            ,
+                                            (implicitStructExpression
+                                              (implicitStructKeyExpression
+                                                (literalExpression (stringLiteral " (stringLiteralPart cfsqltype) "))
+                                              )
+                                              =
+                                              (compareExpression
+                                                (baseExpression
+                                                  (unaryExpression
+                                                    (primaryExpression
+                                                      (literalExpression (stringLiteral " (stringLiteralPart CF_SQL_VARCHAR) "))
+                                                    )
+                                                  )
                                                 )
                                               )
                                             )
-                                          )
-                                          ,
-                                          (implicitStructExpression
-                                            (implicitStructKeyExpression (multipartIdentifier (identifier null)))
-                                            =
-                                            (baseExpression
-                                              (notExpression
-                                                !
-                                                (startExpression
-                                                  (compareExpression
-                                                    (baseExpression
-                                                      (unaryExpression
-                                                        (memberExpression
-                                                          (functionCall
-                                                            (identifierOrReservedWord (identifier len))
-                                                            (
-                                                            (argumentList
-                                                              (argument
-                                                                (startExpression
-                                                                  (compareExpression
-                                                                    (baseExpression
-                                                                      (unaryExpression
-                                                                        (memberExpression
-                                                                          (identifier thing)
-                                                                          .
-                                                                          (functionCall (identifierOrReservedWord (identifier getName)) ( argumentList ))
+                                            ,
+                                            (implicitStructExpression
+                                              (implicitStructKeyExpression (multipartIdentifier (identifier null)))
+                                              =
+                                              (compareExpression
+                                                (baseExpression
+                                                  (notExpression
+                                                    !
+                                                    (startExpression
+                                                      (compareExpression
+                                                        (baseExpression
+                                                          (unaryExpression
+                                                            (memberExpression
+                                                              (functionCall
+                                                                (identifierOrReservedWord (identifier len))
+                                                                (
+                                                                (argumentList
+                                                                  (argument
+                                                                    (startExpression
+                                                                      (compareExpression
+                                                                        (baseExpression
+                                                                          (unaryExpression
+                                                                            (memberExpression
+                                                                              (identifier thing)
+                                                                              .
+                                                                              (functionCall (identifierOrReservedWord (identifier getName)) ( argumentList ))
+                                                                            )
+                                                                          )
                                                                         )
                                                                       )
                                                                     )
                                                                   )
                                                                 )
+                                                                )
                                                               )
-                                                            )
                                                             )
                                                           )
                                                         )
@@ -223,8 +237,8 @@ IDENTIFIER               <getName>
                                               )
                                             )
                                           )
+                                          }
                                         )
-                                        }
                                       )
                                     )
                                   )
@@ -249,4 +263,12 @@ IDENTIFIER               <getName>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public function name()     {
+      var params = {thingId:{'value':thing.getID(),'cfsqltype':'CF_SQL_INTEGER'},name:{'value':thing.getName(),'cfsqltype':'CF_SQL_VARCHAR',null:!len(thing.getName())}};
+
+    }
+}
 /*======*/

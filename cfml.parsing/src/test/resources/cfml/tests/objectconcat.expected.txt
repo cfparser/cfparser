@@ -49,17 +49,19 @@ IDENTIFIER               <getShortId>
                       (implicitStructExpression
                         (implicitStructKeyExpression (multipartIdentifier (identifier name)))
                         :
-                        (baseExpression
-                          (unaryExpression
-                            (memberExpression
-                              (identifier rc)
-                              .
-                              (identifier ticket)
-                              .
-                              (functionCall
-                                (identifierOrReservedWord (identifier getShortId))
-                                (
-                                argumentList
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression
+                                (identifier rc)
+                                .
+                                (identifier ticket)
+                                .
+                                (functionCall
+                                  (identifierOrReservedWord (identifier getShortId))
+                                  (
+                                  argumentList
+                                  )
                                 )
                               )
                             )
@@ -70,29 +72,31 @@ IDENTIFIER               <getShortId>
                       (implicitStructExpression
                         (implicitStructKeyExpression (multipartIdentifier (identifier action)))
                         :
-                        (baseExpression
-                          (concatenationExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression
-                                  (stringLiteral ' (stringLiteralPart support:tickets/view/id/) ')
+                        (compareExpression
+                          (baseExpression
+                            (concatenationExpression
+                              (unaryExpression
+                                (primaryExpression
+                                  (literalExpression
+                                    (stringLiteral ' (stringLiteralPart support:tickets/view/id/) ')
+                                  )
                                 )
                               )
-                            )
-                            &
-                            (baseOrTernaryExpression
-                              (compareExpression
-                                (baseExpression
-                                  (unaryExpression
-                                    (memberExpression
-                                      (identifier rc)
-                                      .
-                                      (identifier ticket)
-                                      .
-                                      (functionCall
-                                        (identifierOrReservedWord (identifier getShortId))
-                                        (
-                                        argumentList
+                              &
+                              (baseOrTernaryExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (memberExpression
+                                        (identifier rc)
+                                        .
+                                        (identifier ticket)
+                                        .
+                                        (functionCall
+                                          (identifierOrReservedWord (identifier getShortId))
+                                          (
+                                          argumentList
+                                          )
                                         )
                                       )
                                     )
@@ -116,4 +120,7 @@ IDENTIFIER               <getShortId>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+x = {name:rc.ticket.getShortId(),action:'support:tickets/view/id/' & rc.ticket.getShortId()}
 /*======*/

@@ -90,9 +90,9 @@ public class TestTagFiles {
 			elem1.getAllStartTags();
 		}
 		if (expectedFileText == null) {
-			writeExpectFile(expectedFile, actual.toString().replace("\r",""));
+			writeExpectFile(expectedFile, actual.toString().replace("\r", ""));
 		} else {
-			Assert.assertEquals(expectedFileText, actual.toString().replace("\r",""));
+			Assert.assertEquals(expectedFileText.replace("\r", ""), actual.toString().replace("\r", ""));
 		}
 		Assert.assertEquals(cfmlSource.getMessages().toString(), 0, cfmlSource.getMessages().size());
 	}

@@ -34,7 +34,9 @@ IDENTIFIER               <bar>
                       (implicitStructExpression
                         (implicitStructKeyExpression (multipartIdentifier (identifier bar)))
                         :
-                        (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                        (compareExpression
+                          (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                        )
                       )
                     )
                     }
@@ -64,4 +66,11 @@ IDENTIFIER               <bar>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+{
+foo = {bar:1};
+foo.bar;
+
+}
 /*======*/

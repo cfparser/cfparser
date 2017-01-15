@@ -20,10 +20,9 @@ OPEN_STRING              <">
 STRING_LITERAL           <a>
 CLOSE_STRING             <">
 ':'                      <:>
-BOOLEAN_LITERAL          <true>
-'?'                      <?>
-':'                      <:>
-BOOLEAN_LITERAL          <false>
+INTEGER_LITERAL          <0>
+LT                       <<>
+INTEGER_LITERAL          <1>
 '}'                      <}>
 ';'                      <;>
 RETURN                   <return>
@@ -73,14 +72,11 @@ IDENTIFIER               <a>
                               (literalExpression (stringLiteral " (stringLiteralPart a) "))
                             )
                             :
-                            (baseExpression
-                              (elvisExpression
-                                (unaryExpression (primaryExpression (literalExpression true)))
-                                ?
-                                :
-                                (baseExpression
-                                  (unaryExpression (primaryExpression (literalExpression false)))
-                                )
+                            (compareExpression
+                              (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+                              (compareExpressionOperator <)
+                              (compareExpression
+                                (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
                               )
                             )
                           )
@@ -116,7 +112,7 @@ IDENTIFIER               <a>
 /*======*/
 /*===DECOMPILE===*/
 public struct function onLoad() output='false'  {
-local.a = {'a':true ?: false};
+local.a = {'a':0 < 1};
     return local.a;
 
   }

@@ -36,7 +36,9 @@ INTEGER_LITERAL          <1>
                       (implicitStructExpression
                         (implicitStructKeyExpression (literalExpression 0))
                         =
-                        (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+                        (compareExpression
+                          (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+                        )
                       )
                     )
                     }
