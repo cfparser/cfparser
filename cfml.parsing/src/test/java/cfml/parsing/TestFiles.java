@@ -143,7 +143,7 @@ public class TestFiles {
 	}
 	
 	private String normalize(final String tokens) {
-		return tokens.replaceAll("\\R", "\r");
+		return tokens.replaceAll("\\r?\\n", "\r");
 	}
 	
 	private void writeExpectFile(File expectedFile, String actualTokens, String actualTree,
