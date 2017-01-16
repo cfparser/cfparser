@@ -10,9 +10,9 @@ public class CFBinaryExpression extends CFExpression implements java.io.Serializ
 	
 	// instance vars
 	private int _kind;
-	private CFExpression _left;
-	private CFExpression _right;
-	private String operatorImage;
+	protected final CFExpression _left;
+	protected final CFExpression _right;
+	protected String operatorImage;
 	
 	public CFBinaryExpression(Token t, CFExpression left, CFExpression right) {
 		super(t);
