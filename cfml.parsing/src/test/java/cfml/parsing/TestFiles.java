@@ -16,7 +16,9 @@ import java.util.ResourceBundle;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.atn.PredictionMode;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.slf4j.Logger;
@@ -37,6 +39,9 @@ import cfml.parsing.utils.TestUtils;
  */
 @RunWith(Parameterized.class)
 public class TestFiles {
+	
+	@Rule
+	public TestName name = new TestName();
 	
 	final Logger logger = getLogger(TestFiles.class);
 	File sourceFile;
@@ -81,7 +86,8 @@ public class TestFiles {
 				expectedTree = "";
 			} else {
 				System.out.println(sourceFile);
-				assertEquals("Token lists do not match", expectedTokens, actualTokens);
+				assertEquals("Token lists do not match (" + name.getMethodName() + ") ", normalize(expectedTokens),
+						normalize(actualTokens));
 			}
 		}
 		lexer.reset();
@@ -131,9 +137,13 @@ public class TestFiles {
 		if (expectedDecompileText != null) {
 			// An empty /*===DECOMPILE===*/ says the decompile must match the input exactly
 			final String expectedText = expectedDecompileText.trim().length() == 0 ? inputString : expectedDecompileText;
-			//logger.info(result == null ? "" : "decompileText was null for " + result.getClass().toString());
+			// logger.info(result == null ? "" : "decompileText was null for " + result.getClass().toString());
 			assertEquals(normalizeWhite(expectedText), normalizeWhite(result.Decompile(0)));
 		}
+	}
+	
+	private String normalize(final String tokens) {
+		return tokens.replaceAll("\\R", "\r");
 	}
 	
 	private void writeExpectFile(File expectedFile, String actualTokens, String actualTree,
