@@ -86,8 +86,8 @@ public class TestFiles {
 				expectedTree = "";
 			} else {
 				System.out.println(sourceFile);
-				assertEquals("Token lists do not match (" + name.getMethodName() + ") ", normalize(expectedTokens),
-						normalize(actualTokens));
+				assertEquals("Token lists do not match (" + name.getMethodName() + ") ", normalizeWhite(expectedTokens),
+						normalizeWhite(actualTokens));
 			}
 		}
 		lexer.reset();
@@ -121,7 +121,7 @@ public class TestFiles {
 				expectedTree = actualTree;
 				writeExpectFile(expectedFile, actualTokens, actualTree, parseTree);
 			}
-			assertEquals("Parse trees do not match", expectedTree, actualTree);
+			assertEquals("Parse trees do not match", normalizeWhite(expectedTree), normalizeWhite(actualTree));
 		}
 		if (!errors.isEmpty()) {
 			logger.info(errors.toString());
@@ -140,10 +140,6 @@ public class TestFiles {
 			// logger.info(result == null ? "" : "decompileText was null for " + result.getClass().toString());
 			assertEquals(normalizeWhite(expectedText), normalizeWhite(result.Decompile(0)));
 		}
-	}
-	
-	private String normalize(final String tokens) {
-		return tokens.replaceAll("\\r?\\n", "\r");
 	}
 	
 	private void writeExpectFile(File expectedFile, String actualTokens, String actualTree,
