@@ -1,0 +1,176 @@
+/*===TOKENS===*/
+VAR                      <var>
+IDENTIFIER               <result>
+'='                      <=>
+IDENTIFIER               <QueryExecute>
+'('                      <(>
+OPEN_STRING              <">
+STRING_LITERAL           <
+            SELECT info_card_id, document_num, revision_nm, title_nm
+            FROM tdc_doc_infocard
+            WHERE info_card_id = :sourceTemplateNum
+            ORDER BY UPPER(document_num) ASC, revision_seq DESC
+        >
+CLOSE_STRING             <">
+','                      <,>
+'{'                      <{>
+IDENTIFIER               <sourceTemplateNum>
+'='                      <=>
+'{'                      <{>
+IDENTIFIER               <value>
+'='                      <=>
+OPEN_STRING              <">
+'#'                      <#>
+IDENTIFIER               <sourceTemplateNum>
+'#'                      <#>
+CLOSE_STRING             <">
+','                      <,>
+IDENTIFIER               <cfsqltype>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <cf_sql_varchar>
+CLOSE_STRING             <">
+'}'                      <}>
+'}'                      <}>
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (localAssignmentExpression
+        var
+        (multipartIdentifier (identifier result))
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (memberExpression
+                  (functionCall
+                    (identifierOrReservedWord (identifier QueryExecute))
+                    (
+                    (argumentList
+                      (argument
+                        (startExpression
+                          (compareExpression
+                            (baseExpression
+                              (unaryExpression
+                                (primaryExpression
+                                  (literalExpression
+                                    (stringLiteral
+                                      "
+                                      (stringLiteralPart
+                                        '\r\n            SELECT info_card_id, document_num, revision_nm, title_nm\r\n            FROM tdc_doc_infocard\r\n            WHERE info_card_id = :sourceTemplateNum\r\n            ORDER BY UPPER(document_num) ASC, revision_seq DESC\r\n        '
+                                      )
+                                      "
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                      ,
+                      (argument
+                        (startExpression
+                          (compareExpression
+                            (baseExpression
+                              (unaryExpression
+                                (primaryExpression
+                                  (implicitStruct
+                                    {
+                                    (implicitStructElements
+                                      (implicitStructExpression
+                                        (implicitStructKeyExpression
+                                          (multipartIdentifier (identifier sourceTemplateNum))
+                                        )
+                                        =
+                                        (compareExpression
+                                          (baseExpression
+                                            (unaryExpression
+                                              (primaryExpression
+                                                (implicitStruct
+                                                  {
+                                                  (implicitStructElements
+                                                    (implicitStructExpression
+                                                      (implicitStructKeyExpression (multipartIdentifier (identifier value)))
+                                                      =
+                                                      (compareExpression
+                                                        (baseExpression
+                                                          (unaryExpression
+                                                            (primaryExpression
+                                                              (literalExpression
+                                                                (stringLiteral
+                                                                  "
+                                                                  #
+                                                                  (startExpression
+                                                                    (compareExpression
+                                                                      (baseExpression
+                                                                        (unaryExpression (memberExpression (identifier sourceTemplateNum)))
+                                                                      )
+                                                                    )
+                                                                  )
+                                                                  #
+                                                                  "
+                                                                )
+                                                              )
+                                                            )
+                                                          )
+                                                        )
+                                                      )
+                                                    )
+                                                    ,
+                                                    (implicitStructExpression
+                                                      (implicitStructKeyExpression (multipartIdentifier (identifier cfsqltype)))
+                                                      =
+                                                      (compareExpression
+                                                        (baseExpression
+                                                          (unaryExpression
+                                                            (primaryExpression
+                                                              (literalExpression (stringLiteral " (stringLiteralPart cf_sql_varchar) "))
+                                                            )
+                                                          )
+                                                        )
+                                                      )
+                                                    )
+                                                  )
+                                                  }
+                                                )
+                                              )
+                                            )
+                                          )
+                                        )
+                                      )
+                                    )
+                                    }
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+var result = QueryExecute('
+            SELECT info_card_id, document_num, revision_nm, title_nm
+            FROM tdc_doc_infocard
+            WHERE info_card_id = :sourceTemplateNum
+            ORDER BY UPPER(document_num) ASC, revision_seq DESC
+        ', {sourceTemplateNum:{value:'#sourceTemplateNum#',cfsqltype:'cf_sql_varchar'}})
+/*======*/

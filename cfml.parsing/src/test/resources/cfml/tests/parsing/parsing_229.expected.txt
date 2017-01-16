@@ -1,0 +1,224 @@
+/*===TOKENS===*/
+ML_COMMENT               </**
+* Some explanation.
+*/>
+COMPONENT                <component>
+'{'                      <{>
+ML_COMMENT               </**
+  * Some function explanation.
+  *
+  * @localData Something.
+  * @keyToCheck Something else.
+  */>
+PUBLIC                   <public>
+STRING                   <string>
+FUNCTION                 <function>
+IDENTIFIER               <extractInfo>
+'('                      <(>
+REQUIRED                 <required>
+STRUCT                   <struct>
+IDENTIFIER               <localData>
+','                      <,>
+REQUIRED                 <required>
+STRING                   <string>
+IDENTIFIER               <keyToCheck>
+')'                      <)>
+'{'                      <{>
+IF                       <if>
+'('                      <(>
+'!'                      <!>
+IDENTIFIER               <isNull>
+'('                      <(>
+IDENTIFIER               <localData>
+')'                      <)>
+')'                      <)>
+'{'                      <{>
+IF                       <if>
+'('                      <(>
+IDENTIFIER               <structKeyExists>
+'('                      <(>
+IDENTIFIER               <localData>
+','                      <,>
+IDENTIFIER               <keyToCheck>
+')'                      <)>
+')'                      <)>
+'{'                      <{>
+RETURN                   <return>
+IDENTIFIER               <localData>
+'['                      <[>
+IDENTIFIER               <keyToCheck>
+']'                      <]>
+';'                      <;>
+'}'                      <}>
+'}'                      <}>
+'}'                      <}>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          (accessType public)
+          (typeSpec (type string))
+          function
+          (identifier extractInfo)
+          (
+          (parameterList
+            (parameter
+              required
+              (parameterType (typeSpec (type struct)))
+              (identifier localData)
+            )
+            ,
+            (parameter
+              required
+              (parameterType (typeSpec (type string)))
+              (identifier keyToCheck)
+            )
+          )
+          )
+          (compoundStatement
+            {
+            (statement
+              (ifStatement
+                if
+                (condition
+                  (
+                  (compareExpression
+                    (baseExpression
+                      (notExpression
+                        !
+                        (startExpression
+                          (compareExpression
+                            (baseExpression
+                              (unaryExpression
+                                (memberExpression
+                                  (functionCall
+                                    (identifierOrReservedWord (identifier isNull))
+                                    (
+                                    (argumentList
+                                      (argument
+                                        (startExpression
+                                          (compareExpression
+                                            (baseExpression (unaryExpression (memberExpression (identifier localData))))
+                                          )
+                                        )
+                                      )
+                                    )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  )
+                )
+                (statement
+                  (compoundStatement
+                    {
+                    (statement
+                      (ifStatement
+                        if
+                        (condition
+                          (
+                          (compareExpression
+                            (baseExpression
+                              (unaryExpression
+                                (memberExpression
+                                  (functionCall
+                                    (identifierOrReservedWord (identifier structKeyExists))
+                                    (
+                                    (argumentList
+                                      (argument
+                                        (startExpression
+                                          (compareExpression
+                                            (baseExpression (unaryExpression (memberExpression (identifier localData))))
+                                          )
+                                        )
+                                      )
+                                      ,
+                                      (argument
+                                        (startExpression
+                                          (compareExpression
+                                            (baseExpression (unaryExpression (memberExpression (identifier keyToCheck))))
+                                          )
+                                        )
+                                      )
+                                    )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                        (statement
+                          (compoundStatement
+                            {
+                            (statement
+                              (returnStatement
+                                return
+                                (startExpression
+                                  (compareExpression
+                                    (baseExpression
+                                      (unaryExpression
+                                        (memberExpression
+                                          (identifier localData)
+                                          (arrayMemberExpression
+                                            [
+                                            (startExpression
+                                              (compareExpression
+                                                (baseExpression (unaryExpression (memberExpression (identifier keyToCheck))))
+                                              )
+                                            )
+                                            ]
+                                          )
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                                ;
+                              )
+                            )
+                            }
+                          )
+                        )
+                      )
+                    )
+                    }
+                  )
+                )
+              )
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public string function extractInfo(required localData, required keyToCheck)     {
+      if(!isNull(localData) )         {
+          if(structKeyExists(localData, keyToCheck) )             {
+              return localData[keyToCheck];
+
+            };
+
+        };
+
+    }
+}
+/*======*/

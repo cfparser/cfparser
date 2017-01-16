@@ -1,0 +1,84 @@
+/*===TOKENS===*/
+SCRIPTOPEN               <<cfscript>>
+IDENTIFIER               <foo>
+'='                      <=>
+'{'                      <{>
+IDENTIFIER               <bar>
+':'                      <:>
+INTEGER_LITERAL          <1>
+'}'                      <}>
+';'                      <;>
+IDENTIFIER               <foo>
+'.'                      <.>
+IDENTIFIER               <bar>
+'++'                     <++>
+';'                      <;>
+SCRIPTCLOSE              <</cfscript>>
+/*===TREE===*/
+(scriptBlock
+  (cfscriptBlock
+    <cfscript>
+    (scriptBlock
+      (element
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression (unaryExpression (memberExpression (identifier foo))))
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (implicitStruct
+                        {
+                        (implicitStructElements
+                          (implicitStructExpression
+                            (implicitStructKeyExpression (multipartIdentifier (identifier bar)))
+                            :
+                            (compareExpression
+                              (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                            )
+                          )
+                        )
+                        }
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+      )
+      (element
+        (statement
+          (startExpression
+            (compareExpression
+              (baseExpression
+                (unaryExpression
+                  (unaryExpression (memberExpression (identifier foo) . (identifier bar)))
+                  ++
+                )
+              )
+            )
+          )
+          ;
+        )
+      )
+    )
+    </cfscript>
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+{
+foo = {bar:1};
+foo.bar;
+
+}
+/*======*/

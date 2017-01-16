@@ -1,0 +1,125 @@
+/*===TOKENS===*/
+PUBLIC                   <public>
+STRUCT                   <struct>
+FUNCTION                 <function>
+IDENTIFIER               <onLoad>
+'('                      <(>
+')'                      <)>
+OUTPUT                   <output>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <false>
+CLOSE_STRING             <">
+'{'                      <{>
+IDENTIFIER               <local>
+'.'                      <.>
+IDENTIFIER               <a>
+'='                      <=>
+'{'                      <{>
+OPEN_STRING              <">
+STRING_LITERAL           <a>
+CLOSE_STRING             <">
+':'                      <:>
+BOOLEAN_LITERAL          <true>
+'?'                      <?>
+':'                      <:>
+BOOLEAN_LITERAL          <false>
+'}'                      <}>
+';'                      <;>
+RETURN                   <return>
+IDENTIFIER               <local>
+'.'                      <.>
+IDENTIFIER               <a>
+';'                      <;>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (functionDeclaration
+      (accessType public)
+      (typeSpec (type struct))
+      function
+      (identifier onLoad)
+      (
+      parameterList
+      )
+      (functionAttribute
+        (identifier (cfmlFunction output))
+        =
+        (stringLiteral " (stringLiteralPart false) ")
+      )
+      (compoundStatement
+        {
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier local) . (identifier a)))
+                )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (implicitStruct
+                        {
+                        (implicitStructElements
+                          (implicitStructExpression
+                            (implicitStructKeyExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart a) "))
+                            )
+                            :
+                            (compareExpression
+                              (baseExpression
+                                (elvisExpression
+                                  (unaryExpression (primaryExpression (literalExpression true)))
+                                  ?
+                                  :
+                                  (baseExpression
+                                    (unaryExpression (primaryExpression (literalExpression false)))
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                        }
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (returnStatement
+            return
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier local) . (identifier a)))
+                )
+              )
+            )
+            ;
+          )
+        )
+        }
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+public struct function onLoad() output='false'  {
+local.a = {'a':true ?: false};
+    return local.a;
+
+  }
+/*======*/
