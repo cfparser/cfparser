@@ -566,10 +566,10 @@ memberExpression
   	| parentheticalExpression//-> primaryExpression
   ) // set return tree to just primary
   ( 
-    DOT functionCall
+    DOT+ functionCall
     | arrayMemberExpression parentheticalMemberExpression?
-    | DOT primaryExpressionIRW 
-    | DOT identifier
+    | DOT+ primaryExpressionIRW 
+    | DOT+ identifier
   )*
   ;
   
