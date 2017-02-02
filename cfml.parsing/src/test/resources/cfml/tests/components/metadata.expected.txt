@@ -72,13 +72,13 @@ CLOSE_STRING             <">
           (functionAttribute
             (identifier bar)
             =
-            (stringLiteral " (stringLiteralPart snafu) ")
+            (constantExpression (stringLiteral " (stringLiteralPart snafu) "))
           )
           (functionAttribute (identifier wtf) : (identifier ikr))
           (functionAttribute
             (identifier rt)
             :
-            (stringLiteral " (stringLiteralPart brb) ")
+            (constantExpression (stringLiteral " (stringLiteralPart brb) "))
           )
           (compoundStatement
             {

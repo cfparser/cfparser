@@ -55,7 +55,7 @@ IDENTIFIER               <support>
       (functionAttribute
         (identifierWithColon (identifier my) : (identifier role))
         =
-        (stringLiteral " (stringLiteralPart support:admin) ")
+        (constantExpression (stringLiteral " (stringLiteralPart support:admin) "))
       )
       (compoundStatement { })
     )
@@ -70,7 +70,7 @@ IDENTIFIER               <support>
       (functionAttribute
         (identifier role)
         =
-        (stringLiteral " (stringLiteralPart support:admin) ")
+        (constantExpression (stringLiteral " (stringLiteralPart support:admin) "))
       )
       (compoundStatement { })
     )

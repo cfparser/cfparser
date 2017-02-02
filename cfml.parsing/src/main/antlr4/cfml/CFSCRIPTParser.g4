@@ -82,8 +82,8 @@ componentAttribute
 //i=identifier EQUALSOP^ v=baseExpression
    
 functionAttribute
-  : identifierWithColon op=EQUALSOP (value=identifier | valueString=stringLiteral)
-  | id=identifier ( op=(EQUALSOP|COLON) (value=identifier | valueString=stringLiteral) )?
+  : identifierWithColon op=EQUALSOP (value=identifier | valueString=constantExpression)
+  | id=identifier ( op=(EQUALSOP|COLON) (value=identifier | valueString=constantExpression) )?
   ;
 
 identifierWithColon

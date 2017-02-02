@@ -46,7 +46,7 @@ IDENTIFIER               <a>
       (functionAttribute
         (identifier (cfmlFunction output))
         =
-        (stringLiteral " (stringLiteralPart false) ")
+        (constantExpression (stringLiteral " (stringLiteralPart false) "))
       )
       (compoundStatement
         {
