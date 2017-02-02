@@ -82,8 +82,8 @@ componentAttribute
 //i=identifier EQUALSOP^ v=baseExpression
    
 functionAttribute
-  : identifierWithColon op=EQUALSOP (value=identifier | valueString=stringLiteral)
-  | id=identifier ( op=(EQUALSOP|COLON) (value=identifier | valueString=stringLiteral) )?
+  : identifierWithColon op=EQUALSOP (value=identifier | valueString=constantExpression)
+  | id=identifier ( op=(EQUALSOP|COLON) (value=identifier | valueString=constantExpression) )?
   ;
 
 identifierWithColon
@@ -377,7 +377,7 @@ paramExpression
   ;
 propertyStatement
   : lc=PROPERTY paramStatementAttributes SEMICOLON //-> ^(PROPERTYSTATEMENT[$lc] paramStatementAttributes)
-  | lc=PROPERTY typeSpec? name=identifier SEMICOLON
+  | lc=PROPERTY typeSpec? name=multipartIdentifier SEMICOLON
   ;
   
 paramStatementAttributes
@@ -566,10 +566,10 @@ memberExpression
   	| parentheticalExpression//-> primaryExpression
   ) // set return tree to just primary
   ( 
-    DOT functionCall
+    DOT+ functionCall
     | arrayMemberExpression parentheticalMemberExpression?
-    | DOT primaryExpressionIRW 
-    | DOT identifier
+    | DOT+ primaryExpressionIRW 
+    | DOT+ identifier
   )*
   ;
   

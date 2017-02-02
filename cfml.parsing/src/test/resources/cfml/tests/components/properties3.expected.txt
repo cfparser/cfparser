@@ -54,7 +54,7 @@ IDENTIFIER               <newsRepository>
                   (identifierOrReservedWord (identifier NewsRepository))
                 )
               )
-              (identifier newsRepository)
+              (multipartIdentifier (identifier newsRepository))
               ;
             )
           )

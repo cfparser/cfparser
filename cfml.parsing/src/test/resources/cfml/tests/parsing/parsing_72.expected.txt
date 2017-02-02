@@ -1,0 +1,37 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+PROPERTY                 <property>
+STRUCT                   <struct>
+IDENTIFIER               <variables>
+'.'                      <.>
+IDENTIFIER               <displays>
+';'                      <;>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (statement
+          (tagOperatorStatement
+            (propertyStatement
+              property
+              (typeSpec (type struct))
+              (multipartIdentifier
+                (identifier variables)
+                .
+                (identifierOrReservedWord (identifier displays))
+              )
+              ;
+            )
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/

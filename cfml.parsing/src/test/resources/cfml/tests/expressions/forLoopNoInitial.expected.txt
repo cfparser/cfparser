@@ -409,7 +409,9 @@ RETHROW                  <rethrow>
           (functionAttribute
             (identifier hint)
             =
-            (stringLiteral " (stringLiteralPart compile dynamic source) ")
+            (constantExpression
+              (stringLiteral " (stringLiteralPart compile dynamic source) ")
+            )
           )
           (compoundStatement
             {

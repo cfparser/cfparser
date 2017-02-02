@@ -1,0 +1,93 @@
+/*===TOKENS===*/
+PUBLIC                   <public>
+NUMERIC                  <numeric>
+FUNCTION                 <function>
+IDENTIFIER               <test>
+'('                      <(>
+REQUIRED                 <required>
+NUMERIC                  <numeric>
+IDENTIFIER               <inNum>
+')'                      <)>
+OUTPUT                   <output>
+'='                      <=>
+BOOLEAN_LITERAL          <false>
+IDENTIFIER               <hint>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <I am a test function.>
+CLOSE_STRING             <">
+'{'                      <{>
+RETURN                   <return>
+IDENTIFIER               <ARGUMENTS>
+'.'                      <.>
+IDENTIFIER               <inNum>
+'+'                      <+>
+INTEGER_LITERAL          <1>
+';'                      <;>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (functionDeclaration
+      (accessType public)
+      (typeSpec (type numeric))
+      function
+      (identifier test)
+      (
+      (parameterList
+        (parameter
+          required
+          (parameterType (typeSpec (type numeric)))
+          (identifier inNum)
+        )
+      )
+      )
+      (functionAttribute
+        (identifier (cfmlFunction output))
+        =
+        (constantExpression false)
+      )
+      (functionAttribute
+        (identifier hint)
+        =
+        (constantExpression
+          (stringLiteral " (stringLiteralPart I am a test function.) ")
+        )
+      )
+      (compoundStatement
+        {
+        (statement
+          (returnStatement
+            return
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (additiveExpression
+                    (unaryExpression
+                      (memberExpression (identifier ARGUMENTS) . (identifier inNum))
+                    )
+                    +
+                    (baseOrTernaryExpression
+                      (compareExpression
+                        (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            ;
+          )
+        )
+        }
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+public numeric function test(required inNum) output=false hint='I am a test function.'  {
+    return ARGUMENTS.inNum + 1;
+
+  }
+/*======*/

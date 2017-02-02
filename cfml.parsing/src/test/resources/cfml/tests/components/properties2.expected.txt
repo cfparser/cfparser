@@ -47,20 +47,32 @@ IDENTIFIER               <lastName>
       (element
         (statement
           (tagOperatorStatement
-            (propertyStatement property (typeSpec (type string)) (identifier firstName) ;)
+            (propertyStatement
+              property
+              (typeSpec (type string))
+              (multipartIdentifier (identifier firstName))
+              ;
+            )
           )
         )
       )
       (element
         (statement
           (tagOperatorStatement
-            (propertyStatement property (typeSpec (type string)) (identifier middleName) ;)
+            (propertyStatement
+              property
+              (typeSpec (type string))
+              (multipartIdentifier (identifier middleName))
+              ;
+            )
           )
         )
       )
       (element
         (statement
-          (tagOperatorStatement (propertyStatement property (identifier lastName) ;))
+          (tagOperatorStatement
+            (propertyStatement property (multipartIdentifier (identifier lastName)) ;)
+          )
         )
       )
       }
