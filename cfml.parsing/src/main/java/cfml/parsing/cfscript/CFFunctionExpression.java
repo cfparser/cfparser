@@ -4,6 +4,7 @@ import java.util.Vector;
 
 import org.antlr.v4.runtime.Token;
 
+import cfml.parsing.cfscript.script.CFScriptStatement;
 import cfml.parsing.reporting.ParseException;
 
 public class CFFunctionExpression extends CFMember {
@@ -12,6 +13,7 @@ public class CFFunctionExpression extends CFMember {
 	private CFIdentifier nameId;
 	private Vector<CFExpression> args; // Vector of CFExpression's
 	private boolean isUDF = true;
+	private CFScriptStatement body;
 	
 	// private boolean isParamExists;
 	public CFFunctionExpression(CFIdentifier _name, Vector<CFExpression> _args) throws ParseException {
@@ -54,7 +56,9 @@ public class CFFunctionExpression extends CFMember {
 		}
 		
 		s += ")";
-		
+		if (body != null) {
+			s += body.Decompile(indent + 2);
+		}
 		return s;
 	}
 	
@@ -72,6 +76,14 @@ public class CFFunctionExpression extends CFMember {
 	
 	public CFIdentifier getNameId() {
 		return nameId;
+	}
+	
+	public CFScriptStatement getBody() {
+		return body;
+	}
+	
+	public void setBody(CFScriptStatement body) {
+		this.body = body;
 	}
 	
 }

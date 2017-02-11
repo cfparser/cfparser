@@ -582,6 +582,7 @@ arrayMemberExpression
   
 functionCall
 	:identifierOrReservedWord LEFTPAREN argumentList RIGHTPAREN
+	body=compoundStatement?
 	;
 	  
 parentheticalMemberExpression

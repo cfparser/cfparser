@@ -444,6 +444,9 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 			}
 		}
 		CFFunctionExpression cfFunctionExpression = new CFFunctionExpression((CFIdentifier) visit(ctx.getChild(0)), args);
+		if (ctx.body != null) {
+			cfFunctionExpression.setBody(getCFScriptStatementVisitor().visit(ctx.body));
+		}
 		return cfFunctionExpression;
 	}
 	
