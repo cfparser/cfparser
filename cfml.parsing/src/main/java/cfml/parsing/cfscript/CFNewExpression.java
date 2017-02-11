@@ -1,6 +1,7 @@
 package cfml.parsing.cfscript;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
@@ -9,9 +10,9 @@ public class CFNewExpression extends CFExpression implements java.io.Serializabl
 	private static final long serialVersionUID = 1L;
 	
 	private CFExpression componentPath;
-	private Vector args;
+	private List args;
 	
-	public CFNewExpression(Token _t, CFExpression _component, Vector _args) {
+	public CFNewExpression(Token _t, CFExpression _component, ArrayList _args) {
 		super(_t);
 		componentPath = _component;
 		args = _args;
@@ -24,7 +25,7 @@ public class CFNewExpression extends CFExpression implements java.io.Serializabl
 		sb.append(componentPath.Decompile(0));
 		sb.append("(");
 		for (int i = 0; i < args.size(); i++) {
-			sb.append((args.elementAt(i)).toString());
+			sb.append((args.get(i)).toString());
 			if (i < args.size() - 1) {
 				sb.append(", ");
 			}
@@ -38,7 +39,7 @@ public class CFNewExpression extends CFExpression implements java.io.Serializabl
 		return componentPath;
 	}
 	
-	public Vector getArgs() {
+	public List getArgs() {
 		return args;
 	}
 }

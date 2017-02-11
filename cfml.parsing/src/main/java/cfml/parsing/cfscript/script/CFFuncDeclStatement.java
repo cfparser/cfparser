@@ -16,7 +16,7 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 	private static final long serialVersionUID = 1L;
 	
 	private CFIdentifier name;
-	private List<CFFunctionParameter> formals; // Vector of String's
+	private List<CFFunctionParameter> formals; // List of String's
 	private Map<CFExpression, CFExpression> attributes;
 	private CFScriptStatement body;
 	

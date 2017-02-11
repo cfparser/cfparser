@@ -1,8 +1,8 @@
 package cfml.parsing.cfscript;
 
-import java.util.Vector;
+import java.util.ArrayList;
 
-public class ArgumentsVector extends Vector<CFExpression> {
+public class ArgumentsVector extends ArrayList<CFExpression> {
 	
 	private static final long serialVersionUID = 1L;
 	

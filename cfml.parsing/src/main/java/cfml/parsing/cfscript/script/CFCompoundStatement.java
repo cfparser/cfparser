@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class CFCompoundStatement extends CFParsedStatement implements CFScriptStatement, java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<CFScriptStatement> _v; // Vector of CFStatements
+	private ArrayList<CFScriptStatement> _v; // List of CFStatements
 	
 	public CFCompoundStatement() {
 		super(1, 1);
