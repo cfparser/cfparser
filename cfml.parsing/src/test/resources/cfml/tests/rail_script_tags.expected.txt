@@ -630,7 +630,7 @@ IDENTIFIER               <getUsers>
                     (unaryExpression
                       (memberExpression
                         (functionCall
-                          (identifierOrReservedWord (identifier WriteOutput))
+                          (identifier WriteOutput)
                           (
                           (argumentList
                             (argument
@@ -767,7 +767,7 @@ IDENTIFIER               <getUsers>
                     (unaryExpression
                       (memberExpression
                         (functionCall
-                          (identifierOrReservedWord (identifier echo))
+                          (identifier echo)
                           (
                           (argumentList
                             (argument
@@ -851,7 +851,7 @@ IDENTIFIER               <getUsers>
             (unaryExpression
               (memberExpression
                 (functionCall
-                  (identifierOrReservedWord (identifier dump))
+                  (identifier dump)
                   (
                   (argumentList
                     (argument
@@ -873,4 +873,28 @@ IDENTIFIER               <getUsers>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+{
+log file=this.logfile text='Event Gateway #variables.id# started';;
+log application='yes' file='filename' log='log type' text='text' type='information';;
+log file=this.logfile text='Event Gateway #variables.id# error: #ex.message#' type='error';;
+param default='10' max='100' min='18' name='url.age' type='numeric';
+http method='GET' result='webPage' url='http://www.google.com';;
+mail from='Mark@getrailo.com' subject='Awesome! Tags in Script!' to='gert@getrailo.com'{
+WriteOutput('Hey Gert!
+Check out the code samples here! You can write tags in CFScript
+Mark
+');
+
+};
+directory action='list' directory=dir name='dir';;
+query dataSource='myDatasource' name='getUsers'{
+echo('SELECT * FROM tusers WHERE UserID =');
+queryparam cfsqltype='varchar' value='6300EE15-1320-5CC2-F9F48B9DBBA54D9F';;
+
+};
+dump(getUsers);
+
+}
 /*======*/

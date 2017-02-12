@@ -148,7 +148,7 @@ IDENTIFIER               <parses_fine>
                     (unaryExpression
                       (memberExpression
                         (functionCall
-                          (identifierOrReservedWord (identifier writeDump))
+                          (identifier writeDump)
                           (
                           (argumentList
                             (argument
@@ -175,7 +175,7 @@ IDENTIFIER               <parses_fine>
                     (unaryExpression
                       (memberExpression
                         (functionCall
-                          (identifierOrReservedWord (identifier writeDump))
+                          (identifier writeDump)
                           (
                           (argumentList
                             (argument
@@ -203,4 +203,15 @@ IDENTIFIER               <parses_fine>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public void function test()     {
+param;
+param default='works as expected' name='parses_fine' type='string';
+writeDump(parse_error);
+writeDump(parses_fine);
+
+    }
+}
 /*======*/

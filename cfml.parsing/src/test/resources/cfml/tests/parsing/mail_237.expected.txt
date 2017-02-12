@@ -47,7 +47,7 @@ IDENTIFIER               <mailBody>
             (unaryExpression
               (memberExpression
                 (functionCall
-                  (identifierOrReservedWord (identifier cfmail))
+                  (identifier cfmail)
                   (
                   (argumentList
                     (argument
@@ -132,7 +132,7 @@ IDENTIFIER               <mailBody>
                             (unaryExpression
                               (memberExpression
                                 (functionCall
-                                  (identifierOrReservedWord (identifier writeOutput))
+                                  (identifier writeOutput)
                                   (
                                   (argumentList
                                     (argument
@@ -166,8 +166,8 @@ IDENTIFIER               <mailBody>
 )
 /*======*/
 /*===DECOMPILE===*/
-cfmail(to = toAddress, from = adminEmail, replyto = adminEmail, failto = adminEmail, subject = 'Test email', type = 'html') {
+cfmail(to = toAddress, from = adminEmail, replyto = adminEmail, failto = adminEmail, subject = 'Test email', type = 'html')  {
 writeOutput(mailBody);
 
- }
- /*======*/
+  }
+/*======*/

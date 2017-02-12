@@ -25,7 +25,7 @@ IDENTIFIER               <action>
               (unaryExpression
                 (memberExpression
                   (functionCall
-                    (identifierOrReservedWord (identifier find))
+                    (identifier find)
                     (
                     (argumentList
                       (argument
@@ -62,4 +62,7 @@ IDENTIFIER               <action>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+var a = find('', action)
 /*======*/

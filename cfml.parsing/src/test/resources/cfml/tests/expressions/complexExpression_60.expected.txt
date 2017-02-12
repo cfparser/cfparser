@@ -118,7 +118,7 @@ IDENTIFIER               <getName>
                                                     (memberExpression
                                                       (identifier thing)
                                                       .
-                                                      (functionCall (identifierOrReservedWord (identifier getID)) ( argumentList ))
+                                                      (functionCall (identifier getID) ( argumentList ))
                                                     )
                                                   )
                                                 )
@@ -170,7 +170,7 @@ IDENTIFIER               <getName>
                                                     (memberExpression
                                                       (identifier thing)
                                                       .
-                                                      (functionCall (identifierOrReservedWord (identifier getName)) ( argumentList ))
+                                                      (functionCall (identifier getName) ( argumentList ))
                                                     )
                                                   )
                                                 )
@@ -206,7 +206,7 @@ IDENTIFIER               <getName>
                                                           (unaryExpression
                                                             (memberExpression
                                                               (functionCall
-                                                                (identifierOrReservedWord (identifier len))
+                                                                (identifier len)
                                                                 (
                                                                 (argumentList
                                                                   (argument
@@ -217,7 +217,7 @@ IDENTIFIER               <getName>
                                                                             (memberExpression
                                                                               (identifier thing)
                                                                               .
-                                                                              (functionCall (identifierOrReservedWord (identifier getName)) ( argumentList ))
+                                                                              (functionCall (identifier getName) ( argumentList ))
                                                                             )
                                                                           )
                                                                         )

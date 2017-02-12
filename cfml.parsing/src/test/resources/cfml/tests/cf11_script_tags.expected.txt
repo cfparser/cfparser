@@ -324,7 +324,7 @@ IDENTIFIER               <filecontent>
             (unaryExpression
               (memberExpression
                 (functionCall
-                  (identifierOrReservedWord (identifier Writeoutput))
+                  (identifier Writeoutput)
                   (
                   (argumentList
                     (argument
@@ -354,4 +354,12 @@ IDENTIFIER               <filecontent>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+{
+cfhttp(url = 'www.google.com', method = 'GET');
+Cfhttp(URL = 'http://#CGI.SERVER_NAME#.../target.cfm', method = 'GET');
+Writeoutput(cfhttp.filecontent);
+
+}
 /*======*/

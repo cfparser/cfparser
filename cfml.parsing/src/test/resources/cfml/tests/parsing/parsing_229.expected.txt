@@ -97,7 +97,7 @@ IDENTIFIER               <keyToCheck>
                               (unaryExpression
                                 (memberExpression
                                   (functionCall
-                                    (identifierOrReservedWord (identifier isNull))
+                                    (identifier isNull)
                                     (
                                     (argumentList
                                       (argument
@@ -133,7 +133,7 @@ IDENTIFIER               <keyToCheck>
                               (unaryExpression
                                 (memberExpression
                                   (functionCall
-                                    (identifierOrReservedWord (identifier structKeyExists))
+                                    (identifier structKeyExists)
                                     (
                                     (argumentList
                                       (argument

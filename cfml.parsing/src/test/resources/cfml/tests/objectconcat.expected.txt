@@ -57,12 +57,7 @@ IDENTIFIER               <getShortId>
                                 .
                                 (identifier ticket)
                                 .
-                                (functionCall
-                                  (identifierOrReservedWord (identifier getShortId))
-                                  (
-                                  argumentList
-                                  )
-                                )
+                                (functionCall (identifier getShortId) ( argumentList ))
                               )
                             )
                           )
@@ -92,12 +87,7 @@ IDENTIFIER               <getShortId>
                                         .
                                         (identifier ticket)
                                         .
-                                        (functionCall
-                                          (identifierOrReservedWord (identifier getShortId))
-                                          (
-                                          argumentList
-                                          )
-                                        )
+                                        (functionCall (identifier getShortId) ( argumentList ))
                                       )
                                     )
                                   )

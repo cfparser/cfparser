@@ -56,7 +56,7 @@ CLOSE_STRING             <">
                             (unaryExpression
                               (memberExpression
                                 (functionCall
-                                  (identifierOrReservedWord (identifier dateformat))
+                                  (identifier dateformat)
                                   (
                                   (argumentList
                                     (argument
@@ -64,9 +64,7 @@ CLOSE_STRING             <">
                                         (compareExpression
                                           (baseExpression
                                             (unaryExpression
-                                              (memberExpression
-                                                (functionCall (identifierOrReservedWord (identifier Now)) ( argumentList ))
-                                              )
+                                              (memberExpression (functionCall (identifier Now) ( argumentList )))
                                             )
                                           )
                                         )
@@ -103,7 +101,7 @@ CLOSE_STRING             <">
                             (unaryExpression
                               (memberExpression
                                 (functionCall
-                                  (identifierOrReservedWord (identifier TimeFormat))
+                                  (identifier TimeFormat)
                                   (
                                   (argumentList
                                     (argument
@@ -111,9 +109,7 @@ CLOSE_STRING             <">
                                         (compareExpression
                                           (baseExpression
                                             (unaryExpression
-                                              (memberExpression
-                                                (functionCall (identifierOrReservedWord (identifier Now)) ( argumentList ))
-                                              )
+                                              (memberExpression (functionCall (identifier Now) ( argumentList )))
                                             )
                                           )
                                         )
@@ -156,4 +152,7 @@ CLOSE_STRING             <">
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+filename = '#dateformat(Now(), 'YY_MM_DD')#_#TimeFormat(Now(), 'HH_mm')#_Company""stuff"".xls'
 /*======*/

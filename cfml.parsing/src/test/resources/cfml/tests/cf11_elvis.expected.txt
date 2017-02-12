@@ -151,7 +151,7 @@ LINE_COMMENT             <// A function call>
                 (unaryExpression
                   (memberExpression
                     (functionCall
-                      (identifierOrReservedWord (identifier getEmployeeName))
+                      (identifier getEmployeeName)
                       (
                       (argumentList
                         (argument
@@ -184,4 +184,12 @@ LINE_COMMENT             <// A function call>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+{
+securityNumber = securityStruct['Joe'] ?: -1;
+colourCode = colourArray[index] ?: 'black';
+employeeName = getEmployeeName(ID) ?: 'Joe';
+
+}
 /*======*/

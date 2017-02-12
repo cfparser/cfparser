@@ -517,7 +517,7 @@ RETHROW                  <rethrow>
                       (unaryExpression
                         (memberExpression
                           (functionCall
-                            (identifierOrReservedWord (identifier calculateJarName))
+                            (identifier calculateJarName)
                             (
                             (argumentList
                               (argument
@@ -526,12 +526,7 @@ RETHROW                  <rethrow>
                                     (baseExpression
                                       (unaryExpression
                                         (memberExpression
-                                          (functionCall
-                                            (identifierOrReservedWord (identifier getSourceDirectories))
-                                            (
-                                            argumentList
-                                            )
-                                          )
+                                          (functionCall (identifier getSourceDirectories) ( argumentList ))
                                         )
                                       )
                                     )
@@ -560,12 +555,7 @@ RETHROW                  <rethrow>
                       (concatenationExpression
                         (unaryExpression
                           (memberExpression
-                            (functionCall
-                              (identifierOrReservedWord (identifier getCompileDirectory))
-                              (
-                              argumentList
-                              )
-                            )
+                            (functionCall (identifier getCompileDirectory) ( argumentList ))
                           )
                         )
                         &
@@ -605,7 +595,7 @@ RETHROW                  <rethrow>
                       (unaryExpression
                         (memberExpression
                           (functionCall
-                            (identifierOrReservedWord (identifier fileExists))
+                            (identifier fileExists)
                             (
                             (argumentList
                               (argument
@@ -635,14 +625,7 @@ RETHROW                  <rethrow>
                           (compareExpression
                             (baseExpression
                               (unaryExpression
-                                (memberExpression
-                                  (functionCall
-                                    (identifierOrReservedWord (identifier isTrustedSource))
-                                    (
-                                    argumentList
-                                    )
-                                  )
-                                )
+                                (memberExpression (functionCall (identifier isTrustedSource) ( argumentList )))
                               )
                             )
                           )
@@ -667,7 +650,7 @@ RETHROW                  <rethrow>
                                       (unaryExpression
                                         (memberExpression
                                           (functionCall
-                                            (identifierOrReservedWord (identifier createObject))
+                                            (identifier createObject)
                                             (
                                             (argumentList
                                               (argument
@@ -702,7 +685,7 @@ RETHROW                  <rethrow>
                                           )
                                           .
                                           (functionCall
-                                            (identifierOrReservedWord (identifier init))
+                                            (identifier init)
                                             (
                                             (argumentList
                                               (argument
@@ -729,15 +712,10 @@ RETHROW                  <rethrow>
                                   (baseExpression
                                     (unaryExpression
                                       (memberExpression
-                                        (functionCall
-                                          (identifierOrReservedWord (identifier getURLClassLoader))
-                                          (
-                                          argumentList
-                                          )
-                                        )
+                                        (functionCall (identifier getURLClassLoader) ( argumentList ))
                                         .
                                         (functionCall
-                                          (identifierOrReservedWord (identifier addURL))
+                                          (identifier addURL)
                                           (
                                           (argumentList
                                             (argument
@@ -748,7 +726,7 @@ RETHROW                  <rethrow>
                                                       (memberExpression
                                                         (identifier (cfmlFunction file))
                                                         .
-                                                        (functionCall (identifierOrReservedWord (identifier toURL)) ( argumentList ))
+                                                        (functionCall (identifier toURL) ( argumentList ))
                                                       )
                                                     )
                                                   )
@@ -856,12 +834,7 @@ RETHROW                  <rethrow>
                               (concatenationExpression
                                 (unaryExpression
                                   (memberExpression
-                                    (functionCall
-                                      (identifierOrReservedWord (identifier getCompileDirectory))
-                                      (
-                                      argumentList
-                                      )
-                                    )
+                                    (functionCall (identifier getCompileDirectory) ( argumentList ))
                                   )
                                 )
                                 &
@@ -879,14 +852,7 @@ RETHROW                  <rethrow>
                                           (compareExpression
                                             (baseExpression
                                               (unaryExpression
-                                                (memberExpression
-                                                  (functionCall
-                                                    (identifierOrReservedWord (identifier createUUID))
-                                                    (
-                                                    argumentList
-                                                    )
-                                                  )
-                                                )
+                                                (memberExpression (functionCall (identifier createUUID) ( argumentList )))
                                               )
                                             )
                                           )
@@ -968,12 +934,7 @@ RETHROW                  <rethrow>
                             (baseExpression
                               (unaryExpression
                                 (memberExpression
-                                  (functionCall
-                                    (identifierOrReservedWord (identifier getSourceDirectories))
-                                    (
-                                    argumentList
-                                    )
-                                  )
+                                  (functionCall (identifier getSourceDirectories) ( argumentList ))
                                 )
                               )
                             )
@@ -996,7 +957,7 @@ RETHROW                  <rethrow>
                               (unaryExpression
                                 (memberExpression
                                   (functionCall
-                                    (identifierOrReservedWord (identifier arraylen))
+                                    (identifier arraylen)
                                     (
                                     (argumentList
                                       (argument
@@ -1097,7 +1058,7 @@ RETHROW                  <rethrow>
                                     (unaryExpression
                                       (memberExpression
                                         (functionCall
-                                          (identifierOrReservedWord (identifier $directoryCopy))
+                                          (identifier $directoryCopy)
                                           (
                                           (argumentList
                                             (argument
@@ -1144,7 +1105,7 @@ RETHROW                  <rethrow>
                               (unaryExpression
                                 (memberExpression
                                   (functionCall
-                                    (identifierOrReservedWord (identifier ArrayNew))
+                                    (identifier ArrayNew)
                                     (
                                     (argumentList
                                       (argument
@@ -1172,7 +1133,7 @@ RETHROW                  <rethrow>
                             (unaryExpression
                               (memberExpression
                                 (functionCall
-                                  (identifierOrReservedWord (identifier ArrayAppend))
+                                  (identifier ArrayAppend)
                                   (
                                   (argumentList
                                     (argument
@@ -1213,15 +1174,10 @@ RETHROW                  <rethrow>
                             (baseExpression
                               (unaryExpression
                                 (memberExpression
-                                  (functionCall
-                                    (identifierOrReservedWord (identifier getJavaCompiler))
-                                    (
-                                    argumentList
-                                    )
-                                  )
+                                  (functionCall (identifier getJavaCompiler) ( argumentList ))
                                   .
                                   (functionCall
-                                    (identifierOrReservedWord (identifier compile))
+                                    (identifier compile)
                                     (
                                     (argumentList
                                       (argument
@@ -1238,12 +1194,7 @@ RETHROW                  <rethrow>
                                             (baseExpression
                                               (unaryExpression
                                                 (memberExpression
-                                                  (functionCall
-                                                    (identifierOrReservedWord (identifier getURLClassLoader))
-                                                    (
-                                                    argumentList
-                                                    )
-                                                  )
+                                                  (functionCall (identifier getURLClassLoader) ( argumentList ))
                                                 )
                                               )
                                             )
@@ -1285,7 +1236,7 @@ RETHROW                  <rethrow>
                               (unaryExpression
                                 (memberExpression
                                   (functionCall
-                                    (identifierOrReservedWord (identifier createObject))
+                                    (identifier createObject)
                                     (
                                     (argumentList
                                       (argument
@@ -1320,7 +1271,7 @@ RETHROW                  <rethrow>
                                   )
                                   .
                                   (functionCall
-                                    (identifierOrReservedWord (identifier init))
+                                    (identifier init)
                                     (
                                     (argumentList
                                       (argument
@@ -1347,15 +1298,10 @@ RETHROW                  <rethrow>
                           (baseExpression
                             (unaryExpression
                               (memberExpression
-                                (functionCall
-                                  (identifierOrReservedWord (identifier getURLClassLoader))
-                                  (
-                                  argumentList
-                                  )
-                                )
+                                (functionCall (identifier getURLClassLoader) ( argumentList ))
                                 .
                                 (functionCall
-                                  (identifierOrReservedWord (identifier addURL))
+                                  (identifier addURL)
                                   (
                                   (argumentList
                                     (argument
@@ -1366,7 +1312,7 @@ RETHROW                  <rethrow>
                                               (memberExpression
                                                 (identifier (cfmlFunction file))
                                                 .
-                                                (functionCall (identifierOrReservedWord (identifier toURL)) ( argumentList ))
+                                                (functionCall (identifier toURL) ( argumentList ))
                                               )
                                             )
                                           )
@@ -1393,7 +1339,7 @@ RETHROW                  <rethrow>
                               (unaryExpression
                                 (memberExpression
                                   (functionCall
-                                    (identifierOrReservedWord (identifier directoryExists))
+                                    (identifier directoryExists)
                                     (
                                     (argumentList
                                       (argument
@@ -1498,7 +1444,7 @@ RETHROW                  <rethrow>
                               (unaryExpression
                                 (memberExpression
                                   (functionCall
-                                    (identifierOrReservedWord (identifier fileExists))
+                                    (identifier fileExists)
                                     (
                                     (argumentList
                                       (argument
@@ -1523,14 +1469,7 @@ RETHROW                  <rethrow>
                                     (compareExpression
                                       (baseExpression
                                         (unaryExpression
-                                          (memberExpression
-                                            (functionCall
-                                              (identifierOrReservedWord (identifier isTrustedSource))
-                                              (
-                                              argumentList
-                                              )
-                                            )
-                                          )
+                                          (memberExpression (functionCall (identifier isTrustedSource) ( argumentList )))
                                         )
                                       )
                                     )
@@ -1622,7 +1561,7 @@ RETHROW                  <rethrow>
                               (unaryExpression
                                 (memberExpression
                                   (functionCall
-                                    (identifierOrReservedWord (identifier directoryExists))
+                                    (identifier directoryExists)
                                     (
                                     (argumentList
                                       (argument

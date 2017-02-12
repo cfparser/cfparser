@@ -33,9 +33,7 @@ IDENTIFIER               <startDate>
           (compareExpression
             (baseExpression
               (unaryExpression
-                (memberExpression
-                  (functionCall (identifierOrReservedWord (identifier Now)) ( argumentList ))
-                )
+                (memberExpression (functionCall (identifier Now) ( argumentList )))
               )
             )
             (compareExpressionOperator gt)
@@ -44,7 +42,7 @@ IDENTIFIER               <startDate>
                 (unaryExpression
                   (memberExpression
                     (functionCall
-                      (identifierOrReservedWord (identifier dateadd))
+                      (identifier dateadd)
                       (
                       (argumentList
                         (argument
@@ -69,7 +67,7 @@ IDENTIFIER               <startDate>
                                   (memberExpression
                                     -
                                     (functionCall
-                                      (identifierOrReservedWord (identifier val))
+                                      (identifier val)
                                       (
                                       (argumentList
                                         (argument
@@ -113,7 +111,7 @@ IDENTIFIER               <startDate>
 )
 /*======*/
 /*===DECOMPILE===*/
-if(Now() gt dateadd('d', -val(iDiff), startDate) ) {
+if(Now() gt dateadd('d', -val(iDiff), startDate) )   {
 
- }
+  }
 /*======*/
