@@ -681,8 +681,6 @@ identifier
   | PACKAGE
   | REQUIRED
   | cfmlFunction
-  | //{!scriptMode}?//=> 
-  	cfscriptKeywords 
   | type	)
 	;
 

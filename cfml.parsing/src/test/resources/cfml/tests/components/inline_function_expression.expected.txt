@@ -145,26 +145,12 @@ IDENTIFIER               <result>
                               (startExpression
                                 (compareExpression
                                   (baseExpression
-                                    (concatenationExpression
-                                      (unaryExpression
-                                        (memberExpression
-                                          (functionCall
-                                            (identifier (cfscriptKeywords function))
-                                            (
-                                            (argumentList
-                                              (argument
-                                                (startExpression
-                                                  (compareExpression
-                                                    (baseExpression (unaryExpression (memberExpression (identifier result))))
-                                                  )
-                                                )
-                                              )
-                                            )
-                                            )
-                                            (compoundStatement { })
-                                          )
-                                        )
+                                    (anonymousFunctionDeclaration
+                                      function
+                                      (
+                                      (parameterList (parameter (identifier result)))
                                       )
+                                      (compoundStatement { })
                                     )
                                   )
                                 )
@@ -193,9 +179,9 @@ IDENTIFIER               <result>
 component {
   {
     public function bar()       {
-dotrim('hello world', function(result)          {
+dotrim('hello world',  function (result)   {
 
-          });
+  });
 
       };
     public function dotrim(data, callback)       {
