@@ -1,8 +1,11 @@
 package cfml.parsing.cfscript.script;
 
+import java.util.List;
+
 import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFReturnStatement extends CFParsedStatement {
 	
@@ -29,5 +32,15 @@ public class CFReturnStatement extends CFParsedStatement {
 	
 	public CFExpression getExpression() {
 		return _ret;
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression(_ret);
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
 	}
 }

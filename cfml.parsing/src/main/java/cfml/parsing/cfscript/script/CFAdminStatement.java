@@ -12,10 +12,6 @@ public class CFAdminStatement extends CFParsedAttributeStatement implements Seri
 	private static final long serialVersionUID = 1L;
 	
 	private static HashSet<String> validAttributes;
-	private boolean shorthand = false;
-	private CFExpression propertyName;
-	private CFExpression propertyType;
-	
 	static {
 		validAttributes = new HashSet<String>();
 		validAttributes.add("TYPE");
@@ -33,33 +29,12 @@ public class CFAdminStatement extends CFParsedAttributeStatement implements Seri
 	public String Decompile(int indent) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("amdin");
-		if (!shorthand) {
-			DecompileAttributes(sb);
-		} else {
-			sb.append(" ");
-			if (propertyType != null) {
-				sb.append(propertyType.Decompile(0));
-				sb.append(" ");
-			}
-			sb.append(propertyName.Decompile(0));
-		}
+		DecompileAttributes(sb);
 		return sb.toString();
 	}
 	
 	public static HashSet<String> getValidAttributes() {
 		return validAttributes;
-	}
-	
-	public void setIsShortHand(boolean b) {
-		shorthand = b;
-	}
-	
-	public void setPropertyName(CFExpression cfExpression) {
-		propertyName = cfExpression;
-	}
-	
-	public void setPropertyType(CFExpression cfExpression) {
-		propertyType = cfExpression;
 	}
 	
 }

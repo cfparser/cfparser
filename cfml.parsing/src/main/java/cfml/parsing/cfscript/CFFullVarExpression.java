@@ -7,6 +7,8 @@ import java.util.List;
 import org.antlr.v4.runtime.Token;
 
 import cfml.CFSCRIPTLexer;
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFFullVarExpression extends CFIdentifier implements Serializable {
 	
@@ -79,4 +81,13 @@ public class CFFullVarExpression extends CFIdentifier implements Serializable {
 		return null;
 	}
 	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return expressions;
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
+	}
 }

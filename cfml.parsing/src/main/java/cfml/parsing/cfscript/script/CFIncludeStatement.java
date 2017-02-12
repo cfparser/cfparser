@@ -1,8 +1,11 @@
 package cfml.parsing.cfscript.script;
 
+import java.util.List;
+
 import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFIncludeStatement extends CFParsedStatement implements java.io.Serializable {
 	
@@ -24,4 +27,13 @@ public class CFIncludeStatement extends CFParsedStatement implements java.io.Ser
 		return template;
 	}
 	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression(template);
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
+	}
 }

@@ -1,6 +1,7 @@
 package cfml.parsing.cfscript.script;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 import cfml.parsing.cfscript.CFExpression;
@@ -61,5 +62,16 @@ public class CFPropertyStatement extends CFParsedAttributeStatement implements j
 	
 	public void setPropertyType(CFExpression cfExpression) {
 		propertyType = cfExpression;
+	}
+	
+	public List<CFExpression> decomposeExpression() {
+		List<CFExpression> retval = super.decomposeExpression();
+		if (propertyName != null) {
+			retval.add(propertyName);
+		}
+		if (propertyType != null) {
+			retval.add(propertyType);
+		}
+		return retval;
 	}
 }

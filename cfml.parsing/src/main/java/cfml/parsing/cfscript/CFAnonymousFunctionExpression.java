@@ -1,6 +1,10 @@
 package cfml.parsing.cfscript;
 
+import java.util.List;
+
 import cfml.parsing.cfscript.script.CFFuncDeclStatement;
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.util.ArrayBuilder;
 
 /**
  * Definition of expression tree for a unary expression.
@@ -32,6 +36,16 @@ public class CFAnonymousFunctionExpression extends CFExpression implements java.
 	
 	public CFFuncDeclStatement getFuncDeclStatement() {
 		return funcDeclStatement;
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression();
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement(funcDeclStatement);
 	}
 	
 }

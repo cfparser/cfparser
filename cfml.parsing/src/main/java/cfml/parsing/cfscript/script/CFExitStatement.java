@@ -19,7 +19,10 @@
 
 package cfml.parsing.cfscript.script;
 
+import java.util.List;
+
 import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFExitStatement extends CFParsedStatement implements java.io.Serializable {
 	
@@ -43,5 +46,15 @@ public class CFExitStatement extends CFParsedStatement implements java.io.Serial
 	
 	public CFExpression getMethod() {
 		return methodArg;
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression(methodArg);
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
 	}
 }

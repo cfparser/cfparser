@@ -1,11 +1,13 @@
 package cfml.parsing.cfscript.script;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFIdentifier;
 import cfml.parsing.reporting.ParseException;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFLockStatement extends CFParsedAttributeStatement implements java.io.Serializable {
 	
@@ -24,8 +26,7 @@ public class CFLockStatement extends CFParsedAttributeStatement implements java.
 		supportedAttributes.add("THROWONTIMEOUT");
 	}
 	
-	public CFLockStatement(org.antlr.v4.runtime.Token _t, Map<CFIdentifier, CFExpression> _attr,
-			CFScriptStatement _body) {
+	public CFLockStatement(org.antlr.v4.runtime.Token _t, Map<CFIdentifier, CFExpression> _attr, CFScriptStatement _body) {
 		super(_t, _attr);
 		
 		validateAttributes(_t, supportedAttributes);
@@ -37,7 +38,7 @@ public class CFLockStatement extends CFParsedAttributeStatement implements java.
 		// minimal requirement is the timeout attribute
 		if (!containsAttribute("TIMEOUT"))
 			throw new ParseException(token, "Lock requires the TIMEOUT attribute");
-			
+		
 		if (containsAttribute("NAME") && containsAttribute("SCOPE"))
 			throw new ParseException(token, "Invalid Attributes: specify either SCOPE or NAME, but not both");
 	}
@@ -62,4 +63,8 @@ public class CFLockStatement extends CFParsedAttributeStatement implements java.
 		return supportedAttributes;
 	}
 	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement(body);
+	}
 }

@@ -1,6 +1,10 @@
 package cfml.parsing.cfscript;
 
+import java.util.List;
+
 import cfml.CFSCRIPTLexer;
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.util.ArrayBuilder;
 
 /**
  * Definition of expression tree for a unary expression.
@@ -87,6 +91,16 @@ public class CFUnaryExpression extends CFExpression implements java.io.Serializa
 	
 	public CFExpression getSub() {
 		return sub;
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression(sub);
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
 	}
 	
 }

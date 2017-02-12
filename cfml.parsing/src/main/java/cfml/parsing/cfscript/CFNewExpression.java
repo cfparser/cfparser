@@ -5,14 +5,17 @@ import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.util.ArrayBuilder;
+
 public class CFNewExpression extends CFExpression implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private CFExpression componentPath;
-	private List args;
+	private List<CFExpression> args;
 	
-	public CFNewExpression(Token _t, CFExpression _component, ArrayList _args) {
+	public CFNewExpression(Token _t, CFExpression _component, ArrayList<CFExpression> _args) {
 		super(_t);
 		componentPath = _component;
 		args = _args;
@@ -41,5 +44,18 @@ public class CFNewExpression extends CFExpression implements java.io.Serializabl
 	
 	public List getArgs() {
 		return args;
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		List<CFExpression> retval = new ArrayList<CFExpression>();
+		retval.add(componentPath);
+		retval.addAll(args);
+		return retval;
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
 	}
 }

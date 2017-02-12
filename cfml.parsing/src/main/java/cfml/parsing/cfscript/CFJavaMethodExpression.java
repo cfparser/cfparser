@@ -7,8 +7,12 @@ package cfml.parsing.cfscript;
  */
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.antlr.v4.runtime.Token;
+
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFJavaMethodExpression extends CFExpression {
 	
@@ -75,4 +79,16 @@ public class CFJavaMethodExpression extends CFExpression {
 		return _onMissingMethod;
 	}
 	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		List<CFExpression> retval = new ArrayList<CFExpression>();
+		retval.add(name);
+		retval.addAll(args);
+		return retval;
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
+	}
 }

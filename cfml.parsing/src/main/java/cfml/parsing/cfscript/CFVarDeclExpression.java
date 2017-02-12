@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.util.ArrayBuilder;
+
 public class CFVarDeclExpression extends CFExpression {
 	
 	private static final long serialVersionUID = 1L;
@@ -54,5 +57,19 @@ public class CFVarDeclExpression extends CFExpression {
 	
 	public CFExpression getInit() {
 		return init;
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		List<CFExpression> retval = new ArrayList<CFExpression>();
+		retval.add(init);
+		retval.addAll(otherIds);
+		retval.addAll(otherVars);
+		return retval;
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
 	}
 }

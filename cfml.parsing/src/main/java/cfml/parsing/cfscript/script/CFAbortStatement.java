@@ -1,6 +1,9 @@
 package cfml.parsing.cfscript.script;
 
+import java.util.List;
+
 import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFAbortStatement extends CFParsedStatement implements java.io.Serializable {
 	
@@ -28,6 +31,16 @@ public class CFAbortStatement extends CFParsedStatement implements java.io.Seria
 		} else {
 			return "abort";
 		}
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression(message);
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
 	}
 	
 }

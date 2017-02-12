@@ -11,6 +11,7 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFCase implements CFScriptStatement, java.io.Serializable {
 	
@@ -86,5 +87,15 @@ public class CFCase implements CFScriptStatement, java.io.Serializable {
 			return statements.get(0).getToken();
 		}
 		return null;
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression(constant);
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return statements;
 	}
 }

@@ -1,5 +1,7 @@
 package cfml.parsing.cfscript.script;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -7,6 +9,7 @@ import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFContext;
 import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFCompDeclStatement extends CFParsedStatement {
 	
@@ -84,5 +87,19 @@ public class CFCompDeclStatement extends CFParsedStatement {
 	
 	public Map<CFExpression, CFExpression> getAttributes() {
 		return attributes;
+	}
+	
+	public List<CFExpression> decomposeExpression() {
+		List<CFExpression> retval = new ArrayList<CFExpression>();
+		for (Entry<CFExpression, CFExpression> key : attributes.entrySet()) {
+			retval.add(key.getKey());
+			retval.add(key.getValue());
+		}
+		return retval;
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement(body);
 	}
 }

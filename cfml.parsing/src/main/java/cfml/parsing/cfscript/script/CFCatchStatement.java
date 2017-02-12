@@ -1,9 +1,13 @@
 package cfml.parsing.cfscript.script;
 
+import java.util.List;
+
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;
 
+import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFIdentifier;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFCatchStatement extends CFCatchClause implements CFScriptStatement {
 	
@@ -73,5 +77,15 @@ public class CFCatchStatement extends CFCatchClause implements CFScriptStatement
 	public Token getToken() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression(var);
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement(body);
 	}
 }
