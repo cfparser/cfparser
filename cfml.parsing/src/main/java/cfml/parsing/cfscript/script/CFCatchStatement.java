@@ -9,12 +9,18 @@ import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFIdentifier;
 import cfml.parsing.util.ArrayBuilder;
 
-public class CFCatchStatement extends CFCatchClause implements CFScriptStatement {
+public class CFCatchStatement implements CFScriptStatement {
 	
 	private CFIdentifier var;
 	private CFScriptStatement body;
 	CommonTokenStream tokens;
 	final Token token;
+	
+	public String getType() {
+		return type;
+	}
+	
+	protected String type;
 	
 	public CFCatchStatement(String _type, CFIdentifier _var, CFScriptStatement _body) {
 		type = _type;

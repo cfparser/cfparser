@@ -60,7 +60,6 @@ import cfml.parsing.cfscript.script.CFAbortStatement;
 import cfml.parsing.cfscript.script.CFAdminStatement;
 import cfml.parsing.cfscript.script.CFBreakStatement;
 import cfml.parsing.cfscript.script.CFCase;
-import cfml.parsing.cfscript.script.CFCatchClause;
 import cfml.parsing.cfscript.script.CFCatchStatement;
 import cfml.parsing.cfscript.script.CFCompDeclStatement;
 import cfml.parsing.cfscript.script.CFCompoundStatement;
@@ -321,7 +320,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	@Override
 	public CFScriptStatement visitTryCatchStatement(TryCatchStatementContext ctx) {
 		// System.out.println("visitTryCatchStatement");
-		List<CFCatchClause> _catches = new ArrayList<CFCatchClause>();
+		List<CFCatchStatement> _catches = new ArrayList<CFCatchStatement>();
 		for (CatchConditionContext catchCond : ctx.catchCondition()) {
 			CFCatchStatement clause = new CFCatchStatement(getText(catchCond.typeSpec()),
 					(CFIdentifier) cfExpressionVisitor.visit(catchCond.identifier()), visit(catchCond.compoundStatement()));

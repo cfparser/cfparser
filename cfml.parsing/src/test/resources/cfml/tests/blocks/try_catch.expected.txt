@@ -1,0 +1,311 @@
+/*===TOKENS===*/
+TRY                      <try>
+'{'                      <{>
+THROW                    <throw>
+'('                      <(>
+IDENTIFIER               <message>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <Oops>
+CLOSE_STRING             <">
+','                      <,>
+IDENTIFIER               <detail>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <xyz>
+CLOSE_STRING             <">
+')'                      <)>
+';'                      <;>
+LINE_COMMENT             <//CF9+
+>
+'}'                      <}>
+CATCH                    <catch>
+'('                      <(>
+ANY                      <any>
+IDENTIFIER               <e>
+')'                      <)>
+'{'                      <{>
+IDENTIFIER               <WriteOutput>
+'('                      <(>
+OPEN_STRING              <">
+STRING_LITERAL           <Error: >
+CLOSE_STRING             <">
+'&'                      <&>
+IDENTIFIER               <e>
+'.'                      <.>
+IDENTIFIER               <message>
+')'                      <)>
+';'                      <;>
+RETHROW                  <rethrow>
+';'                      <;>
+LINE_COMMENT             <//CF9+
+>
+'}'                      <}>
+CATCH                    <catch>
+'('                      <(>
+ANY                      <any>
+IDENTIFIER               <e>
+')'                      <)>
+'{'                      <{>
+IDENTIFIER               <WriteOutput>
+'('                      <(>
+OPEN_STRING              <">
+STRING_LITERAL           <Error: >
+CLOSE_STRING             <">
+'&'                      <&>
+IDENTIFIER               <e>
+'.'                      <.>
+IDENTIFIER               <message>
+')'                      <)>
+';'                      <;>
+RETHROW                  <rethrow>
+';'                      <;>
+LINE_COMMENT             <//CF9+
+>
+'}'                      <}>
+FINALLY                  <finally>
+'{'                      <{>
+LINE_COMMENT             <//CF9+
+>
+IDENTIFIER               <WriteOutput>
+'('                      <(>
+OPEN_STRING              <">
+STRING_LITERAL           <I run even if no error>
+CLOSE_STRING             <">
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (tryCatchStatement
+        try
+        (statement
+          (compoundStatement
+            {
+            (statement
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifier throw)
+                          (
+                          (argumentList
+                            (argument
+                              (argumentName (identifier message))
+                              =
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (primaryExpression
+                                        (literalExpression (stringLiteral " (stringLiteralPart Oops) "))
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                            ,
+                            (argument
+                              (argumentName (identifier detail))
+                              =
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (primaryExpression
+                                        (literalExpression (stringLiteral " (stringLiteralPart xyz) "))
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            }
+          )
+        )
+        (catchCondition
+          catch
+          (
+          (typeSpec (type any))
+          (identifier e)
+          )
+          (compoundStatement
+            {
+            (statement
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifier WriteOutput)
+                          (
+                          (argumentList
+                            (argument
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (concatenationExpression
+                                      (unaryExpression
+                                        (primaryExpression
+                                          (literalExpression (stringLiteral " (stringLiteralPart 'Error: ') "))
+                                        )
+                                      )
+                                      &
+                                      (baseOrTernaryExpression
+                                        (compareExpression
+                                          (baseExpression
+                                            (unaryExpression (memberExpression (identifier e) . (identifier message)))
+                                          )
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            (statement (tagOperatorStatement (rethrowStatment rethrow ;)))
+            }
+          )
+        )
+        (catchCondition
+          catch
+          (
+          (typeSpec (type any))
+          (identifier e)
+          )
+          (compoundStatement
+            {
+            (statement
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifier WriteOutput)
+                          (
+                          (argumentList
+                            (argument
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (concatenationExpression
+                                      (unaryExpression
+                                        (primaryExpression
+                                          (literalExpression (stringLiteral " (stringLiteralPart 'Error: ') "))
+                                        )
+                                      )
+                                      &
+                                      (baseOrTernaryExpression
+                                        (compareExpression
+                                          (baseExpression
+                                            (unaryExpression (memberExpression (identifier e) . (identifier message)))
+                                          )
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            (statement (tagOperatorStatement (rethrowStatment rethrow ;)))
+            }
+          )
+        )
+        (finallyStatement
+          finally
+          (compoundStatement
+            {
+            (statement
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifier WriteOutput)
+                          (
+                          (argumentList
+                            (argument
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (primaryExpression
+                                        (literalExpression
+                                          (stringLiteral " (stringLiteralPart I run even if no error) ")
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            }
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+try{
+throw(message = 'Oops', detail = 'xyz');
+
+}catch(any e{
+WriteOutput('Error: ' & e.message);
+rethrow;
+
+}catch(any e{
+WriteOutput('Error: ' & e.message);
+rethrow;
+
+}
+/*======*/

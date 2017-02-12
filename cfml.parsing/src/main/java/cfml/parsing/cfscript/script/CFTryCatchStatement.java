@@ -19,7 +19,7 @@ public class CFTryCatchStatement extends CFParsedStatement implements java.io.Se
 		return body;
 	}
 	
-	public List<CFCatchClause> getCatchStatements() {
+	public List<CFCatchStatement> getCatchStatements() {
 		return catchStatements;
 	}
 	
@@ -27,10 +27,10 @@ public class CFTryCatchStatement extends CFParsedStatement implements java.io.Se
 		return finallyStatement;
 	}
 	
-	private List<CFCatchClause> catchStatements;
+	private List<CFCatchStatement> catchStatements;
 	private CFScriptStatement finallyStatement;
 	
-	public CFTryCatchStatement(Token _t1, CFScriptStatement _s1, List<CFCatchClause> _catches, CFScriptStatement _finally) {
+	public CFTryCatchStatement(Token _t1, CFScriptStatement _s1, List<CFCatchStatement> _catches, CFScriptStatement _finally) {
 		super(_t1);
 		body = _s1;
 		catchStatements = _catches;
@@ -96,7 +96,7 @@ public class CFTryCatchStatement extends CFParsedStatement implements java.io.Se
 	public List<CFScriptStatement> decomposeScript() {
 		List<CFScriptStatement> retval = new ArrayList<CFScriptStatement>();
 		retval.add(body);
-		// retval.addAll(catchStatements);
+		retval.addAll(catchStatements);
 		retval.add(finallyStatement);
 		return ArrayBuilder.createCFScriptStatement();
 	}
