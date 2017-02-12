@@ -1,11 +1,15 @@
 package cfml.parsing.cfscript;
 
+import java.util.List;
+
 /**
  * Abstract class that takes care of the line and column positions of parsed
  * elements.
  */
 
 import org.antlr.v4.runtime.Token;
+
+import cfml.parsing.cfscript.script.CFScriptStatement;
 
 public abstract class CFParsedStatement implements CFStatement, java.io.Serializable {
 	
@@ -63,5 +67,9 @@ public abstract class CFParsedStatement implements CFStatement, java.io.Serializ
 		}
 		return sb.toString();
 	}
+	
+	public abstract List<CFExpression> decomposeExpression();
+	
+	public abstract List<CFScriptStatement> decomposeScript();
 	
 }

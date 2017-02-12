@@ -6,19 +6,23 @@ package cfml.parsing.cfscript;
  * (i.e. method name, and arguments being passed to it)
  */
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.antlr.v4.runtime.Token;
+
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFJavaMethodExpression extends CFExpression {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private CFExpression name;
-	private Vector<CFExpression> args; // Vector of CFExpression's
+	private ArrayList<CFExpression> args; // ArrayList of CFExpression's
 	private boolean _onMissingMethod = false;
 	
-	public CFJavaMethodExpression(Token _t, CFExpression _name, Vector<CFExpression> _args) {
+	public CFJavaMethodExpression(Token _t, CFExpression _name, ArrayList<CFExpression> _args) {
 		super(_t);
 		name = _name;
 		args = _args;
@@ -33,7 +37,7 @@ public class CFJavaMethodExpression extends CFExpression {
 		return ((CFIdentifier) name).getName();
 	}
 	
-	public Vector<CFExpression> getArguments() {
+	public ArrayList<CFExpression> getArguments() {
 		return args;
 	}
 	
@@ -52,7 +56,7 @@ public class CFJavaMethodExpression extends CFExpression {
 		sb.append("(");
 		
 		for (int i = 0; i < args.size(); i++) {
-			sb.append((args.elementAt(i)).toString());
+			sb.append((args.get(i)).toString());
 			if (i < args.size() - 1) {
 				sb.append(", ");
 			}
@@ -67,7 +71,7 @@ public class CFJavaMethodExpression extends CFExpression {
 		return name;
 	}
 	
-	public Vector<CFExpression> getArgs() {
+	public ArrayList<CFExpression> getArgs() {
 		return args;
 	}
 	
@@ -75,4 +79,16 @@ public class CFJavaMethodExpression extends CFExpression {
 		return _onMissingMethod;
 	}
 	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		List<CFExpression> retval = new ArrayList<CFExpression>();
+		retval.add(name);
+		retval.addAll(args);
+		return retval;
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
+	}
 }

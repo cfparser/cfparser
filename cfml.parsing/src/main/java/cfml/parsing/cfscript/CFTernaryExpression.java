@@ -1,6 +1,10 @@
 package cfml.parsing.cfscript;
 
+import java.util.List;
+
 import org.antlr.v4.runtime.Token;
+
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFTernaryExpression extends CFAssignmentExpression implements java.io.Serializable {
 	
@@ -56,6 +60,11 @@ public class CFTernaryExpression extends CFAssignmentExpression implements java.
 	
 	public CFExpression getCond() {
 		return _cond;
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression(_cond, _left, _right);
 	}
 	
 }

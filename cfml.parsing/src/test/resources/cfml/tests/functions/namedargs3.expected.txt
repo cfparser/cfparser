@@ -28,7 +28,7 @@ IDENTIFIER               <argValueTwo>
                 (identifier foo)
                 .
                 (functionCall
-                  (identifierOrReservedWord (identifier bar))
+                  (identifier bar)
                   (
                   (argumentList
                     (argument

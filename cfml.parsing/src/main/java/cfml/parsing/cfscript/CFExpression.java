@@ -5,7 +5,7 @@ public abstract class CFExpression extends CFParsedStatement implements java.io.
 	
 	public static byte FUNCTION = 0, ASSIGNMENT = 1, BINARY = 2, LITERAL = 3, IDENTIFIER = 4, VARIABLE = 5, UNARY = 6,
 			ARRAYMEMBER = 7, NESTED = 8;
-			
+	
 	public byte getType() {
 		return -1;
 	}

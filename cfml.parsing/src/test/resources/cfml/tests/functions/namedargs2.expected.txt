@@ -20,7 +20,7 @@ BOOLEAN_LITERAL          <false>
             (unaryExpression
               (memberExpression
                 (functionCall
-                  (identifierOrReservedWord (identifier doSomething))
+                  (identifier doSomething)
                   (
                   (argumentList
                     (argument

@@ -2,12 +2,14 @@ package cfml.parsing.cfscript.script;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 
 import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFIdentifier;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFTransactionStatement extends CFParsedAttributeStatement implements Serializable {
 	
@@ -50,6 +52,11 @@ public class CFTransactionStatement extends CFParsedAttributeStatement implement
 		}
 		
 		return sb.toString();
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement(body);
 	}
 	
 }

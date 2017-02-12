@@ -48,7 +48,7 @@ CLOSE_STRING             <">
               (unaryExpression
                 (memberExpression
                   (functionCall
-                    (identifierOrReservedWord (identifier QueryExecute))
+                    (identifier QueryExecute)
                     (
                     (argumentList
                       (argument

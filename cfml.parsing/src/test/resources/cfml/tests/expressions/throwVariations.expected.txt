@@ -77,7 +77,7 @@ CLOSE_STRING             <">
             (unaryExpression
               (memberExpression
                 (functionCall
-                  (identifierOrReservedWord (identifier throw))
+                  (identifier throw)
                   (
                   (argumentList
                     (argument

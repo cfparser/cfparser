@@ -1,0 +1,229 @@
+/*===TOKENS===*/
+IF                       <if>
+'('                      <(>
+IDENTIFIER               <fruit>
+EQ                       <IS>
+OPEN_STRING              <">
+STRING_LITERAL           <apple>
+CLOSE_STRING             <">
+')'                      <)>
+'{'                      <{>
+IDENTIFIER               <WriteOutput>
+'('                      <(>
+OPEN_STRING              <">
+STRING_LITERAL           <I like apples>
+CLOSE_STRING             <">
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+ELSE                     <else>
+IF                       <if>
+'('                      <(>
+IDENTIFIER               <fruit>
+EQ                       <IS>
+OPEN_STRING              <">
+STRING_LITERAL           <orange>
+CLOSE_STRING             <">
+')'                      <)>
+'{'                      <{>
+IDENTIFIER               <WriteOutput>
+'('                      <(>
+OPEN_STRING              <">
+STRING_LITERAL           <I like oranges>
+CLOSE_STRING             <">
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+ELSE                     <else>
+'{'                      <{>
+IDENTIFIER               <WriteOutput>
+'('                      <(>
+OPEN_STRING              <">
+STRING_LITERAL           <I like fruit>
+CLOSE_STRING             <">
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (ifStatement
+        if
+        (condition
+          (
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier fruit))))
+            (compareExpressionOperator IS)
+            (compareExpression
+              (baseExpression
+                (unaryExpression
+                  (primaryExpression
+                    (literalExpression (stringLiteral " (stringLiteralPart apple) "))
+                  )
+                )
+              )
+            )
+          )
+          )
+        )
+        (statement
+          (compoundStatement
+            {
+            (statement
+              (startExpression
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifier WriteOutput)
+                          (
+                          (argumentList
+                            (argument
+                              (startExpression
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (primaryExpression
+                                        (literalExpression (stringLiteral " (stringLiteralPart I like apples) "))
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            }
+          )
+        )
+        else
+        (statement
+          (ifStatement
+            if
+            (condition
+              (
+              (compareExpression
+                (baseExpression (unaryExpression (memberExpression (identifier fruit))))
+                (compareExpressionOperator IS)
+                (compareExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart orange) "))
+                      )
+                    )
+                  )
+                )
+              )
+              )
+            )
+            (statement
+              (compoundStatement
+                {
+                (statement
+                  (startExpression
+                    (compareExpression
+                      (baseExpression
+                        (unaryExpression
+                          (memberExpression
+                            (functionCall
+                              (identifier WriteOutput)
+                              (
+                              (argumentList
+                                (argument
+                                  (startExpression
+                                    (compareExpression
+                                      (baseExpression
+                                        (unaryExpression
+                                          (primaryExpression
+                                            (literalExpression (stringLiteral " (stringLiteralPart I like oranges) "))
+                                          )
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  ;
+                )
+                }
+              )
+            )
+            else
+            (statement
+              (compoundStatement
+                {
+                (statement
+                  (startExpression
+                    (compareExpression
+                      (baseExpression
+                        (unaryExpression
+                          (memberExpression
+                            (functionCall
+                              (identifier WriteOutput)
+                              (
+                              (argumentList
+                                (argument
+                                  (startExpression
+                                    (compareExpression
+                                      (baseExpression
+                                        (unaryExpression
+                                          (primaryExpression
+                                            (literalExpression (stringLiteral " (stringLiteralPart I like fruit) "))
+                                          )
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  ;
+                )
+                }
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+if(fruit IS 'apple' )   {
+WriteOutput('I like apples');
+
+  }
+else   if(fruit IS 'orange' )     {
+WriteOutput('I like oranges');
+
+    }
+  else     {
+WriteOutput('I like fruit');
+
+    }
+/*======*/

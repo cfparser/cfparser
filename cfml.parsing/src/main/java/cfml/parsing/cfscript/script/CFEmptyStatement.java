@@ -1,10 +1,15 @@
 package cfml.parsing.cfscript.script;
 
+import java.util.List;
+
 /*
  * A completely empty statement (";") which does nothing.
  */
 
 import org.antlr.v4.runtime.Token;
+
+import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFEmptyStatement extends CFParsedStatement implements java.io.Serializable {
 	
@@ -23,4 +28,13 @@ public class CFEmptyStatement extends CFParsedStatement implements java.io.Seria
 		return Indent(indent) + ";";
 	}
 	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression();
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
+	}
 }

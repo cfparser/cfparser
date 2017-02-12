@@ -1,8 +1,10 @@
 package cfml.parsing.cfscript.script;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.antlr.v4.runtime.Token;
 
@@ -10,13 +12,14 @@ import cfml.parsing.cfscript.CFContext;
 import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFIdentifier;
 import cfml.parsing.reporting.ParseException;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFFuncDeclStatement extends CFParsedStatement {
 	
 	private static final long serialVersionUID = 1L;
 	
 	private CFIdentifier name;
-	private List<CFFunctionParameter> formals; // Vector of String's
+	private List<CFFunctionParameter> formals; // List of String's
 	private Map<CFExpression, CFExpression> attributes;
 	private CFScriptStatement body;
 	
@@ -140,5 +143,23 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 	
 	public CFIdentifier getReturnType() {
 		return returnType;
+	}
+	
+	public List<CFExpression> decomposeExpression() {
+		List<CFExpression> retval = new ArrayList<CFExpression>();
+		retval.add(name);
+		for (Entry<CFExpression, CFExpression> key : attributes.entrySet()) {
+			retval.add(key.getKey());
+			retval.add(key.getValue());
+		}
+		for (CFFunctionParameter formal : formals) {
+			retval.add(formal.getDefaultExpression());
+		}
+		return retval;
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement(body);
 	}
 }

@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.util.ArrayBuilder;
+
 public class CFStringExpression extends CFExpression {
 	
 	List<CFExpression> subExpressions = new ArrayList<CFExpression>();
@@ -41,6 +44,16 @@ public class CFStringExpression extends CFExpression {
 	
 	public List<CFExpression> getSubExpressions() {
 		return subExpressions;
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return subExpressions;
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
 	}
 	
 }

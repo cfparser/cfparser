@@ -1,8 +1,12 @@
 package cfml.parsing.cfscript;
 
+import java.util.List;
+
 import org.antlr.v4.runtime.Token;
 
 import cfml.CFSCRIPTLexer;
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFLiteral extends CFExpression implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
@@ -80,5 +84,15 @@ public class CFLiteral extends CFExpression implements java.io.Serializable {
 	
 	public String getImage() {
 		return image;
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression();
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
 	}
 }

@@ -19,8 +19,12 @@
 
 package cfml.parsing.cfscript.script;
 
-import cfml.parsing.cfscript.CFExpression;
+import java.util.List;
 
+import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.util.ArrayBuilder;
+
+@Deprecated
 public class CFThrowStatement extends CFParsedStatement implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -43,5 +47,15 @@ public class CFThrowStatement extends CFParsedStatement implements java.io.Seria
 		} else {
 			return "throw";
 		}
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression(message);
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
 	}
 }

@@ -3,7 +3,7 @@ START:cfif
   <cfif "foo" ==== "bar">Foo</cfif>
   TAG
   =========ERRORs=================
-  [SyntaxError: Line1:12 no viable alternative at input '"foo"===="']
+  [SyntaxError: Line1:9 no viable alternative at input '"foo"====']
   ==========Tokens==============
   OPEN_STRING              <">
   STRING_LITERAL           <foo>

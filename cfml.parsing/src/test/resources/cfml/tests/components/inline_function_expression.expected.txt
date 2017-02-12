@@ -65,7 +65,7 @@ IDENTIFIER               <result>
                     (unaryExpression
                       (memberExpression
                         (functionCall
-                          (identifierOrReservedWord (identifier callback))
+                          (identifier callback)
                           (
                           (argumentList
                             (argument
@@ -75,7 +75,7 @@ IDENTIFIER               <result>
                                     (unaryExpression
                                       (memberExpression
                                         (functionCall
-                                          (identifierOrReservedWord (identifier trim))
+                                          (identifier trim)
                                           (
                                           (argumentList
                                             (argument
@@ -124,7 +124,7 @@ IDENTIFIER               <result>
                     (unaryExpression
                       (memberExpression
                         (functionCall
-                          (identifierOrReservedWord (identifier dotrim))
+                          (identifier dotrim)
                           (
                           (argumentList
                             (argument
@@ -174,4 +174,21 @@ IDENTIFIER               <result>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+component {
+  {
+    public function bar()       {
+dotrim('hello world',  function (result)   {
+
+  });
+
+      };
+    public function dotrim(data, callback)       {
+callback(trim(data));
+
+      };
+
+  }
+}
 /*======*/

@@ -5,42 +5,46 @@ package cfml.parsing.cfscript.script;
  */
 
 import java.util.ArrayList;
+import java.util.List;
+
+import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFCompoundStatement extends CFParsedStatement implements CFScriptStatement, java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private ArrayList<CFScriptStatement> _v; // Vector of CFStatements
+	private ArrayList<CFScriptStatement> statements; // List of CFStatements
 	
 	public CFCompoundStatement() {
 		super(1, 1);
-		_v = new ArrayList<CFScriptStatement>();
+		statements = new ArrayList<CFScriptStatement>();
 	}
 	
 	public CFCompoundStatement(org.antlr.v4.runtime.Token t) {
 		super(t);
-		_v = new ArrayList<CFScriptStatement>();
+		statements = new ArrayList<CFScriptStatement>();
 	}
 	
 	public void add(CFScriptStatement s) {
-		_v.add(s);
+		statements.add(s);
 	}
 	
 	public void addFunction(CFScriptStatement s) {
-		_v.add(0, s);
+		statements.add(0, s);
 	}
 	
 	public ArrayList<CFScriptStatement> getStatements() {
-		return _v;
+		return statements;
 	}
 	
 	public int numOfStatements() {
-		return _v.size();
+		return statements.size();
 	}
 	
 	@Override
 	public void checkIndirectAssignments(String[] scriptSource) {
-		for (int i = 0; i < _v.size(); i++) {
-			_v.get(i).checkIndirectAssignments(scriptSource);
+		for (int i = 0; i < statements.size(); i++) {
+			statements.get(i).checkIndirectAssignments(scriptSource);
 		}
 	}
 	
@@ -50,7 +54,7 @@ public class CFCompoundStatement extends CFParsedStatement implements CFScriptSt
 		s.append(Indent(indent));
 		s.append("{\n");
 		for (int i = 0; i < numOfStatements(); i++) {
-			CFScriptStatement statement = _v.get(i);
+			CFScriptStatement statement = statements.get(i);
 			// prevent endless loop
 			if (statement != this) {
 				s.append(statement.Decompile(indent + 2)).append(";\n");
@@ -62,4 +66,13 @@ public class CFCompoundStatement extends CFParsedStatement implements CFScriptSt
 		return s.toString();
 	}
 	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression();
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return statements;
+	}
 }

@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.antlr.v4.runtime.Token;
 
@@ -15,6 +16,7 @@ import cfml.parsing.cfscript.CFContext;
 import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFIdentifier;
 import cfml.parsing.reporting.ParseException;
+import cfml.parsing.util.ArrayBuilder;
 import cfml.parsing.util.CFException;
 
 abstract public class CFParsedAttributeStatement extends CFParsedStatement implements Serializable {
@@ -81,8 +83,7 @@ abstract public class CFParsedAttributeStatement extends CFParsedStatement imple
 	 * checks that all the attributes are in the allowed set, throwing a CFException with the passed in message if an
 	 * unrecognized attribute is found
 	 */
-	protected void validateAttributesRuntime(CFContext _context, HashSet<String> _allowedKeys, String _msg)
-			throws CFException {
+	protected void validateAttributesRuntime(CFContext _context, HashSet<String> _allowedKeys, String _msg) throws CFException {
 		Iterator<CFIdentifier> it = attributes.keySet().iterator();
 		
 		while (it.hasNext()) {
@@ -95,5 +96,20 @@ abstract public class CFParsedAttributeStatement extends CFParsedStatement imple
 	
 	protected Iterator<CFIdentifier> getAttributeKeyIterator() {
 		return attributes.keySet().iterator();
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		List<CFExpression> retval = new ArrayList<CFExpression>();
+		for (Entry<CFIdentifier, CFExpression> key : attributes.entrySet()) {
+			retval.add(key.getKey());
+			retval.add(key.getValue());
+		}
+		return retval;
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
 	}
 }

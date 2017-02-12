@@ -5,6 +5,9 @@ import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.util.ArrayBuilder;
+
 public class CFAssignmentExpression extends CFExpression {
 	
 	private static final long serialVersionUID = 1L;
@@ -12,7 +15,6 @@ public class CFAssignmentExpression extends CFExpression {
 	private CFExpression left;
 	private CFExpression right;
 	
-	private int type;
 	List<CFIdentifier> otherIds = new ArrayList<CFIdentifier>();
 	
 	public List<CFIdentifier> getOtherIds() {
@@ -23,7 +25,6 @@ public class CFAssignmentExpression extends CFExpression {
 		super(t);
 		left = _left;
 		right = _right;
-		type = t.getType();
 	}
 	
 	@Override
@@ -103,5 +104,17 @@ public class CFAssignmentExpression extends CFExpression {
 	
 	public CFExpression getRight() {
 		return right;
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		List<CFExpression> retval = ArrayBuilder.createCFExpression(left, right);
+		retval.addAll(otherIds);
+		return retval;
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
 	}
 }

@@ -1,5 +1,7 @@
 package cfml.parsing.cfscript.script;
 
+import java.util.ArrayList;
+
 /**
  * This class represents a switch statement. 
  */
@@ -9,6 +11,7 @@ import java.util.List;
 import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFSwitchStatement extends CFParsedStatement implements java.io.Serializable {
 	
@@ -51,4 +54,16 @@ public class CFSwitchStatement extends CFParsedStatement implements java.io.Seri
 		return sb.toString();
 	}
 	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression(variable);
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		List<CFScriptStatement> retval = new ArrayList<CFScriptStatement>();
+		retval.addAll(retval);
+		
+		return retval;
+	}
 }

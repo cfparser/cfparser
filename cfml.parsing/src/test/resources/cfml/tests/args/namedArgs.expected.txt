@@ -64,15 +64,10 @@ IDENTIFIER               <callRate>
                 (baseExpression
                   (unaryExpression
                     (memberExpression
-                      (functionCall
-                        (identifierOrReservedWord (identifier getServiceLocator))
-                        (
-                        argumentList
-                        )
-                      )
+                      (functionCall (identifier getServiceLocator) ( argumentList ))
                       .
                       (functionCall
-                        (identifierOrReservedWord (identifier get))
+                        (identifier get)
                         (
                         (argumentList
                           (argument
@@ -108,7 +103,7 @@ IDENTIFIER               <callRate>
                     (identifier callRate)
                     .
                     (functionCall
-                      (identifierOrReservedWord (identifier init))
+                      (identifier init)
                       (
                       (argumentList
                         (argument
@@ -157,7 +152,7 @@ IDENTIFIER               <callRate>
                 (unaryExpression
                   (memberExpression
                     (functionCall
-                      (identifierOrReservedWord (identifier ArrayAppend))
+                      (identifier ArrayAppend)
                       (
                       (argumentList
                         (argument
@@ -190,4 +185,12 @@ IDENTIFIER               <callRate>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+public function x()   {
+    var callRate = getServiceLocator().get('object.cps.CallRate');
+callRate.init(crid = CallRateId, newName = Name, newDescription = Description);
+ArrayAppend(result, callRate);
+
+  }
 /*======*/

@@ -1,0 +1,166 @@
+/*===TOKENS===*/
+THROW                    <throw>
+'('                      <(>
+IDENTIFIER               <message>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <message>
+CLOSE_STRING             <">
+','                      <,>
+IDENTIFIER               <type>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <exception type>
+CLOSE_STRING             <">
+','                      <,>
+IDENTIFIER               <detail>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <xyz>
+CLOSE_STRING             <">
+','                      <,>
+IDENTIFIER               <errorCode>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <error code>
+CLOSE_STRING             <">
+','                      <,>
+IDENTIFIER               <extendedInfo>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <additional info>
+CLOSE_STRING             <">
+','                      <,>
+OBJECT                   <object>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <java exception object>
+CLOSE_STRING             <">
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (memberExpression
+                (functionCall
+                  (identifier throw)
+                  (
+                  (argumentList
+                    (argument
+                      (argumentName (identifier message))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart message) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (argumentName (identifier type))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart exception type) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (argumentName (identifier detail))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart xyz) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (argumentName (identifier errorCode))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart error code) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (argumentName (identifier extendedInfo))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart additional info) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (argumentName (identifier (cfmlFunction object)))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression
+                                  (stringLiteral " (stringLiteralPart java exception object) ")
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+throw(message = 'message', type = 'exception type', detail = 'xyz', errorCode = 'error code', extendedInfo = 'additional info', object = 'java exception object')
+/*======*/

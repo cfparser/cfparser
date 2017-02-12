@@ -1,8 +1,12 @@
 package cfml.parsing.cfscript;
 
+import java.util.List;
+
 import org.antlr.v4.runtime.Token;
 
 import cfml.CFSCRIPTLexer;
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFBinaryExpression extends CFExpression implements java.io.Serializable {
 	
@@ -57,6 +61,16 @@ public class CFBinaryExpression extends CFExpression implements java.io.Serializ
 	
 	public String getOperatorImage() {
 		return operatorImage;
+	}
+	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		return ArrayBuilder.createCFExpression(_left, _right);
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
 	}
 	
 }

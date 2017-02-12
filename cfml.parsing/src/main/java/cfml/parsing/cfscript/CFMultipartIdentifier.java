@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import cfml.parsing.cfscript.script.CFScriptStatement;
+import cfml.parsing.util.ArrayBuilder;
+
 public class CFMultipartIdentifier extends CFIdentifier implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -38,4 +41,15 @@ public class CFMultipartIdentifier extends CFIdentifier implements java.io.Seria
 		return ids;
 	}
 	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		List<CFExpression> retval = new ArrayList<CFExpression>();
+		retval.addAll(ids);
+		return retval;
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement();
+	}
 }

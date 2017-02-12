@@ -1,0 +1,173 @@
+/*===TOKENS===*/
+IDENTIFIER               <cfmail>
+'('                      <(>
+TO                       <to>
+'='                      <=>
+IDENTIFIER               <toAddress>
+','                      <,>
+IDENTIFIER               <from>
+'='                      <=>
+IDENTIFIER               <adminEmail>
+','                      <,>
+IDENTIFIER               <replyto>
+'='                      <=>
+IDENTIFIER               <adminEmail>
+','                      <,>
+IDENTIFIER               <failto>
+'='                      <=>
+IDENTIFIER               <adminEmail>
+','                      <,>
+IDENTIFIER               <subject>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <Test email>
+CLOSE_STRING             <">
+','                      <,>
+IDENTIFIER               <type>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <html>
+CLOSE_STRING             <">
+')'                      <)>
+'{'                      <{>
+IDENTIFIER               <writeOutput>
+'('                      <(>
+IDENTIFIER               <mailBody>
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (memberExpression
+                (functionCall
+                  (identifier cfmail)
+                  (
+                  (argumentList
+                    (argument
+                      (argumentName (identifier to))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier toAddress))))
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (argumentName (identifier from))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier adminEmail))))
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (argumentName (identifier replyto))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier adminEmail))))
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (argumentName (identifier failto))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier adminEmail))))
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (argumentName (identifier subject))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart Test email) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    ,
+                    (argument
+                      (argumentName (identifier type))
+                      =
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart html) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  )
+                  (compoundStatement
+                    {
+                    (statement
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression
+                                (functionCall
+                                  (identifier writeOutput)
+                                  (
+                                  (argumentList
+                                    (argument
+                                      (startExpression
+                                        (compareExpression
+                                          (baseExpression (unaryExpression (memberExpression (identifier mailBody))))
+                                        )
+                                      )
+                                    )
+                                  )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                      ;
+                    )
+                    }
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+cfmail(to = toAddress, from = adminEmail, replyto = adminEmail, failto = adminEmail, subject = 'Test email', type = 'html')  {
+writeOutput(mailBody);
+
+  }
+/*======*/

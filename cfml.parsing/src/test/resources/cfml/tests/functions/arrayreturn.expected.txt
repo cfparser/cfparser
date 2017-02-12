@@ -56,7 +56,7 @@ IDENTIFIER               <findAll>
                     (memberExpression
                       (identifier newsService)
                       .
-                      (functionCall (identifierOrReservedWord (identifier findAll)) ( argumentList ))
+                      (functionCall (identifier findAll) ( argumentList ))
                     )
                   )
                 )
