@@ -24,6 +24,7 @@ import java.util.List;
 import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.util.ArrayBuilder;
 
+@Deprecated
 public class CFThrowStatement extends CFParsedStatement implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
