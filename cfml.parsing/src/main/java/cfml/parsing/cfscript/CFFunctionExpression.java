@@ -1,11 +1,13 @@
 package cfml.parsing.cfscript;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.script.CFScriptStatement;
 import cfml.parsing.reporting.ParseException;
+import cfml.parsing.util.ArrayBuilder;
 
 public class CFFunctionExpression extends CFMember {
 	private static final long serialVersionUID = 1L;
@@ -86,4 +88,23 @@ public class CFFunctionExpression extends CFMember {
 		this.body = body;
 	}
 	
+	@Override
+	public List<CFExpression> decomposeExpression() {
+		ArrayList<CFExpression> retval = new ArrayList<CFExpression>();
+		for (final CFExpression expr : getArgs()) {
+			if (expr instanceof CFAssignmentExpression) {
+				// Only the right hand side of 'assignments' -- these are
+				// named parameters.
+				retval.add(((CFAssignmentExpression) expr).getRight());
+			} else {
+				retval.add(expr);
+			}
+		}
+		return retval;
+	}
+	
+	@Override
+	public List<CFScriptStatement> decomposeScript() {
+		return ArrayBuilder.createCFScriptStatement(body);
+	}
 }
