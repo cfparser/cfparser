@@ -66,7 +66,7 @@ public class CFLiteral extends CFExpression implements java.io.Serializable {
 			if (CFSCRIPTLexer.STRING_LITERAL == kind && val != null) {
 				return "'" + val + "'";
 			} else {
-				return val;
+				return val == null ? "" : val;
 			}
 		} catch (Exception e) {
 			return "Couldn't get literal value";

@@ -29,7 +29,7 @@ public class CFStringExpression extends CFExpression {
 		for (CFExpression expression : subExpressions) {
 			if (expression instanceof CFLiteral) {
 				final String txt = expression.Decompile(0);
-				if (txt != null) {
+				if (txt != null && txt.length() > 0) {
 					sb.append(txt.substring(1, txt.length() - 1));
 				}
 			} else {
