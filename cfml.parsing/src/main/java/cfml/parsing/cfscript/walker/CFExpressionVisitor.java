@@ -43,6 +43,7 @@ import cfml.CFSCRIPTParser.ParentheticalExpressionContext;
 import cfml.CFSCRIPTParser.ParentheticalMemberExpressionContext;
 import cfml.CFSCRIPTParser.PrimaryExpressionContext;
 import cfml.CFSCRIPTParser.PrimaryExpressionIRWContext;
+import cfml.CFSCRIPTParser.SpecialWordContext;
 import cfml.CFSCRIPTParser.StringLiteralContext;
 import cfml.CFSCRIPTParser.StringLiteralPartContext;
 import cfml.CFSCRIPTParser.TagFunctionStatementContext;
@@ -588,6 +589,14 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	
 	public void clear() {
 		aggregator.clear();
+	}
+	
+	@Override
+	public CFExpression visitSpecialWord(SpecialWordContext ctx) {
+		if (ctx.getChildCount() > 1)
+			return new CFIdentifier(ctx.start, ctx.getChild(0).getText(), ctx.getChild(1).getText());
+		else
+			return new CFIdentifier(ctx.start, ctx.getChild(0).getText());
 	}
 	
 }

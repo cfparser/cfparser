@@ -581,7 +581,7 @@ arrayMemberExpression
 	;
 
 functionCall
-	:identifier LEFTPAREN argumentList RIGHTPAREN
+	:(identifier | specialWord) LEFTPAREN argumentList RIGHTPAREN
 	body=compoundStatement?
 	;
 	  
@@ -627,12 +627,14 @@ floatingPointExpression
     | leftonly=INTEGER_LITERAL DOT;
 	
 reservedWord
-  : CONTAINS //| IS | EQUAL | GE | LE | EQUALS  
+  : specialWord 
+  | cfscriptKeywords 
+  ;
+specialWord
+  : CONTAINS 
   | EQ | NEQ | GT | LT | GTE
   | LTE | NOT | AND
   | OR | XOR | EQV | IMP | MOD
-//  | NULL 
-  | cfscriptKeywords 
   ;
 
 argumentList

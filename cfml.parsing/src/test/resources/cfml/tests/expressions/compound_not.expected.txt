@@ -1,0 +1,78 @@
+/*===TOKENS===*/
+IF                       <if>
+'('                      <(>
+NOT                      <NOT>
+'('                      <(>
+IDENTIFIER               <smartGroups>
+'.'                      <.>
+CONTAINS                 <contains>
+'('                      <(>
+IDENTIFIER               <item>
+')'                      <)>
+')'                      <)>
+')'                      <)>
+'{'                      <{>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (ifStatement
+        if
+        (condition
+          (
+          (compareExpression
+            (baseExpression
+              (notExpression
+                NOT
+                (startExpression
+                  (compareExpression
+                    (baseExpression
+                      (unaryExpression
+                        (memberExpression
+                          (parentheticalExpression
+                            (
+                            (startExpression
+                              (compareExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (memberExpression
+                                      (identifier smartGroups)
+                                      .
+                                      (functionCall
+                                        (specialWord contains)
+                                        (
+                                        (argumentList
+                                          (argument
+                                            (startExpression
+                                              (compareExpression
+                                                (baseExpression (unaryExpression (memberExpression (identifier item))))
+                                              )
+                                            )
+                                          )
+                                        )
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          )
+        )
+        (statement (compoundStatement { }))
+      )
+    )
+  )
+)
+/*======*/
