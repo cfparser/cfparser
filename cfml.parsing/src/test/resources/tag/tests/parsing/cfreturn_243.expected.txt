@@ -1,0 +1,18 @@
+START:cfcomponent
+  =========TAG=================
+  <cfcomponent>
+  <cffunction name="foo" access="public" output="false" returntype="any">
+    <cfreturn  >
+  </cffunction>
+</cfcomponent>
+  START:cffunction
+    =========TAG=================
+    <cffunction name="foo" access="public" output="false" returntype="any">
+    <cfreturn  >
+  </cffunction>
+    START:cfreturn
+      =========TAG=================
+      <cfreturn  >
+    END:cfreturn
+  END:cffunction
+END:cfcomponent

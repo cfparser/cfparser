@@ -126,8 +126,17 @@ public class CFMLParser {
 	
 	public void visit(final Element elem, final int level, CFMLVisitor visitor) throws Exception {
 		visitor.visitElementStart(elem);
-		if (elem.getName().equalsIgnoreCase("cfset") || elem.getName().equalsIgnoreCase("cfif")
-				|| elem.getName().equalsIgnoreCase("cfelseif") || elem.getName().equalsIgnoreCase("cfreturn")) {
+		if (elem.getName().equalsIgnoreCase("cfset") || elem.getName().equalsIgnoreCase("cfreturn")) {
+			final String cfscript = elem.toString().substring(elem.getName().length() + 1, elem.toString().length() - 1).trim();
+			if (cfscript.length() > 0 && visitor.visitPreParseExpression("TAG", cfscript)) {
+				final CFExpression expression = parseCFExpression(cfscript, visitor);
+				
+				if (expression == null) {
+					throw new NullPointerException("expression is null, parsing error");
+				}
+				visitor.visitExpression("TAG", expression);
+			}
+		} else if (elem.getName().equalsIgnoreCase("cfif") || elem.getName().equalsIgnoreCase("cfelseif")) {
 			// final Pattern p = Pattern.compile("<\\w+\\s(.*[^/])/?>", Pattern.MULTILINE | Pattern.DOTALL);
 			// final String expr = elem.getFirstStartTag().toString();
 			// final Matcher m = p.matcher(expr);
@@ -145,7 +154,7 @@ public class CFMLParser {
 			}
 			
 			final String cfscript = elem.toString().substring(elem.getName().length() + 1, endPos);
-			if (visitor.visitPreParseExpression("TAG", cfscript)) {
+			if (cfscript.length() > 0 && visitor.visitPreParseExpression("TAG", cfscript)) {
 				final CFExpression expression = parseCFExpression(cfscript, visitor);
 				
 				if (expression == null) {
