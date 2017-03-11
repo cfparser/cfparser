@@ -74,4 +74,12 @@ public class CFPropertyStatement extends CFParsedAttributeStatement implements j
 		}
 		return retval;
 	}
+	
+	public CFExpression getPropertyName() {
+		return propertyName;
+	}
+	
+	public CFExpression getPropertyType() {
+		return propertyType;
+	}
 }
