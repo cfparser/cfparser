@@ -1,0 +1,25 @@
+START:cfcomponent
+  =========TAG=================
+  <cfcomponent>
+  <cffunction name="foo">
+    <cfscript>
+      removeTagList = '';
+    </cfscript>
+  </cffunction>
+</cfcomponent>
+  START:cffunction
+    =========TAG=================
+    <cffunction name="foo">
+    <cfscript>
+      removeTagList = '';
+    </cfscript>
+  </cffunction>
+    START:cfscript
+      =========TAG=================
+      <cfscript>
+      removeTagList = '';
+    </cfscript>
+      !!!removeTagList = ''
+    END:cfscript
+  END:cffunction
+END:cfcomponent

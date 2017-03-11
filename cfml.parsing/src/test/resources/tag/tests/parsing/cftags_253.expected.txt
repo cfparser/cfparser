@@ -1,0 +1,23 @@
+START:cfcomponent
+  =========TAG=================
+  <cfcomponent>
+  <cffunction name="foo">
+    <cfscript>
+      removeTagList = '<cfquery,/cfquery>|<cfoutput,/cfoutput>|<cfscript,/cfscript|<script,/script>|<title,/title>|<style,/style>|<iframe,/iframe>,<a,/a>|<img,/>';
+    </cfscript>
+  </cffunction>
+</cfcomponent>
+  START:cffunction
+    =========TAG=================
+    <cffunction name="foo">
+    <cfscript>
+      removeTagList = '<cfquery,/cfquery>|<cfoutput,/cfoutput>|<cfscript,/cfscript|<script,/script>|<title,/title>|<style,/style>|<iframe,/iframe>,<a,/a>|<img,/>';
+    </cfscript>
+  </cffunction>
+    START:cfscript
+      =========TAG=================
+      <cfscript>
+      !!!removeTagList = '<cfquery,/cfquery>|<cfoutput,/cfoutput>|<cfscript,/cfscript|<script,/script>|<title,/title>|<style,/style>|<iframe,/iframe>,<a,/a>|<img,/>'
+    END:cfscript
+  END:cffunction
+END:cfcomponent

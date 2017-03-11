@@ -40,6 +40,7 @@ import cfml.parsing.cfscript.walker.CFScriptStatementVisitor;
 import cfml.parsing.reporting.IErrorReporter;
 import cfml.parsing.reporting.ParseException;
 import net.htmlparser.jericho.Element;
+import net.htmlparser.jericho.EndTag;
 import net.htmlparser.jericho.StartTag;
 
 public class CFMLParser {
@@ -124,7 +125,13 @@ public class CFMLParser {
 		
 	}
 	
+	int skipToPosition = 0;
+	
 	public void visit(final Element elem, final int level, CFMLVisitor visitor) throws Exception {
+		if (skipToPosition > elem.getBegin()) {
+			return;
+		}
+		skipToPosition = 0;
 		visitor.visitElementStart(elem);
 		if (elem.getName().equalsIgnoreCase("cfset") || elem.getName().equalsIgnoreCase("cfreturn")) {
 			final String cfscript = elem.toString().substring(elem.getName().length() + 1, elem.toString().length() - 1).trim();
@@ -165,10 +172,24 @@ public class CFMLParser {
 			// }
 		} else if (elem.getName().equalsIgnoreCase("cfargument")) {
 		} else if (elem.getName().equalsIgnoreCase("cfscript")) {
-			final String cfscript = elem.getContent().toString();
-			final CFScriptStatement scriptStatement = parseScript(cfscript);
-			
-			visitor.visitScript(scriptStatement);
+			if (elem.getEndTag() != null) {
+				final String cfscript = elem.getContent().toString();
+				visitor.visitScript(parseScript(cfscript));
+			} else {
+				// Hack to fetch the entire cfscript text, if cfscript is a word in the content somewhere, and causes
+				// the jericho parser to fail
+				EndTag nextTag = elem.getSource().getNextEndTag(elem.getBegin());
+				while (nextTag != null && !nextTag.getName().equalsIgnoreCase(elem.getName())) {
+					System.out.println("try");
+					nextTag = elem.getSource().getNextEndTag(nextTag.getEnd());
+				}
+				if (nextTag.getName().equalsIgnoreCase(elem.getName())) {
+					final String cfscript = elem.getSource().subSequence(elem.getStartTag().getEnd(), nextTag.getBegin())
+							.toString();
+					visitor.visitScript(parseScript(cfscript));
+					skipToPosition = nextTag.getEnd();
+				}
+			}
 		} else if (elem.getName().equalsIgnoreCase("cffunction")) {
 		} else if (elem.getName().equalsIgnoreCase("cfcomponent")) {
 		} else if (elem.getName().equalsIgnoreCase("cfquery")) {
