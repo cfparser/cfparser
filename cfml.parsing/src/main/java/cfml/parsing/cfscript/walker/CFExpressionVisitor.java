@@ -43,6 +43,7 @@ import cfml.CFSCRIPTParser.ParentheticalExpressionContext;
 import cfml.CFSCRIPTParser.ParentheticalMemberExpressionContext;
 import cfml.CFSCRIPTParser.PrimaryExpressionContext;
 import cfml.CFSCRIPTParser.PrimaryExpressionIRWContext;
+import cfml.CFSCRIPTParser.ReservedWordContext;
 import cfml.CFSCRIPTParser.SpecialWordContext;
 import cfml.CFSCRIPTParser.StringLiteralContext;
 import cfml.CFSCRIPTParser.StringLiteralPartContext;
@@ -597,6 +598,11 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 			return new CFIdentifier(ctx.start, ctx.getChild(0).getText(), ctx.getChild(1).getText());
 		else
 			return new CFIdentifier(ctx.start, ctx.getChild(0).getText());
+	}
+	
+	@Override
+	public CFExpression visitReservedWord(ReservedWordContext ctx) {
+		return new CFIdentifier(ctx.start, ctx.getChild(0).getText());
 	}
 	
 }

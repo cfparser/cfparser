@@ -1,0 +1,73 @@
+/*===TOKENS===*/
+FUNCTION                 <function>
+IDENTIFIER               <foo>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+VAR                      <var>
+IDENTIFIER               <bar>
+'='                      <=>
+'{'                      <{>
+FUNCTION                 <function>
+'='                      <=>
+OPEN_STRING              <'>
+CLOSE_STRING             <'>
+'}'                      <}>
+';'                      <;>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (functionDeclaration
+      function
+      (identifier foo)
+      (
+      parameterList
+      )
+      (compoundStatement
+        {
+        (statement
+          (localAssignmentExpression
+            var
+            (multipartIdentifier (identifier bar))
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (implicitStruct
+                        {
+                        (implicitStructElements
+                          (implicitStructExpression
+                            (implicitStructKeyExpression (reservedWord (cfscriptKeywords function)))
+                            =
+                            (compareExpression
+                              (baseExpression
+                                (unaryExpression (primaryExpression (literalExpression (stringLiteral ' '))))
+                              )
+                            )
+                          )
+                        )
+                        }
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        }
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+public function foo()   {
+    var bar = {function:''};
+
+  }
+/*======*/
