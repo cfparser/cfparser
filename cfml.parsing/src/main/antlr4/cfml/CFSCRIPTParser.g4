@@ -115,9 +115,9 @@ statement
   |   returnStatement
   |   tagOperatorStatement
   |   compoundStatement 
-  |   localAssignmentExpression SEMICOLON
-  |   assignmentExpression SEMICOLON
-  |   startExpression SEMICOLON
+  |   localAssignmentExpression SEMICOLON?
+  |   assignmentExpression SEMICOLON?
+  |   startExpression SEMICOLON?
 //  |   tagEquivalent
   |   SEMICOLON // empty statement
   ;
