@@ -1,0 +1,111 @@
+/*===TOKENS===*/
+FUNCTION                 <function>
+IDENTIFIER               <foo>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+IDENTIFIER               <local>
+'.'                      <.>
+IDENTIFIER               <idSet>
+'='                      <=>
+OPEN_STRING              <'>
+STRING_LITERAL           <123>
+CLOSE_STRING             <'>
+';'                      <;>
+RETURN                   <return>
+IDENTIFIER               <idSet>
+'.'                      <.>
+CONTAINS                 <contains>
+'('                      <(>
+OPEN_STRING              <'>
+STRING_LITERAL           <12>
+CLOSE_STRING             <'>
+')'                      <)>
+';'                      <;>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (functionDeclaration
+      function
+      (identifier foo)
+      (
+      parameterList
+      )
+      (compoundStatement
+        {
+        (statement
+          (assignmentExpression
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier local) . (identifier idSet)))
+                )
+              )
+            )
+            =
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral ' (stringLiteralPart 123) '))
+                    )
+                  )
+                )
+              )
+            )
+          )
+          ;
+        )
+        (statement
+          (returnStatement
+            return
+            (startExpression
+              (compareExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (identifier idSet)
+                      .
+                      (functionCall
+                        (specialWord contains)
+                        (
+                        (argumentList
+                          (argument
+                            (startExpression
+                              (compareExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (primaryExpression
+                                      (literalExpression (stringLiteral ' (stringLiteralPart 12) '))
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            ;
+          )
+        )
+        }
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+public function foo()   {
+local.idSet = '123';
+    return idSet.contains('12');
+
+  }
+/*======*/
