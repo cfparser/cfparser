@@ -26,58 +26,38 @@ THE SOFTWARE.
  * @author mark
  *
  */
-public class DefaultCFMLDictionary implements ICFMLDictionary
-{
+public class DefaultCFMLDictionary implements ICFMLDictionary {
 	@Override
-	public boolean conatinsCFScript(String tagName)
-	{
-		if(tagName.toLowerCase().equals("cfscript"))
-		{
+	public boolean conatinsCFScript(String tagName) {
+		if (tagName.toLowerCase().equals("cfscript")) {
 			return true;
 		}
 		
 		return false;
 	}
 	
-	
 	@Override
-	public boolean isColdFusionTag(String tagName)
-	{
-		boolean isColdFusion = tagName.toLowerCase().startsWith("cf"); 
-		
-		System.out.println("isColdFusionTag: " + tagName + ":" + isColdFusion);
-		
+	public boolean isColdFusionTag(String tagName) {
+		boolean isColdFusion = tagName.toLowerCase().startsWith("cf");
 		return isColdFusion;
 	}
-
+	
 	@Override
-	public boolean usesAttributes(String tagName)
-	{
+	public boolean usesAttributes(String tagName) {
 		tagName = tagName.toLowerCase();
-		boolean usesAttributes = !(tagName.equals("cfset") || tagName.equals("cfif") || tagName.equals("cfelseif")); 
-		
-		System.out.println("usesAttributes: " + tagName + ":" + usesAttributes);
-		
+		boolean usesAttributes = !(tagName.equals("cfset") || tagName.equals("cfif") || tagName.equals("cfelseif"));
 		return usesAttributes;
 	}
-
+	
 	@Override
-	public boolean allowsCFMLAssignment(String tagName)
-	{
+	public boolean allowsCFMLAssignment(String tagName) {
 		boolean assignment = tagName.toLowerCase().equals("cfset");
-		
-		System.out.println("allowsCFMLAssignment: " + tagName + ":" + assignment);
-		
 		return assignment;
 	}
-
+	
 	@Override
-	public boolean allowsCFMLCondition(String tagName)
-	{
+	public boolean allowsCFMLCondition(String tagName) {
 		boolean condition = tagName.equals("cfif") || tagName.equals("cfelseif") || tagName.equals("cfreturn");
-		
-		System.out.println("allowsCFMLCondition: " + tagName + ":" + condition);
-		
 		return condition;
 	}
 }

@@ -41,8 +41,6 @@ public class TestGetAttributes extends TestCase {
 			for (Object attr : fGenericStartTag.getAttributes(attributes)) {
 				System.err.println(attr.toString());
 			}
-			System.out.println(type.getTextExtractor().toString());
-			System.out.println(type.getAttributeValue("numattributes"));
 			i++;
 		}
 	}

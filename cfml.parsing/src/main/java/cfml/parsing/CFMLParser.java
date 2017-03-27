@@ -180,7 +180,6 @@ public class CFMLParser {
 				// the jericho parser to fail
 				EndTag nextTag = elem.getSource().getNextEndTag(elem.getBegin());
 				while (nextTag != null && !nextTag.getName().equalsIgnoreCase(elem.getName())) {
-					System.out.println("try");
 					nextTag = elem.getSource().getNextEndTag(nextTag.getEnd());
 				}
 				if (nextTag.getName().equalsIgnoreCase(elem.getName())) {

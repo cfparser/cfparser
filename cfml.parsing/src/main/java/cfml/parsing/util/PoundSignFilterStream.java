@@ -65,7 +65,7 @@ public class PoundSignFilterStream extends FilterReader {
 			bufferAt++;
 			if (bufferAt >= buffer.length)
 				buffer = null;
-				
+			
 			return bufferChar;
 		}
 		
@@ -298,16 +298,13 @@ public class PoundSignFilterStream extends FilterReader {
 				+ "  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n"
 				+ "  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\r\n"
 				+ "  aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/");
-				
+		
 		for (int i = 0; i < inputList.size(); i++) {
 			String input = (String) inputList.get(i);
 			try {
 				PoundSignFilterStream psf = new PoundSignFilterStream(new java.io.StringReader(input));
 				char[] buffer = new char[1024];
 				int read = psf.read(buffer);
-				System.out.println("BEFORE: " + input.length() + "; AFTER: " + read + "; Added: " + psf.added
-						+ "; Total = " + (read - psf.added));
-				System.out.println(input + " => " + new String(buffer, 0, read));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
