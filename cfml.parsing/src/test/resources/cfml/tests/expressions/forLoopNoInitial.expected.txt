@@ -418,7 +418,11 @@ RETHROW                  <rethrow>
             (statement
               (localAssignmentExpression
                 var
-                (multipartIdentifier (identifier dir))
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier dir))))
+                  )
+                )
                 =
                 (startExpression
                   (compareExpression
@@ -431,7 +435,11 @@ RETHROW                  <rethrow>
             (statement
               (localAssignmentExpression
                 var
-                (multipartIdentifier (identifier path))
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier path))))
+                  )
+                )
                 =
                 (startExpression
                   (compareExpression
@@ -444,7 +452,11 @@ RETHROW                  <rethrow>
             (statement
               (localAssignmentExpression
                 var
-                (multipartIdentifier (identifier paths))
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier paths))))
+                  )
+                )
                 =
                 (startExpression
                   (compareExpression
@@ -457,7 +469,13 @@ RETHROW                  <rethrow>
             (statement
               (localAssignmentExpression
                 var
-                (multipartIdentifier (identifier (cfmlFunction file)))
+                (startExpression
+                  (compareExpression
+                    (baseExpression
+                      (unaryExpression (memberExpression (identifier (cfmlFunction file))))
+                    )
+                  )
+                )
                 =
                 (startExpression
                   (compareExpression
@@ -470,7 +488,11 @@ RETHROW                  <rethrow>
             (statement
               (localAssignmentExpression
                 var
-                (multipartIdentifier (identifier counter))
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier counter))))
+                  )
+                )
                 =
                 (startExpression
                   (compareExpression
@@ -483,7 +505,11 @@ RETHROW                  <rethrow>
             (statement
               (localAssignmentExpression
                 var
-                (multipartIdentifier (identifier len))
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier len))))
+                  )
+                )
                 =
                 (startExpression
                   (compareExpression
@@ -496,7 +522,11 @@ RETHROW                  <rethrow>
             (statement
               (localAssignmentExpression
                 var
-                (multipartIdentifier (identifier directories))
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier directories))))
+                  )
+                )
                 =
                 (startExpression
                   (compareExpression
@@ -509,7 +539,11 @@ RETHROW                  <rethrow>
             (statement
               (localAssignmentExpression
                 var
-                (multipartIdentifier (identifier jarName))
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier jarName))))
+                  )
+                )
                 =
                 (startExpression
                   (compareExpression
@@ -547,7 +581,11 @@ RETHROW                  <rethrow>
             (statement
               (localAssignmentExpression
                 var
-                (multipartIdentifier (identifier jar))
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier jar))))
+                  )
+                )
                 =
                 (startExpression
                   (compareExpression

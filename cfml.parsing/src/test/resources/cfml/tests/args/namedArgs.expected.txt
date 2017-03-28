@@ -57,7 +57,11 @@ IDENTIFIER               <callRate>
         (statement
           (localAssignmentExpression
             var
-            (multipartIdentifier (identifier callRate))
+            (startExpression
+              (compareExpression
+                (baseExpression (unaryExpression (memberExpression (identifier callRate))))
+              )
+            )
             =
             (startExpression
               (compareExpression

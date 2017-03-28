@@ -17,7 +17,11 @@ IDENTIFIER               <x>
     (statement
       (localAssignmentExpression
         var
-        (multipartIdentifier (identifier x))
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier x))))
+          )
+        )
         =
         (startExpression
           (compareExpression
@@ -32,7 +36,11 @@ IDENTIFIER               <x>
     (statement
       (localAssignmentExpression
         var
-        (multipartIdentifier (identifier y))
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier y))))
+          )
+        )
         =
         (startExpression
           (compareExpression
@@ -44,4 +52,11 @@ IDENTIFIER               <x>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+{
+  var x = 123;
+  var y = x;
+
+}
 /*======*/

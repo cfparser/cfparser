@@ -37,7 +37,11 @@ CLOSE_STRING             <">
             (statement
               (localAssignmentExpression
                 var
-                (multipartIdentifier (identifier sql))
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier sql))))
+                  )
+                )
                 =
                 (startExpression
                   (compareExpression

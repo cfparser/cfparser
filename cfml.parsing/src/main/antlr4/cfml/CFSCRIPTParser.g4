@@ -400,7 +400,7 @@ expression
 	;
 	
 localAssignmentExpression 
-	:	VAR left=multipartIdentifier ( (EQUALSOP otherIdentifiers)* EQUALSOP right=startExpression )? //-> ^( VARLOCAL identifier ( EQUALSOP baseExpression )? )
+	:	VAR left=startExpression ( (EQUALSOP otherIdentifiers)* EQUALSOP right=startExpression )? //-> ^( VARLOCAL identifier ( EQUALSOP baseExpression )? )
 	;
 	
 otherIdentifiers:

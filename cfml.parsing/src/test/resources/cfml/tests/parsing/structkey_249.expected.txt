@@ -29,7 +29,11 @@ CLOSE_STRING             <'>
         (statement
           (localAssignmentExpression
             var
-            (multipartIdentifier (identifier bar))
+            (startExpression
+              (compareExpression
+                (baseExpression (unaryExpression (memberExpression (identifier bar))))
+              )
+            )
             =
             (startExpression
               (compareExpression

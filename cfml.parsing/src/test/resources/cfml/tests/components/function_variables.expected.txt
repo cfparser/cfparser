@@ -43,7 +43,11 @@ CLOSE_STRING             <">
             (statement
               (localAssignmentExpression
                 var
-                (multipartIdentifier (identifier foo))
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier foo))))
+                  )
+                )
                 =
                 (startExpression
                   (compareExpression
@@ -91,4 +95,15 @@ CLOSE_STRING             <">
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public function foo()     {
+      var foo =  function (required baz)   {
+    return 'bar!';
+
+  };
+
+    }
+}
 /*======*/

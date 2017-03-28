@@ -87,7 +87,11 @@ IDENTIFIER               <getName>
             (statement
               (localAssignmentExpression
                 var
-                (multipartIdentifier (identifier params))
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier params))))
+                  )
+                )
                 =
                 (startExpression
                   (compareExpression
