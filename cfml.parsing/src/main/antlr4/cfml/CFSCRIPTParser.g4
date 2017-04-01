@@ -459,22 +459,7 @@ compareExpressionOperator:
     |   DOESNOTCONTAIN
  ;
 	
-/*equivalentExpression
-	:	baseExpression EQV startExpression 
-	;
 
-xorExpression
-	:	baseExpression XOR startExpression 
-	;
-	
-orExpression
-	:	baseExpression  ( OR | OROPERATOR ) startExpression 
-	;
-	
-andExpression
-	:	baseExpression  ( AND | ANDOPERATOR ) startExpression 
-	;
-	*/
 notExpression
 	:	( NOT | NOTOP ) startExpression
 	;
@@ -482,12 +467,6 @@ notExpression
 notNotExpression
 	:	NOTNOTOP  startExpression 
 	;	
-/*
-equalityExpression
-    : baseExpression
-      ( equalityOperator1 startExpression )
-    ;
-*/
 equalityOperator1
     :
     //IS //-> ^(EQ)
