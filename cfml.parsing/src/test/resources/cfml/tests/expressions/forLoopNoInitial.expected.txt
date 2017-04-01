@@ -1070,7 +1070,7 @@ Hidden:NEWLINE                  <>
                       (forStatement
                         for
                         (
-                        ;
+                        (endOfStatement ;)
                         (startExpression
                           (compareExpression
                             (baseExpression (unaryExpression (memberExpression (identifier counter))))
@@ -1080,7 +1080,7 @@ Hidden:NEWLINE                  <>
                             )
                           )
                         )
-                        ;
+                        (endOfStatement ;)
                         (assignmentExpression
                           (startExpression
                             (compareExpression

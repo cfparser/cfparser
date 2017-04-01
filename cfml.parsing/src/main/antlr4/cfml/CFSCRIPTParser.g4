@@ -148,12 +148,12 @@ whileStatement
   ;
  
 doWhileStatement
-  : DO statement WHILE condition SEMICOLON
+  : DO statement WHILE condition endOfStatement
   ;
   
 forStatement
-  : FOR LEFTPAREN ( localAssignmentExpression | initExpression=assignmentExpression )? SEMICOLON 
-  	  ( condExpression=startExpression )? SEMICOLON  
+  : FOR LEFTPAREN ( localAssignmentExpression | initExpression=assignmentExpression )? endOfStatement 
+  	  ( condExpression=startExpression )? endOfStatement  
   	  ( incrExpression=startExpression | incrExpression2=assignmentExpression )? RIGHTPAREN statement
   | FOR LEFTPAREN forInKey IN inExpr=startExpression RIGHTPAREN statement
   ;
