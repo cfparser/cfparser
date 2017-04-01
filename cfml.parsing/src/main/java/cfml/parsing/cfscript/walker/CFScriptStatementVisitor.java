@@ -265,7 +265,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	@Override
 	public CFScriptStatement visitReturnStatement(ReturnStatementContext ctx) {
 		// System.out.println("visitReturnStatement");
-		CFReturnStatement returnStatement = new CFReturnStatement(ctx.getStart(), cfExpressionVisitor.visit(ctx.getChild(1)));
+		CFReturnStatement returnStatement = new CFReturnStatement(ctx.getStart(),
+				ctx.getChild(1) != null ? cfExpressionVisitor.visit(ctx.getChild(1)) : null);
 		return returnStatement;
 	}
 	
