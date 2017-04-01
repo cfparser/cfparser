@@ -28,8 +28,6 @@ BOOLEAN_LITERAL          <false>
 Hidden:NEWLINE                  <>
 '}'                      <}>
 Hidden:NEWLINE                  <>
-Hidden:NEWLINE                  <>
-Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

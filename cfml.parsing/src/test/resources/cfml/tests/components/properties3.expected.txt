@@ -7,7 +7,6 @@ STRING_LITERAL           <true>
 CLOSE_STRING             <">
 '{'                      <{>
 Hidden:NEWLINE                  <>
-Hidden:NEWLINE                  <>
 PROPERTY                 <property>
 IDENTIFIER               <obj>
 '.'                      <.>
