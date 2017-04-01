@@ -67,7 +67,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             }
           )

@@ -38,6 +38,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
+              endOfStatement
             )
             }
           )

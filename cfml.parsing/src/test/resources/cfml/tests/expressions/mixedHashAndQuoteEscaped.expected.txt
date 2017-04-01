@@ -148,7 +148,7 @@ CLOSE_STRING             <">
           )
         )
       )
-      ;
+      (endOfStatement ;)
     )
   )
 )

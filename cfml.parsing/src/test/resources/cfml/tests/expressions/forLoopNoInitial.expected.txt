@@ -480,7 +480,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             (statement
               (localAssignmentExpression
@@ -497,7 +497,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             (statement
               (localAssignmentExpression
@@ -514,7 +514,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             (statement
               (localAssignmentExpression
@@ -533,7 +533,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             (statement
               (localAssignmentExpression
@@ -550,7 +550,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             (statement
               (localAssignmentExpression
@@ -567,7 +567,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             (statement
               (localAssignmentExpression
@@ -584,7 +584,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             (statement
               (localAssignmentExpression
@@ -626,7 +626,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             (statement
               (localAssignmentExpression
@@ -671,7 +671,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             (statement
               (ifStatement
@@ -792,7 +792,7 @@ Hidden:NEWLINE                  <>
                                   )
                                 )
                               )
-                              ;
+                              (endOfStatement ;)
                             )
                             (statement
                               (startExpression
@@ -831,7 +831,7 @@ Hidden:NEWLINE                  <>
                               )
                               ;
                             )
-                            (statement (returnStatement return) ;)
+                            (statement (returnStatement return) (endOfStatement ;))
                             }
                           )
                         )
@@ -954,7 +954,7 @@ Hidden:NEWLINE                  <>
                           )
                         )
                       )
-                      ;
+                      (endOfStatement ;)
                     )
                     (statement
                       (tagOperatorStatement
@@ -1029,7 +1029,7 @@ Hidden:NEWLINE                  <>
                           )
                         )
                       )
-                      ;
+                      (endOfStatement ;)
                     )
                     (statement
                       (assignmentExpression
@@ -1064,7 +1064,7 @@ Hidden:NEWLINE                  <>
                           )
                         )
                       )
-                      ;
+                      (endOfStatement ;)
                     )
                     (statement
                       (forStatement
@@ -1137,7 +1137,7 @@ Hidden:NEWLINE                  <>
                                   )
                                 )
                               )
-                              ;
+                              (endOfStatement ;)
                             )
                             (statement
                               (startExpression
@@ -1212,7 +1212,7 @@ Hidden:NEWLINE                  <>
                           )
                         )
                       )
-                      ;
+                      (endOfStatement ;)
                     )
                     (statement
                       (startExpression
@@ -1306,7 +1306,7 @@ Hidden:NEWLINE                  <>
                           )
                         )
                       )
-                      ;
+                      (endOfStatement ;)
                     )
                     (statement
                       (assignmentExpression
@@ -1378,7 +1378,7 @@ Hidden:NEWLINE                  <>
                           )
                         )
                       )
-                      ;
+                      (endOfStatement ;)
                     )
                     (statement
                       (startExpression

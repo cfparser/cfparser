@@ -84,7 +84,7 @@ Hidden:LINE_COMMENT             <// A function call>
           )
         )
       )
-      ;
+      (endOfStatement ;)
     )
   )
   (element
@@ -130,7 +130,7 @@ Hidden:LINE_COMMENT             <// A function call>
           )
         )
       )
-      ;
+      (endOfStatement ;)
     )
   )
   (element
@@ -178,7 +178,7 @@ Hidden:LINE_COMMENT             <// A function call>
           )
         )
       )
-      ;
+      (endOfStatement ;)
     )
   )
 )

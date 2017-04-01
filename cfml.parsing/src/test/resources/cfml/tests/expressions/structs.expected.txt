@@ -50,7 +50,7 @@ INTEGER_LITERAL          <1>
           )
         )
       )
-      ;
+      (endOfStatement ;)
     )
   )
   (element
@@ -72,7 +72,7 @@ INTEGER_LITERAL          <1>
           )
         )
       )
-      ;
+      (endOfStatement ;)
     )
   )
 )

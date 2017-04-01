@@ -62,7 +62,7 @@ IDENTIFIER               <action>
           )
         )
       )
-      ;
+      (endOfStatement ;)
     )
   )
 )

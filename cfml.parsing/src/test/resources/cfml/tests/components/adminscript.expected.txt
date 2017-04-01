@@ -135,7 +135,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             }
           )

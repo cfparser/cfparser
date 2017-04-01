@@ -264,7 +264,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             }
           )

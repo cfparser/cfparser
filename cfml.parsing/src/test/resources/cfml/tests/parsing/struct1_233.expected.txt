@@ -94,7 +94,7 @@ Hidden:NEWLINE                  <>
               )
             )
           )
-          ;
+          (endOfStatement ;)
         )
         (statement
           (returnStatement
@@ -107,7 +107,7 @@ Hidden:NEWLINE                  <>
               )
             )
           )
-          ;
+          (endOfStatement ;)
         )
         }
       )

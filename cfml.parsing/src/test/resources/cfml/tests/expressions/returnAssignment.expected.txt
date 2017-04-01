@@ -54,7 +54,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             }
           )

@@ -24,8 +24,11 @@ INTEGER_LITERAL          <0>
           )
         )
       )
-      ;
+      (endOfStatement ;)
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+x = y = 0
 /*======*/

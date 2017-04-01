@@ -29,7 +29,7 @@ IDENTIFIER               <x>
           )
         )
       )
-      ;
+      (endOfStatement ;)
     )
   )
   (element
@@ -48,7 +48,7 @@ IDENTIFIER               <x>
           )
         )
       )
-      ;
+      (endOfStatement ;)
     )
   )
 )

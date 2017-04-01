@@ -109,7 +109,7 @@ Hidden:NEWLINE                  <>
           )
         )
       )
-      ;
+      (endOfStatement ;)
     )
   )
 )

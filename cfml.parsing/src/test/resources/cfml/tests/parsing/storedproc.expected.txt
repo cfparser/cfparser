@@ -224,7 +224,7 @@ Hidden:NEWLINE                  <>
               )
             )
           )
-          ;
+          (endOfStatement ;)
         )
         }
       )

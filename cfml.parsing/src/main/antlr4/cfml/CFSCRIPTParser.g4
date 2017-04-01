@@ -111,18 +111,24 @@ statement
   |   forStatement
   |   switchStatement
          //Semicolon OR look for a newline as the next token (in the hidden channel)
-  |   continueStatement (optionalSemi = SEMICOLON | {_input.get(_input.LT(-1).getTokenIndex()+1).getType()==NEWLINE}?)
-  |   breakStatement (optionalSemi = SEMICOLON | {_input.get(_input.LT(-1).getTokenIndex()+1).getType()==NEWLINE}?)
-  |   returnStatement (optionalSemi = SEMICOLON | {_input.get(_input.LT(-1).getTokenIndex()+1).getType()==NEWLINE}?)
+  |   continueStatement endOfStatement
+  |   breakStatement endOfStatement
+  |   returnStatement endOfStatement
   |   tagOperatorStatement
   |   compoundStatement 
-  |   localAssignmentExpression (optionalSemi = SEMICOLON | {_input.get(_input.LT(-1).getTokenIndex()+1).getType()==NEWLINE}?)
-  |   assignmentExpression (optionalSemi = SEMICOLON | {_input.get(_input.LT(-1).getTokenIndex()+1).getType()==NEWLINE}?)
+  |   localAssignmentExpression endOfStatement
+  |   assignmentExpression endOfStatement
   |   startExpression SEMICOLON
 //  |   tagEquivalent
   |   SEMICOLON // empty statement
   | functionCall // without semi
   ;
+  
+endOfStatement
+   :
+   {_input.get(_input.LT(-1).getTokenIndex()+1).getType()==NEWLINE}?
+     semicolon = SEMICOLON?
+   | semicolon = SEMICOLON; 
   
 breakStatement 
   :BREAK ;

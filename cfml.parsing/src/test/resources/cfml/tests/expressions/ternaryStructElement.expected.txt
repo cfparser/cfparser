@@ -70,7 +70,7 @@ Hidden:NEWLINE                  <>
           )
         )
       )
-      ;
+      (endOfStatement ;)
     )
   )
 )

@@ -49,7 +49,7 @@ Hidden:NEWLINE                  <>
           )
         )
       )
-      ;
+      (endOfStatement ;)
     )
   )
   (element

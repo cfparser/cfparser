@@ -83,7 +83,7 @@ Hidden:NEWLINE                  <>
                                 )
                               )
                             )
-                            ;
+                            (endOfStatement ;)
                           )
                           }
                         )
@@ -92,7 +92,7 @@ Hidden:NEWLINE                  <>
                   )
                 )
               )
-              ;
+              (endOfStatement ;)
             )
             }
           )
