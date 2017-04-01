@@ -831,7 +831,7 @@ Hidden:NEWLINE                  <>
                               )
                               ;
                             )
-                            (statement (returnStatement return ;))
+                            (statement (returnStatement return) ;)
                             }
                           )
                         )

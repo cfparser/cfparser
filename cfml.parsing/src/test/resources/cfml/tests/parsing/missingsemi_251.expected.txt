@@ -1,21 +1,15 @@
 /*===TOKENS===*/
-Hidden:NEWLINE                  <>
 COMPONENT                <component>
 '{'                      <{>
 Hidden:NEWLINE                  <>
-PUBLIC                   <public>
-IDENTIFIER               <void>
 FUNCTION                 <function>
-IDENTIFIER               <test>
+IDENTIFIER               <foo>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
 Hidden:NEWLINE                  <>
 RETURN                   <return>
-IDENTIFIER               <foo>
-'='                      <=>
 IDENTIFIER               <bar>
-';'                      <;>
 Hidden:NEWLINE                  <>
 '}'                      <}>
 Hidden:NEWLINE                  <>
@@ -28,10 +22,8 @@ Hidden:NEWLINE                  <>
       {
       (element
         (functionDeclaration
-          (accessType public)
-          (typeSpec (multipartIdentifier (identifier void)))
           function
-          (identifier test)
+          (identifier foo)
           (
           parameterList
           )
@@ -40,21 +32,12 @@ Hidden:NEWLINE                  <>
             (statement
               (returnStatement
                 return
-                (assignmentExpression
-                  (startExpression
-                    (compareExpression
-                      (baseExpression (unaryExpression (memberExpression (identifier foo))))
-                    )
-                  )
-                  =
-                  (startExpression
-                    (compareExpression
-                      (baseExpression (unaryExpression (memberExpression (identifier bar))))
-                    )
+                (startExpression
+                  (compareExpression
+                    (baseExpression (unaryExpression (memberExpression (identifier bar))))
                   )
                 )
               )
-              ;
             )
             }
           )
@@ -67,8 +50,8 @@ Hidden:NEWLINE                  <>
 /*======*/
 /*===DECOMPILE===*/
 component {
-  public void function test()     {
-      return foo = bar;
+  public function foo()     {
+      return bar;
 
     }
 }

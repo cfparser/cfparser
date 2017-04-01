@@ -112,7 +112,7 @@ statement
   |   switchStatement
   |   continueStatement SEMICOLON
   |   breakStatement SEMICOLON
-  |   returnStatement
+  |   returnStatement (optionalSemi = SEMICOLON | {_input.get(_input.LT(-1).getTokenIndex()+1).getType()==NEWLINE}?)
   |   tagOperatorStatement
   |   compoundStatement 
   |   localAssignmentExpression SEMICOLON
@@ -150,9 +150,7 @@ condition
   ;
   
 returnStatement
-  : RETURN SEMICOLON
-  | RETURN startExpression SEMICOLON
-  | RETURN assignmentExpression SEMICOLON
+  : RETURN (startExpression | assignmentExpression)?
   ;
   
 ifStatement

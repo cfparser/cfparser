@@ -186,8 +186,8 @@ Hidden:NEWLINE                  <>
                     (baseExpression (unaryExpression (memberExpression (identifier this))))
                   )
                 )
-                ;
               )
+              ;
             )
             }
           )
