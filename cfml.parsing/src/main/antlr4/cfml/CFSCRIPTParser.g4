@@ -329,17 +329,6 @@ cfmlFunction
   | CFCUSTOM_IDENTIFIER
   ;
 
-/*
-
-cfmlfunctionStatement
-  : savecontentStatement
-  ;
-
-savecontentStatement
-  : lc=SAVECONTENT p=paramStatementAttributes cs=compoundStatement -> ^(CFMLFUNCTIONSTATEMENT[$lc] paramStatementAttributes compoundStatement)
-  ;
-*/
-
 lockStatement
   : lc=LOCK p=paramStatementAttributes cs=compoundStatement //-> ^(LOCKSTATEMENT[$lc] paramStatementAttributes compoundStatement)
   ;
@@ -459,22 +448,7 @@ compareExpressionOperator:
     |   DOESNOTCONTAIN
  ;
 	
-/*equivalentExpression
-	:	baseExpression EQV startExpression 
-	;
 
-xorExpression
-	:	baseExpression XOR startExpression 
-	;
-	
-orExpression
-	:	baseExpression  ( OR | OROPERATOR ) startExpression 
-	;
-	
-andExpression
-	:	baseExpression  ( AND | ANDOPERATOR ) startExpression 
-	;
-	*/
 notExpression
 	:	( NOT | NOTOP ) startExpression
 	;
@@ -482,46 +456,17 @@ notExpression
 notNotExpression
 	:	NOTNOTOP  startExpression 
 	;	
-/*
-equalityExpression
-    : baseExpression
-      ( equalityOperator1 startExpression )
-    ;
-*/
 equalityOperator1
     :
-    //IS //-> ^(EQ)
-    //|   EQUALSEQUALSOP //-> ^(EQ)
        EQ //-> ^(EQ)
     |   LT //-> ^(LT)
-    //|   LESSTHAN //-> ^(LT)
     |   LTE //-> ^(LTE)
-    //|   LESSTHANEQUALS //-> ^(LTE)
     |   GT //-> ^(GT)
     |   GTE //-> ^(GTE)
     |   NEQ //-> ^(NEQ)
-    //|   NOTEQUALS //-> ^(NEQ)
-    //|   EQUAL //-> ^(EQ)
-    //|   EQUALS //-> ^(EQ)
     |   CONTAINS //-> ^(CONTAINS)
     ;
     
-/*equalityOperator2
-    :   LESS THAN //-> ^(LT)
-    |   GREATER THAN //-> ^(GT)
-    //|   NOT EQUAL  //-> ^(NEQ)
-    //|   IS NOT //-> ^(NEQ)
-    ;
- 
-equalityOperator3 
-    :   lc=DOES NOT CONTAIN //-> ^(DOESNOTCONTAIN[$lc])
-    ;
-
-equalityOperator5
-    :   LESS THAN OR EQUAL TO //-> ^(LTE)
-    |   GREATER THAN OR EQUAL TO //-> ^(GTE)
-    ; */
-     
 concatenationExpression
 	:	unaryExpression CONCAT baseOrTernaryExpression
 	;
