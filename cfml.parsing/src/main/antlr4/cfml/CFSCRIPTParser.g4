@@ -324,7 +324,7 @@ abortStatement
   ;
   
 adminStatement
-  : lc=ADMIN p=paramStatementAttributes SEMICOLON 
+  : lc=ADMIN p=paramStatementAttributes endOfStatement 
   ;
 
 throwStatement
