@@ -124,22 +124,6 @@ statement
   | functionCall // without semi
   ;
   
-//tagEquivalent
-//  :   logTag
-//  ;
-//  
-//logTag
-//  :   LOG
-//  	  ( log_Text | log_File | log_Type | log_Application | log_Log)*
-//  	  SEMICOLON
-//  ;
-//  
-//log_Text:   TEXT EQUALSOP stringLiteral;
-//log_File:   FILE EQUALSOP startExpression;
-//log_Type:   TYPE EQUALSOP stringLiteral;
-//log_Application:   APPLICATION EQUALSOP stringLiteral;
-//log_Log:   LOG EQUALSOP stringLiteral;
-  
 breakStatement 
   :BREAK ;
   
