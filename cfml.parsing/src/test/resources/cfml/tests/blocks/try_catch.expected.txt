@@ -191,7 +191,7 @@ Hidden:NEWLINE                  <>
               )
               ;
             )
-            (statement (tagOperatorStatement (rethrowStatment rethrow ;)))
+            (statement (tagOperatorStatement (rethrowStatment rethrow (endOfStatement ;))))
             }
           )
         )
@@ -246,7 +246,7 @@ Hidden:NEWLINE                  <>
               )
               ;
             )
-            (statement (tagOperatorStatement (rethrowStatment rethrow ;)))
+            (statement (tagOperatorStatement (rethrowStatment rethrow (endOfStatement ;))))
             }
           )
         )

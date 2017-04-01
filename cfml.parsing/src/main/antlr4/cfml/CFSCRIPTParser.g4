@@ -220,14 +220,14 @@ tagOperatorStatement
   ; 
   
 rethrowStatment:
-  lc=RETHROW SEMICOLON ;
+  lc=RETHROW endOfStatement ;
 
 includeStatement
   : lc=INCLUDE baseExpression (paramStatementAttributes)? SEMICOLON  
   ;
 
 importStatement
-  : lc=IMPORT componentPath (DOT all=STAR)? SEMICOLON
+  : lc=IMPORT componentPath (DOT all=STAR)? endOfStatement
   ;
 
 transactionStatement

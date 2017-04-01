@@ -39,7 +39,7 @@ Hidden:NEWLINE                  <>
         (identifierOrReservedWord (identifier SomeComponent))
       )
     )
-    ;
+    (endOfStatement ;)
   )
   (componentDeclaration
     component
