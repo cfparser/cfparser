@@ -110,13 +110,14 @@ statement
   |   doWhileStatement
   |   forStatement
   |   switchStatement
-  |   continueStatement SEMICOLON
-  |   breakStatement SEMICOLON
+         //Semicolon OR look for a newline as the next token (in the hidden channel)
+  |   continueStatement (optionalSemi = SEMICOLON | {_input.get(_input.LT(-1).getTokenIndex()+1).getType()==NEWLINE}?)
+  |   breakStatement (optionalSemi = SEMICOLON | {_input.get(_input.LT(-1).getTokenIndex()+1).getType()==NEWLINE}?)
   |   returnStatement (optionalSemi = SEMICOLON | {_input.get(_input.LT(-1).getTokenIndex()+1).getType()==NEWLINE}?)
   |   tagOperatorStatement
   |   compoundStatement 
-  |   localAssignmentExpression SEMICOLON
-  |   assignmentExpression SEMICOLON
+  |   localAssignmentExpression (optionalSemi = SEMICOLON | {_input.get(_input.LT(-1).getTokenIndex()+1).getType()==NEWLINE}?)
+  |   assignmentExpression (optionalSemi = SEMICOLON | {_input.get(_input.LT(-1).getTokenIndex()+1).getType()==NEWLINE}?)
   |   startExpression SEMICOLON
 //  |   tagEquivalent
   |   SEMICOLON // empty statement
