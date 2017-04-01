@@ -27,7 +27,7 @@ public class TestAdmin {
 		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
 		assertEquals(
-				"component {  public function foo()     {amdin action='getRegional' password='test' returnVariable='rtn' type='test';      return returnVariable;    }}",
+				"component {  public function foo()     {admin action='getRegional' password='test' returnVariable='rtn' type='test';      return returnVariable;    }}",
 				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
 		
 	}

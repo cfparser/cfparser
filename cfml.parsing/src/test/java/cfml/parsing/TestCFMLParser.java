@@ -439,7 +439,7 @@ public class TestCFMLParser {
 			e.printStackTrace();
 		}
 		assertNotNull(scriptStatement);
-		assertEquals("amdin action='getRegional' password='test' returnVariable='rtn' type='test'",
+		assertEquals("admin action='getRegional' password='test' returnVariable='rtn' type='test'",
 				scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
 	}
 	

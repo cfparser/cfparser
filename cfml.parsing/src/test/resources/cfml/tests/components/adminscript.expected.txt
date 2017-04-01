@@ -149,7 +149,7 @@ Hidden:NEWLINE                  <>
 /*===DECOMPILE===*/
 component {
   public function foo()     {
-amdin action='getRegional' password='test' returnVariable='rtn' type='test';
+admin action='getRegional' password='test' returnVariable='rtn' type='test';
       return returnVariable;
 
     }
