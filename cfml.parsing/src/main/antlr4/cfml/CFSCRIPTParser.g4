@@ -329,14 +329,11 @@ adminStatement
   ;
 
 throwStatement
-  : lc=THROW SEMICOLON 
-  | lc=THROW stringLiteral SEMICOLON 
-  | lc=THROW memberExpression SEMICOLON 
+  : lc=THROW (stringLiteral | memberExpression)? SEMICOLON 
   ;
 
 exitStatement
-  : lc=EXIT SEMICOLON 
-  | lc=EXIT memberExpression SEMICOLON //-> ^(EXITSTATEMENT[$lc] memberExpression)
+  : lc=EXIT memberExpression? SEMICOLON 
   ;
 
 paramStatement
