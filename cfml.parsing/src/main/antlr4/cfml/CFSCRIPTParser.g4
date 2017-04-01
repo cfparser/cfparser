@@ -332,7 +332,7 @@ throwStatement
   ;
 
 exitStatement
-  : lc=EXIT memberExpression? SEMICOLON 
+  : lc=EXIT memberExpression? endOfStatement 
   ;
 
 paramStatement
