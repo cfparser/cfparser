@@ -2,11 +2,7 @@ parser grammar  CFSCRIPTParser;
 
 options { tokenVocab=CFSCRIPTLexer; }
 
-
-//Note: need case insensitive stream: http://www.antlr.org/wiki/pages/viewpage.action?pageId=1782
-
-	
-////--- cfscript grammar rules
+//Note: needs case insensitive stream: http://www.antlr.org/wiki/pages/viewpage.action?pageId=1782
 
 scriptBlock
   :
@@ -119,7 +115,6 @@ statement
   |   localAssignmentExpression endOfStatement
   |   assignmentExpression endOfStatement
   |   startExpression SEMICOLON
-//  |   tagEquivalent
   |   SEMICOLON // empty statement
   | functionCall // without semi
   ;
@@ -208,13 +203,12 @@ caseStatement
   ;
 
 tagOperatorStatement
-  //: INCLUDE^ compoundStatement SEMICOLON  (poundSignReader kills this :-/)
   : includeStatement
   | importStatement
   | abortStatement
   | adminStatement
   | throwStatement
-  | rethrowStatment //-> ^(RETHROWSTATEMENT)
+  | rethrowStatment 
   | exitStatement
   | paramStatement
   | propertyStatement
@@ -228,10 +222,8 @@ tagOperatorStatement
 rethrowStatment:
   lc=RETHROW SEMICOLON ;
 
-// component  
-
 includeStatement
-  : lc=INCLUDE baseExpression (paramStatementAttributes)? SEMICOLON  //-> ^(INCLUDE  baseExpression* ) 
+  : lc=INCLUDE baseExpression (paramStatementAttributes)? SEMICOLON  
   ;
 
 importStatement
@@ -239,11 +231,11 @@ importStatement
   ;
 
 transactionStatement
-  : lc=TRANSACTION (paramStatementAttributes)? (compoundStatement)? //-> ^(TRANSACTIONSTATEMENT[$lc] (paramStatementAttributes)* (compoundStatement)?)
+  : lc=TRANSACTION (paramStatementAttributes)? (compoundStatement)? 
   ;
   
 cfmlfunctionStatement
-  : cfmlFunction (paramStatementAttributes)? (compoundStatement | SEMICOLON) //-> ^(CFMLFUNCTIONSTATEMENT cfmlFunction (param)* (compoundStatement)?)
+  : cfmlFunction (paramStatementAttributes)? (compoundStatement | SEMICOLON) 
   ;
 
 tagFunctionStatement
@@ -320,30 +312,30 @@ cfmlFunction
   ;
 
 lockStatement
-  : lc=LOCK p=paramStatementAttributes cs=compoundStatement //-> ^(LOCKSTATEMENT[$lc] paramStatementAttributes compoundStatement)
+  : lc=LOCK p=paramStatementAttributes cs=compoundStatement 
   ;
 
 threadStatement
-  : lc=THREAD p=paramStatementAttributes (compoundStatement | SEMICOLON) //-> ^(THREADSTATEMENT[$lc] paramStatementAttributes (compoundStatement)?)
+  : lc=THREAD p=paramStatementAttributes (compoundStatement | SEMICOLON) 
   ;
 
 abortStatement
-  : lc=ABORT SEMICOLON //-> ^(ABORTSTATEMENT[$lc])
-  | lc=ABORT memberExpression SEMICOLON //-> ^(ABORTSTATEMENT[$lc] memberExpression)
+  : lc=ABORT SEMICOLON 
+  | lc=ABORT memberExpression SEMICOLON 
   ;
   
 adminStatement
-  : lc=ADMIN p=paramStatementAttributes SEMICOLON //-> ^(ADMINSTATEMENT[$lc] paramStatementAttributes)
+  : lc=ADMIN p=paramStatementAttributes SEMICOLON 
   ;
 
 throwStatement
-  : lc=THROW SEMICOLON //-> ^(THROWSTATEMENT[$lc])
-  | lc=THROW stringLiteral SEMICOLON //-> ^(THROWSTATEMENT[$lc] memberExpression)
-  | lc=THROW memberExpression SEMICOLON //-> ^(THROWSTATEMENT[$lc] memberExpression)
+  : lc=THROW SEMICOLON 
+  | lc=THROW stringLiteral SEMICOLON 
+  | lc=THROW memberExpression SEMICOLON 
   ;
 
 exitStatement
-  : lc=EXIT SEMICOLON //-> ^(EXITSTATEMENT[$lc])
+  : lc=EXIT SEMICOLON 
   | lc=EXIT memberExpression SEMICOLON //-> ^(EXITSTATEMENT[$lc] memberExpression)
   ;
 
