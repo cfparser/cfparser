@@ -33,14 +33,16 @@ CLOSE_STRING             <">
 ';'                      <;>
 /*===TREE===*/
 (scriptBlock
-  (element (statement (tagOperatorStatement (throwStatement throw ;))))
+  (element
+    (statement (tagOperatorStatement (throwStatement throw (endOfStatement ;))))
+  )
   (element
     (statement
       (tagOperatorStatement
         (throwStatement
           throw
           (stringLiteral " (stringLiteralPart some amazing error) ")
-          ;
+          (endOfStatement ;)
         )
       )
     )
@@ -67,7 +69,7 @@ CLOSE_STRING             <">
               )
             )
           )
-          ;
+          (endOfStatement ;)
         )
       )
     )

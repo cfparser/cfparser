@@ -320,8 +320,7 @@ threadStatement
   ;
 
 abortStatement
-  : lc=ABORT SEMICOLON 
-  | lc=ABORT memberExpression SEMICOLON 
+  : lc=ABORT memberExpression? endOfStatement
   ;
   
 adminStatement
@@ -329,7 +328,7 @@ adminStatement
   ;
 
 throwStatement
-  : lc=THROW (stringLiteral | memberExpression)? SEMICOLON 
+  : lc=THROW (stringLiteral | memberExpression)? endOfStatement 
   ;
 
 exitStatement
@@ -344,8 +343,8 @@ paramExpression
   : type? multipartIdentifier EQUALSOP startExpression
   ;
 propertyStatement
-  : lc=PROPERTY paramStatementAttributes SEMICOLON //-> ^(PROPERTYSTATEMENT[$lc] paramStatementAttributes)
-  | lc=PROPERTY typeSpec? name=multipartIdentifier SEMICOLON
+  : lc=PROPERTY paramStatementAttributes endOfStatement
+  | lc=PROPERTY typeSpec? name=multipartIdentifier endOfStatement
   ;
   
 paramStatementAttributes

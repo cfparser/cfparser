@@ -58,7 +58,7 @@ Hidden:NEWLINE                  <>
                 )
               )
               (multipartIdentifier (identifier newsRepository))
-              ;
+              (endOfStatement ;)
             )
           )
         )

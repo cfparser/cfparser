@@ -27,7 +27,7 @@ Hidden:NEWLINE                  <>
                 .
                 (identifierOrReservedWord (identifier displays))
               )
-              ;
+              (endOfStatement ;)
             )
           )
         )

@@ -56,7 +56,7 @@ Hidden:NEWLINE                  <>
               property
               (typeSpec (type string))
               (multipartIdentifier (identifier firstName))
-              ;
+              (endOfStatement ;)
             )
           )
         )
@@ -68,7 +68,7 @@ Hidden:NEWLINE                  <>
               property
               (typeSpec (type string))
               (multipartIdentifier (identifier middleName))
-              ;
+              (endOfStatement ;)
             )
           )
         )
@@ -76,7 +76,11 @@ Hidden:NEWLINE                  <>
       (element
         (statement
           (tagOperatorStatement
-            (propertyStatement property (multipartIdentifier (identifier lastName)) ;)
+            (propertyStatement
+              property
+              (multipartIdentifier (identifier lastName))
+              (endOfStatement ;)
+            )
           )
         )
       )
