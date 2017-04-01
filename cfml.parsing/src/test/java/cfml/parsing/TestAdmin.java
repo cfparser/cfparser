@@ -16,9 +16,9 @@ public class TestAdmin {
 		CFScriptStatement scriptStatement = TestUtils.parseScript(script);
 		assertNotNull(scriptStatement);
 		assertEquals(
-				"amdin action='fw1_#application.applicationName#_#variables.framework.applicationKey#_#type#_#componentKey#' password='30' type='exclusive'",
+				"admin action='fw1_#application.applicationName#_#variables.framework.applicationKey#_#type#_#componentKey#' password='30' type='exclusive'",
 				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
-				
+		
 	}
 	
 	@Test
@@ -29,6 +29,6 @@ public class TestAdmin {
 		assertEquals(
 				"component {  public function foo()     {amdin action='getRegional' password='test' returnVariable='rtn' type='test';      return returnVariable;    }}",
 				scriptStatement.Decompile(0).replaceAll("[\r\n]", ""));
-				
+		
 	}
 }

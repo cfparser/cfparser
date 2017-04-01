@@ -28,7 +28,7 @@ public class CFAdminStatement extends CFParsedAttributeStatement implements Seri
 	@Override
 	public String Decompile(int indent) {
 		StringBuilder sb = new StringBuilder();
-		sb.append("amdin");
+		sb.append("admin");
 		DecompileAttributes(sb);
 		return sb.toString();
 	}
