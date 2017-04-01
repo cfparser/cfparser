@@ -13,6 +13,7 @@ STRING_LITERAL           <support:admin>
 CLOSE_STRING             <">
 '{'                      <{>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 IDENTIFIER               <setStatus2>
 '('                      <(>
@@ -25,6 +26,7 @@ STRING_LITERAL           <support:admin>
 CLOSE_STRING             <">
 '{'                      <{>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 IDENTIFIER               <setStatus2>
 '('                      <(>
@@ -33,6 +35,7 @@ IDENTIFIER               <rc>
 IDENTIFIER               <role>
 '{'                      <{>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 IDENTIFIER               <setStatus2>
 '('                      <(>

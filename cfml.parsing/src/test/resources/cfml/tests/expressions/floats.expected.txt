@@ -5,6 +5,7 @@ INTEGER_LITERAL          <1>
 '.'                      <.>
 INTEGER_LITERAL          <23>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <y>
 '='                      <=>
 '-'                      <->
@@ -12,15 +13,18 @@ INTEGER_LITERAL          <33>
 '.'                      <.>
 INTEGER_LITERAL          <0>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <z>
 '='                      <=>
 INTEGER_LITERAL          <2>
 '.'                      <.>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <a>
 '='                      <=>
 FLOATING_POINT_LITERAL   <121E10>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <b>
 '='                      <=>
 '.'                      <.>

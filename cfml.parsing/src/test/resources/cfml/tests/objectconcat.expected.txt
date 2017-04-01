@@ -2,6 +2,7 @@
 IDENTIFIER               <x>
 '='                      <=>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <name>
 ':'                      <:>
 IDENTIFIER               <rc>
@@ -11,6 +12,7 @@ IDENTIFIER               <ticket>
 IDENTIFIER               <getShortId>
 '('                      <(>
 ')'                      <)>
+Hidden:NEWLINE                  <>
 ','                      <,>
 IDENTIFIER               <action>
 ':'                      <:>
@@ -25,6 +27,7 @@ IDENTIFIER               <ticket>
 IDENTIFIER               <getShortId>
 '('                      <(>
 ')'                      <)>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 ';'                      <;>
 /*===TREE===*/

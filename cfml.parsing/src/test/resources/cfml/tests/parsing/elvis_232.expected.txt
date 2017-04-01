@@ -11,11 +11,13 @@ OPEN_STRING              <">
 STRING_LITERAL           <false>
 CLOSE_STRING             <">
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <local>
 '.'                      <.>
 IDENTIFIER               <a>
 '='                      <=>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 OPEN_STRING              <">
 STRING_LITERAL           <a>
 CLOSE_STRING             <">
@@ -24,13 +26,16 @@ BOOLEAN_LITERAL          <true>
 '?'                      <?>
 ':'                      <:>
 BOOLEAN_LITERAL          <false>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 RETURN                   <return>
 IDENTIFIER               <local>
 '.'                      <.>
 IDENTIFIER               <a>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

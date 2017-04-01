@@ -4,21 +4,26 @@ IDENTIFIER               <foo>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <cfstoredproc>
 '('                      <(>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <procedure>
 '='                      <=>
 OPEN_STRING              <">
 STRING_LITERAL           <dbo.myTestProcedure>
 CLOSE_STRING             <">
 ','                      <,>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <datasource>
 '='                      <=>
 IDENTIFIER               <Variables>
 '.'                      <.>
 IDENTIFIER               <datasource>
+Hidden:NEWLINE                  <>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <cfprocparam>
 '('                      <(>
 IDENTIFIER               <value>
@@ -32,6 +37,7 @@ STRING_LITERAL           <cf_sql_integer>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <cfprocresult>
 '('                      <(>
 IDENTIFIER               <resultset>
@@ -45,7 +51,9 @@ STRING_LITERAL           <myQuery>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <Variables>
 '.'                      <.>
 IDENTIFIER               <myTest>
@@ -53,6 +61,7 @@ IDENTIFIER               <myTest>
 '['                      <[>
 ']'                      <]>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock
@@ -224,13 +233,13 @@ IDENTIFIER               <myTest>
 )
 /*======*/
 /*===DECOMPILE===*/
-public function foo() {
-cfstoredproc(procedure = 'dbo.myTestProcedure', datasource = Variables.datasource) {
+public function foo()   {
+cfstoredproc(procedure = 'dbo.myTestProcedure', datasource = Variables.datasource)      {
 cfprocparam(value = myId, cfsqltype = 'cf_sql_integer');
 cfprocresult(resultset = 1, name = 'myQuery');
 
- };
+      };
 Variables.myTest = [];
 
- }
+  }
 /*======*/

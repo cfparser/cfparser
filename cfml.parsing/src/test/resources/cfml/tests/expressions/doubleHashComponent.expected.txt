@@ -6,6 +6,7 @@ OPEN_STRING              <">
 STRING_LITERAL           <blank>
 CLOSE_STRING             <">
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <color>
 '='                      <=>
 OPEN_STRING              <">
@@ -13,6 +14,7 @@ DOUBLEHASH               <##>
 STRING_LITERAL           <000000>
 CLOSE_STRING             <">
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock
@@ -65,4 +67,9 @@ CLOSE_STRING             <">
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+component target='blank' {
+color = '000000'
+}
 /*======*/

@@ -1,6 +1,7 @@
 /*===TOKENS===*/
 COMPONENT                <component>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 IDENTIFIER               <dotrim>
 '('                      <(>
@@ -9,6 +10,7 @@ IDENTIFIER               <data>
 IDENTIFIER               <callback>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <callback>
 '('                      <(>
 IDENTIFIER               <trim>
@@ -17,12 +19,15 @@ IDENTIFIER               <data>
 ')'                      <)>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 IDENTIFIER               <bar>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <dotrim>
 '('                      <(>
 OPEN_STRING              <">
@@ -34,11 +39,15 @@ FUNCTION                 <function>
 IDENTIFIER               <result>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 /*===TREE===*/
 (scriptBlock
   (componentDeclaration

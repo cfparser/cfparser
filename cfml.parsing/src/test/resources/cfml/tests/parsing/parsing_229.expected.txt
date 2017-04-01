@@ -1,15 +1,18 @@
 /*===TOKENS===*/
-ML_COMMENT               </**
+Hidden:ML_COMMENT               </**
 * Some explanation.
 */>
+Hidden:NEWLINE                  <>
 COMPONENT                <component>
 '{'                      <{>
-ML_COMMENT               </**
+Hidden:NEWLINE                  <>
+Hidden:ML_COMMENT               </**
   * Some function explanation.
   *
   * @localData Something.
   * @keyToCheck Something else.
   */>
+Hidden:NEWLINE                  <>
 PUBLIC                   <public>
 STRING                   <string>
 FUNCTION                 <function>
@@ -24,6 +27,7 @@ STRING                   <string>
 IDENTIFIER               <keyToCheck>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IF                       <if>
 '('                      <(>
 '!'                      <!>
@@ -33,6 +37,7 @@ IDENTIFIER               <localData>
 ')'                      <)>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IF                       <if>
 '('                      <(>
 IDENTIFIER               <structKeyExists>
@@ -43,15 +48,20 @@ IDENTIFIER               <keyToCheck>
 ')'                      <)>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 RETURN                   <return>
 IDENTIFIER               <localData>
 '['                      <[>
 IDENTIFIER               <keyToCheck>
 ']'                      <]>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

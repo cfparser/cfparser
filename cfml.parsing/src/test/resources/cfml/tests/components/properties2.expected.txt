@@ -1,7 +1,8 @@
 /*===TOKENS===*/
-ML_COMMENT               </**
+Hidden:ML_COMMENT               </**
 * @author 
 */>
+Hidden:NEWLINE                  <>
 COMPONENT                <component>
 IDENTIFIER               <accessors>
 '='                      <=>
@@ -9,19 +10,23 @@ OPEN_STRING              <">
 STRING_LITERAL           <true>
 CLOSE_STRING             <">
 '{'                      <{>
-LINE_COMMENT             <// The first name of the User
->
+Hidden:NEWLINE                  <>
+Hidden:NEWLINE                  <>
+Hidden:LINE_COMMENT             <// The first name of the User>
 PROPERTY                 <property>
 STRING                   <string>
 IDENTIFIER               <firstName>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 PROPERTY                 <property>
 STRING                   <string>
 IDENTIFIER               <middleName>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 PROPERTY                 <property>
 IDENTIFIER               <lastName>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

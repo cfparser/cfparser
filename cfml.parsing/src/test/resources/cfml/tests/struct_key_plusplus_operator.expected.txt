@@ -1,5 +1,6 @@
 /*===TOKENS===*/
 SCRIPTOPEN               <<cfscript>>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <foo>
 '='                      <=>
 '{'                      <{>
@@ -8,12 +9,15 @@ IDENTIFIER               <bar>
 INTEGER_LITERAL          <1>
 '}'                      <}>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <foo>
 '.'                      <.>
 IDENTIFIER               <bar>
 '++'                     <++>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 SCRIPTCLOSE              <</cfscript>>
+Hidden:NEWLINE                  <>
 /*===TREE===*/
 (scriptBlock
   (cfscriptBlock

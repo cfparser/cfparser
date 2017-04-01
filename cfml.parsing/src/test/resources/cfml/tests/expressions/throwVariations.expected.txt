@@ -1,11 +1,13 @@
 /*===TOKENS===*/
 THROW                    <throw>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 THROW                    <throw>
 OPEN_STRING              <">
 STRING_LITERAL           <some amazing error>
 CLOSE_STRING             <">
 ';'                      <;>
+Hidden:NEWLINE                  <>
 THROW                    <throw>
 '('                      <(>
 OPEN_STRING              <">
@@ -13,6 +15,7 @@ STRING_LITERAL           <woohoo>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 THROW                    <throw>
 '('                      <(>
 IDENTIFIER               <type>

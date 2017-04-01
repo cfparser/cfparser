@@ -9,6 +9,7 @@ STRING_LITERAL           <${lastName} ${firstName}>
 CLOSE_STRING             <">
 IDENTIFIER               <transient>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 IDENTIFIER               <foo>
 '('                      <(>
@@ -28,12 +29,15 @@ OPEN_STRING              <">
 STRING_LITERAL           <brb>
 CLOSE_STRING             <">
 '{'                      <{>
+Hidden:NEWLINE                  <>
 RETURN                   <return>
 OPEN_STRING              <">
 STRING_LITERAL           <woohoo>
 CLOSE_STRING             <">
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

@@ -2,6 +2,7 @@
 IDENTIFIER               <someStruct>
 '='                      <=>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <someVariable>
 '='                      <=>
 IDENTIFIER               <someExpression>
@@ -9,6 +10,7 @@ IDENTIFIER               <someExpression>
 IDENTIFIER               <someExpression2>
 ':'                      <:>
 IDENTIFIER               <someExpression3>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 ';'                      <;>
 /*===TREE===*/

@@ -5,6 +5,7 @@ OPEN_STRING              <">
 STRING_LITERAL           <test>
 CLOSE_STRING             <">
 ';'                      <;>
+Hidden:NEWLINE                  <>
 /*===TREE===*/
 (scriptBlock
   (element
@@ -32,4 +33,7 @@ CLOSE_STRING             <">
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+filename = 'test'
 /*======*/

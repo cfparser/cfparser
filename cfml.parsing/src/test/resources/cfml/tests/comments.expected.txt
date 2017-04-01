@@ -1,11 +1,11 @@
 /*===TOKENS===*/
-LINE_COMMENT             <//this is a test comment
->
+Hidden:LINE_COMMENT             <//this is a test comment>
 VAR                      <var>
 IDENTIFIER               <x>
 '='                      <=>
 INTEGER_LITERAL          <123>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 IDENTIFIER               <y>
 '='                      <=>

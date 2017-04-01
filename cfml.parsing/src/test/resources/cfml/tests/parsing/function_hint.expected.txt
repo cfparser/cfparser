@@ -4,19 +4,25 @@ NUMERIC                  <numeric>
 FUNCTION                 <function>
 IDENTIFIER               <test>
 '('                      <(>
+Hidden:NEWLINE                  <>
 REQUIRED                 <required>
 NUMERIC                  <numeric>
 IDENTIFIER               <inNum>
+Hidden:NEWLINE                  <>
 ')'                      <)>
+Hidden:NEWLINE                  <>
 OUTPUT                   <output>
 '='                      <=>
 BOOLEAN_LITERAL          <false>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <hint>
 '='                      <=>
 OPEN_STRING              <">
 STRING_LITERAL           <I am a test function.>
 CLOSE_STRING             <">
+Hidden:NEWLINE                  <>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 RETURN                   <return>
 IDENTIFIER               <ARGUMENTS>
 '.'                      <.>
@@ -24,7 +30,9 @@ IDENTIFIER               <inNum>
 '+'                      <+>
 INTEGER_LITERAL          <1>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 /*===TREE===*/
 (scriptBlock
   (element

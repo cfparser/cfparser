@@ -1,16 +1,19 @@
 /*===TOKENS===*/
 COMPONENT                <component>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 IDENTIFIER               <processLogin>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <p>
 '='                      <=>
 OPEN_STRING              <'>
 CLOSE_STRING             <'>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 LOCATION                 <location>
 '('                      <(>
 IDENTIFIER               <x>
@@ -22,7 +25,11 @@ IDENTIFIER               <y>
 BOOLEAN_LITERAL          <false>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
+Hidden:NEWLINE                  <>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock
@@ -98,4 +105,13 @@ BOOLEAN_LITERAL          <false>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public function processLogin()     {
+p = '';
+location(x = true, y = false);
+
+    }
+}
 /*======*/

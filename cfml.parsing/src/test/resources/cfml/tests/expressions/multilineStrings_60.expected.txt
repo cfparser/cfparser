@@ -1,11 +1,13 @@
 /*===TOKENS===*/
 COMPONENT                <component>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 IDENTIFIER               <name>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 IDENTIFIER               <sql>
 '='                      <=>
@@ -17,7 +19,9 @@ STRING_LITERAL           <INSERT INTO thingTbl(
       :name>
 CLOSE_STRING             <">
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

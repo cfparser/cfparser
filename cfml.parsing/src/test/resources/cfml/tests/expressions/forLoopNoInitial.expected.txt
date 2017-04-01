@@ -1,6 +1,7 @@
 /*===TOKENS===*/
 COMPONENT                <component>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 PRIVATE                  <private>
 IDENTIFIER               <void>
 FUNCTION                 <function>
@@ -13,43 +14,50 @@ OPEN_STRING              <">
 STRING_LITERAL           <compile dynamic source>
 CLOSE_STRING             <">
 '{'                      <{>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 IDENTIFIER               <dir>
 '='                      <=>
 INTEGER_LITERAL          <0>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 IDENTIFIER               <path>
 '='                      <=>
 INTEGER_LITERAL          <0>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 IDENTIFIER               <paths>
 '='                      <=>
 INTEGER_LITERAL          <0>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 FILE                     <file>
 '='                      <=>
 INTEGER_LITERAL          <0>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 IDENTIFIER               <counter>
 '='                      <=>
 INTEGER_LITERAL          <1>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 IDENTIFIER               <len>
 '='                      <=>
 INTEGER_LITERAL          <0>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 IDENTIFIER               <directories>
 '='                      <=>
 INTEGER_LITERAL          <0>
 ';'                      <;>
-LINE_COMMENT             <//do check to see if the compiled jar is already there
->
+Hidden:NEWLINE                  <>
+Hidden:LINE_COMMENT             <//do check to see if the compiled jar is already there>
 VAR                      <var>
 IDENTIFIER               <jarName>
 '='                      <=>
@@ -60,6 +68,7 @@ IDENTIFIER               <getSourceDirectories>
 ')'                      <)>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 IDENTIFIER               <jar>
 '='                      <=>
@@ -73,6 +82,7 @@ CLOSE_STRING             <">
 '&'                      <&>
 IDENTIFIER               <jarName>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IF                       <if>
 '('                      <(>
 IDENTIFIER               <fileExists>
@@ -81,6 +91,7 @@ IDENTIFIER               <jar>
 ')'                      <)>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IF                       <if>
 '('                      <(>
 IDENTIFIER               <isTrustedSource>
@@ -88,7 +99,9 @@ IDENTIFIER               <isTrustedSource>
 ')'                      <)>
 ')'                      <)>
 '{'                      <{>
-ML_COMMENT               </* add that jar to the classloader */>
+Hidden:NEWLINE                  <>
+Hidden:ML_COMMENT               </* add that jar to the classloader */>
+Hidden:NEWLINE                  <>
 FILE                     <file>
 '='                      <=>
 IDENTIFIER               <createObject>
@@ -107,6 +120,7 @@ IDENTIFIER               <init>
 IDENTIFIER               <jar>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <getURLClassLoader>
 '('                      <(>
 ')'                      <)>
@@ -120,11 +134,14 @@ IDENTIFIER               <toURL>
 ')'                      <)>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 RETURN                   <return>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 ELSE                     <else>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 FILE                     <file>
 IDENTIFIER               <action>
 '='                      <=>
@@ -141,10 +158,14 @@ CLOSE_STRING             <">
 '{'                      <{>
 '}'                      <}>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 TRY                      <try>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <path>
 '='                      <=>
 IDENTIFIER               <getCompileDirectory>
@@ -159,6 +180,7 @@ IDENTIFIER               <createUUID>
 '('                      <(>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 DIRECTORY                <directory>
 IDENTIFIER               <action>
 '='                      <=>
@@ -175,14 +197,15 @@ CLOSE_STRING             <">
 '{'                      <{>
 '}'                      <}>
 ';'                      <;>
-LINE_COMMENT             <//first we copy the source to our tmp dir
->
+Hidden:NEWLINE                  <>
+Hidden:LINE_COMMENT             <//first we copy the source to our tmp dir>
 IDENTIFIER               <directories>
 '='                      <=>
 IDENTIFIER               <getSourceDirectories>
 '('                      <(>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <len>
 '='                      <=>
 IDENTIFIER               <arraylen>
@@ -190,6 +213,7 @@ IDENTIFIER               <arraylen>
 IDENTIFIER               <directories>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 FOR                      <for>
 '('                      <(>
 ';'                      <;>
@@ -203,7 +227,9 @@ IDENTIFIER               <counter>
 '+'                      <+>
 INTEGER_LITERAL          <1>
 ')'                      <)>
+Hidden:NEWLINE                  <>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <dir>
 '='                      <=>
 IDENTIFIER               <directories>
@@ -211,6 +237,7 @@ IDENTIFIER               <directories>
 IDENTIFIER               <counter>
 ']'                      <]>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <$directoryCopy>
 '('                      <(>
 IDENTIFIER               <dir>
@@ -218,9 +245,11 @@ IDENTIFIER               <dir>
 IDENTIFIER               <path>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
-LINE_COMMENT             <//then we compile it, and grab that jar
->
+Hidden:NEWLINE                  <>
+Hidden:LINE_COMMENT             <//then we compile it, and grab that jar>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <paths>
 '='                      <=>
 IDENTIFIER               <ArrayNew>
@@ -228,8 +257,7 @@ IDENTIFIER               <ArrayNew>
 INTEGER_LITERAL          <1>
 ')'                      <)>
 ';'                      <;>
-LINE_COMMENT             <//have to write it this way so CF7 compiles
->
+Hidden:LINE_COMMENT             <//have to write it this way so CF7 compiles>
 IDENTIFIER               <ArrayAppend>
 '('                      <(>
 IDENTIFIER               <paths>
@@ -237,6 +265,7 @@ IDENTIFIER               <paths>
 IDENTIFIER               <path>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <jar>
 '='                      <=>
 IDENTIFIER               <getJavaCompiler>
@@ -254,7 +283,9 @@ IDENTIFIER               <getURLClassLoader>
 IDENTIFIER               <jarName>
 ')'                      <)>
 ';'                      <;>
-ML_COMMENT               </* add that jar to the classloader */>
+Hidden:NEWLINE                  <>
+Hidden:ML_COMMENT               </* add that jar to the classloader */>
+Hidden:NEWLINE                  <>
 FILE                     <file>
 '='                      <=>
 IDENTIFIER               <createObject>
@@ -273,6 +304,7 @@ IDENTIFIER               <init>
 IDENTIFIER               <jar>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <getURLClassLoader>
 '('                      <(>
 ')'                      <)>
@@ -286,7 +318,9 @@ IDENTIFIER               <toURL>
 ')'                      <)>
 ')'                      <)>
 ';'                      <;>
-ML_COMMENT               </* delete the files */>
+Hidden:NEWLINE                  <>
+Hidden:ML_COMMENT               </* delete the files */>
+Hidden:NEWLINE                  <>
 IF                       <if>
 '('                      <(>
 IDENTIFIER               <directoryExists>
@@ -295,6 +329,7 @@ IDENTIFIER               <path>
 ')'                      <)>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 DIRECTORY                <directory>
 IDENTIFIER               <action>
 '='                      <=>
@@ -316,8 +351,11 @@ CLOSE_STRING             <">
 '{'                      <{>
 '}'                      <}>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
-ML_COMMENT               </* save the file for when trusted source is on -*/>
+Hidden:NEWLINE                  <>
+Hidden:ML_COMMENT               </* save the file for when trusted source is on -*/>
+Hidden:NEWLINE                  <>
 IF                       <if>
 '('                      <(>
 IDENTIFIER               <fileExists>
@@ -331,6 +369,7 @@ IDENTIFIER               <isTrustedSource>
 ')'                      <)>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 FILE                     <file>
 IDENTIFIER               <action>
 '='                      <=>
@@ -346,7 +385,9 @@ IDENTIFIER               <jar>
 CLOSE_STRING             <">
 '{'                      <{>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 CATCH                    <catch>
 '('                      <(>
@@ -354,7 +395,9 @@ ANY                      <any>
 IDENTIFIER               <e>
 ')'                      <)>
 '{'                      <{>
-ML_COMMENT               </* make sure the files are deleted */>
+Hidden:NEWLINE                  <>
+Hidden:ML_COMMENT               </* make sure the files are deleted */>
+Hidden:NEWLINE                  <>
 IF                       <if>
 '('                      <(>
 IDENTIFIER               <directoryExists>
@@ -363,6 +406,7 @@ IDENTIFIER               <path>
 ')'                      <)>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 DIRECTORY                <directory>
 IDENTIFIER               <action>
 '='                      <=>
@@ -384,12 +428,18 @@ CLOSE_STRING             <">
 '{'                      <{>
 '}'                      <}>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 RETHROW                  <rethrow>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

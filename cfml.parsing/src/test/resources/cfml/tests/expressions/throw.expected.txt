@@ -7,6 +7,7 @@ OPEN_STRING              <">
 STRING_LITERAL           <message>
 CLOSE_STRING             <">
 ','                      <,>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <type>
 '='                      <=>
 OPEN_STRING              <">
@@ -19,18 +20,21 @@ OPEN_STRING              <">
 STRING_LITERAL           <xyz>
 CLOSE_STRING             <">
 ','                      <,>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <errorCode>
 '='                      <=>
 OPEN_STRING              <">
 STRING_LITERAL           <error code>
 CLOSE_STRING             <">
 ','                      <,>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <extendedInfo>
 '='                      <=>
 OPEN_STRING              <">
 STRING_LITERAL           <additional info>
 CLOSE_STRING             <">
 ','                      <,>
+Hidden:NEWLINE                  <>
 OBJECT                   <object>
 '='                      <=>
 OPEN_STRING              <">

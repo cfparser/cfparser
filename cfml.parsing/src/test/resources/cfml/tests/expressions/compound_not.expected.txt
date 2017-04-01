@@ -12,6 +12,7 @@ IDENTIFIER               <item>
 ')'                      <)>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock
@@ -75,4 +76,9 @@ IDENTIFIER               <item>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+if(NOT (smartGroups.contains(item)) )   {
+
+  }
 /*======*/

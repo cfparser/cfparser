@@ -1,5 +1,5 @@
 /*===TOKENS===*/
-LINE_COMMENT             <//reloading>
+Hidden:LINE_COMMENT             <//reloading>
 /*===TREE===*/
 scriptBlock
 /*======*/

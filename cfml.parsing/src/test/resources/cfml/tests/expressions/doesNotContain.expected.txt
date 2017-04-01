@@ -33,6 +33,7 @@ STRING_LITERAL           </>
 CLOSE_STRING             <">
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

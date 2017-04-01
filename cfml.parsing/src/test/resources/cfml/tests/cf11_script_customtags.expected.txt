@@ -1,6 +1,5 @@
 /*===TOKENS===*/
-LINE_COMMENT             <// cfm file based custom tags
->
+Hidden:LINE_COMMENT             <// cfm file based custom tags>
 CFCUSTOM_IDENTIFIER      <Cf_happybirthday>
 '('                      <(>
 IDENTIFIER               <name>
@@ -16,6 +15,7 @@ STRING_LITERAL           <December 5, 1987>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 /*===TREE===*/
 (scriptBlock
   (element
@@ -64,4 +64,7 @@ CLOSE_STRING             <">
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+Cf_happybirthday(name = 'john', birthdate = 'December 5, 1987')
 /*======*/

@@ -1,11 +1,13 @@
 /*===TOKENS===*/
 COMPONENT                <component>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 IDENTIFIER               <foo>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 ADMIN                    <admin>
 IDENTIFIER               <action>
 '='                      <=>
@@ -28,11 +30,15 @@ OPEN_STRING              <">
 STRING_LITERAL           <rtn>
 CLOSE_STRING             <">
 ';'                      <;>
+Hidden:NEWLINE                  <>
 RETURN                   <return>
 IDENTIFIER               <returnVariable>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 /*===TREE===*/
 (scriptBlock
   (componentDeclaration
@@ -139,4 +145,13 @@ IDENTIFIER               <returnVariable>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public function foo()     {
+amdin action='getRegional' password='test' returnVariable='rtn' type='test';
+      return returnVariable;
+
+    }
+}
 /*======*/

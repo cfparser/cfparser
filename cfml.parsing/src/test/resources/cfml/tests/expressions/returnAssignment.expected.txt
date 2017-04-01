@@ -1,6 +1,8 @@
 /*===TOKENS===*/
+Hidden:NEWLINE                  <>
 COMPONENT                <component>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 PUBLIC                   <public>
 IDENTIFIER               <void>
 FUNCTION                 <function>
@@ -8,12 +10,15 @@ IDENTIFIER               <test>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 RETURN                   <return>
 IDENTIFIER               <foo>
 '='                      <=>
 IDENTIFIER               <bar>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

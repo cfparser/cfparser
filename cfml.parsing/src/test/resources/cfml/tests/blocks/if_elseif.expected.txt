@@ -8,6 +8,7 @@ STRING_LITERAL           <apple>
 CLOSE_STRING             <">
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <WriteOutput>
 '('                      <(>
 OPEN_STRING              <">
@@ -15,7 +16,9 @@ STRING_LITERAL           <I like apples>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 ELSE                     <else>
 IF                       <if>
 '('                      <(>
@@ -26,6 +29,7 @@ STRING_LITERAL           <orange>
 CLOSE_STRING             <">
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <WriteOutput>
 '('                      <(>
 OPEN_STRING              <">
@@ -33,9 +37,12 @@ STRING_LITERAL           <I like oranges>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 ELSE                     <else>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <WriteOutput>
 '('                      <(>
 OPEN_STRING              <">
@@ -43,6 +50,7 @@ STRING_LITERAL           <I like fruit>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

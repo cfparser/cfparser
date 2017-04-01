@@ -4,16 +4,20 @@ IDENTIFIER               <foo>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 IDENTIFIER               <bar>
 '='                      <=>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 '='                      <=>
 OPEN_STRING              <'>
 CLOSE_STRING             <'>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

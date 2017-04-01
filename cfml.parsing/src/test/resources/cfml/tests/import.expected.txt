@@ -6,9 +6,11 @@ IDENTIFIER               <path>
 '.'                      <.>
 IDENTIFIER               <SomeComponent>
 ';'                      <;>
-ML_COMMENT               </**
+Hidden:NEWLINE                  <>
+Hidden:ML_COMMENT               </**
 * Hello world.
 */>
+Hidden:NEWLINE                  <>
 COMPONENT                <component>
 IDENTIFIER               <extends>
 '='                      <=>
@@ -20,7 +22,9 @@ IDENTIFIER               <accessors>
 OPEN_STRING              <">
 STRING_LITERAL           <true>
 CLOSE_STRING             <">
+Hidden:NEWLINE                  <>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock
@@ -74,4 +78,12 @@ CLOSE_STRING             <">
     (componentGuts { })
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+{
+import my.path.SomeComponent;
+  component extends='my.path.BaseComponent' accessors='true' {
+};
+
+}
 /*======*/

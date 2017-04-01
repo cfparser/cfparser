@@ -7,11 +7,13 @@ IDENTIFIER               <bar>
 INTEGER_LITERAL          <1>
 '}'                      <}>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <foo>
 '.'                      <.>
 IDENTIFIER               <bar>
 '++'                     <++>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 /*===TREE===*/
 (scriptBlock
   (element

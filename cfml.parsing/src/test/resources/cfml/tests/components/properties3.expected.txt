@@ -6,6 +6,8 @@ OPEN_STRING              <">
 STRING_LITERAL           <true>
 CLOSE_STRING             <">
 '{'                      <{>
+Hidden:NEWLINE                  <>
+Hidden:NEWLINE                  <>
 PROPERTY                 <property>
 IDENTIFIER               <obj>
 '.'                      <.>
@@ -16,6 +18,7 @@ CONTENT                  <content>
 IDENTIFIER               <NewsRepository>
 IDENTIFIER               <newsRepository>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

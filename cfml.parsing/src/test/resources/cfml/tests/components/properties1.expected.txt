@@ -1,7 +1,8 @@
 /*===TOKENS===*/
-ML_COMMENT               </**
+Hidden:ML_COMMENT               </**
 * @author 
 */>
+Hidden:NEWLINE                  <>
 COMPONENT                <component>
 IDENTIFIER               <accessors>
 '='                      <=>
@@ -9,8 +10,9 @@ OPEN_STRING              <">
 STRING_LITERAL           <true>
 CLOSE_STRING             <">
 '{'                      <{>
-LINE_COMMENT             <// The first name of the User
->
+Hidden:NEWLINE                  <>
+Hidden:NEWLINE                  <>
+Hidden:LINE_COMMENT             <// The first name of the User>
 PROPERTY                 <property>
 IDENTIFIER               <type>
 '='                      <=>
@@ -23,8 +25,8 @@ OPEN_STRING              <">
 STRING_LITERAL           <firstName>
 CLOSE_STRING             <">
 ';'                      <;>
-LINE_COMMENT             <// Last name of the User
->
+Hidden:NEWLINE                  <>
+Hidden:LINE_COMMENT             <// Last name of the User>
 PROPERTY                 <property>
 IDENTIFIER               <name>
 '='                      <=>
@@ -32,24 +34,30 @@ OPEN_STRING              <">
 STRING_LITERAL           <lastName>
 CLOSE_STRING             <">
 ';'                      <;>
-ML_COMMENT               </**
+Hidden:NEWLINE                  <>
+Hidden:ML_COMMENT               </**
   * Constructor
   */>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 IDENTIFIER               <init>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 RETURN                   <return>
 IDENTIFIER               <this>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
-ML_COMMENT               </**
+Hidden:NEWLINE                  <>
+Hidden:ML_COMMENT               </**
   * Submit an order
   * @product.hint The product object
   * @coupon.hint The Coupon code needed
   * @results.hint The results object
   */>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 IDENTIFIER               <submitOrder>
 '('                      <(>
@@ -67,7 +75,9 @@ IDENTIFIER               <results>
 BOOLEAN_LITERAL          <true>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock
@@ -222,4 +232,20 @@ BOOLEAN_LITERAL          <true>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+component accessors='true' {
+  {
+property name='firstName' type='string';
+property name='lastName';
+    public function init()       {
+        return this;
+
+      };
+    public function submitOrder(required product, coupon='', results=true)       {
+
+      };
+
+  }
+}
 /*======*/

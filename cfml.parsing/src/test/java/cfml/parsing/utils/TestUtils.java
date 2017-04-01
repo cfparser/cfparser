@@ -403,12 +403,14 @@ public class TestUtils {
 		StringBuilder sb = new StringBuilder();
 		for (Token token : tokens) { // A token from a ParseTree object
 			String displayName = vocabulary.getDisplayName(token.getType());
+			if (token.getChannel() == 1)
+				sb.append("Hidden:");
 			sb.append(displayName);
 			if (displayName.length() < 25) {
 				sb.append("                         ".substring(displayName.length(), 25));
 			}
 			sb.append('<');
-			sb.append(token.getText());
+			sb.append(token.getText().trim());
 			sb.append('>');
 			sb.append("\r\n");
 		}

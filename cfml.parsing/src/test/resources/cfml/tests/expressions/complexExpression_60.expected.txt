@@ -1,15 +1,18 @@
 /*===TOKENS===*/
 COMPONENT                <component>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 IDENTIFIER               <name>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 IDENTIFIER               <params>
 '='                      <=>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <thingId>
 '='                      <=>
 '{'                      <{>
@@ -32,6 +35,7 @@ STRING_LITERAL           <CF_SQL_INTEGER>
 CLOSE_STRING             <">
 '}'                      <}>
 ','                      <,>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <name>
 '='                      <=>
 '{'                      <{>
@@ -65,9 +69,12 @@ IDENTIFIER               <getName>
 ')'                      <)>
 ')'                      <)>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

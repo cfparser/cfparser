@@ -4,6 +4,7 @@ IDENTIFIER               <foo>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <local>
 '.'                      <.>
 IDENTIFIER               <idSet>
@@ -12,6 +13,7 @@ OPEN_STRING              <'>
 STRING_LITERAL           <123>
 CLOSE_STRING             <'>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 RETURN                   <return>
 IDENTIFIER               <idSet>
 '.'                      <.>
@@ -22,6 +24,7 @@ STRING_LITERAL           <12>
 CLOSE_STRING             <'>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

@@ -1,6 +1,8 @@
 /*===TOKENS===*/
+Hidden:NEWLINE                  <>
 COMPONENT                <component>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 PUBLIC                   <public>
 IDENTIFIER               <void>
 FUNCTION                 <function>
@@ -8,6 +10,7 @@ IDENTIFIER               <test>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 PARAM                    <param>
 STRING                   <string>
 IDENTIFIER               <parse_error>
@@ -16,6 +19,7 @@ OPEN_STRING              <">
 STRING_LITERAL           <but works>
 CLOSE_STRING             <">
 ';'                      <;>
+Hidden:NEWLINE                  <>
 PARAM                    <param>
 IDENTIFIER               <type>
 '='                      <=>
@@ -33,17 +37,21 @@ OPEN_STRING              <">
 STRING_LITERAL           <works as expected>
 CLOSE_STRING             <">
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <writeDump>
 '('                      <(>
 IDENTIFIER               <parse_error>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <writeDump>
 '('                      <(>
 IDENTIFIER               <parses_fine>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

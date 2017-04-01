@@ -12,8 +12,7 @@ CLOSE_STRING             <'>
 '-'                      <->
 INTEGER_LITERAL          <1>
 ';'                      <;>
-LINE_COMMENT             <// Retrieving from a struct
->
+Hidden:LINE_COMMENT             <// Retrieving from a struct>
 IDENTIFIER               <colourCode>
 '='                      <=>
 IDENTIFIER               <colourArray>
@@ -26,8 +25,7 @@ OPEN_STRING              <">
 STRING_LITERAL           <black>
 CLOSE_STRING             <">
 ';'                      <;>
-LINE_COMMENT             <// Retrieving from an array
->
+Hidden:LINE_COMMENT             <// Retrieving from an array>
 IDENTIFIER               <employeeName>
 '='                      <=>
 IDENTIFIER               <getEmployeeName>
@@ -40,7 +38,7 @@ OPEN_STRING              <">
 STRING_LITERAL           <Joe>
 CLOSE_STRING             <">
 ';'                      <;>
-LINE_COMMENT             <// A function call>
+Hidden:LINE_COMMENT             <// A function call>
 /*===TREE===*/
 (scriptBlock
   (element

@@ -1,6 +1,7 @@
 /*===TOKENS===*/
 TRY                      <try>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 THROW                    <throw>
 '('                      <(>
 IDENTIFIER               <message>
@@ -16,8 +17,7 @@ STRING_LITERAL           <xyz>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
-LINE_COMMENT             <//CF9+
->
+Hidden:LINE_COMMENT             <//CF9+>
 '}'                      <}>
 CATCH                    <catch>
 '('                      <(>
@@ -25,10 +25,11 @@ ANY                      <any>
 IDENTIFIER               <e>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <WriteOutput>
 '('                      <(>
 OPEN_STRING              <">
-STRING_LITERAL           <Error: >
+STRING_LITERAL           <Error:>
 CLOSE_STRING             <">
 '&'                      <&>
 IDENTIFIER               <e>
@@ -36,10 +37,10 @@ IDENTIFIER               <e>
 IDENTIFIER               <message>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 RETHROW                  <rethrow>
 ';'                      <;>
-LINE_COMMENT             <//CF9+
->
+Hidden:LINE_COMMENT             <//CF9+>
 '}'                      <}>
 CATCH                    <catch>
 '('                      <(>
@@ -47,10 +48,11 @@ ANY                      <any>
 IDENTIFIER               <e>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <WriteOutput>
 '('                      <(>
 OPEN_STRING              <">
-STRING_LITERAL           <Error: >
+STRING_LITERAL           <Error:>
 CLOSE_STRING             <">
 '&'                      <&>
 IDENTIFIER               <e>
@@ -58,15 +60,14 @@ IDENTIFIER               <e>
 IDENTIFIER               <message>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 RETHROW                  <rethrow>
 ';'                      <;>
-LINE_COMMENT             <//CF9+
->
+Hidden:LINE_COMMENT             <//CF9+>
 '}'                      <}>
 FINALLY                  <finally>
 '{'                      <{>
-LINE_COMMENT             <//CF9+
->
+Hidden:LINE_COMMENT             <//CF9+>
 IDENTIFIER               <WriteOutput>
 '('                      <(>
 OPEN_STRING              <">
@@ -74,6 +75,7 @@ STRING_LITERAL           <I run even if no error>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

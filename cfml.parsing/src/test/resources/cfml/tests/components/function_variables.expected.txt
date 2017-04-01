@@ -1,11 +1,13 @@
 /*===TOKENS===*/
 COMPONENT                <component>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 FUNCTION                 <function>
 IDENTIFIER               <foo>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 IDENTIFIER               <foo>
 '='                      <=>
@@ -16,15 +18,20 @@ STRING                   <string>
 IDENTIFIER               <baz>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 RETURN                   <return>
 OPEN_STRING              <">
 STRING_LITERAL           <bar!>
 CLOSE_STRING             <">
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 /*===TREE===*/
 (scriptBlock
   (componentDeclaration

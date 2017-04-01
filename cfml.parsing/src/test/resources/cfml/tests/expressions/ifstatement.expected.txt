@@ -21,6 +21,7 @@ IDENTIFIER               <startDate>
 ')'                      <)>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

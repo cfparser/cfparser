@@ -3,13 +3,13 @@ LOG                      <log>
 IDENTIFIER               <text>
 '='                      <=>
 OPEN_STRING              <">
-STRING_LITERAL           <Event Gateway >
+STRING_LITERAL           <Event Gateway>
 '#'                      <#>
 IDENTIFIER               <variables>
 '.'                      <.>
 IDENTIFIER               <id>
 '#'                      <#>
-STRING_LITERAL           < started>
+STRING_LITERAL           <started>
 CLOSE_STRING             <">
 FILE                     <file>
 '='                      <=>
@@ -17,44 +17,51 @@ IDENTIFIER               <this>
 '.'                      <.>
 IDENTIFIER               <logfile>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 LOG                      <log>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <text>
 '='                      <=>
 OPEN_STRING              <">
 STRING_LITERAL           <text>
 CLOSE_STRING             <">
+Hidden:NEWLINE                  <>
 IDENTIFIER               <type>
 '='                      <=>
 OPEN_STRING              <">
 STRING_LITERAL           <information>
 CLOSE_STRING             <">
+Hidden:NEWLINE                  <>
 IDENTIFIER               <application>
 '='                      <=>
 OPEN_STRING              <">
 STRING_LITERAL           <yes>
 CLOSE_STRING             <">
+Hidden:NEWLINE                  <>
 FILE                     <file>
 '='                      <=>
 OPEN_STRING              <">
 STRING_LITERAL           <filename>
 CLOSE_STRING             <">
+Hidden:NEWLINE                  <>
 LOG                      <log>
 '='                      <=>
 OPEN_STRING              <">
 STRING_LITERAL           <log type>
 CLOSE_STRING             <">
 ';'                      <;>
+Hidden:NEWLINE                  <>
 LOG                      <log>
 IDENTIFIER               <text>
 '='                      <=>
 OPEN_STRING              <">
-STRING_LITERAL           <Event Gateway >
+STRING_LITERAL           <Event Gateway>
 '#'                      <#>
 IDENTIFIER               <variables>
 '.'                      <.>
 IDENTIFIER               <id>
 '#'                      <#>
-STRING_LITERAL           < error: >
+STRING_LITERAL           <error:>
 '#'                      <#>
 IDENTIFIER               <ex>
 '.'                      <.>
@@ -72,6 +79,7 @@ OPEN_STRING              <">
 STRING_LITERAL           <error>
 CLOSE_STRING             <">
 ';'                      <;>
+Hidden:NEWLINE                  <>
 PARAM                    <param>
 IDENTIFIER               <name>
 '='                      <=>
@@ -99,8 +107,8 @@ OPEN_STRING              <">
 STRING_LITERAL           <18>
 CLOSE_STRING             <">
 ';'                      <;>
-LINE_COMMENT             <//How about cfhttp ?
->
+Hidden:NEWLINE                  <>
+Hidden:LINE_COMMENT             <//How about cfhttp ?>
 HTTP                     <http>
 IDENTIFIER               <method>
 '='                      <=>
@@ -118,6 +126,7 @@ OPEN_STRING              <">
 STRING_LITERAL           <webPage>
 CLOSE_STRING             <">
 ';'                      <;>
+Hidden:NEWLINE                  <>
 MAIL                     <mail>
 IDENTIFIER               <from>
 '='                      <=>
@@ -135,17 +144,19 @@ OPEN_STRING              <">
 STRING_LITERAL           <Awesome! Tags in Script!>
 CLOSE_STRING             <">
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <WriteOutput>
 '('                      <(>
 OPEN_STRING              <">
 STRING_LITERAL           <Hey Gert!
 Check out the code samples here! You can write tags in CFScript
-Mark
->
+Mark>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 DIRECTORY                <directory>
 IDENTIFIER               <name>
 '='                      <=>
@@ -161,8 +172,8 @@ OPEN_STRING              <">
 STRING_LITERAL           <list>
 CLOSE_STRING             <">
 ';'                      <;>
-LINE_COMMENT             <//Query a database
->
+Hidden:NEWLINE                  <>
+Hidden:LINE_COMMENT             <//Query a database>
 QUERY                    <query>
 IDENTIFIER               <name>
 '='                      <=>
@@ -175,6 +186,7 @@ OPEN_STRING              <">
 STRING_LITERAL           <myDatasource>
 CLOSE_STRING             <">
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <echo>
 '('                      <(>
 OPEN_STRING              <">
@@ -182,6 +194,7 @@ STRING_LITERAL           <SELECT * FROM tusers WHERE UserID =>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 QUERYPARAM               <queryparam>
 IDENTIFIER               <cfsqltype>
 '='                      <=>
@@ -194,7 +207,9 @@ OPEN_STRING              <">
 STRING_LITERAL           <6300EE15-1320-5CC2-F9F48B9DBBA54D9F>
 CLOSE_STRING             <">
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <dump>
 '('                      <(>
 IDENTIFIER               <getUsers>

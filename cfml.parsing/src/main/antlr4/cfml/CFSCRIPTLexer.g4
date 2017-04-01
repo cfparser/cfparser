@@ -7,7 +7,8 @@ mode DefaultMode;
 
 //Note: need case insensitive stream: http://www.antlr.org/wiki/pages/viewpage.action?pageId=1782
 
-WS	:	(' ' | '\t' | '\n' | '\r' | '\f' )+ ->skip;//-> channel(HIDDEN);
+WS  :   (' ' | '\t' | '\f' )+ ->skip;//
+NEWLINE : ('\n' | '\r' )+ -> channel(HIDDEN);
 
 LINE_COMMENT :
             '//'

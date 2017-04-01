@@ -4,6 +4,7 @@ IDENTIFIER               <x>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 VAR                      <var>
 IDENTIFIER               <callRate>
 '='                      <=>
@@ -18,6 +19,7 @@ STRING_LITERAL           <object.cps.CallRate>
 CLOSE_STRING             <">
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <callRate>
 '.'                      <.>
 IDENTIFIER               <init>
@@ -35,6 +37,7 @@ IDENTIFIER               <newDescription>
 IDENTIFIER               <Description>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <ArrayAppend>
 '('                      <(>
 IDENTIFIER               <result>
@@ -42,6 +45,7 @@ IDENTIFIER               <result>
 IDENTIFIER               <callRate>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

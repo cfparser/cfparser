@@ -1,12 +1,14 @@
 /*===TOKENS===*/
 COMPONENT                <component>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 PROPERTY                 <property>
 STRUCT                   <struct>
 IDENTIFIER               <variables>
 '.'                      <.>
 IDENTIFIER               <displays>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock
@@ -34,4 +36,9 @@ IDENTIFIER               <displays>
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+component {
+property struct variables.displays
+}
 /*======*/

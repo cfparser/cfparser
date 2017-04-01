@@ -5,23 +5,30 @@ QUERY                    <query>
 '='                      <=>
 IDENTIFIER               <SiteRelatedTables>
 ')'                      <)>
+Hidden:NEWLINE                  <>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <loopy>
 '('                      <(>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
+Hidden:NEWLINE                  <>
 LOOP                     <loop>
 '('                      <(>
 QUERY                    <query>
 '='                      <=>
 IDENTIFIER               <SiteRelatedTables>
 ')'                      <)>
+Hidden:NEWLINE                  <>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <loopy>
 '('                      <(>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock

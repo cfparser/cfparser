@@ -12,6 +12,7 @@ IDENTIFIER               <findAll>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
+Hidden:NEWLINE                  <>
 RETURN                   <return>
 IDENTIFIER               <newsService>
 '.'                      <.>
@@ -19,6 +20,7 @@ IDENTIFIER               <findAll>
 '('                      <(>
 ')'                      <)>
 ';'                      <;>
+Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock
