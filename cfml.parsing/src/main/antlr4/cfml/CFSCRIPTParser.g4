@@ -665,6 +665,7 @@ implicitStruct
   
 implicitStructElements
   : implicitStructExpression ( COMMA implicitStructExpression )*
+    unnecessaryComma=COMMA?
   ;
 
 implicitStructExpression

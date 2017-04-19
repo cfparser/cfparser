@@ -1,0 +1,69 @@
+/*===TOKENS===*/
+IDENTIFIER               <foo>
+'='                      <=>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+IDENTIFIER               <bar>
+'='                      <=>
+INTEGER_LITERAL          <1>
+','                      <,>
+Hidden:NEWLINE                  <>
+IDENTIFIER               <baz>
+'='                      <=>
+INTEGER_LITERAL          <2>
+','                      <,>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (compareExpression
+            (baseExpression (unaryExpression (memberExpression (identifier foo))))
+          )
+        )
+        =
+        (startExpression
+          (compareExpression
+            (baseExpression
+              (unaryExpression
+                (primaryExpression
+                  (implicitStruct
+                    {
+                    (implicitStructElements
+                      (implicitStructExpression
+                        (implicitStructKeyExpression (multipartIdentifier (identifier bar)))
+                        =
+                        (compareExpression
+                          (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                        )
+                      )
+                      ,
+                      (implicitStructExpression
+                        (implicitStructKeyExpression (multipartIdentifier (identifier baz)))
+                        =
+                        (compareExpression
+                          (baseExpression (unaryExpression (primaryExpression (literalExpression 2))))
+                        )
+                      )
+                      ,
+                    )
+                    }
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      (endOfStatement ;)
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+foo = {bar:1,baz:2}
+/*======*/
