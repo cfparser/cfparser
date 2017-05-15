@@ -78,8 +78,8 @@ import cfml.parsing.cfscript.script.CFFuncDeclStatement;
 
 public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression> {
 	
-	Stack<CFExpression> aggregator = new Stack<CFExpression>();
-	CFScriptStatementVisitor scriptStatementVisitor = null;
+	private Stack<CFExpression> aggregator = new Stack<CFExpression>();
+	private CFScriptStatementVisitor scriptStatementVisitor = null;
 	
 	public CFExpressionVisitor() {
 		super();
