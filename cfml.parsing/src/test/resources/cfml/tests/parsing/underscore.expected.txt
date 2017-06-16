@@ -1,0 +1,50 @@
+/*===TOKENS===*/
+IDENTIFIER               <variables>
+'.'                      <.>
+IDENTIFIER               <_>
+'.'                      <.>
+IDENTIFIER               <reverse>
+'('                      <(>
+IDENTIFIER               <categoryList>
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (memberExpression
+                (identifier variables)
+                .
+                (identifier _)
+                .
+                (qualifiedFunctionCall
+                  (identifier reverse)
+                  (
+                  (argumentList
+                    (argument
+                      (startExpression
+                        (compareExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier categoryList))))
+                        )
+                      )
+                    )
+                  )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+variables._.reverse(categoryList)
+/*======*/

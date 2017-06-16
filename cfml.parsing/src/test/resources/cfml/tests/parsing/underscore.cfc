@@ -1,0 +1,1 @@
+variables._.reverse(categoryList);
