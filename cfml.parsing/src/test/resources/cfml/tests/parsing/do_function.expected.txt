@@ -1,0 +1,51 @@
+/*===TOKENS===*/
+IDENTIFIER               <myFusebox>
+'.'                      <.>
+DO                       <do>
+'('                      <(>
+OPEN_STRING              <">
+STRING_LITERAL           <k.l>
+CLOSE_STRING             <">
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (startExpression
+        (compareExpression
+          (baseExpression
+            (unaryExpression
+              (memberExpression
+                (identifier myFusebox)
+                .
+                (qualifiedFunctionCall
+                  (reservedWord (cfscriptKeywords do))
+                  (
+                  (argumentList
+                    (argument
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart k.l) "))
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
