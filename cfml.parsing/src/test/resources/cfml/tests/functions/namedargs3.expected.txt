@@ -27,7 +27,7 @@ IDENTIFIER               <argValueTwo>
               (memberExpression
                 (identifier foo)
                 .
-                (functionCall
+                (qualifiedFunctionCall
                   (identifier bar)
                   (
                   (argumentList

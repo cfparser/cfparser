@@ -71,8 +71,8 @@ Hidden:NEWLINE                  <>
                     (memberExpression
                       (identifier idSet)
                       .
-                      (functionCall
-                        (specialWord contains)
+                      (qualifiedFunctionCall
+                        (reservedWord (specialWord contains))
                         (
                         (argumentList
                           (argument

@@ -60,7 +60,7 @@ Hidden:NEWLINE                  <>
                                 .
                                 (identifier ticket)
                                 .
-                                (functionCall (identifier getShortId) ( argumentList ))
+                                (qualifiedFunctionCall (identifier getShortId) ( argumentList ))
                               )
                             )
                           )
@@ -90,7 +90,7 @@ Hidden:NEWLINE                  <>
                                         .
                                         (identifier ticket)
                                         .
-                                        (functionCall (identifier getShortId) ( argumentList ))
+                                        (qualifiedFunctionCall (identifier getShortId) ( argumentList ))
                                       )
                                     )
                                   )

@@ -489,7 +489,7 @@ memberExpression
   	| parentheticalExpression//-> primaryExpression
   ) // set return tree to just primary
   ( 
-    DOT+ functionCall
+    DOT+ qualifiedFunctionCall
     | arrayMemberExpression parentheticalMemberExpression?
     | DOT+ primaryExpressionIRW 
     | DOT+ identifier
@@ -507,6 +507,11 @@ functionCall
 	:(identifier | specialWord) LEFTPAREN argumentList RIGHTPAREN
 	body=compoundStatement?
 	;
+qualifiedFunctionCall
+	:(identifier | reservedWord) LEFTPAREN argumentList RIGHTPAREN
+	body=compoundStatement?
+	;
+	
 	  
 parentheticalMemberExpression
 	:LEFTPAREN argumentList RIGHTPAREN 

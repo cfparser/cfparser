@@ -58,7 +58,7 @@ Hidden:NEWLINE                  <>
                     (memberExpression
                       (identifier newsService)
                       .
-                      (functionCall (identifier findAll) ( argumentList ))
+                      (qualifiedFunctionCall (identifier findAll) ( argumentList ))
                     )
                   )
                 )

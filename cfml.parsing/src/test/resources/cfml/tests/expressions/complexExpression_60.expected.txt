@@ -129,7 +129,7 @@ Hidden:NEWLINE                  <>
                                                     (memberExpression
                                                       (identifier thing)
                                                       .
-                                                      (functionCall (identifier getID) ( argumentList ))
+                                                      (qualifiedFunctionCall (identifier getID) ( argumentList ))
                                                     )
                                                   )
                                                 )
@@ -181,7 +181,7 @@ Hidden:NEWLINE                  <>
                                                     (memberExpression
                                                       (identifier thing)
                                                       .
-                                                      (functionCall (identifier getName) ( argumentList ))
+                                                      (qualifiedFunctionCall (identifier getName) ( argumentList ))
                                                     )
                                                   )
                                                 )
@@ -228,7 +228,7 @@ Hidden:NEWLINE                  <>
                                                                             (memberExpression
                                                                               (identifier thing)
                                                                               .
-                                                                              (functionCall (identifier getName) ( argumentList ))
+                                                                              (qualifiedFunctionCall (identifier getName) ( argumentList ))
                                                                             )
                                                                           )
                                                                         )

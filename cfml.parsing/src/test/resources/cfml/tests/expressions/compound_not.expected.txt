@@ -40,8 +40,8 @@ Hidden:NEWLINE                  <>
                                     (memberExpression
                                       (identifier smartGroups)
                                       .
-                                      (functionCall
-                                        (specialWord contains)
+                                      (qualifiedFunctionCall
+                                        (reservedWord (specialWord contains))
                                         (
                                         (argumentList
                                           (argument

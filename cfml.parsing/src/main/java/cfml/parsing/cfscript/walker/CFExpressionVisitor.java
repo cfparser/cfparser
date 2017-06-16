@@ -43,6 +43,7 @@ import cfml.CFSCRIPTParser.ParentheticalExpressionContext;
 import cfml.CFSCRIPTParser.ParentheticalMemberExpressionContext;
 import cfml.CFSCRIPTParser.PrimaryExpressionContext;
 import cfml.CFSCRIPTParser.PrimaryExpressionIRWContext;
+import cfml.CFSCRIPTParser.QualifiedFunctionCallContext;
 import cfml.CFSCRIPTParser.ReservedWordContext;
 import cfml.CFSCRIPTParser.SpecialWordContext;
 import cfml.CFSCRIPTParser.StringLiteralContext;
@@ -435,6 +436,25 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	
 	@Override
 	public CFExpression visitFunctionCall(FunctionCallContext ctx) {
+		ArgumentsVector args = new ArgumentsVector();
+		if (ctx.argumentList() != null) {
+			for (ArgumentContext argCtx : ctx.argumentList().argument()) {
+				if (argCtx.name != null) {
+					args.addNamedArg(visit(argCtx.name), visit(argCtx.startExpression()));
+				} else {
+					args.add(visit(argCtx));
+				}
+			}
+		}
+		CFFunctionExpression cfFunctionExpression = new CFFunctionExpression((CFIdentifier) visit(ctx.getChild(0)), args);
+		if (ctx.body != null) {
+			cfFunctionExpression.setBody(getCFScriptStatementVisitor().visit(ctx.body));
+		}
+		return cfFunctionExpression;
+	}
+	
+	@Override
+	public CFExpression visitQualifiedFunctionCall(QualifiedFunctionCallContext ctx) {
 		ArgumentsVector args = new ArgumentsVector();
 		if (ctx.argumentList() != null) {
 			for (ArgumentContext argCtx : ctx.argumentList().argument()) {

@@ -74,7 +74,7 @@ Hidden:NEWLINE                  <>
                     (memberExpression
                       (functionCall (identifier getServiceLocator) ( argumentList ))
                       .
-                      (functionCall
+                      (qualifiedFunctionCall
                         (identifier get)
                         (
                         (argumentList
@@ -110,7 +110,7 @@ Hidden:NEWLINE                  <>
                   (memberExpression
                     (identifier callRate)
                     .
-                    (functionCall
+                    (qualifiedFunctionCall
                       (identifier init)
                       (
                       (argumentList

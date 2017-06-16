@@ -772,7 +772,7 @@ Hidden:NEWLINE                  <>
                                             )
                                           )
                                           .
-                                          (functionCall
+                                          (qualifiedFunctionCall
                                             (identifier init)
                                             (
                                             (argumentList
@@ -802,7 +802,7 @@ Hidden:NEWLINE                  <>
                                       (memberExpression
                                         (functionCall (identifier getURLClassLoader) ( argumentList ))
                                         .
-                                        (functionCall
+                                        (qualifiedFunctionCall
                                           (identifier addURL)
                                           (
                                           (argumentList
@@ -814,7 +814,7 @@ Hidden:NEWLINE                  <>
                                                       (memberExpression
                                                         (identifier (cfmlFunction file))
                                                         .
-                                                        (functionCall (identifier toURL) ( argumentList ))
+                                                        (qualifiedFunctionCall (identifier toURL) ( argumentList ))
                                                       )
                                                     )
                                                   )
@@ -1264,7 +1264,7 @@ Hidden:NEWLINE                  <>
                                 (memberExpression
                                   (functionCall (identifier getJavaCompiler) ( argumentList ))
                                   .
-                                  (functionCall
+                                  (qualifiedFunctionCall
                                     (identifier compile)
                                     (
                                     (argumentList
@@ -1358,7 +1358,7 @@ Hidden:NEWLINE                  <>
                                     )
                                   )
                                   .
-                                  (functionCall
+                                  (qualifiedFunctionCall
                                     (identifier init)
                                     (
                                     (argumentList
@@ -1388,7 +1388,7 @@ Hidden:NEWLINE                  <>
                               (memberExpression
                                 (functionCall (identifier getURLClassLoader) ( argumentList ))
                                 .
-                                (functionCall
+                                (qualifiedFunctionCall
                                   (identifier addURL)
                                   (
                                   (argumentList
@@ -1400,7 +1400,7 @@ Hidden:NEWLINE                  <>
                                               (memberExpression
                                                 (identifier (cfmlFunction file))
                                                 .
-                                                (functionCall (identifier toURL) ( argumentList ))
+                                                (qualifiedFunctionCall (identifier toURL) ( argumentList ))
                                               )
                                             )
                                           )
