@@ -101,26 +101,20 @@ Hidden:NEWLINE                  <>
                     (baseExpression
                       (notExpression
                         !
-                        (startExpression
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression
-                                  (functionCall
-                                    (identifier isNull)
-                                    (
-                                    (argumentList
-                                      (argument
-                                        (startExpression
-                                          (compareExpression
-                                            (baseExpression (unaryExpression (memberExpression (identifier localData))))
-                                          )
-                                        )
-                                      )
-                                    )
+                        (unaryExpression
+                          (memberExpression
+                            (functionCall
+                              (identifier isNull)
+                              (
+                              (argumentList
+                                (argument
+                                  (startExpression
+                                    (compareExpression
+                                      (baseExpression (unaryExpression (memberExpression (identifier localData))))
                                     )
                                   )
                                 )
+                              )
                               )
                             )
                           )

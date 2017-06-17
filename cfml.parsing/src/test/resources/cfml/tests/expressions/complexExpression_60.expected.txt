@@ -211,34 +211,28 @@ Hidden:NEWLINE                  <>
                                                 (baseExpression
                                                   (notExpression
                                                     !
-                                                    (startExpression
-                                                      (compareExpression
-                                                        (baseExpression
-                                                          (unaryExpression
-                                                            (memberExpression
-                                                              (functionCall
-                                                                (identifier len)
-                                                                (
-                                                                (argumentList
-                                                                  (argument
-                                                                    (startExpression
-                                                                      (compareExpression
-                                                                        (baseExpression
-                                                                          (unaryExpression
-                                                                            (memberExpression
-                                                                              (identifier thing)
-                                                                              .
-                                                                              (qualifiedFunctionCall (identifier getName) ( argumentList ))
-                                                                            )
-                                                                          )
-                                                                        )
+                                                    (unaryExpression
+                                                      (memberExpression
+                                                        (functionCall
+                                                          (identifier len)
+                                                          (
+                                                          (argumentList
+                                                            (argument
+                                                              (startExpression
+                                                                (compareExpression
+                                                                  (baseExpression
+                                                                    (unaryExpression
+                                                                      (memberExpression
+                                                                        (identifier thing)
+                                                                        .
+                                                                        (qualifiedFunctionCall (identifier getName) ( argumentList ))
                                                                       )
                                                                     )
                                                                   )
                                                                 )
-                                                                )
                                                               )
                                                             )
+                                                          )
                                                           )
                                                         )
                                                       )

@@ -218,10 +218,10 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		}
 		if (ctx.notExpression() != null) {
 			return new CFUnaryExpression(getTerminalToken(ctx.notExpression().getChild(0)),
-					visit(ctx.notExpression().startExpression()));
+					visit(ctx.notExpression().unaryExpression()));
 		} else if (ctx.notNotExpression() != null) {
 			return new CFUnaryExpression(getTerminalToken(ctx.notNotExpression().getChild(0)),
-					visit(ctx.notNotExpression().startExpression()));
+					visit(ctx.notNotExpression().unaryExpression()));
 		} else if (ctx.unaryExpression() != null) {
 			return visitUnaryExpression(ctx.unaryExpression());
 		} else if (ctx.ternaryExpression() != null) {

@@ -1,0 +1,608 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+FUNCTION                 <function>
+IDENTIFIER               <foo>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+IF                       <if>
+'('                      <(>
+IDENTIFIER               <keys>
+'['                      <[>
+IDENTIFIER               <i>
+']'                      <]>
+EQ                       <==>
+IDENTIFIER               <sectionActionsName>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionFreeSkills>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionActions>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionActionsContact>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionActionsHistory>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionComment>
+Hidden:NEWLINE                  <>
+'||'                     <||>
+IDENTIFIER               <keys>
+'['                      <[>
+IDENTIFIER               <i>
+']'                      <]>
+EQ                       <==>
+IDENTIFIER               <sectionProfileName>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionProfile>
+Hidden:NEWLINE                  <>
+'||'                     <||>
+IDENTIFIER               <keys>
+'['                      <[>
+IDENTIFIER               <i>
+']'                      <]>
+EQ                       <==>
+IDENTIFIER               <sectionLanguagesName>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionLanguages>
+Hidden:NEWLINE                  <>
+'||'                     <||>
+IDENTIFIER               <keys>
+'['                      <[>
+IDENTIFIER               <i>
+']'                      <]>
+EQ                       <==>
+IDENTIFIER               <sectionExperienceWidgetName>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionProfile>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionExperience>
+Hidden:NEWLINE                  <>
+'||'                     <||>
+IDENTIFIER               <keys>
+'['                      <[>
+IDENTIFIER               <i>
+']'                      <]>
+EQ                       <==>
+IDENTIFIER               <sectionProfileName>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionProfile>
+Hidden:NEWLINE                  <>
+'||'                     <||>
+IDENTIFIER               <keys>
+'['                      <[>
+IDENTIFIER               <i>
+']'                      <]>
+EQ                       <==>
+IDENTIFIER               <sectionExperienceName>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionExperience>
+Hidden:NEWLINE                  <>
+'||'                     <||>
+IDENTIFIER               <keys>
+'['                      <[>
+IDENTIFIER               <i>
+']'                      <]>
+EQ                       <==>
+IDENTIFIER               <sectionSkillsName>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionSkills>
+Hidden:NEWLINE                  <>
+'||'                     <||>
+IDENTIFIER               <keys>
+'['                      <[>
+IDENTIFIER               <i>
+']'                      <]>
+EQ                       <==>
+IDENTIFIER               <sectionFreeSkillsName>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionFreeSkills>
+Hidden:NEWLINE                  <>
+'||'                     <||>
+IDENTIFIER               <keys>
+'['                      <[>
+IDENTIFIER               <i>
+']'                      <]>
+EQ                       <==>
+IDENTIFIER               <sectionFunctionsName>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionFunctions>
+Hidden:NEWLINE                  <>
+'||'                     <||>
+IDENTIFIER               <keys>
+'['                      <[>
+IDENTIFIER               <i>
+']'                      <]>
+EQ                       <==>
+IDENTIFIER               <sectionEducationName>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionEducation>
+Hidden:NEWLINE                  <>
+'||'                     <||>
+IDENTIFIER               <keys>
+'['                      <[>
+IDENTIFIER               <i>
+']'                      <]>
+EQ                       <==>
+IDENTIFIER               <sectionAttachmentName>
+'&&'                     <&&>
+'!'                      <!>
+IDENTIFIER               <loadSectionAttachment>
+Hidden:NEWLINE                  <>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+Hidden:LINE_COMMENT             <// do something>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          function
+          (identifier foo)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (ifStatement
+                if
+                (condition
+                  (
+                  (compareExpression
+                    (baseExpression
+                      (unaryExpression
+                        (memberExpression
+                          (identifier keys)
+                          (arrayMemberExpression
+                            [
+                            (startExpression
+                              (compareExpression
+                                (baseExpression (unaryExpression (memberExpression (identifier i))))
+                              )
+                            )
+                            ]
+                          )
+                        )
+                      )
+                    )
+                    (compareExpressionOperator ==)
+                    (compareExpression
+                      (baseExpression
+                        (unaryExpression (memberExpression (identifier sectionActionsName)))
+                      )
+                      (compareExpressionOperator &&)
+                      (compareExpression
+                        (baseExpression
+                          (notExpression
+                            !
+                            (unaryExpression (memberExpression (identifier loadSectionFreeSkills)))
+                          )
+                        )
+                        (compareExpressionOperator &&)
+                        (compareExpression
+                          (baseExpression
+                            (notExpression
+                              !
+                              (unaryExpression (memberExpression (identifier loadSectionActions)))
+                            )
+                          )
+                          (compareExpressionOperator &&)
+                          (compareExpression
+                            (baseExpression
+                              (notExpression
+                                !
+                                (unaryExpression (memberExpression (identifier loadSectionActionsContact)))
+                              )
+                            )
+                            (compareExpressionOperator &&)
+                            (compareExpression
+                              (baseExpression
+                                (notExpression
+                                  !
+                                  (unaryExpression (memberExpression (identifier loadSectionActionsHistory)))
+                                )
+                              )
+                              (compareExpressionOperator &&)
+                              (compareExpression
+                                (baseExpression
+                                  (notExpression
+                                    !
+                                    (unaryExpression (memberExpression (identifier loadSectionComment)))
+                                  )
+                                )
+                                (compareExpressionOperator ||)
+                                (compareExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (memberExpression
+                                        (identifier keys)
+                                        (arrayMemberExpression
+                                          [
+                                          (startExpression
+                                            (compareExpression
+                                              (baseExpression (unaryExpression (memberExpression (identifier i))))
+                                            )
+                                          )
+                                          ]
+                                        )
+                                      )
+                                    )
+                                  )
+                                  (compareExpressionOperator ==)
+                                  (compareExpression
+                                    (baseExpression
+                                      (unaryExpression (memberExpression (identifier sectionProfileName)))
+                                    )
+                                    (compareExpressionOperator &&)
+                                    (compareExpression
+                                      (baseExpression
+                                        (notExpression
+                                          !
+                                          (unaryExpression (memberExpression (identifier loadSectionProfile)))
+                                        )
+                                      )
+                                      (compareExpressionOperator ||)
+                                      (compareExpression
+                                        (baseExpression
+                                          (unaryExpression
+                                            (memberExpression
+                                              (identifier keys)
+                                              (arrayMemberExpression
+                                                [
+                                                (startExpression
+                                                  (compareExpression
+                                                    (baseExpression (unaryExpression (memberExpression (identifier i))))
+                                                  )
+                                                )
+                                                ]
+                                              )
+                                            )
+                                          )
+                                        )
+                                        (compareExpressionOperator ==)
+                                        (compareExpression
+                                          (baseExpression
+                                            (unaryExpression (memberExpression (identifier sectionLanguagesName)))
+                                          )
+                                          (compareExpressionOperator &&)
+                                          (compareExpression
+                                            (baseExpression
+                                              (notExpression
+                                                !
+                                                (unaryExpression (memberExpression (identifier loadSectionLanguages)))
+                                              )
+                                            )
+                                            (compareExpressionOperator ||)
+                                            (compareExpression
+                                              (baseExpression
+                                                (unaryExpression
+                                                  (memberExpression
+                                                    (identifier keys)
+                                                    (arrayMemberExpression
+                                                      [
+                                                      (startExpression
+                                                        (compareExpression
+                                                          (baseExpression (unaryExpression (memberExpression (identifier i))))
+                                                        )
+                                                      )
+                                                      ]
+                                                    )
+                                                  )
+                                                )
+                                              )
+                                              (compareExpressionOperator ==)
+                                              (compareExpression
+                                                (baseExpression
+                                                  (unaryExpression (memberExpression (identifier sectionExperienceWidgetName)))
+                                                )
+                                                (compareExpressionOperator &&)
+                                                (compareExpression
+                                                  (baseExpression
+                                                    (notExpression
+                                                      !
+                                                      (unaryExpression (memberExpression (identifier loadSectionProfile)))
+                                                    )
+                                                  )
+                                                  (compareExpressionOperator &&)
+                                                  (compareExpression
+                                                    (baseExpression
+                                                      (notExpression
+                                                        !
+                                                        (unaryExpression (memberExpression (identifier loadSectionExperience)))
+                                                      )
+                                                    )
+                                                    (compareExpressionOperator ||)
+                                                    (compareExpression
+                                                      (baseExpression
+                                                        (unaryExpression
+                                                          (memberExpression
+                                                            (identifier keys)
+                                                            (arrayMemberExpression
+                                                              [
+                                                              (startExpression
+                                                                (compareExpression
+                                                                  (baseExpression (unaryExpression (memberExpression (identifier i))))
+                                                                )
+                                                              )
+                                                              ]
+                                                            )
+                                                          )
+                                                        )
+                                                      )
+                                                      (compareExpressionOperator ==)
+                                                      (compareExpression
+                                                        (baseExpression
+                                                          (unaryExpression (memberExpression (identifier sectionProfileName)))
+                                                        )
+                                                        (compareExpressionOperator &&)
+                                                        (compareExpression
+                                                          (baseExpression
+                                                            (notExpression
+                                                              !
+                                                              (unaryExpression (memberExpression (identifier loadSectionProfile)))
+                                                            )
+                                                          )
+                                                          (compareExpressionOperator ||)
+                                                          (compareExpression
+                                                            (baseExpression
+                                                              (unaryExpression
+                                                                (memberExpression
+                                                                  (identifier keys)
+                                                                  (arrayMemberExpression
+                                                                    [
+                                                                    (startExpression
+                                                                      (compareExpression
+                                                                        (baseExpression (unaryExpression (memberExpression (identifier i))))
+                                                                      )
+                                                                    )
+                                                                    ]
+                                                                  )
+                                                                )
+                                                              )
+                                                            )
+                                                            (compareExpressionOperator ==)
+                                                            (compareExpression
+                                                              (baseExpression
+                                                                (unaryExpression (memberExpression (identifier sectionExperienceName)))
+                                                              )
+                                                              (compareExpressionOperator &&)
+                                                              (compareExpression
+                                                                (baseExpression
+                                                                  (notExpression
+                                                                    !
+                                                                    (unaryExpression (memberExpression (identifier loadSectionExperience)))
+                                                                  )
+                                                                )
+                                                                (compareExpressionOperator ||)
+                                                                (compareExpression
+                                                                  (baseExpression
+                                                                    (unaryExpression
+                                                                      (memberExpression
+                                                                        (identifier keys)
+                                                                        (arrayMemberExpression
+                                                                          [
+                                                                          (startExpression
+                                                                            (compareExpression
+                                                                              (baseExpression (unaryExpression (memberExpression (identifier i))))
+                                                                            )
+                                                                          )
+                                                                          ]
+                                                                        )
+                                                                      )
+                                                                    )
+                                                                  )
+                                                                  (compareExpressionOperator ==)
+                                                                  (compareExpression
+                                                                    (baseExpression
+                                                                      (unaryExpression (memberExpression (identifier sectionSkillsName)))
+                                                                    )
+                                                                    (compareExpressionOperator &&)
+                                                                    (compareExpression
+                                                                      (baseExpression
+                                                                        (notExpression
+                                                                          !
+                                                                          (unaryExpression (memberExpression (identifier loadSectionSkills)))
+                                                                        )
+                                                                      )
+                                                                      (compareExpressionOperator ||)
+                                                                      (compareExpression
+                                                                        (baseExpression
+                                                                          (unaryExpression
+                                                                            (memberExpression
+                                                                              (identifier keys)
+                                                                              (arrayMemberExpression
+                                                                                [
+                                                                                (startExpression
+                                                                                  (compareExpression
+                                                                                    (baseExpression (unaryExpression (memberExpression (identifier i))))
+                                                                                  )
+                                                                                )
+                                                                                ]
+                                                                              )
+                                                                            )
+                                                                          )
+                                                                        )
+                                                                        (compareExpressionOperator ==)
+                                                                        (compareExpression
+                                                                          (baseExpression
+                                                                            (unaryExpression (memberExpression (identifier sectionFreeSkillsName)))
+                                                                          )
+                                                                          (compareExpressionOperator &&)
+                                                                          (compareExpression
+                                                                            (baseExpression
+                                                                              (notExpression
+                                                                                !
+                                                                                (unaryExpression (memberExpression (identifier loadSectionFreeSkills)))
+                                                                              )
+                                                                            )
+                                                                            (compareExpressionOperator ||)
+                                                                            (compareExpression
+                                                                              (baseExpression
+                                                                                (unaryExpression
+                                                                                  (memberExpression
+                                                                                    (identifier keys)
+                                                                                    (arrayMemberExpression
+                                                                                      [
+                                                                                      (startExpression
+                                                                                        (compareExpression
+                                                                                          (baseExpression (unaryExpression (memberExpression (identifier i))))
+                                                                                        )
+                                                                                      )
+                                                                                      ]
+                                                                                    )
+                                                                                  )
+                                                                                )
+                                                                              )
+                                                                              (compareExpressionOperator ==)
+                                                                              (compareExpression
+                                                                                (baseExpression
+                                                                                  (unaryExpression (memberExpression (identifier sectionFunctionsName)))
+                                                                                )
+                                                                                (compareExpressionOperator &&)
+                                                                                (compareExpression
+                                                                                  (baseExpression
+                                                                                    (notExpression
+                                                                                      !
+                                                                                      (unaryExpression (memberExpression (identifier loadSectionFunctions)))
+                                                                                    )
+                                                                                  )
+                                                                                  (compareExpressionOperator ||)
+                                                                                  (compareExpression
+                                                                                    (baseExpression
+                                                                                      (unaryExpression
+                                                                                        (memberExpression
+                                                                                          (identifier keys)
+                                                                                          (arrayMemberExpression
+                                                                                            [
+                                                                                            (startExpression
+                                                                                              (compareExpression
+                                                                                                (baseExpression (unaryExpression (memberExpression (identifier i))))
+                                                                                              )
+                                                                                            )
+                                                                                            ]
+                                                                                          )
+                                                                                        )
+                                                                                      )
+                                                                                    )
+                                                                                    (compareExpressionOperator ==)
+                                                                                    (compareExpression
+                                                                                      (baseExpression
+                                                                                        (unaryExpression (memberExpression (identifier sectionEducationName)))
+                                                                                      )
+                                                                                      (compareExpressionOperator &&)
+                                                                                      (compareExpression
+                                                                                        (baseExpression
+                                                                                          (notExpression
+                                                                                            !
+                                                                                            (unaryExpression (memberExpression (identifier loadSectionEducation)))
+                                                                                          )
+                                                                                        )
+                                                                                        (compareExpressionOperator ||)
+                                                                                        (compareExpression
+                                                                                          (baseExpression
+                                                                                            (unaryExpression
+                                                                                              (memberExpression
+                                                                                                (identifier keys)
+                                                                                                (arrayMemberExpression
+                                                                                                  [
+                                                                                                  (startExpression
+                                                                                                    (compareExpression
+                                                                                                      (baseExpression (unaryExpression (memberExpression (identifier i))))
+                                                                                                    )
+                                                                                                  )
+                                                                                                  ]
+                                                                                                )
+                                                                                              )
+                                                                                            )
+                                                                                          )
+                                                                                          (compareExpressionOperator ==)
+                                                                                          (compareExpression
+                                                                                            (baseExpression
+                                                                                              (unaryExpression (memberExpression (identifier sectionAttachmentName)))
+                                                                                            )
+                                                                                            (compareExpressionOperator &&)
+                                                                                            (compareExpression
+                                                                                              (baseExpression
+                                                                                                (notExpression
+                                                                                                  !
+                                                                                                  (unaryExpression (memberExpression (identifier loadSectionAttachment)))
+                                                                                                )
+                                                                                              )
+                                                                                            )
+                                                                                          )
+                                                                                        )
+                                                                                      )
+                                                                                    )
+                                                                                  )
+                                                                                )
+                                                                              )
+                                                                            )
+                                                                          )
+                                                                        )
+                                                                      )
+                                                                    )
+                                                                  )
+                                                                )
+                                                              )
+                                                            )
+                                                          )
+                                                        )
+                                                      )
+                                                    )
+                                                  )
+                                                )
+                                              )
+                                            )
+                                          )
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  )
+                )
+                (statement (compoundStatement { }))
+              )
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/

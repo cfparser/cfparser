@@ -26,42 +26,36 @@ Hidden:NEWLINE                  <>
             (baseExpression
               (notExpression
                 NOT
-                (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (memberExpression
-                          (parentheticalExpression
-                            (
-                            (startExpression
-                              (compareExpression
-                                (baseExpression
-                                  (unaryExpression
-                                    (memberExpression
-                                      (identifier smartGroups)
-                                      .
-                                      (qualifiedFunctionCall
-                                        (reservedWord (specialWord contains))
-                                        (
-                                        (argumentList
-                                          (argument
-                                            (startExpression
-                                              (compareExpression
-                                                (baseExpression (unaryExpression (memberExpression (identifier item))))
-                                              )
-                                            )
-                                          )
-                                        )
+                (unaryExpression
+                  (memberExpression
+                    (parentheticalExpression
+                      (
+                      (startExpression
+                        (compareExpression
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression
+                                (identifier smartGroups)
+                                .
+                                (qualifiedFunctionCall
+                                  (reservedWord (specialWord contains))
+                                  (
+                                  (argumentList
+                                    (argument
+                                      (startExpression
+                                        (compareExpression
+                                          (baseExpression (unaryExpression (memberExpression (identifier item))))
                                         )
                                       )
                                     )
                                   )
+                                  )
                                 )
                               )
                             )
-                            )
                           )
                         )
+                      )
                       )
                     )
                   )

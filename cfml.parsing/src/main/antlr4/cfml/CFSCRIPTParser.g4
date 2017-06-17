@@ -428,11 +428,11 @@ compareExpressionOperator:
 	
 
 notExpression
-	:	( NOT | NOTOP ) startExpression
+	:	( NOT | NOTOP ) unaryExpression
 	;
 	
 notNotExpression
-	:	NOTNOTOP  startExpression 
+	:	NOTNOTOP  unaryExpression 
 	;	
 equalityOperator1
     :
@@ -476,6 +476,8 @@ unaryExpression
   | innerExpression
   | unaryExpression (MINUSMINUS | PLUSPLUS)
   | primaryExpression//-> ^(POSTMINUSMINUS memberExpression)
+  | notNotExpression
+  | notExpression
   ;
 
 innerExpression:
