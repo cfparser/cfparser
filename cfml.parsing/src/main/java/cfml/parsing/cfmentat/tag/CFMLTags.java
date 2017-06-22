@@ -28,6 +28,7 @@ public class CFMLTags {
 	public static final StartTagType CFML_RETURN = StartTagTypeCfReturn.INSTANCE;
 	public static final StartTagType CFML_MAIL = StartTagTypeCFMail.INSTANCE;
 	public static final StartTagType CFML_QUERY = StartTagTypeCFQuery.INSTANCE;
+	public static final StartTagType CFML_QUERYPARAM = StartTagTypeCFQueryParam.INSTANCE;
 	
 	private CFMLTags() {
 	}
