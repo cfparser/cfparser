@@ -55,6 +55,16 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>net.htmlparser.jericho</groupId>
+				<artifactId>jericho-html</artifactId>
+				<version>3.4</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<profiles>
 		<profile>
 			<id>deploy</id>
