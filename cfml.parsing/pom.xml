@@ -32,14 +32,11 @@
 			<groupId>org.antlr</groupId>
 			<artifactId>stringtemplate</artifactId>
 			<version>4.0.2</version>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.antlr</groupId>
 			<artifactId>antlr4</artifactId>
 			<version>4.7</version>
-			<type>jar</type>
-			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>javolution</groupId>
