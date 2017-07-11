@@ -79,7 +79,6 @@
 				<executions>
 					<execution>
 						<id>run antlr4</id>
-						<phase>generate-sources</phase>
 						<goals>
 							<goal>antlr4</goal>
 						</goals>
