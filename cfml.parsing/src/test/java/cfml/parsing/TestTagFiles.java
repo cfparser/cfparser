@@ -50,8 +50,6 @@ public class TestTagFiles {
 			singleTestName = ResourceBundle.getBundle("cfml.test").getString("RunSingleTest");
 		} catch (Exception e) {
 		}
-		// init log4j
-		org.apache.log4j.BasicConfigurator.configure();
 	}
 	
 	public TestTagFiles(File sourceFile) {
