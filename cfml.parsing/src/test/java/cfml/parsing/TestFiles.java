@@ -32,7 +32,7 @@ import cfml.parsing.util.TreeUtils;
 import cfml.parsing.utils.TestUtils;
 
 /**
- * Run a test over each *.rpgle file in src/test/resources/org/rpgleparser/tests
+ * Run a test over each *.cfc / *.cfm file in src/test/resources/cfml/tests
  * 
  * @author ryaneberly
  * 
