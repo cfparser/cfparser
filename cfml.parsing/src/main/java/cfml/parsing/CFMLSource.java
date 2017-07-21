@@ -29,7 +29,7 @@ public class CFMLSource implements Logger {
 		} else {
 			fSource = new Source(contents);
 		}
-		fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
+		// fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
 		// fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_COMMENT));
 		fSource.setLogger(this);
 	}
@@ -37,21 +37,21 @@ public class CFMLSource implements Logger {
 	public CFMLSource(String contents, ParserPreferences prefs) {
 		CFMLTags.register(prefs);
 		fSource = new Source(contents);
-		fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
+		// fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
 		fSource.setLogger(this);
 	}
 	
 	public CFMLSource(URL url) throws IOException {
 		CFMLTags.register();
 		fSource = new Source(url);
-		fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
+		// fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
 		fSource.setLogger(this);
 	}
 	
 	public CFMLSource(URL url, ParserPreferences prefs) throws IOException {
 		CFMLTags.register(prefs);
 		fSource = new Source(url);
-		fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
+		// fSource.ignoreWhenParsing(fSource.getAllElements(CFMLTags.CFML_CONTENT));
 		fSource.setLogger(this);
 	}
 	

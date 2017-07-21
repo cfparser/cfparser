@@ -1,0 +1,8 @@
+START:cfsavecontent
+  =========TAG=================
+  <cfsavecontent/>
+END:cfsavecontent
+START:cfcontent
+  =========TAG=================
+  <cfcontent/>
+END:cfcontent
