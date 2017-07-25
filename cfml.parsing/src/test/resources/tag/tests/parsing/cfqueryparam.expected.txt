@@ -1,0 +1,18 @@
+START:cfquery
+  =========TAG=================
+  <cfquery>
+	select <cfqueryparam> from table where <cfqueryparam> =<cfqueryparam>
+</cfquery>
+  START:cfqueryparam
+    =========TAG=================
+    <cfqueryparam>
+  END:cfqueryparam
+  START:cfqueryparam
+    =========TAG=================
+    <cfqueryparam>
+  END:cfqueryparam
+  START:cfqueryparam
+    =========TAG=================
+    <cfqueryparam>
+  END:cfqueryparam
+END:cfquery
