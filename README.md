@@ -14,17 +14,6 @@ mvn clean install
 ```xml
 <dependency>
     <groupId>com.github.cfparser</groupId>
-    <artifactId>cfparser</artifactId>
-    <version>2.2.10</version>
-    <type>pom</type>
-</dependency>
-<dependency>
-    <groupId>com.github.cfparser</groupId>
-    <artifactId>cfml.dictionary</artifactId>
-    <version>2.2.10</version>
-</dependency>
-<dependency>
-    <groupId>com.github.cfparser</groupId>
     <artifactId>cfml.parsing</artifactId>
     <version>2.2.10</version>
 </dependency>
@@ -32,3 +21,6 @@ mvn clean install
 
 To update the version number prior to a build, run:
 `mvn versions:set -DnewVersion=2.2.13-SNAPSHOT` 
+
+To update the version number prior to a release, run:
+`mvn versions:set -DnewVersion=2.2.13` 
