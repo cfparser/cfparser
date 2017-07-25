@@ -1,5 +1,0 @@
-== cfml.parsing ==
-
-A CFML parser.  Uses the cfml.dictionary project to provide engine-specific information.
-
-Build with ant : cd build; ant build; 

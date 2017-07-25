@@ -150,6 +150,28 @@
 				</executions>
 			</plugin>
 			<plugin>
+			     <groupId>com.google.code.maven-replacer-plugin</groupId>
+			     <artifactId>replacer</artifactId>
+			     <version>1.5.2</version>
+			     <executions>
+			         <execution>
+			             <phase>prepare-package</phase>
+			             <goals>
+			                 <goal>replace</goal>
+			             </goals>
+			         </execution>
+			     </executions>
+			     <configuration>
+			         <file>${project.basedir}/README.md</file>
+			             <replacements>
+			                 <replacement>
+			                     <token>&lt;version&gt;.*&lt;/version&gt;</token>
+			                     <value>&lt;version&gt;${project.version}&lt;/version&gt;</value>
+			                 </replacement>
+			             </replacements>
+			     </configuration>
+			 </plugin>
+			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
 				<version>1.6.7</version>
