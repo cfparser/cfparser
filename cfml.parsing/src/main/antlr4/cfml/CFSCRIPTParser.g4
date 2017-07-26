@@ -577,8 +577,8 @@ argument
   )
   | ( (name=argumentName) EQUALSOP startExpression //-> ^( COLON identifier baseExpression ) 
   )
-  | startExpression 
   | anonymousFunctionDeclaration
+  | startExpression
   ;
   
 argumentName
@@ -612,6 +612,7 @@ identifier
   | REMOTE
   | PACKAGE
   | REQUIRED
+  | FUNCTION
   | cfmlFunction
   | type	)
 	;

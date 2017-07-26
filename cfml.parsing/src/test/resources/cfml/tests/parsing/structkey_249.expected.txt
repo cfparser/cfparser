@@ -48,7 +48,7 @@ Hidden:NEWLINE                  <>
                         {
                         (implicitStructElements
                           (implicitStructExpression
-                            (implicitStructKeyExpression (reservedWord (cfscriptKeywords function)))
+                             (implicitStructKeyExpression (multipartIdentifier (identifier function)))
                             =
                             (compareExpression
                               (baseExpression
