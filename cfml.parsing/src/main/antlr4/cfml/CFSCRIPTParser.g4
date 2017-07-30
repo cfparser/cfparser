@@ -364,6 +364,13 @@ expression
 	|	assignmentExpression EOF
 	|   startExpression EOF
 	;
+
+cfmlExpression 
+	: localAssignmentExpression EOF
+	|	assignmentExpression EOF
+	|   startExpression EOF
+	|   importStatement EOF
+	;
 	
 localAssignmentExpression 
 	:	VAR left=startExpression ( (EQUALSOP otherIdentifiers)* EQUALSOP right=startExpression )? //-> ^( VARLOCAL identifier ( EQUALSOP baseExpression )? )
