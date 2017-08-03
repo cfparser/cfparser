@@ -82,7 +82,8 @@ public class TestFiles {
 		final String actualTokens = printTokens(lexer);
 		
 		if (expectedTokens != null && expectedTokens.trim().length() > 0) {
-			if (autoReplaceFailed && !expectedTokens.equals(actualTokens)) {
+			final boolean tokensMatch = normalizeWhite(expectedTokens).equals(normalizeWhite(actualTokens));
+			if (autoReplaceFailed && !tokensMatch) {
 				expectedTree = "";
 			} else {
 				System.out.println(sourceFile);
@@ -116,7 +117,8 @@ public class TestFiles {
 			writeExpectFile(expectedFile, actualTokens, actualTree, parseTree);
 			logger.info("Tree written to " + expectedFile);
 		} else {
-			if (autoReplaceFailed && !actualTree.equals(expectedTree)) {
+			final boolean treesMatch = normalizeWhite(expectedTree).equals(normalizeWhite(actualTree));
+			if (autoReplaceFailed && !treesMatch) {
 				logger.info("Replaced content of " + expectedFile);
 				expectedTree = actualTree;
 				writeExpectFile(expectedFile, actualTokens, actualTree, parseTree);
