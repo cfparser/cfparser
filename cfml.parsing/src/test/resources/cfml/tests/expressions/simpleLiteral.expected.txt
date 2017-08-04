@@ -12,18 +12,14 @@ Hidden:NEWLINE                  <>
     (statement
       (assignmentExpression
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier filename))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier filename))))
         )
         =
         (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (primaryExpression
-                  (literalExpression (stringLiteral " (stringLiteralPart test) "))
-                )
+          (baseExpression
+            (unaryExpression
+              (primaryExpression
+                (literalExpression (stringLiteral " (stringLiteralPart test) "))
               )
             )
           )

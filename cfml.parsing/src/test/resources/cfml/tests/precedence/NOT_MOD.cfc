@@ -1,0 +1,1 @@
+NOT productIndex MOD 2 EQ 0;

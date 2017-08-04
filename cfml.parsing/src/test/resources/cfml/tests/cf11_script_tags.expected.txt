@@ -104,12 +104,10 @@ IDENTIFIER               <filecontent>
               (identifier url)
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart www.google.com) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart www.google.com) "))
                     )
                   )
                 )
@@ -120,12 +118,10 @@ IDENTIFIER               <filecontent>
               (identifier method)
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart GET) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart GET) "))
                     )
                   )
                 )
@@ -149,28 +145,24 @@ IDENTIFIER               <filecontent>
               (identifier URL)
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression
-                          (stringLiteral
-                            "
-                            (stringLiteralPart http://)
-                            #
-                            (startExpression
-                              (compareExpression
-                                (baseExpression
-                                  (unaryExpression
-                                    (memberExpression (identifier CGI) . (identifier SERVER_NAME))
-                                  )
-                                )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression
+                        (stringLiteral
+                          "
+                          (stringLiteralPart http://)
+                          #
+                          (startExpression
+                            (baseExpression
+                              (unaryExpression
+                                (memberExpression (identifier CGI) . (identifier SERVER_NAME))
                               )
                             )
-                            #
-                            (stringLiteralPart .../target.cfm)
-                            "
                           )
+                          #
+                          (stringLiteralPart .../target.cfm)
+                          "
                         )
                       )
                     )
@@ -183,12 +175,10 @@ IDENTIFIER               <filecontent>
               (identifier method)
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart GET) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart GET) "))
                     )
                   )
                 )
@@ -208,12 +198,10 @@ IDENTIFIER               <filecontent>
                       (identifier type)
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart url) "))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart url) "))
                             )
                           )
                         )
@@ -224,12 +212,10 @@ IDENTIFIER               <filecontent>
                       (identifier name)
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral ' (stringLiteralPart emp_name) '))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral ' (stringLiteralPart emp_name) '))
                             )
                           )
                         )
@@ -240,12 +226,10 @@ IDENTIFIER               <filecontent>
                       (identifier value)
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart Awdhesh) "))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart Awdhesh) "))
                             )
                           )
                         )
@@ -267,12 +251,10 @@ IDENTIFIER               <filecontent>
                       (identifier type)
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart header) "))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart header) "))
                             )
                           )
                         )
@@ -283,12 +265,10 @@ IDENTIFIER               <filecontent>
                       (identifier name)
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral ' (stringLiteralPart myheader) '))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral ' (stringLiteralPart myheader) '))
                             )
                           )
                         )
@@ -299,12 +279,10 @@ IDENTIFIER               <filecontent>
                       (identifier value)
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart My custom header) "))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart My custom header) "))
                             )
                           )
                         )
@@ -325,31 +303,27 @@ IDENTIFIER               <filecontent>
   (element
     (statement
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (memberExpression
-                (functionCall
-                  (identifier Writeoutput)
-                  (
-                  (argumentList
-                    (argument
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (identifier (cfmlFunction cfhttp))
-                                .
-                                (identifier filecontent)
-                              )
-                            )
+        (baseExpression
+          (unaryExpression
+            (memberExpression
+              (functionCall
+                (identifier Writeoutput)
+                (
+                (argumentList
+                  (argument
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (memberExpression
+                            (identifier (cfmlFunction cfhttp))
+                            .
+                            (identifier filecontent)
                           )
                         )
                       )
                     )
                   )
-                  )
+                )
                 )
               )
             )

@@ -50,32 +50,26 @@ Hidden:NEWLINE                  <>
           (localAssignmentExpression
             var
             (startExpression
-              (compareExpression
-                (baseExpression (unaryExpression (memberExpression (identifier something))))
-              )
+              (baseExpression (unaryExpression (memberExpression (identifier something))))
             )
             =
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression
-                    (primaryExpression
-                      (literalExpression
-                        (stringLiteral
-                          "
-                          #
-                          (startExpression
-                            (compareExpression
-                              (baseExpression
-                                (unaryExpression
-                                  (memberExpression (identifier function) . (identifier subcategories))
-                                )
-                              )
+              (baseExpression
+                (unaryExpression
+                  (primaryExpression
+                    (literalExpression
+                      (stringLiteral
+                        "
+                        #
+                        (startExpression
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression (identifier function) . (identifier subcategories))
                             )
                           )
-                          #
-                          "
                         )
+                        #
+                        "
                       )
                     )
                   )

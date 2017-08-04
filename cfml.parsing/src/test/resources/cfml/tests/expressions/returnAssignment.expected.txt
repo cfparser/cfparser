@@ -42,15 +42,11 @@ Hidden:NEWLINE                  <>
                 return
                 (assignmentExpression
                   (startExpression
-                    (compareExpression
-                      (baseExpression (unaryExpression (memberExpression (identifier foo))))
-                    )
+                    (baseExpression (unaryExpression (memberExpression (identifier foo))))
                   )
                   =
                   (startExpression
-                    (compareExpression
-                      (baseExpression (unaryExpression (memberExpression (identifier bar))))
-                    )
+                    (baseExpression (unaryExpression (memberExpression (identifier bar))))
                   )
                 )
               )

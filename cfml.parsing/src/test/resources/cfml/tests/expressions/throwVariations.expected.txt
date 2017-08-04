@@ -56,12 +56,10 @@ CLOSE_STRING             <">
             (parentheticalExpression
               (
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart woohoo) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart woohoo) "))
                     )
                   )
                 )
@@ -77,49 +75,43 @@ CLOSE_STRING             <">
   (element
     (statement
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (memberExpression
-                (functionCall
-                  (identifier throw)
-                  (
-                  (argumentList
-                    (argument
-                      (argumentName (identifier type))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart wow) "))
-                              )
-                            )
+        (baseExpression
+          (unaryExpression
+            (memberExpression
+              (functionCall
+                (identifier throw)
+                (
+                (argumentList
+                  (argument
+                    (argumentName (identifier type))
+                    =
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart wow) "))
                           )
                         )
                       )
                     )
-                    ,
-                    (argument
-                      (argumentName (identifier message))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression
-                                  (stringLiteral " (stringLiteralPart that escalated quickly) ")
-                                )
-                              )
+                  )
+                  ,
+                  (argument
+                    (argumentName (identifier message))
+                    =
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression
+                              (stringLiteral " (stringLiteralPart that escalated quickly) ")
                             )
                           )
                         )
                       )
                     )
                   )
-                  )
+                )
                 )
               )
             )

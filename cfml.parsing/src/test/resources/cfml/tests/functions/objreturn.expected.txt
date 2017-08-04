@@ -49,14 +49,12 @@ Hidden:NEWLINE                  <>
           (returnStatement
             return
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression
-                    (memberExpression
-                      (identifier newsService)
-                      .
-                      (qualifiedFunctionCall (identifier findAll) ( argumentList ))
-                    )
+              (baseExpression
+                (unaryExpression
+                  (memberExpression
+                    (identifier newsService)
+                    .
+                    (qualifiedFunctionCall (identifier findAll) ( argumentList ))
                   )
                 )
               )

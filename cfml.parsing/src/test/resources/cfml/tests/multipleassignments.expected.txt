@@ -11,17 +11,13 @@ INTEGER_LITERAL          <0>
     (statement
       (assignmentExpression
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier x))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier x))))
         )
         =
         (identifier y)
         =
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-          )
+          (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
         )
       )
       (endOfStatement ;)

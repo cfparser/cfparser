@@ -21,37 +21,31 @@ IDENTIFIER               <argValueTwo>
   (element
     (statement
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (memberExpression
-                (identifier foo)
-                .
-                (qualifiedFunctionCall
-                  (identifier bar)
-                  (
-                  (argumentList
-                    (argument
-                      (argumentName (stringLiteral " (stringLiteralPart argNameOne) "))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression (unaryExpression (memberExpression (identifier argValueOne))))
-                        )
-                      )
-                    )
-                    ,
-                    (argument
-                      (argumentName (stringLiteral " (stringLiteralPart argNameTwo) "))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression (unaryExpression (memberExpression (identifier argValueTwo))))
-                        )
-                      )
+        (baseExpression
+          (unaryExpression
+            (memberExpression
+              (identifier foo)
+              .
+              (qualifiedFunctionCall
+                (identifier bar)
+                (
+                (argumentList
+                  (argument
+                    (argumentName (stringLiteral " (stringLiteralPart argNameOne) "))
+                    =
+                    (startExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier argValueOne))))
                     )
                   )
+                  ,
+                  (argument
+                    (argumentName (stringLiteral " (stringLiteralPart argNameTwo) "))
+                    =
+                    (startExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier argValueTwo))))
+                    )
                   )
+                )
                 )
               )
             )

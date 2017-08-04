@@ -19,51 +19,41 @@ Hidden:NEWLINE                  <>
     (statement
       (assignmentExpression
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier someStruct))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier someStruct))))
         )
         =
         (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (primaryExpression
-                  (implicitStruct
-                    {
-                    (implicitStructElements
-                      (implicitStructExpression
-                        (implicitStructKeyExpression (multipartIdentifier (identifier someVariable)))
-                        =
-                        (compareExpression
-                          (baseExpression
+          (baseExpression
+            (unaryExpression
+              (primaryExpression
+                (implicitStruct
+                  {
+                  (implicitStructElements
+                    (implicitStructExpression
+                      (implicitStructKeyExpression (multipartIdentifier (identifier someVariable)))
+                      =
+                      (baseExpression
+                        (baseExpression
+                          (unaryExpression (memberExpression (identifier someExpression)))
+                        )
+                        (ternaryExpression
+                          ?
+                          (startExpression
                             (baseExpression
-                              (unaryExpression (memberExpression (identifier someExpression)))
+                              (unaryExpression (memberExpression (identifier someExpression2)))
                             )
-                            (ternaryExpression
-                              ?
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression (memberExpression (identifier someExpression2)))
-                                  )
-                                )
-                              )
-                              :
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression (memberExpression (identifier someExpression3)))
-                                  )
-                                )
-                              )
+                          )
+                          :
+                          (startExpression
+                            (baseExpression
+                              (unaryExpression (memberExpression (identifier someExpression3)))
                             )
                           )
                         )
                       )
                     )
-                    }
                   )
+                  }
                 )
               )
             )

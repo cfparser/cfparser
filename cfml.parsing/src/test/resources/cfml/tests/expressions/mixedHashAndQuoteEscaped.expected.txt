@@ -36,111 +36,95 @@ CLOSE_STRING             <">
     (statement
       (assignmentExpression
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier filename))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier filename))))
         )
         =
         (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (primaryExpression
-                  (literalExpression
-                    (stringLiteral
-                      "
-                      #
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (functionCall
-                                  (identifier dateformat)
-                                  (
-                                  (argumentList
-                                    (argument
-                                      (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (memberExpression (functionCall (identifier Now) ( argumentList )))
-                                            )
-                                          )
-                                        )
+          (baseExpression
+            (unaryExpression
+              (primaryExpression
+                (literalExpression
+                  (stringLiteral
+                    "
+                    #
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (memberExpression
+                            (functionCall
+                              (identifier dateformat)
+                              (
+                              (argumentList
+                                (argument
+                                  (startExpression
+                                    (baseExpression
+                                      (unaryExpression
+                                        (memberExpression (functionCall (identifier Now) ( argumentList )))
                                       )
                                     )
-                                    ,
-                                    (argument
-                                      (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (primaryExpression
-                                                (literalExpression (stringLiteral " (stringLiteralPart YY_MM_DD) "))
-                                              )
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                  )
                                   )
                                 )
+                                ,
+                                (argument
+                                  (startExpression
+                                    (baseExpression
+                                      (unaryExpression
+                                        (primaryExpression
+                                          (literalExpression (stringLiteral " (stringLiteralPart YY_MM_DD) "))
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
                               )
                             )
                           )
                         )
                       )
-                      #
-                      (stringLiteralPart _)
-                      #
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (functionCall
-                                  (identifier TimeFormat)
-                                  (
-                                  (argumentList
-                                    (argument
-                                      (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (memberExpression (functionCall (identifier Now) ( argumentList )))
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                    ,
-                                    (argument
-                                      (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (primaryExpression
-                                                (literalExpression (stringLiteral " (stringLiteralPart HH_mm) "))
-                                              )
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                  )
-                                  )
-                                )
-                              )
-                            )
-                          )
-                        )
-                      )
-                      #
-                      (stringLiteralPart _Company""stuff"".xls)
-                      "
                     )
+                    #
+                    (stringLiteralPart _)
+                    #
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (memberExpression
+                            (functionCall
+                              (identifier TimeFormat)
+                              (
+                              (argumentList
+                                (argument
+                                  (startExpression
+                                    (baseExpression
+                                      (unaryExpression
+                                        (memberExpression (functionCall (identifier Now) ( argumentList )))
+                                      )
+                                    )
+                                  )
+                                )
+                                ,
+                                (argument
+                                  (startExpression
+                                    (baseExpression
+                                      (unaryExpression
+                                        (primaryExpression
+                                          (literalExpression (stringLiteral " (stringLiteralPart HH_mm) "))
+                                        )
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                    #
+                    (stringLiteralPart _Company""stuff"".xls)
+                    "
                   )
                 )
               )

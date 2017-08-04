@@ -26,9 +26,7 @@ BOOLEAN_LITERAL          <true>
               (multipartIdentifier (identifier runonce))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
-                )
+                (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
               )
             )
           )

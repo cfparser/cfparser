@@ -9,7 +9,7 @@ scriptBlock
   importStatement*
   componentDeclaration
   | ( element )*
-  | cfscriptBlock*
+  | cfscriptBlock* 
   | EOF
   ;
 
@@ -123,7 +123,8 @@ endOfStatement
    :
    {_input.get(_input.LT(-1).getTokenIndex()+1).getType()==NEWLINE}?
      semicolon = SEMICOLON?
-   | semicolon = SEMICOLON; 
+   |
+    semicolon = SEMICOLON; 
   
 breakStatement 
   :BREAK ;
@@ -132,7 +133,7 @@ continueStatement
   :CONTINUE ;  
    
 condition
-  : LEFTPAREN compareExpression RIGHTPAREN
+  : LEFTPAREN baseExpression RIGHTPAREN
   ;
   
 returnStatement
@@ -159,10 +160,7 @@ forStatement
   ;
   
 startExpression:
-  compareExpression;
-
-baseOrTernaryExpression:
-  compareExpression;
+  baseExpression;
 
 forInKey
   : VAR? multipartIdentifier
@@ -392,22 +390,27 @@ ternaryExpression
 
 baseExpression
 	:
-	notExpression
+	left=baseExpression ternaryExpression
+	| left=baseExpression elvisOperator right=baseExpression
+	| unaryOperator=(MINUS | PLUS) right=baseExpression 
+	| left=baseExpression powerOperator=POWER right=baseExpression
+	| left=baseExpression multiplicativeOperator=(STAR|SLASH) right=baseExpression
+	| left=baseExpression intDivOperator=BSLASH right=baseExpression
+	| left=baseExpression mod_operator=MOD right=baseExpression
+	| left=baseExpression concatenationOperator=CONCAT right=baseExpression
+	| left=baseExpression addOperator=(PLUS|MINUS) right=baseExpression
+	| notExpression
+	| left=baseExpression operator=compareExpressionOperator right=baseExpression
+	| left=baseExpression andOperator=(AND | ANDOPERATOR) right=baseExpression
+	| left=baseExpression orOperator=(OR | OROPERATOR) right=baseExpression
 	| notNotExpression
-	| concatenationExpression
-	| additiveExpression
-	| modExpression
-	| intDivisionExpression
-	| multiplicativeExpression
-	| powerOfExpression
-	| elvisExpression
 	| anonymousFunctionDeclaration
 	| unaryExpression
-	| baseExpression ternaryExpression
+	
 	;
 	
-elvisExpression:
-	unaryExpression QUESTIONMARK COLON baseExpression;
+elvisOperator:
+	QUESTIONMARK COLON;
 	
 compareExpression
 	: (
@@ -417,12 +420,8 @@ compareExpression
 	;
 	
 compareExpressionOperator:
- OR 
- | OROPERATOR
- | EQV
+ EQV
  | XOR
- | AND
- | ANDOPERATOR
     |EQ //-> ^(EQ)
     |   LT //-> ^(LT)
     |   LTE //-> ^(LTE)
@@ -435,7 +434,7 @@ compareExpressionOperator:
 	
 
 notExpression
-	:	( NOT | NOTOP ) unaryExpression
+	:	( NOT | NOTOP ) baseExpression
 	;
 	
 notNotExpression
@@ -452,58 +451,32 @@ equalityOperator1
     |   CONTAINS //-> ^(CONTAINS)
     ;
     
-concatenationExpression
-	:	unaryExpression CONCAT baseOrTernaryExpression
-	;
-
-additiveExpression
-	:	unaryExpression (PLUS|MINUS) baseOrTernaryExpression
-	;
-
-modExpression
-	:	unaryExpression  ( MOD baseOrTernaryExpression )
-	;
-
-intDivisionExpression
-	:	unaryExpression ( BSLASH baseOrTernaryExpression )
-	;
-
-multiplicativeExpression
-	:	unaryExpression ( (STAR|SLASH) baseOrTernaryExpression )
-	;
-
-powerOfExpression
-	:	unaryExpression ( POWER baseOrTernaryExpression )
-	;
-
 unaryExpression
-	: (MINUS | PLUS) primaryExpression //-> ^(MINUS memberExpression)
-	| (MINUSMINUS | PLUSPLUS) unaryExpression
+	: (MINUSMINUS | PLUSPLUS) unaryExpression
   | memberExpression
   | innerExpression
   | unaryExpression (MINUSMINUS | PLUSPLUS)
   | primaryExpression//-> ^(POSTMINUSMINUS memberExpression)
-  | notNotExpression
-  | notExpression
+//  | atomicExpression
+//  | notNotExpression
+//  | notExpression
   ;
 
 innerExpression:
-	POUND_SIGN baseOrTernaryExpression POUND_SIGN;
-	
+	POUND_SIGN baseExpression POUND_SIGN;
+
 memberExpression
-  : MINUS? ( //primaryExpression
-    functionCall
+  : (functionCall
   	| newComponentExpression
     | firstidentifier=identifier
-  	| parentheticalExpression//-> primaryExpression
-  ) // set return tree to just primary
+  	| parentheticalExpression)
   ( 
     DOT+ qualifiedFunctionCall
     | arrayMemberExpression parentheticalMemberExpression?
     | DOT+ primaryExpressionIRW 
     | DOT+ identifier
   )*
-  ;
+;
   
 identifierOrReservedWord:
 identifier | reservedWord;
@@ -620,6 +593,7 @@ identifier
   | PACKAGE
   | REQUIRED
   | FUNCTION
+  | IMPORT
   | cfmlFunction
   | type	)
 	;
@@ -684,7 +658,7 @@ implicitStructElements
   ;
 
 implicitStructExpression
-  : implicitStructKeyExpression ( COLON | EQUALSOP ) compareExpression //unaryExpression
+  : implicitStructKeyExpression ( COLON | EQUALSOP ) baseExpression //unaryExpression
   ;
   
 implicitStructKeyExpression

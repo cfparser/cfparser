@@ -20,7 +20,6 @@ import cfml.CFSCRIPTParser.ComponentGutsContext;
 import cfml.CFSCRIPTParser.ComponentPathContext;
 import cfml.CFSCRIPTParser.ConditionContext;
 import cfml.CFSCRIPTParser.ConstantExpressionContext;
-import cfml.CFSCRIPTParser.ElvisExpressionContext;
 import cfml.CFSCRIPTParser.FloatingPointExpressionContext;
 import cfml.CFSCRIPTParser.ForInKeyContext;
 import cfml.CFSCRIPTParser.FunctionAttributeContext;
@@ -49,10 +48,8 @@ import cfml.CFSCRIPTParser.SpecialWordContext;
 import cfml.CFSCRIPTParser.StringLiteralContext;
 import cfml.CFSCRIPTParser.StringLiteralPartContext;
 import cfml.CFSCRIPTParser.TagFunctionStatementContext;
-import cfml.CFSCRIPTParser.TagOperatorStatementContext;
 import cfml.CFSCRIPTParser.TernaryExpressionContext;
 import cfml.CFSCRIPTParser.TypeContext;
-import cfml.CFSCRIPTParser.TypeSpecContext;
 import cfml.CFSCRIPTParser.UnaryExpressionContext;
 import cfml.CFSCRIPTParserBaseVisitor;
 import cfml.parsing.cfscript.ArgumentsVector;
@@ -108,12 +105,6 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	@Override
 	public CFExpression visitComponentAttribute(ComponentAttributeContext ctx) {
 		return super.visitComponentAttribute(ctx);
-	}
-	
-	@Override
-	public CFExpression visitTypeSpec(TypeSpecContext ctx) {
-		// TODO Auto-generated method stub
-		return super.visitTypeSpec(ctx);
 	}
 	
 	@Override
@@ -216,9 +207,16 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		if (ctx.getChildCount() == 0) {
 			return null;
 		}
-		if (ctx.notExpression() != null) {
+		if (ctx.unaryOperator != null) {
+			return new CFUnaryExpression(ctx.unaryOperator, visit(ctx.right));
+		} else if (ctx.elvisOperator() != null) {
+			CFElvisExpression expr = new CFElvisExpression(ctx.getStart(), visit(ctx.left), visit(ctx.right));
+			return expr;
+		} else if (ctx.compareExpressionOperator() != null) {
+			return new CFBinaryExpression(getTerminalToken(ctx.operator), visit(ctx.left), visit(ctx.right));
+		} else if (ctx.notExpression() != null) {
 			return new CFUnaryExpression(getTerminalToken(ctx.notExpression().getChild(0)),
-					visit(ctx.notExpression().unaryExpression()));
+					visit(ctx.notExpression().baseExpression()));
 		} else if (ctx.notNotExpression() != null) {
 			return new CFUnaryExpression(getTerminalToken(ctx.notNotExpression().getChild(0)),
 					visit(ctx.notNotExpression().unaryExpression()));
@@ -226,15 +224,11 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 			return visitUnaryExpression(ctx.unaryExpression());
 		} else if (ctx.ternaryExpression() != null) {
 			TernaryExpressionContext tex = ctx.ternaryExpression();
-			CFTernaryExpression ternaryExpression = new CFTernaryExpression(tex.getStart(), visit(ctx.baseExpression()),
+			CFTernaryExpression ternaryExpression = new CFTernaryExpression(tex.getStart(), visit(ctx.left),
 					visit(tex.ternaryExpression1), visit(tex.ternaryExpression2));
 			return ternaryExpression;
-		} else if (ctx.getChild(0).getChildCount() == 3)
-		
-		{
-			CFBinaryExpression binaryExpression = new CFBinaryExpression(getTerminalToken(ctx.getChild(0).getChild(1)),
-					visit(ctx.getChild(0).getChild(0)), visit(ctx.getChild(0).getChild(2)));
-			return binaryExpression;
+		} else if (ctx.getChildCount() == 3) {
+			return new CFBinaryExpression(getTerminalToken(ctx.getChild(1)), visit(ctx.left), visit(ctx.right));
 		} else
 		
 		{
@@ -293,15 +287,15 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		CFExpression retval = visitChildren(ctx);
 		aggregator.pop();
 		// negative if minus present
-		if (ctx.MINUS() != null) {
-			retval = new CFUnaryExpression(ctx.MINUS().getSymbol(), retval);
-		}
+		// if (ctx.MINUS() != null) {
+		// retval = new CFUnaryExpression(ctx.MINUS().getSymbol(), retval);
+		// }
 		return retval;
 	}
 	
 	@Override
 	public CFExpression visitInnerExpression(InnerExpressionContext ctx) {
-		return new CFNestedExpression(ctx.POUND_SIGN(0).getSymbol(), visit(ctx.baseOrTernaryExpression()));
+		return new CFNestedExpression(ctx.POUND_SIGN(0).getSymbol(), visit(ctx.baseExpression()));
 	}
 	
 	@Override
@@ -370,14 +364,6 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 			structExpression.addElement((CFStructElementExpression) retval);
 		}
 		return structExpression;
-	}
-	
-	@Override
-	public CFExpression visitElvisExpression(ElvisExpressionContext ctx) {
-		// TODO Auto-generated method stub
-		CFElvisExpression expr = new CFElvisExpression(ctx.getStart(), visit(ctx.getChild(0)), visit(ctx.getChild(3)));
-		// return super.visitElvisExpression(ctx);
-		return expr;
 	}
 	
 	@Override
@@ -473,20 +459,12 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	}
 	
 	@Override
-	public CFExpression visitTagOperatorStatement(TagOperatorStatementContext ctx) {
-		// TODO Auto-generated method stub
-		return super.visitTagOperatorStatement(ctx);
-	}
-	
-	@Override
 	public CFExpression visitCfmlFunction(CfmlFunctionContext ctx) {
 		return new CFIdentifier(ctx.start, ctx.getChild(0).getText());
 	}
 	
 	@Override
 	public CFExpression visitTagFunctionStatement(TagFunctionStatementContext ctx) {
-		// TODO Auto-generated method stub
-		// return super.visitTagFunctionStatement(ctx);
 		ArgumentsVector args = new ArgumentsVector();
 		if (ctx.parameterList() != null) {
 			for (ParameterContext argCtx : ctx.parameterList().parameter()) {

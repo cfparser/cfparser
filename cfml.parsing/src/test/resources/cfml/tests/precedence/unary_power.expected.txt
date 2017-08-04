@@ -1,0 +1,28 @@
+/*===TOKENS===*/
+'-'                      <->
+IDENTIFIER               <x>
+'^'                      <^>
+INTEGER_LITERAL          <7>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (startExpression
+        (baseExpression
+          (baseExpression
+            -
+            (baseExpression (unaryExpression (memberExpression (identifier x))))
+          )
+          ^
+          (baseExpression (unaryExpression (primaryExpression (literalExpression 7))))
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+-x ^ 7
+/*======*/

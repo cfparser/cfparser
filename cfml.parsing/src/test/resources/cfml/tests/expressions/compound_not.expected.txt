@@ -22,34 +22,30 @@ Hidden:NEWLINE                  <>
         if
         (condition
           (
-          (compareExpression
-            (baseExpression
-              (notExpression
-                NOT
+          (baseExpression
+            (notExpression
+              NOT
+              (baseExpression
                 (unaryExpression
                   (memberExpression
                     (parentheticalExpression
                       (
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (identifier smartGroups)
-                                .
-                                (qualifiedFunctionCall
-                                  (reservedWord (specialWord contains))
-                                  (
-                                  (argumentList
-                                    (argument
-                                      (startExpression
-                                        (compareExpression
-                                          (baseExpression (unaryExpression (memberExpression (identifier item))))
-                                        )
-                                      )
+                        (baseExpression
+                          (unaryExpression
+                            (memberExpression
+                              (identifier smartGroups)
+                              .
+                              (qualifiedFunctionCall
+                                (reservedWord (specialWord contains))
+                                (
+                                (argumentList
+                                  (argument
+                                    (startExpression
+                                      (baseExpression (unaryExpression (memberExpression (identifier item))))
                                     )
                                   )
-                                  )
+                                )
                                 )
                               )
                             )

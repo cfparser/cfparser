@@ -60,15 +60,13 @@ Hidden:NEWLINE                  <>
         if
         (condition
           (
-          (compareExpression
+          (baseExpression
             (baseExpression (unaryExpression (memberExpression (identifier fruit))))
             (compareExpressionOperator IS)
-            (compareExpression
-              (baseExpression
-                (unaryExpression
-                  (primaryExpression
-                    (literalExpression (stringLiteral " (stringLiteralPart apple) "))
-                  )
+            (baseExpression
+              (unaryExpression
+                (primaryExpression
+                  (literalExpression (stringLiteral " (stringLiteralPart apple) "))
                 )
               )
             )
@@ -80,29 +78,25 @@ Hidden:NEWLINE                  <>
             {
             (statement
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression
-                        (functionCall
-                          (identifier WriteOutput)
-                          (
-                          (argumentList
-                            (argument
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (primaryExpression
-                                        (literalExpression (stringLiteral " (stringLiteralPart I like apples) "))
-                                      )
-                                    )
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (functionCall
+                        (identifier WriteOutput)
+                        (
+                        (argumentList
+                          (argument
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart I like apples) "))
                                   )
                                 )
                               )
                             )
                           )
-                          )
+                        )
                         )
                       )
                     )
@@ -120,15 +114,13 @@ Hidden:NEWLINE                  <>
             if
             (condition
               (
-              (compareExpression
+              (baseExpression
                 (baseExpression (unaryExpression (memberExpression (identifier fruit))))
                 (compareExpressionOperator IS)
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart orange) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart orange) "))
                     )
                   )
                 )
@@ -140,29 +132,25 @@ Hidden:NEWLINE                  <>
                 {
                 (statement
                   (startExpression
-                    (compareExpression
-                      (baseExpression
-                        (unaryExpression
-                          (memberExpression
-                            (functionCall
-                              (identifier WriteOutput)
-                              (
-                              (argumentList
-                                (argument
-                                  (startExpression
-                                    (compareExpression
-                                      (baseExpression
-                                        (unaryExpression
-                                          (primaryExpression
-                                            (literalExpression (stringLiteral " (stringLiteralPart I like oranges) "))
-                                          )
-                                        )
+                    (baseExpression
+                      (unaryExpression
+                        (memberExpression
+                          (functionCall
+                            (identifier WriteOutput)
+                            (
+                            (argumentList
+                              (argument
+                                (startExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (primaryExpression
+                                        (literalExpression (stringLiteral " (stringLiteralPart I like oranges) "))
                                       )
                                     )
                                   )
                                 )
                               )
-                              )
+                            )
                             )
                           )
                         )
@@ -180,29 +168,25 @@ Hidden:NEWLINE                  <>
                 {
                 (statement
                   (startExpression
-                    (compareExpression
-                      (baseExpression
-                        (unaryExpression
-                          (memberExpression
-                            (functionCall
-                              (identifier WriteOutput)
-                              (
-                              (argumentList
-                                (argument
-                                  (startExpression
-                                    (compareExpression
-                                      (baseExpression
-                                        (unaryExpression
-                                          (primaryExpression
-                                            (literalExpression (stringLiteral " (stringLiteralPart I like fruit) "))
-                                          )
-                                        )
+                    (baseExpression
+                      (unaryExpression
+                        (memberExpression
+                          (functionCall
+                            (identifier WriteOutput)
+                            (
+                            (argumentList
+                              (argument
+                                (startExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (primaryExpression
+                                        (literalExpression (stringLiteral " (stringLiteralPart I like fruit) "))
                                       )
                                     )
                                   )
                                 )
                               )
-                              )
+                            )
                             )
                           )
                         )

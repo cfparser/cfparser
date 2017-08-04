@@ -88,7 +88,7 @@ Hidden:NEWLINE                  <>
         if
         (condition
           (
-          (compareExpression
+          (baseExpression
             (baseExpression
               (unaryExpression
                 (memberExpression
@@ -98,12 +98,10 @@ Hidden:NEWLINE                  <>
                     (argumentList
                       (argument
                         (startExpression
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (primaryExpression
-                                  (literalExpression (stringLiteral " (stringLiteralPart c) "))
-                                )
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart c) "))
                               )
                             )
                           )
@@ -115,16 +113,14 @@ Hidden:NEWLINE                  <>
                 )
               )
             )
-            (compareExpressionOperator &&)
-            (compareExpression
+            &&
+            (baseExpression
               (baseExpression (unaryExpression (memberExpression (identifier d))))
               (compareExpressionOperator ==)
-              (compareExpression
-                (baseExpression
-                  (unaryExpression
-                    (primaryExpression
-                      (literalExpression (stringLiteral " (stringLiteralPart registration) "))
-                    )
+              (baseExpression
+                (unaryExpression
+                  (primaryExpression
+                    (literalExpression (stringLiteral " (stringLiteralPart registration) "))
                   )
                 )
               )
@@ -138,18 +134,14 @@ Hidden:NEWLINE                  <>
             (statement
               (assignmentExpression
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier b))))
-                  )
+                  (baseExpression (unaryExpression (memberExpression (identifier b))))
                 )
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (primaryExpression
-                          (literalExpression (stringLiteral " (stringLiteralPart e.f) "))
-                        )
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart e.f) "))
                       )
                     )
                   )
@@ -166,7 +158,7 @@ Hidden:NEWLINE                  <>
             if
             (condition
               (
-              (compareExpression
+              (baseExpression
                 (baseExpression
                   (unaryExpression
                     (memberExpression
@@ -176,20 +168,16 @@ Hidden:NEWLINE                  <>
                         (argumentList
                           (argument
                             (startExpression
-                              (compareExpression
-                                (baseExpression (unaryExpression (memberExpression (identifier variables))))
-                              )
+                              (baseExpression (unaryExpression (memberExpression (identifier variables))))
                             )
                           )
                           ,
                           (argument
                             (startExpression
-                              (compareExpression
-                                (baseExpression
-                                  (unaryExpression
-                                    (primaryExpression
-                                      (literalExpression (stringLiteral ' (stringLiteralPart g) '))
-                                    )
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral ' (stringLiteralPart g) '))
                                   )
                                 )
                               )
@@ -201,11 +189,9 @@ Hidden:NEWLINE                  <>
                     )
                   )
                 )
-                (compareExpressionOperator &&)
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression (memberExpression (identifier variables) . (identifier g)))
-                  )
+                &&
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier variables) . (identifier g)))
                 )
               )
               )
@@ -216,18 +202,14 @@ Hidden:NEWLINE                  <>
                 (statement
                   (assignmentExpression
                     (startExpression
-                      (compareExpression
-                        (baseExpression (unaryExpression (memberExpression (identifier b))))
-                      )
+                      (baseExpression (unaryExpression (memberExpression (identifier b))))
                     )
                     =
                     (startExpression
-                      (compareExpression
-                        (baseExpression
-                          (unaryExpression
-                            (primaryExpression
-                              (literalExpression (stringLiteral " (stringLiteralPart y.j) "))
-                            )
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart y.j) "))
                           )
                         )
                       )
@@ -244,7 +226,7 @@ Hidden:NEWLINE                  <>
                 if
                 (condition
                   (
-                  (compareExpression
+                  (baseExpression
                     (baseExpression
                       (unaryExpression
                         (memberExpression
@@ -258,12 +240,10 @@ Hidden:NEWLINE                  <>
                             (argumentList
                               (argument
                                 (startExpression
-                                  (compareExpression
-                                    (baseExpression
-                                      (unaryExpression
-                                        (primaryExpression
-                                          (literalExpression (stringLiteral ' (stringLiteralPart n.m) '))
-                                        )
+                                  (baseExpression
+                                    (unaryExpression
+                                      (primaryExpression
+                                        (literalExpression (stringLiteral ' (stringLiteralPart n.m) '))
                                       )
                                     )
                                   )
@@ -276,12 +256,10 @@ Hidden:NEWLINE                  <>
                       )
                     )
                     (compareExpressionOperator ==)
-                    (compareExpression
-                      (baseExpression
-                        (unaryExpression
-                          (primaryExpression
-                            (literalExpression (stringLiteral " (stringLiteralPart p) "))
-                          )
+                    (baseExpression
+                      (unaryExpression
+                        (primaryExpression
+                          (literalExpression (stringLiteral " (stringLiteralPart p) "))
                         )
                       )
                     )
@@ -294,18 +272,14 @@ Hidden:NEWLINE                  <>
                     (statement
                       (assignmentExpression
                         (startExpression
-                          (compareExpression
-                            (baseExpression (unaryExpression (memberExpression (identifier b))))
-                          )
+                          (baseExpression (unaryExpression (memberExpression (identifier b))))
                         )
                         =
                         (startExpression
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (primaryExpression
-                                  (literalExpression (stringLiteral " (stringLiteralPart l.k) "))
-                                )
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart l.k) "))
                               )
                             )
                           )

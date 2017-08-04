@@ -57,37 +57,31 @@ Hidden:NEWLINE                  <>
         (statement
           (assignmentExpression
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression (memberExpression (identifier local) . (identifier a)))
-                )
+              (baseExpression
+                (unaryExpression (memberExpression (identifier local) . (identifier a)))
               )
             )
             =
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression
-                    (primaryExpression
-                      (implicitStruct
-                        {
-                        (implicitStructElements
-                          (implicitStructExpression
-                            (implicitStructKeyExpression
-                              (literalExpression (stringLiteral " (stringLiteralPart a) "))
-                            )
-                            :
-                            (compareExpression
-                              (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-                              (compareExpressionOperator <)
-                              (compareExpression
-                                (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
-                              )
-                            )
+              (baseExpression
+                (unaryExpression
+                  (primaryExpression
+                    (implicitStruct
+                      {
+                      (implicitStructElements
+                        (implicitStructExpression
+                          (implicitStructKeyExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart a) "))
+                          )
+                          :
+                          (baseExpression
+                            (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+                            (compareExpressionOperator <)
+                            (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
                           )
                         )
-                        }
                       )
+                      }
                     )
                   )
                 )
@@ -100,10 +94,8 @@ Hidden:NEWLINE                  <>
           (returnStatement
             return
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression (memberExpression (identifier local) . (identifier a)))
-                )
+              (baseExpression
+                (unaryExpression (memberExpression (identifier local) . (identifier a)))
               )
             )
           )

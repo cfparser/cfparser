@@ -51,118 +51,100 @@ Hidden:NEWLINE                  <>
   (element
     (statement
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (memberExpression
-                (functionCall
-                  (identifier cfmail)
-                  (
-                  (argumentList
-                    (argument
-                      (argumentName (identifier to))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression (unaryExpression (memberExpression (identifier toAddress))))
-                        )
-                      )
+        (baseExpression
+          (unaryExpression
+            (memberExpression
+              (functionCall
+                (identifier cfmail)
+                (
+                (argumentList
+                  (argument
+                    (argumentName (identifier to))
+                    =
+                    (startExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier toAddress))))
                     )
-                    ,
-                    (argument
-                      (argumentName (identifier from))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression (unaryExpression (memberExpression (identifier adminEmail))))
-                        )
-                      )
+                  )
+                  ,
+                  (argument
+                    (argumentName (identifier from))
+                    =
+                    (startExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier adminEmail))))
                     )
-                    ,
-                    (argument
-                      (argumentName (identifier replyto))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression (unaryExpression (memberExpression (identifier adminEmail))))
-                        )
-                      )
+                  )
+                  ,
+                  (argument
+                    (argumentName (identifier replyto))
+                    =
+                    (startExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier adminEmail))))
                     )
-                    ,
-                    (argument
-                      (argumentName (identifier failto))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression (unaryExpression (memberExpression (identifier adminEmail))))
-                        )
-                      )
+                  )
+                  ,
+                  (argument
+                    (argumentName (identifier failto))
+                    =
+                    (startExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier adminEmail))))
                     )
-                    ,
-                    (argument
-                      (argumentName (identifier subject))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart Test email) "))
-                              )
-                            )
-                          )
-                        )
-                      )
-                    )
-                    ,
-                    (argument
-                      (argumentName (identifier type))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart html) "))
-                              )
-                            )
+                  )
+                  ,
+                  (argument
+                    (argumentName (identifier subject))
+                    =
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart Test email) "))
                           )
                         )
                       )
                     )
                   )
+                  ,
+                  (argument
+                    (argumentName (identifier type))
+                    =
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart html) "))
+                          )
+                        )
+                      )
+                    )
                   )
-                  (compoundStatement
-                    {
-                    (statement
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (functionCall
-                                  (identifier writeOutput)
-                                  (
-                                  (argumentList
-                                    (argument
-                                      (startExpression
-                                        (compareExpression
-                                          (baseExpression (unaryExpression (memberExpression (identifier mailBody))))
-                                        )
-                                      )
-                                    )
-                                  )
+                )
+                )
+                (compoundStatement
+                  {
+                  (statement
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (memberExpression
+                            (functionCall
+                              (identifier writeOutput)
+                              (
+                              (argumentList
+                                (argument
+                                  (startExpression
+                                    (baseExpression (unaryExpression (memberExpression (identifier mailBody))))
                                   )
                                 )
                               )
+                              )
                             )
                           )
                         )
                       )
-                      ;
                     )
-                    }
+                    ;
                   )
+                  }
                 )
               )
             )
