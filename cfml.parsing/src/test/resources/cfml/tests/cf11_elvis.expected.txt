@@ -45,40 +45,75 @@ Hidden:LINE_COMMENT             <// A function call>
     (statement
       (assignmentExpression
         (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression (memberExpression (identifier securityNumber)))
-            )
+          (baseExpression
+            (unaryExpression (memberExpression (identifier securityNumber)))
           )
         )
         =
         (startExpression
-          (compareExpression
+          (baseExpression
             (baseExpression
-              (elvisExpression
-                (unaryExpression
-                  (memberExpression
-                    (identifier securityStruct)
-                    (arrayMemberExpression
-                      [
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral ' (stringLiteralPart Joe) '))
-                              )
-                            )
+              (unaryExpression
+                (memberExpression
+                  (identifier securityStruct)
+                  (arrayMemberExpression
+                    [
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral ' (stringLiteralPart Joe) '))
                           )
                         )
                       )
-                      ]
                     )
+                    ]
                   )
                 )
-                ?
-                :
-                (baseExpression (unaryExpression - (primaryExpression (literalExpression 1))))
+              )
+            )
+            (elvisOperator ? :)
+            (baseExpression
+              -
+              (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+            )
+          )
+        )
+      )
+      (endOfStatement ;)
+    )
+  )
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (baseExpression (unaryExpression (memberExpression (identifier colourCode))))
+        )
+        =
+        (startExpression
+          (baseExpression
+            (baseExpression
+              (unaryExpression
+                (memberExpression
+                  (identifier colourArray)
+                  (arrayMemberExpression
+                    [
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression (memberExpression (identifier (cfmlFunction index))))
+                      )
+                    )
+                    ]
+                  )
+                )
+              )
+            )
+            (elvisOperator ? :)
+            (baseExpression
+              (unaryExpression
+                (primaryExpression
+                  (literalExpression (stringLiteral " (stringLiteralPart black) "))
+                )
               )
             )
           )
@@ -91,87 +126,34 @@ Hidden:LINE_COMMENT             <// A function call>
     (statement
       (assignmentExpression
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier colourCode))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier employeeName))))
         )
         =
         (startExpression
-          (compareExpression
+          (baseExpression
             (baseExpression
-              (elvisExpression
-                (unaryExpression
-                  (memberExpression
-                    (identifier colourArray)
-                    (arrayMemberExpression
-                      [
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression (memberExpression (identifier (cfmlFunction index))))
-                          )
+              (unaryExpression
+                (memberExpression
+                  (functionCall
+                    (identifier getEmployeeName)
+                    (
+                    (argumentList
+                      (argument
+                        (startExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier ID))))
                         )
                       )
-                      ]
                     )
-                  )
-                )
-                ?
-                :
-                (baseExpression
-                  (unaryExpression
-                    (primaryExpression
-                      (literalExpression (stringLiteral " (stringLiteralPart black) "))
                     )
                   )
                 )
               )
             )
-          )
-        )
-      )
-      (endOfStatement ;)
-    )
-  )
-  (element
-    (statement
-      (assignmentExpression
-        (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier employeeName))))
-          )
-        )
-        =
-        (startExpression
-          (compareExpression
+            (elvisOperator ? :)
             (baseExpression
-              (elvisExpression
-                (unaryExpression
-                  (memberExpression
-                    (functionCall
-                      (identifier getEmployeeName)
-                      (
-                      (argumentList
-                        (argument
-                          (startExpression
-                            (compareExpression
-                              (baseExpression (unaryExpression (memberExpression (identifier ID))))
-                            )
-                          )
-                        )
-                      )
-                      )
-                    )
-                  )
-                )
-                ?
-                :
-                (baseExpression
-                  (unaryExpression
-                    (primaryExpression
-                      (literalExpression (stringLiteral " (stringLiteralPart Joe) "))
-                    )
-                  )
+              (unaryExpression
+                (primaryExpression
+                  (literalExpression (stringLiteral " (stringLiteralPart Joe) "))
                 )
               )
             )

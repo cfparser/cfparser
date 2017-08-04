@@ -42,24 +42,20 @@ Hidden:NEWLINE                  <>
               (localAssignmentExpression
                 var
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier sql))))
-                  )
+                  (baseExpression (unaryExpression (memberExpression (identifier sql))))
                 )
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (primaryExpression
-                          (literalExpression
-                            (stringLiteral
-                              "
-                              (stringLiteralPart
-                                INSERT INTO thingTbl(\r\n      thingId,\r\n      name) VALUES (\r\n      :thingId,\r\n      :name
-                              )
-                              "
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression
+                          (stringLiteral
+                            "
+                            (stringLiteralPart
+                              INSERT INTO thingTbl(\r\n      thingId,\r\n      name) VALUES (\r\n      :thingId,\r\n      :name
                             )
+                            "
                           )
                         )
                       )

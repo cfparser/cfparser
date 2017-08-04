@@ -69,34 +69,28 @@ Hidden:NEWLINE                  <>
             {
             (statement
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression
-                        (functionCall
-                          (identifier callback)
-                          (
-                          (argumentList
-                            (argument
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (memberExpression
-                                        (functionCall
-                                          (identifier trim)
-                                          (
-                                          (argumentList
-                                            (argument
-                                              (startExpression
-                                                (compareExpression
-                                                  (baseExpression (unaryExpression (memberExpression (identifier data))))
-                                                )
-                                              )
-                                            )
-                                          )
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (functionCall
+                        (identifier callback)
+                        (
+                        (argumentList
+                          (argument
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (memberExpression
+                                    (functionCall
+                                      (identifier trim)
+                                      (
+                                      (argumentList
+                                        (argument
+                                          (startExpression
+                                            (baseExpression (unaryExpression (memberExpression (identifier data))))
                                           )
                                         )
+                                      )
                                       )
                                     )
                                   )
@@ -104,7 +98,7 @@ Hidden:NEWLINE                  <>
                               )
                             )
                           )
-                          )
+                        )
                         )
                       )
                     )
@@ -128,45 +122,35 @@ Hidden:NEWLINE                  <>
             {
             (statement
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression
-                        (functionCall
-                          (identifier dotrim)
-                          (
-                          (argumentList
-                            (argument
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (primaryExpression
-                                        (literalExpression (stringLiteral " (stringLiteralPart hello world) "))
-                                      )
-                                    )
-                                  )
-                                )
-                              )
-                            )
-                            ,
-                            (argument
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (anonymousFunctionDeclaration
-                                      function
-                                      (
-                                      (parameterList (parameter (identifier result)))
-                                      )
-                                      (compoundStatement { })
-                                    )
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (functionCall
+                        (identifier dotrim)
+                        (
+                        (argumentList
+                          (argument
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart hello world) "))
                                   )
                                 )
                               )
                             )
                           )
+                          ,
+                          (argument
+                            (anonymousFunctionDeclaration
+                              function
+                              (
+                              (parameterList (parameter (identifier result)))
+                              )
+                              (compoundStatement { })
+                            )
                           )
+                        )
                         )
                       )
                     )

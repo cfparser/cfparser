@@ -62,37 +62,31 @@ Hidden:NEWLINE                  <>
           (localAssignmentExpression
             var
             (startExpression
-              (compareExpression
-                (baseExpression (unaryExpression (memberExpression (identifier callRate))))
-              )
+              (baseExpression (unaryExpression (memberExpression (identifier callRate))))
             )
             =
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression
-                    (memberExpression
-                      (functionCall (identifier getServiceLocator) ( argumentList ))
-                      .
-                      (qualifiedFunctionCall
-                        (identifier get)
-                        (
-                        (argumentList
-                          (argument
-                            (startExpression
-                              (compareExpression
-                                (baseExpression
-                                  (unaryExpression
-                                    (primaryExpression
-                                      (literalExpression (stringLiteral " (stringLiteralPart object.cps.CallRate) "))
-                                    )
-                                  )
+              (baseExpression
+                (unaryExpression
+                  (memberExpression
+                    (functionCall (identifier getServiceLocator) ( argumentList ))
+                    .
+                    (qualifiedFunctionCall
+                      (identifier get)
+                      (
+                      (argumentList
+                        (argument
+                          (startExpression
+                            (baseExpression
+                              (unaryExpression
+                                (primaryExpression
+                                  (literalExpression (stringLiteral " (stringLiteralPart object.cps.CallRate) "))
                                 )
                               )
                             )
                           )
                         )
-                        )
+                      )
                       )
                     )
                   )
@@ -104,47 +98,39 @@ Hidden:NEWLINE                  <>
         )
         (statement
           (startExpression
-            (compareExpression
-              (baseExpression
-                (unaryExpression
-                  (memberExpression
-                    (identifier callRate)
-                    .
-                    (qualifiedFunctionCall
-                      (identifier init)
-                      (
-                      (argumentList
-                        (argument
-                          (argumentName (identifier crid))
-                          =
-                          (startExpression
-                            (compareExpression
-                              (baseExpression (unaryExpression (memberExpression (identifier CallRateId))))
-                            )
-                          )
-                        )
-                        ,
-                        (argument
-                          (argumentName (identifier newName))
-                          =
-                          (startExpression
-                            (compareExpression
-                              (baseExpression (unaryExpression (memberExpression (identifier Name))))
-                            )
-                          )
-                        )
-                        ,
-                        (argument
-                          (argumentName (identifier newDescription))
-                          =
-                          (startExpression
-                            (compareExpression
-                              (baseExpression (unaryExpression (memberExpression (identifier Description))))
-                            )
-                          )
+            (baseExpression
+              (unaryExpression
+                (memberExpression
+                  (identifier callRate)
+                  .
+                  (qualifiedFunctionCall
+                    (identifier init)
+                    (
+                    (argumentList
+                      (argument
+                        (argumentName (identifier crid))
+                        =
+                        (startExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier CallRateId))))
                         )
                       )
+                      ,
+                      (argument
+                        (argumentName (identifier newName))
+                        =
+                        (startExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier Name))))
+                        )
                       )
+                      ,
+                      (argument
+                        (argumentName (identifier newDescription))
+                        =
+                        (startExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier Description))))
+                        )
+                      )
+                    )
                     )
                   )
                 )
@@ -155,31 +141,25 @@ Hidden:NEWLINE                  <>
         )
         (statement
           (startExpression
-            (compareExpression
-              (baseExpression
-                (unaryExpression
-                  (memberExpression
-                    (functionCall
-                      (identifier ArrayAppend)
-                      (
-                      (argumentList
-                        (argument
-                          (startExpression
-                            (compareExpression
-                              (baseExpression (unaryExpression (memberExpression (identifier result))))
-                            )
-                          )
-                        )
-                        ,
-                        (argument
-                          (startExpression
-                            (compareExpression
-                              (baseExpression (unaryExpression (memberExpression (identifier callRate))))
-                            )
-                          )
+            (baseExpression
+              (unaryExpression
+                (memberExpression
+                  (functionCall
+                    (identifier ArrayAppend)
+                    (
+                    (argumentList
+                      (argument
+                        (startExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier result))))
                         )
                       )
+                      ,
+                      (argument
+                        (startExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier callRate))))
+                        )
                       )
+                    )
                     )
                   )
                 )

@@ -469,15 +469,11 @@ Hidden:NEWLINE                  <>
               (localAssignmentExpression
                 var
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier dir))))
-                  )
+                  (baseExpression (unaryExpression (memberExpression (identifier dir))))
                 )
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-                  )
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
                 )
               )
               (endOfStatement ;)
@@ -486,15 +482,11 @@ Hidden:NEWLINE                  <>
               (localAssignmentExpression
                 var
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier path))))
-                  )
+                  (baseExpression (unaryExpression (memberExpression (identifier path))))
                 )
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-                  )
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
                 )
               )
               (endOfStatement ;)
@@ -503,15 +495,11 @@ Hidden:NEWLINE                  <>
               (localAssignmentExpression
                 var
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier paths))))
-                  )
+                  (baseExpression (unaryExpression (memberExpression (identifier paths))))
                 )
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-                  )
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
                 )
               )
               (endOfStatement ;)
@@ -520,17 +508,13 @@ Hidden:NEWLINE                  <>
               (localAssignmentExpression
                 var
                 (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression (memberExpression (identifier (cfmlFunction file))))
-                    )
+                  (baseExpression
+                    (unaryExpression (memberExpression (identifier (cfmlFunction file))))
                   )
                 )
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-                  )
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
                 )
               )
               (endOfStatement ;)
@@ -539,15 +523,11 @@ Hidden:NEWLINE                  <>
               (localAssignmentExpression
                 var
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier counter))))
-                  )
+                  (baseExpression (unaryExpression (memberExpression (identifier counter))))
                 )
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
-                  )
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
                 )
               )
               (endOfStatement ;)
@@ -556,15 +536,11 @@ Hidden:NEWLINE                  <>
               (localAssignmentExpression
                 var
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier len))))
-                  )
+                  (baseExpression (unaryExpression (memberExpression (identifier len))))
                 )
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-                  )
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
                 )
               )
               (endOfStatement ;)
@@ -573,15 +549,11 @@ Hidden:NEWLINE                  <>
               (localAssignmentExpression
                 var
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier directories))))
-                  )
+                  (baseExpression (unaryExpression (memberExpression (identifier directories))))
                 )
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-                  )
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
                 )
               )
               (endOfStatement ;)
@@ -590,35 +562,29 @@ Hidden:NEWLINE                  <>
               (localAssignmentExpression
                 var
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier jarName))))
-                  )
+                  (baseExpression (unaryExpression (memberExpression (identifier jarName))))
                 )
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (memberExpression
-                          (functionCall
-                            (identifier calculateJarName)
-                            (
-                            (argumentList
-                              (argument
-                                (startExpression
-                                  (compareExpression
-                                    (baseExpression
-                                      (unaryExpression
-                                        (memberExpression
-                                          (functionCall (identifier getSourceDirectories) ( argumentList ))
-                                        )
-                                      )
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifier calculateJarName)
+                          (
+                          (argumentList
+                            (argument
+                              (startExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (memberExpression
+                                      (functionCall (identifier getSourceDirectories) ( argumentList ))
                                     )
                                   )
                                 )
                               )
                             )
-                            )
+                          )
                           )
                         )
                       )
@@ -632,42 +598,30 @@ Hidden:NEWLINE                  <>
               (localAssignmentExpression
                 var
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                  )
+                  (baseExpression (unaryExpression (memberExpression (identifier jar))))
                 )
                 =
                 (startExpression
-                  (compareExpression
+                  (baseExpression
                     (baseExpression
-                      (concatenationExpression
+                      (baseExpression
                         (unaryExpression
                           (memberExpression
                             (functionCall (identifier getCompileDirectory) ( argumentList ))
                           )
                         )
-                        &
-                        (baseOrTernaryExpression
-                          (compareExpression
-                            (baseExpression
-                              (concatenationExpression
-                                (unaryExpression
-                                  (primaryExpression
-                                    (literalExpression (stringLiteral " (stringLiteralPart /) "))
-                                  )
-                                )
-                                &
-                                (baseOrTernaryExpression
-                                  (compareExpression
-                                    (baseExpression (unaryExpression (memberExpression (identifier jarName))))
-                                  )
-                                )
-                              )
-                            )
+                      )
+                      &
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart /) "))
                           )
                         )
                       )
                     )
+                    &
+                    (baseExpression (unaryExpression (memberExpression (identifier jarName))))
                   )
                 )
               )
@@ -678,23 +632,19 @@ Hidden:NEWLINE                  <>
                 if
                 (condition
                   (
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (memberExpression
-                          (functionCall
-                            (identifier fileExists)
-                            (
-                            (argumentList
-                              (argument
-                                (startExpression
-                                  (compareExpression
-                                    (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                                  )
-                                )
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifier fileExists)
+                          (
+                          (argumentList
+                            (argument
+                              (startExpression
+                                (baseExpression (unaryExpression (memberExpression (identifier jar))))
                               )
                             )
-                            )
+                          )
                           )
                         )
                       )
@@ -710,11 +660,9 @@ Hidden:NEWLINE                  <>
                         if
                         (condition
                           (
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression (functionCall (identifier isTrustedSource) ( argumentList )))
-                              )
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression (functionCall (identifier isTrustedSource) ( argumentList )))
                             )
                           )
                           )
@@ -725,66 +673,56 @@ Hidden:NEWLINE                  <>
                             (statement
                               (assignmentExpression
                                 (startExpression
-                                  (compareExpression
-                                    (baseExpression
-                                      (unaryExpression (memberExpression (identifier (cfmlFunction file))))
-                                    )
+                                  (baseExpression
+                                    (unaryExpression (memberExpression (identifier (cfmlFunction file))))
                                   )
                                 )
                                 =
                                 (startExpression
-                                  (compareExpression
-                                    (baseExpression
-                                      (unaryExpression
-                                        (memberExpression
-                                          (functionCall
-                                            (identifier createObject)
-                                            (
-                                            (argumentList
-                                              (argument
-                                                (startExpression
-                                                  (compareExpression
-                                                    (baseExpression
-                                                      (unaryExpression
-                                                        (primaryExpression
-                                                          (literalExpression (stringLiteral " (stringLiteralPart java) "))
-                                                        )
-                                                      )
-                                                    )
-                                                  )
-                                                )
-                                              )
-                                              ,
-                                              (argument
-                                                (startExpression
-                                                  (compareExpression
-                                                    (baseExpression
-                                                      (unaryExpression
-                                                        (primaryExpression
-                                                          (literalExpression (stringLiteral " (stringLiteralPart java.io.File) "))
-                                                        )
-                                                      )
+                                  (baseExpression
+                                    (unaryExpression
+                                      (memberExpression
+                                        (functionCall
+                                          (identifier createObject)
+                                          (
+                                          (argumentList
+                                            (argument
+                                              (startExpression
+                                                (baseExpression
+                                                  (unaryExpression
+                                                    (primaryExpression
+                                                      (literalExpression (stringLiteral " (stringLiteralPart java) "))
                                                     )
                                                   )
                                                 )
                                               )
                                             )
+                                            ,
+                                            (argument
+                                              (startExpression
+                                                (baseExpression
+                                                  (unaryExpression
+                                                    (primaryExpression
+                                                      (literalExpression (stringLiteral " (stringLiteralPart java.io.File) "))
+                                                    )
+                                                  )
+                                                )
+                                              )
                                             )
                                           )
-                                          .
-                                          (qualifiedFunctionCall
-                                            (identifier init)
-                                            (
-                                            (argumentList
-                                              (argument
-                                                (startExpression
-                                                  (compareExpression
-                                                    (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                                                  )
-                                                )
+                                          )
+                                        )
+                                        .
+                                        (qualifiedFunctionCall
+                                          (identifier init)
+                                          (
+                                          (argumentList
+                                            (argument
+                                              (startExpression
+                                                (baseExpression (unaryExpression (memberExpression (identifier jar))))
                                               )
                                             )
-                                            )
+                                          )
                                           )
                                         )
                                       )
@@ -796,33 +734,29 @@ Hidden:NEWLINE                  <>
                             )
                             (statement
                               (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (memberExpression
-                                        (functionCall (identifier getURLClassLoader) ( argumentList ))
-                                        .
-                                        (qualifiedFunctionCall
-                                          (identifier addURL)
-                                          (
-                                          (argumentList
-                                            (argument
-                                              (startExpression
-                                                (compareExpression
-                                                  (baseExpression
-                                                    (unaryExpression
-                                                      (memberExpression
-                                                        (identifier (cfmlFunction file))
-                                                        .
-                                                        (qualifiedFunctionCall (identifier toURL) ( argumentList ))
-                                                      )
-                                                    )
+                                (baseExpression
+                                  (unaryExpression
+                                    (memberExpression
+                                      (functionCall (identifier getURLClassLoader) ( argumentList ))
+                                      .
+                                      (qualifiedFunctionCall
+                                        (identifier addURL)
+                                        (
+                                        (argumentList
+                                          (argument
+                                            (startExpression
+                                              (baseExpression
+                                                (unaryExpression
+                                                  (memberExpression
+                                                    (identifier (cfmlFunction file))
+                                                    .
+                                                    (qualifiedFunctionCall (identifier toURL) ( argumentList ))
                                                   )
                                                 )
                                               )
                                             )
                                           )
-                                          )
+                                        )
                                         )
                                       )
                                     )
@@ -848,12 +782,10 @@ Hidden:NEWLINE                  <>
                                       (multipartIdentifier (identifier action))
                                       =
                                       (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (primaryExpression
-                                                (literalExpression (stringLiteral " (stringLiteralPart delete) "))
-                                              )
+                                        (baseExpression
+                                          (unaryExpression
+                                            (primaryExpression
+                                              (literalExpression (stringLiteral " (stringLiteralPart delete) "))
                                             )
                                           )
                                         )
@@ -863,22 +795,18 @@ Hidden:NEWLINE                  <>
                                       (multipartIdentifier (identifier (cfmlFunction file)))
                                       =
                                       (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (primaryExpression
-                                                (literalExpression
-                                                  (stringLiteral
-                                                    "
-                                                    #
-                                                    (startExpression
-                                                      (compareExpression
-                                                        (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                                                      )
-                                                    )
-                                                    #
-                                                    "
+                                        (baseExpression
+                                          (unaryExpression
+                                            (primaryExpression
+                                              (literalExpression
+                                                (stringLiteral
+                                                  "
+                                                  #
+                                                  (startExpression
+                                                    (baseExpression (unaryExpression (memberExpression (identifier jar))))
                                                   )
+                                                  #
+                                                  "
                                                 )
                                               )
                                             )
@@ -911,44 +839,32 @@ Hidden:NEWLINE                  <>
                     (statement
                       (assignmentExpression
                         (startExpression
-                          (compareExpression
-                            (baseExpression (unaryExpression (memberExpression (identifier path))))
-                          )
+                          (baseExpression (unaryExpression (memberExpression (identifier path))))
                         )
                         =
                         (startExpression
-                          (compareExpression
+                          (baseExpression
                             (baseExpression
-                              (concatenationExpression
+                              (baseExpression
                                 (unaryExpression
                                   (memberExpression
                                     (functionCall (identifier getCompileDirectory) ( argumentList ))
                                   )
                                 )
-                                &
-                                (baseOrTernaryExpression
-                                  (compareExpression
-                                    (baseExpression
-                                      (concatenationExpression
-                                        (unaryExpression
-                                          (primaryExpression
-                                            (literalExpression (stringLiteral " (stringLiteralPart /) "))
-                                          )
-                                        )
-                                        &
-                                        (baseOrTernaryExpression
-                                          (compareExpression
-                                            (baseExpression
-                                              (unaryExpression
-                                                (memberExpression (functionCall (identifier createUUID) ( argumentList )))
-                                              )
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
+                              )
+                              &
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart /) "))
                                   )
                                 )
+                              )
+                            )
+                            &
+                            (baseExpression
+                              (unaryExpression
+                                (memberExpression (functionCall (identifier createUUID) ( argumentList )))
                               )
                             )
                           )
@@ -965,12 +881,10 @@ Hidden:NEWLINE                  <>
                               (multipartIdentifier (identifier action))
                               =
                               (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (primaryExpression
-                                        (literalExpression (stringLiteral " (stringLiteralPart create) "))
-                                      )
+                                (baseExpression
+                                  (unaryExpression
+                                    (primaryExpression
+                                      (literalExpression (stringLiteral " (stringLiteralPart create) "))
                                     )
                                   )
                                 )
@@ -980,22 +894,18 @@ Hidden:NEWLINE                  <>
                               (multipartIdentifier (identifier (cfmlFunction directory)))
                               =
                               (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (primaryExpression
-                                        (literalExpression
-                                          (stringLiteral
-                                            "
-                                            #
-                                            (startExpression
-                                              (compareExpression
-                                                (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                              )
-                                            )
-                                            #
-                                            "
+                                (baseExpression
+                                  (unaryExpression
+                                    (primaryExpression
+                                      (literalExpression
+                                        (stringLiteral
+                                          "
+                                          #
+                                          (startExpression
+                                            (baseExpression (unaryExpression (memberExpression (identifier path))))
                                           )
+                                          #
+                                          "
                                         )
                                       )
                                     )
@@ -1012,18 +922,14 @@ Hidden:NEWLINE                  <>
                     (statement
                       (assignmentExpression
                         (startExpression
-                          (compareExpression
-                            (baseExpression (unaryExpression (memberExpression (identifier directories))))
-                          )
+                          (baseExpression (unaryExpression (memberExpression (identifier directories))))
                         )
                         =
                         (startExpression
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression
-                                  (functionCall (identifier getSourceDirectories) ( argumentList ))
-                                )
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression
+                                (functionCall (identifier getSourceDirectories) ( argumentList ))
                               )
                             )
                           )
@@ -1034,29 +940,23 @@ Hidden:NEWLINE                  <>
                     (statement
                       (assignmentExpression
                         (startExpression
-                          (compareExpression
-                            (baseExpression (unaryExpression (memberExpression (identifier len))))
-                          )
+                          (baseExpression (unaryExpression (memberExpression (identifier len))))
                         )
                         =
                         (startExpression
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression
-                                  (functionCall
-                                    (identifier arraylen)
-                                    (
-                                    (argumentList
-                                      (argument
-                                        (startExpression
-                                          (compareExpression
-                                            (baseExpression (unaryExpression (memberExpression (identifier directories))))
-                                          )
-                                        )
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression
+                                (functionCall
+                                  (identifier arraylen)
+                                  (
+                                  (argumentList
+                                    (argument
+                                      (startExpression
+                                        (baseExpression (unaryExpression (memberExpression (identifier directories))))
                                       )
                                     )
-                                    )
+                                  )
                                   )
                                 )
                               )
@@ -1072,35 +972,23 @@ Hidden:NEWLINE                  <>
                         (
                         (endOfStatement ;)
                         (startExpression
-                          (compareExpression
+                          (baseExpression
                             (baseExpression (unaryExpression (memberExpression (identifier counter))))
                             (compareExpressionOperator lte)
-                            (compareExpression
-                              (baseExpression (unaryExpression (memberExpression (identifier len))))
-                            )
+                            (baseExpression (unaryExpression (memberExpression (identifier len))))
                           )
                         )
                         (endOfStatement ;)
                         (assignmentExpression
                           (startExpression
-                            (compareExpression
-                              (baseExpression (unaryExpression (memberExpression (identifier counter))))
-                            )
+                            (baseExpression (unaryExpression (memberExpression (identifier counter))))
                           )
                           =
                           (startExpression
-                            (compareExpression
-                              (baseExpression
-                                (additiveExpression
-                                  (unaryExpression (memberExpression (identifier counter)))
-                                  +
-                                  (baseOrTernaryExpression
-                                    (compareExpression
-                                      (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
-                                    )
-                                  )
-                                )
-                              )
+                            (baseExpression
+                              (baseExpression (unaryExpression (memberExpression (identifier counter))))
+                              +
+                              (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
                             )
                           )
                         )
@@ -1111,26 +999,20 @@ Hidden:NEWLINE                  <>
                             (statement
                               (assignmentExpression
                                 (startExpression
-                                  (compareExpression
-                                    (baseExpression (unaryExpression (memberExpression (identifier dir))))
-                                  )
+                                  (baseExpression (unaryExpression (memberExpression (identifier dir))))
                                 )
                                 =
                                 (startExpression
-                                  (compareExpression
-                                    (baseExpression
-                                      (unaryExpression
-                                        (memberExpression
-                                          (identifier directories)
-                                          (arrayMemberExpression
-                                            [
-                                            (startExpression
-                                              (compareExpression
-                                                (baseExpression (unaryExpression (memberExpression (identifier counter))))
-                                              )
-                                            )
-                                            ]
+                                  (baseExpression
+                                    (unaryExpression
+                                      (memberExpression
+                                        (identifier directories)
+                                        (arrayMemberExpression
+                                          [
+                                          (startExpression
+                                            (baseExpression (unaryExpression (memberExpression (identifier counter))))
                                           )
+                                          ]
                                         )
                                       )
                                     )
@@ -1141,31 +1023,25 @@ Hidden:NEWLINE                  <>
                             )
                             (statement
                               (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (memberExpression
-                                        (functionCall
-                                          (identifier $directoryCopy)
-                                          (
-                                          (argumentList
-                                            (argument
-                                              (startExpression
-                                                (compareExpression
-                                                  (baseExpression (unaryExpression (memberExpression (identifier dir))))
-                                                )
-                                              )
-                                            )
-                                            ,
-                                            (argument
-                                              (startExpression
-                                                (compareExpression
-                                                  (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                                )
-                                              )
+                                (baseExpression
+                                  (unaryExpression
+                                    (memberExpression
+                                      (functionCall
+                                        (identifier $directoryCopy)
+                                        (
+                                        (argumentList
+                                          (argument
+                                            (startExpression
+                                              (baseExpression (unaryExpression (memberExpression (identifier dir))))
                                             )
                                           )
+                                          ,
+                                          (argument
+                                            (startExpression
+                                              (baseExpression (unaryExpression (memberExpression (identifier path))))
+                                            )
                                           )
+                                        )
                                         )
                                       )
                                     )
@@ -1182,29 +1058,23 @@ Hidden:NEWLINE                  <>
                     (statement
                       (assignmentExpression
                         (startExpression
-                          (compareExpression
-                            (baseExpression (unaryExpression (memberExpression (identifier paths))))
-                          )
+                          (baseExpression (unaryExpression (memberExpression (identifier paths))))
                         )
                         =
                         (startExpression
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression
-                                  (functionCall
-                                    (identifier ArrayNew)
-                                    (
-                                    (argumentList
-                                      (argument
-                                        (startExpression
-                                          (compareExpression
-                                            (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
-                                          )
-                                        )
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression
+                                (functionCall
+                                  (identifier ArrayNew)
+                                  (
+                                  (argumentList
+                                    (argument
+                                      (startExpression
+                                        (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
                                       )
                                     )
-                                    )
+                                  )
                                   )
                                 )
                               )
@@ -1216,31 +1086,25 @@ Hidden:NEWLINE                  <>
                     )
                     (statement
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (functionCall
-                                  (identifier ArrayAppend)
-                                  (
-                                  (argumentList
-                                    (argument
-                                      (startExpression
-                                        (compareExpression
-                                          (baseExpression (unaryExpression (memberExpression (identifier paths))))
-                                        )
-                                      )
-                                    )
-                                    ,
-                                    (argument
-                                      (startExpression
-                                        (compareExpression
-                                          (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                        )
-                                      )
+                        (baseExpression
+                          (unaryExpression
+                            (memberExpression
+                              (functionCall
+                                (identifier ArrayAppend)
+                                (
+                                (argumentList
+                                  (argument
+                                    (startExpression
+                                      (baseExpression (unaryExpression (memberExpression (identifier paths))))
                                     )
                                   )
+                                  ,
+                                  (argument
+                                    (startExpression
+                                      (baseExpression (unaryExpression (memberExpression (identifier path))))
+                                    )
                                   )
+                                )
                                 )
                               )
                             )
@@ -1252,53 +1116,43 @@ Hidden:NEWLINE                  <>
                     (statement
                       (assignmentExpression
                         (startExpression
-                          (compareExpression
-                            (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                          )
+                          (baseExpression (unaryExpression (memberExpression (identifier jar))))
                         )
                         =
                         (startExpression
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression
-                                  (functionCall (identifier getJavaCompiler) ( argumentList ))
-                                  .
-                                  (qualifiedFunctionCall
-                                    (identifier compile)
-                                    (
-                                    (argumentList
-                                      (argument
-                                        (startExpression
-                                          (compareExpression
-                                            (baseExpression (unaryExpression (memberExpression (identifier paths))))
-                                          )
-                                        )
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression
+                                (functionCall (identifier getJavaCompiler) ( argumentList ))
+                                .
+                                (qualifiedFunctionCall
+                                  (identifier compile)
+                                  (
+                                  (argumentList
+                                    (argument
+                                      (startExpression
+                                        (baseExpression (unaryExpression (memberExpression (identifier paths))))
                                       )
-                                      ,
-                                      (argument
-                                        (startExpression
-                                          (compareExpression
-                                            (baseExpression
-                                              (unaryExpression
-                                                (memberExpression
-                                                  (functionCall (identifier getURLClassLoader) ( argumentList ))
-                                                )
-                                              )
+                                    )
+                                    ,
+                                    (argument
+                                      (startExpression
+                                        (baseExpression
+                                          (unaryExpression
+                                            (memberExpression
+                                              (functionCall (identifier getURLClassLoader) ( argumentList ))
                                             )
                                           )
                                         )
                                       )
-                                      ,
-                                      (argument
-                                        (startExpression
-                                          (compareExpression
-                                            (baseExpression (unaryExpression (memberExpression (identifier jarName))))
-                                          )
-                                        )
+                                    )
+                                    ,
+                                    (argument
+                                      (startExpression
+                                        (baseExpression (unaryExpression (memberExpression (identifier jarName))))
                                       )
                                     )
-                                    )
+                                  )
                                   )
                                 )
                               )
@@ -1311,66 +1165,56 @@ Hidden:NEWLINE                  <>
                     (statement
                       (assignmentExpression
                         (startExpression
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression (memberExpression (identifier (cfmlFunction file))))
-                            )
+                          (baseExpression
+                            (unaryExpression (memberExpression (identifier (cfmlFunction file))))
                           )
                         )
                         =
                         (startExpression
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression
-                                  (functionCall
-                                    (identifier createObject)
-                                    (
-                                    (argumentList
-                                      (argument
-                                        (startExpression
-                                          (compareExpression
-                                            (baseExpression
-                                              (unaryExpression
-                                                (primaryExpression
-                                                  (literalExpression (stringLiteral " (stringLiteralPart java) "))
-                                                )
-                                              )
-                                            )
-                                          )
-                                        )
-                                      )
-                                      ,
-                                      (argument
-                                        (startExpression
-                                          (compareExpression
-                                            (baseExpression
-                                              (unaryExpression
-                                                (primaryExpression
-                                                  (literalExpression (stringLiteral " (stringLiteralPart java.io.File) "))
-                                                )
-                                              )
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression
+                                (functionCall
+                                  (identifier createObject)
+                                  (
+                                  (argumentList
+                                    (argument
+                                      (startExpression
+                                        (baseExpression
+                                          (unaryExpression
+                                            (primaryExpression
+                                              (literalExpression (stringLiteral " (stringLiteralPart java) "))
                                             )
                                           )
                                         )
                                       )
                                     )
+                                    ,
+                                    (argument
+                                      (startExpression
+                                        (baseExpression
+                                          (unaryExpression
+                                            (primaryExpression
+                                              (literalExpression (stringLiteral " (stringLiteralPart java.io.File) "))
+                                            )
+                                          )
+                                        )
+                                      )
                                     )
                                   )
-                                  .
-                                  (qualifiedFunctionCall
-                                    (identifier init)
-                                    (
-                                    (argumentList
-                                      (argument
-                                        (startExpression
-                                          (compareExpression
-                                            (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                                          )
-                                        )
+                                  )
+                                )
+                                .
+                                (qualifiedFunctionCall
+                                  (identifier init)
+                                  (
+                                  (argumentList
+                                    (argument
+                                      (startExpression
+                                        (baseExpression (unaryExpression (memberExpression (identifier jar))))
                                       )
                                     )
-                                    )
+                                  )
                                   )
                                 )
                               )
@@ -1382,33 +1226,29 @@ Hidden:NEWLINE                  <>
                     )
                     (statement
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (functionCall (identifier getURLClassLoader) ( argumentList ))
-                                .
-                                (qualifiedFunctionCall
-                                  (identifier addURL)
-                                  (
-                                  (argumentList
-                                    (argument
-                                      (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (memberExpression
-                                                (identifier (cfmlFunction file))
-                                                .
-                                                (qualifiedFunctionCall (identifier toURL) ( argumentList ))
-                                              )
-                                            )
+                        (baseExpression
+                          (unaryExpression
+                            (memberExpression
+                              (functionCall (identifier getURLClassLoader) ( argumentList ))
+                              .
+                              (qualifiedFunctionCall
+                                (identifier addURL)
+                                (
+                                (argumentList
+                                  (argument
+                                    (startExpression
+                                      (baseExpression
+                                        (unaryExpression
+                                          (memberExpression
+                                            (identifier (cfmlFunction file))
+                                            .
+                                            (qualifiedFunctionCall (identifier toURL) ( argumentList ))
                                           )
                                         )
                                       )
                                     )
                                   )
-                                  )
+                                )
                                 )
                               )
                             )
@@ -1422,23 +1262,19 @@ Hidden:NEWLINE                  <>
                         if
                         (condition
                           (
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression
-                                  (functionCall
-                                    (identifier directoryExists)
-                                    (
-                                    (argumentList
-                                      (argument
-                                        (startExpression
-                                          (compareExpression
-                                            (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                          )
-                                        )
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression
+                                (functionCall
+                                  (identifier directoryExists)
+                                  (
+                                  (argumentList
+                                    (argument
+                                      (startExpression
+                                        (baseExpression (unaryExpression (memberExpression (identifier path))))
                                       )
                                     )
-                                    )
+                                  )
                                   )
                                 )
                               )
@@ -1458,12 +1294,10 @@ Hidden:NEWLINE                  <>
                                       (multipartIdentifier (identifier action))
                                       =
                                       (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (primaryExpression
-                                                (literalExpression (stringLiteral " (stringLiteralPart delete) "))
-                                              )
+                                        (baseExpression
+                                          (unaryExpression
+                                            (primaryExpression
+                                              (literalExpression (stringLiteral " (stringLiteralPart delete) "))
                                             )
                                           )
                                         )
@@ -1473,12 +1307,10 @@ Hidden:NEWLINE                  <>
                                       (multipartIdentifier (identifier recurse))
                                       =
                                       (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (primaryExpression
-                                                (literalExpression (stringLiteral " (stringLiteralPart true) "))
-                                              )
+                                        (baseExpression
+                                          (unaryExpression
+                                            (primaryExpression
+                                              (literalExpression (stringLiteral " (stringLiteralPart true) "))
                                             )
                                           )
                                         )
@@ -1488,22 +1320,18 @@ Hidden:NEWLINE                  <>
                                       (multipartIdentifier (identifier (cfmlFunction directory)))
                                       =
                                       (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (primaryExpression
-                                                (literalExpression
-                                                  (stringLiteral
-                                                    "
-                                                    #
-                                                    (startExpression
-                                                      (compareExpression
-                                                        (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                                      )
-                                                    )
-                                                    #
-                                                    "
+                                        (baseExpression
+                                          (unaryExpression
+                                            (primaryExpression
+                                              (literalExpression
+                                                (stringLiteral
+                                                  "
+                                                  #
+                                                  (startExpression
+                                                    (baseExpression (unaryExpression (memberExpression (identifier path))))
                                                   )
+                                                  #
+                                                  "
                                                 )
                                               )
                                             )
@@ -1527,7 +1355,7 @@ Hidden:NEWLINE                  <>
                         if
                         (condition
                           (
-                          (compareExpression
+                          (baseExpression
                             (baseExpression
                               (unaryExpression
                                 (memberExpression
@@ -1537,9 +1365,7 @@ Hidden:NEWLINE                  <>
                                     (argumentList
                                       (argument
                                         (startExpression
-                                          (compareExpression
-                                            (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                                          )
+                                          (baseExpression (unaryExpression (memberExpression (identifier jar))))
                                         )
                                       )
                                     )
@@ -1548,11 +1374,11 @@ Hidden:NEWLINE                  <>
                                 )
                               )
                             )
-                            (compareExpressionOperator AND)
-                            (compareExpression
-                              (baseExpression
-                                (notExpression
-                                  NOT
+                            AND
+                            (baseExpression
+                              (notExpression
+                                NOT
+                                (baseExpression
                                   (unaryExpression
                                     (memberExpression (functionCall (identifier isTrustedSource) ( argumentList )))
                                   )
@@ -1574,12 +1400,10 @@ Hidden:NEWLINE                  <>
                                       (multipartIdentifier (identifier action))
                                       =
                                       (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (primaryExpression
-                                                (literalExpression (stringLiteral " (stringLiteralPart delete) "))
-                                              )
+                                        (baseExpression
+                                          (unaryExpression
+                                            (primaryExpression
+                                              (literalExpression (stringLiteral " (stringLiteralPart delete) "))
                                             )
                                           )
                                         )
@@ -1589,22 +1413,18 @@ Hidden:NEWLINE                  <>
                                       (multipartIdentifier (identifier (cfmlFunction file)))
                                       =
                                       (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (primaryExpression
-                                                (literalExpression
-                                                  (stringLiteral
-                                                    "
-                                                    #
-                                                    (startExpression
-                                                      (compareExpression
-                                                        (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                                                      )
-                                                    )
-                                                    #
-                                                    "
+                                        (baseExpression
+                                          (unaryExpression
+                                            (primaryExpression
+                                              (literalExpression
+                                                (stringLiteral
+                                                  "
+                                                  #
+                                                  (startExpression
+                                                    (baseExpression (unaryExpression (memberExpression (identifier jar))))
                                                   )
+                                                  #
+                                                  "
                                                 )
                                               )
                                             )
@@ -1638,23 +1458,19 @@ Hidden:NEWLINE                  <>
                         if
                         (condition
                           (
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression
-                                  (functionCall
-                                    (identifier directoryExists)
-                                    (
-                                    (argumentList
-                                      (argument
-                                        (startExpression
-                                          (compareExpression
-                                            (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                          )
-                                        )
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression
+                                (functionCall
+                                  (identifier directoryExists)
+                                  (
+                                  (argumentList
+                                    (argument
+                                      (startExpression
+                                        (baseExpression (unaryExpression (memberExpression (identifier path))))
                                       )
                                     )
-                                    )
+                                  )
                                   )
                                 )
                               )
@@ -1674,12 +1490,10 @@ Hidden:NEWLINE                  <>
                                       (multipartIdentifier (identifier action))
                                       =
                                       (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (primaryExpression
-                                                (literalExpression (stringLiteral " (stringLiteralPart delete) "))
-                                              )
+                                        (baseExpression
+                                          (unaryExpression
+                                            (primaryExpression
+                                              (literalExpression (stringLiteral " (stringLiteralPart delete) "))
                                             )
                                           )
                                         )
@@ -1689,12 +1503,10 @@ Hidden:NEWLINE                  <>
                                       (multipartIdentifier (identifier recurse))
                                       =
                                       (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (primaryExpression
-                                                (literalExpression (stringLiteral " (stringLiteralPart true) "))
-                                              )
+                                        (baseExpression
+                                          (unaryExpression
+                                            (primaryExpression
+                                              (literalExpression (stringLiteral " (stringLiteralPart true) "))
                                             )
                                           )
                                         )
@@ -1704,22 +1516,18 @@ Hidden:NEWLINE                  <>
                                       (multipartIdentifier (identifier (cfmlFunction directory)))
                                       =
                                       (startExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression
-                                              (primaryExpression
-                                                (literalExpression
-                                                  (stringLiteral
-                                                    "
-                                                    #
-                                                    (startExpression
-                                                      (compareExpression
-                                                        (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                                      )
-                                                    )
-                                                    #
-                                                    "
+                                        (baseExpression
+                                          (unaryExpression
+                                            (primaryExpression
+                                              (literalExpression
+                                                (stringLiteral
+                                                  "
+                                                  #
+                                                  (startExpression
+                                                    (baseExpression (unaryExpression (memberExpression (identifier path))))
                                                   )
+                                                  #
+                                                  "
                                                 )
                                               )
                                             )

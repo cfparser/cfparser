@@ -49,13 +49,11 @@ Hidden:NEWLINE                  <>
       (identifier displayLabel)
       =
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (primaryExpression
-                (literalExpression
-                  (stringLiteral " (stringLiteralPart ${lastName} ${firstName}) ")
-                )
+        (baseExpression
+          (unaryExpression
+            (primaryExpression
+              (literalExpression
+                (stringLiteral " (stringLiteralPart ${lastName} ${firstName}) ")
               )
             )
           )
@@ -90,12 +88,10 @@ Hidden:NEWLINE                  <>
               (returnStatement
                 return
                 (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (primaryExpression
-                          (literalExpression (stringLiteral " (stringLiteralPart woohoo) "))
-                        )
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart woohoo) "))
                       )
                     )
                   )

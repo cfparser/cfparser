@@ -27,6 +27,7 @@ import org.antlr.v4.runtime.dfa.DFA;
 
 import cfml.CFSCRIPTLexer;
 import cfml.CFSCRIPTParser;
+import cfml.CFSCRIPTParser.CfmlExpressionContext;
 import cfml.CFSCRIPTParser.ExpressionContext;
 import cfml.CFSCRIPTParser.ScriptBlockContext;
 import cfml.dictionary.DictionaryManager;
@@ -73,8 +74,6 @@ public class CFMLParser {
 		final ANTLRInputStream input = new ANTLRInputStream(_infix);
 		if (lexer == null) {
 			lexer = new CFSCRIPTLexer(input);
-			// lexer.setInterpreter(new LexerATNSimulator(lexer, lexer.getATN(), lexer.getInterpreter().decisionToDFA,
-			// new PredictionContextCache()));
 		} else {
 			lexer.setInputStream(input);
 		}
@@ -84,9 +83,6 @@ public class CFMLParser {
 		// ScriptBlockContext scriptStatement = null;
 		if (parser == null) {
 			parser = new CFSCRIPTParser(tokens);
-			// parser.setInterpreter(new ParserATNSimulator(parser, parser.getATN(),
-			// parser.getInterpreter().decisionToDFA, new PredictionContextCache()));
-			// parser.getInterpreter().clearDFA();
 			if (errorReporter == null) {
 				lexer.addErrorListener(this.errorReporter);
 				parser.addErrorListener(this.errorReporter);
@@ -99,7 +95,6 @@ public class CFMLParser {
 			lexer.addErrorListener(errorReporter);
 			parser.addErrorListener(errorReporter);
 		}
-		// p2.scriptMode = false;
 		parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
 		parser.reset();
 		ExpressionContext expressionContext = null;
@@ -122,7 +117,59 @@ public class CFMLParser {
 			return expressionVisitor.visit(expressionContext);
 		} else
 			return null;
+	}
+	
+	public CFExpression parseCFMLExpression(String _infix, ANTLRErrorListener errorReporter) throws Exception {
+		if (errorReporter == null) {
+			errorReporter = this.errorReporter;
+		}
 		
+		final ANTLRInputStream input = new ANTLRInputStream(_infix);
+		if (lexer == null) {
+			lexer = new CFSCRIPTLexer(input);
+		} else {
+			lexer.setInputStream(input);
+		}
+		
+		final CommonTokenStream tokens = new CommonTokenStream(lexer);
+		
+		// ScriptBlockContext scriptStatement = null;
+		if (parser == null) {
+			parser = new CFSCRIPTParser(tokens);
+			if (errorReporter == null) {
+				lexer.addErrorListener(this.errorReporter);
+				parser.addErrorListener(this.errorReporter);
+			}
+		} else {
+			parser.setTokenStream(tokens);
+		}
+		
+		if (errorReporter != null) {
+			lexer.addErrorListener(errorReporter);
+			parser.addErrorListener(errorReporter);
+		}
+		parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
+		parser.reset();
+		CfmlExpressionContext expressionContext = null;
+		try {
+			expressionContext = parser.cfmlExpression(); // Stage 1
+			// TestUtils.showGUI(expressionContext, CFSCRIPTParser.ruleNames);
+			
+		} catch (Exception e) {
+			tokens.reset(); // rewind input stream
+			parser.reset();
+			parser.getInterpreter().setPredictionMode(PredictionMode.LL);
+			expressionContext = parser.cfmlExpression(); // STAGE 2
+		} finally {
+			if (errorReporter != null) {
+				lexer.removeErrorListener(errorReporter);
+				parser.removeErrorListener(errorReporter);
+			}
+		}
+		if (expressionContext != null) {
+			return expressionVisitor.visit(expressionContext);
+		} else
+			return null;
 	}
 	
 	int skipToPosition = 0;

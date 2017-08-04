@@ -43,7 +43,7 @@ Hidden:NEWLINE                  <>
         if
         (condition
           (
-          (compareExpression
+          (baseExpression
             (baseExpression
               (unaryExpression
                 (memberExpression
@@ -53,11 +53,9 @@ Hidden:NEWLINE                  <>
                     (argumentList
                       (argument
                         (startExpression
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression (identifier cgi) . (identifier HTTP_REFERER))
-                              )
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression (identifier cgi) . (identifier HTTP_REFERER))
                             )
                           )
                         )
@@ -68,71 +66,53 @@ Hidden:NEWLINE                  <>
                 )
               )
             )
-            (compareExpressionOperator and)
-            (compareExpression
+            and
+            (baseExpression
               (baseExpression
-                (concatenationExpression
+                (baseExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart /) "))
+                      )
+                    )
+                  )
+                  &
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression (identifier cgi) . (identifier HTTP_REFERER))
+                    )
+                  )
+                )
+                &
+                (baseExpression
                   (unaryExpression
                     (primaryExpression
                       (literalExpression (stringLiteral " (stringLiteralPart /) "))
                     )
                   )
-                  &
-                  (baseOrTernaryExpression
-                    (compareExpression
-                      (baseExpression
-                        (concatenationExpression
-                          (unaryExpression
-                            (memberExpression (identifier cgi) . (identifier HTTP_REFERER))
-                          )
-                          &
-                          (baseOrTernaryExpression
-                            (compareExpression
-                              (baseExpression
-                                (unaryExpression
-                                  (primaryExpression
-                                    (literalExpression (stringLiteral " (stringLiteralPart /) "))
-                                  )
-                                )
-                              )
-                              (compareExpressionOperator does not contain)
-                              (compareExpression
-                                (baseExpression
-                                  (concatenationExpression
-                                    (unaryExpression
-                                      (primaryExpression
-                                        (literalExpression (stringLiteral " (stringLiteralPart /) "))
-                                      )
-                                    )
-                                    &
-                                    (baseOrTernaryExpression
-                                      (compareExpression
-                                        (baseExpression
-                                          (concatenationExpression
-                                            (unaryExpression (memberExpression (identifier cgi) . (identifier HTTP_HOST)))
-                                            &
-                                            (baseOrTernaryExpression
-                                              (compareExpression
-                                                (baseExpression
-                                                  (unaryExpression
-                                                    (primaryExpression
-                                                      (literalExpression (stringLiteral " (stringLiteralPart /) "))
-                                                    )
-                                                  )
-                                                )
-                                              )
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                  )
-                                )
-                              )
-                            )
-                          )
-                        )
+                )
+              )
+              (compareExpressionOperator does not contain)
+              (baseExpression
+                (baseExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart /) "))
                       )
+                    )
+                  )
+                  &
+                  (baseExpression
+                    (unaryExpression (memberExpression (identifier cgi) . (identifier HTTP_HOST)))
+                  )
+                )
+                &
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart /) "))
                     )
                   )
                 )

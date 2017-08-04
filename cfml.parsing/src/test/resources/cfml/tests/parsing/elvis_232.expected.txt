@@ -58,42 +58,33 @@ Hidden:NEWLINE                  <>
         (statement
           (assignmentExpression
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression (memberExpression (identifier local) . (identifier a)))
-                )
+              (baseExpression
+                (unaryExpression (memberExpression (identifier local) . (identifier a)))
               )
             )
             =
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression
-                    (primaryExpression
-                      (implicitStruct
-                        {
-                        (implicitStructElements
-                          (implicitStructExpression
-                            (implicitStructKeyExpression
-                              (literalExpression (stringLiteral " (stringLiteralPart a) "))
-                            )
-                            :
-                            (compareExpression
-                              (baseExpression
-                                (elvisExpression
-                                  (unaryExpression (primaryExpression (literalExpression true)))
-                                  ?
-                                  :
-                                  (baseExpression
-                                    (unaryExpression (primaryExpression (literalExpression false)))
-                                  )
-                                )
-                              )
+              (baseExpression
+                (unaryExpression
+                  (primaryExpression
+                    (implicitStruct
+                      {
+                      (implicitStructElements
+                        (implicitStructExpression
+                          (implicitStructKeyExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart a) "))
+                          )
+                          :
+                          (baseExpression
+                            (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
+                            (elvisOperator ? :)
+                            (baseExpression
+                              (unaryExpression (primaryExpression (literalExpression false)))
                             )
                           )
                         )
-                        }
                       )
+                      }
                     )
                   )
                 )
@@ -106,10 +97,8 @@ Hidden:NEWLINE                  <>
           (returnStatement
             return
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression (memberExpression (identifier local) . (identifier a)))
-                )
+              (baseExpression
+                (unaryExpression (memberExpression (identifier local) . (identifier a)))
               )
             )
           )

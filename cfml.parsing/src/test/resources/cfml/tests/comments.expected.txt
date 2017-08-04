@@ -18,15 +18,11 @@ IDENTIFIER               <x>
       (localAssignmentExpression
         var
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier x))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier x))))
         )
         =
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (primaryExpression (literalExpression 123))))
-          )
+          (baseExpression (unaryExpression (primaryExpression (literalExpression 123))))
         )
       )
       (endOfStatement ;)
@@ -37,15 +33,11 @@ IDENTIFIER               <x>
       (localAssignmentExpression
         var
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier y))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier y))))
         )
         =
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier x))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier x))))
         )
       )
       (endOfStatement ;)

@@ -47,16 +47,12 @@ Hidden:NEWLINE                  <>
             (statement
               (assignmentExpression
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier p))))
-                  )
+                  (baseExpression (unaryExpression (memberExpression (identifier p))))
                 )
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression (primaryExpression (literalExpression (stringLiteral ' '))))
-                    )
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression (stringLiteral ' '))))
                   )
                 )
               )
@@ -72,9 +68,7 @@ Hidden:NEWLINE                  <>
                       (identifier x)
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
-                        )
+                        (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
                       )
                     )
                     ,
@@ -82,10 +76,8 @@ Hidden:NEWLINE                  <>
                       (identifier y)
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression (primaryExpression (literalExpression false)))
-                          )
+                        (baseExpression
+                          (unaryExpression (primaryExpression (literalExpression false)))
                         )
                       )
                     )

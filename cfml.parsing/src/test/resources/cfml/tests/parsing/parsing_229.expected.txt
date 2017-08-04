@@ -97,10 +97,10 @@ Hidden:NEWLINE                  <>
                 if
                 (condition
                   (
-                  (compareExpression
-                    (baseExpression
-                      (notExpression
-                        !
+                  (baseExpression
+                    (notExpression
+                      !
+                      (baseExpression
                         (unaryExpression
                           (memberExpression
                             (functionCall
@@ -109,9 +109,7 @@ Hidden:NEWLINE                  <>
                               (argumentList
                                 (argument
                                   (startExpression
-                                    (compareExpression
-                                      (baseExpression (unaryExpression (memberExpression (identifier localData))))
-                                    )
+                                    (baseExpression (unaryExpression (memberExpression (identifier localData))))
                                   )
                                 )
                               )
@@ -132,31 +130,25 @@ Hidden:NEWLINE                  <>
                         if
                         (condition
                           (
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression
-                                  (functionCall
-                                    (identifier structKeyExists)
-                                    (
-                                    (argumentList
-                                      (argument
-                                        (startExpression
-                                          (compareExpression
-                                            (baseExpression (unaryExpression (memberExpression (identifier localData))))
-                                          )
-                                        )
-                                      )
-                                      ,
-                                      (argument
-                                        (startExpression
-                                          (compareExpression
-                                            (baseExpression (unaryExpression (memberExpression (identifier keyToCheck))))
-                                          )
-                                        )
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression
+                                (functionCall
+                                  (identifier structKeyExists)
+                                  (
+                                  (argumentList
+                                    (argument
+                                      (startExpression
+                                        (baseExpression (unaryExpression (memberExpression (identifier localData))))
                                       )
                                     )
+                                    ,
+                                    (argument
+                                      (startExpression
+                                        (baseExpression (unaryExpression (memberExpression (identifier keyToCheck))))
+                                      )
                                     )
+                                  )
                                   )
                                 )
                               )
@@ -171,20 +163,16 @@ Hidden:NEWLINE                  <>
                               (returnStatement
                                 return
                                 (startExpression
-                                  (compareExpression
-                                    (baseExpression
-                                      (unaryExpression
-                                        (memberExpression
-                                          (identifier localData)
-                                          (arrayMemberExpression
-                                            [
-                                            (startExpression
-                                              (compareExpression
-                                                (baseExpression (unaryExpression (memberExpression (identifier keyToCheck))))
-                                              )
-                                            )
-                                            ]
+                                  (baseExpression
+                                    (unaryExpression
+                                      (memberExpression
+                                        (identifier localData)
+                                        (arrayMemberExpression
+                                          [
+                                          (startExpression
+                                            (baseExpression (unaryExpression (memberExpression (identifier keyToCheck))))
                                           )
+                                          ]
                                         )
                                       )
                                     )

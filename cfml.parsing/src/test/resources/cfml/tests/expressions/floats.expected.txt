@@ -36,17 +36,13 @@ INTEGER_LITERAL          <12>
     (statement
       (assignmentExpression
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier x))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier x))))
         )
         =
         (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (primaryExpression (literalExpression (floatingPointExpression 1 . 23)))
-              )
+          (baseExpression
+            (unaryExpression
+              (primaryExpression (literalExpression (floatingPointExpression 1 . 23)))
             )
           )
         )
@@ -58,16 +54,14 @@ INTEGER_LITERAL          <12>
     (statement
       (assignmentExpression
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier y))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier y))))
         )
         =
         (startExpression
-          (compareExpression
+          (baseExpression
+            -
             (baseExpression
               (unaryExpression
-                -
                 (primaryExpression (literalExpression (floatingPointExpression 33 . 0)))
               )
             )
@@ -81,17 +75,13 @@ INTEGER_LITERAL          <12>
     (statement
       (assignmentExpression
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier z))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier z))))
         )
         =
         (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (primaryExpression (literalExpression (floatingPointExpression 2 .)))
-              )
+          (baseExpression
+            (unaryExpression
+              (primaryExpression (literalExpression (floatingPointExpression 2 .)))
             )
           )
         )
@@ -103,17 +93,13 @@ INTEGER_LITERAL          <12>
     (statement
       (assignmentExpression
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier a))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier a))))
         )
         =
         (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (primaryExpression (literalExpression (floatingPointExpression 121E10)))
-              )
+          (baseExpression
+            (unaryExpression
+              (primaryExpression (literalExpression (floatingPointExpression 121E10)))
             )
           )
         )
@@ -125,17 +111,13 @@ INTEGER_LITERAL          <12>
     (statement
       (assignmentExpression
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier b))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier b))))
         )
         =
         (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (primaryExpression (literalExpression (floatingPointExpression . 12)))
-              )
+          (baseExpression
+            (unaryExpression
+              (primaryExpression (literalExpression (floatingPointExpression . 12)))
             )
           )
         )

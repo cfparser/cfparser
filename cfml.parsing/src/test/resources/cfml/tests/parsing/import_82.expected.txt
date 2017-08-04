@@ -1,0 +1,64 @@
+/*===TOKENS===*/
+IMPORT                   <import>
+'('                      <(>
+IDENTIFIER               <Event>
+','                      <,>
+IDENTIFIER               <local>
+'.'                      <.>
+IDENTIFIER               <uploadPathBild>
+'&'                      <&>
+FILE                     <file>
+'.'                      <.>
+IDENTIFIER               <serverfile>
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (startExpression
+        (baseExpression
+          (unaryExpression
+            (memberExpression
+              (functionCall
+                (identifier import)
+                (
+                (argumentList
+                  (argument
+                    (startExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier Event))))
+                    )
+                  )
+                  ,
+                  (argument
+                    (startExpression
+                      (baseExpression
+                        (baseExpression
+                          (unaryExpression
+                            (memberExpression (identifier local) . (identifier uploadPathBild))
+                          )
+                        )
+                        &
+                        (baseExpression
+                          (unaryExpression
+                            (memberExpression (identifier (cfmlFunction file)) . (identifier serverfile))
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+import(Event, local.uploadPathBild & file.serverfile)
+/*======*/

@@ -13,27 +13,23 @@ IDENTIFIER               <categoryList>
   (element
     (statement
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (memberExpression
-                (identifier variables)
-                .
-                (identifier _)
-                .
-                (qualifiedFunctionCall
-                  (identifier reverse)
-                  (
-                  (argumentList
-                    (argument
-                      (startExpression
-                        (compareExpression
-                          (baseExpression (unaryExpression (memberExpression (identifier categoryList))))
-                        )
-                      )
+        (baseExpression
+          (unaryExpression
+            (memberExpression
+              (identifier variables)
+              .
+              (identifier _)
+              .
+              (qualifiedFunctionCall
+                (identifier reverse)
+                (
+                (argumentList
+                  (argument
+                    (startExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier categoryList))))
                     )
                   )
-                  )
+                )
                 )
               )
             )

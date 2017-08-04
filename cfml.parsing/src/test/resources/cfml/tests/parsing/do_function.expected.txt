@@ -13,31 +13,27 @@ CLOSE_STRING             <">
   (element
     (statement
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (memberExpression
-                (identifier myFusebox)
-                .
-                (qualifiedFunctionCall
-                  (reservedWord (cfscriptKeywords do))
-                  (
-                  (argumentList
-                    (argument
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart k.l) "))
-                              )
-                            )
+        (baseExpression
+          (unaryExpression
+            (memberExpression
+              (identifier myFusebox)
+              .
+              (qualifiedFunctionCall
+                (reservedWord (cfscriptKeywords do))
+                (
+                (argumentList
+                  (argument
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart k.l) "))
                           )
                         )
                       )
                     )
                   )
-                  )
+                )
                 )
               )
             )
@@ -48,4 +44,7 @@ CLOSE_STRING             <">
     )
   )
 )
+/*======*/
+/*===DECOMPILE===*/
+myFusebox.do('k.l')
 /*======*/

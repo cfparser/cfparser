@@ -1,0 +1,93 @@
+/*===TOKENS===*/
+PUBLIC                   <public>
+FUNCTION                 <function>
+IDENTIFIER               <init>
+'('                      <(>
+REQUIRED                 <required>
+ANY                      <any>
+FUNCTION                 <function>
+','                      <,>
+REQUIRED                 <required>
+ANY                      <any>
+IDENTIFIER               <foo>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+VAR                      <var>
+IDENTIFIER               <something>
+'='                      <=>
+OPEN_STRING              <">
+'#'                      <#>
+FUNCTION                 <function>
+'.'                      <.>
+IDENTIFIER               <subcategories>
+'#'                      <#>
+CLOSE_STRING             <">
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (functionDeclaration
+      (accessType public)
+      function
+      (identifier init)
+      (
+      (parameterList
+        (parameter
+          required
+          (parameterType (typeSpec (type any)))
+          (identifier function)
+        )
+        ,
+        (parameter required (parameterType (typeSpec (type any))) (identifier foo))
+      )
+      )
+      (compoundStatement
+        {
+        (statement
+          (localAssignmentExpression
+            var
+            (startExpression
+              (baseExpression (unaryExpression (memberExpression (identifier something))))
+            )
+            =
+            (startExpression
+              (baseExpression
+                (unaryExpression
+                  (primaryExpression
+                    (literalExpression
+                      (stringLiteral
+                        "
+                        #
+                        (startExpression
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression (identifier function) . (identifier subcategories))
+                            )
+                          )
+                        )
+                        #
+                        "
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+          (endOfStatement ;)
+        )
+        }
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+public function init(required function, required foo)   {
+    var something = '#function.subcategories#';
+
+  }
+/*======*/

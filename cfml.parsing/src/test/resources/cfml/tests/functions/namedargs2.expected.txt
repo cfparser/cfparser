@@ -15,37 +15,31 @@ BOOLEAN_LITERAL          <false>
   (element
     (statement
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (memberExpression
-                (functionCall
-                  (identifier doSomething)
-                  (
-                  (argumentList
-                    (argument
-                      (argumentName (identifier x))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
-                        )
-                      )
+        (baseExpression
+          (unaryExpression
+            (memberExpression
+              (functionCall
+                (identifier doSomething)
+                (
+                (argumentList
+                  (argument
+                    (argumentName (identifier x))
+                    =
+                    (startExpression
+                      (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
                     )
-                    ,
-                    (argument
-                      (argumentName (identifier y))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression (primaryExpression (literalExpression false)))
-                          )
-                        )
+                  )
+                  ,
+                  (argument
+                    (argumentName (identifier y))
+                    =
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression (primaryExpression (literalExpression false)))
                       )
                     )
                   )
-                  )
+                )
                 )
               )
             )

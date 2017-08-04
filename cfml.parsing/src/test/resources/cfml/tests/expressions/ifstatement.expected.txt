@@ -31,55 +31,49 @@ Hidden:NEWLINE                  <>
         if
         (condition
           (
-          (compareExpression
+          (baseExpression
             (baseExpression
               (unaryExpression
                 (memberExpression (functionCall (identifier Now) ( argumentList )))
               )
             )
             (compareExpressionOperator gt)
-            (compareExpression
-              (baseExpression
-                (unaryExpression
-                  (memberExpression
-                    (functionCall
-                      (identifier dateadd)
-                      (
-                      (argumentList
-                        (argument
-                          (startExpression
-                            (compareExpression
-                              (baseExpression
-                                (unaryExpression
-                                  (primaryExpression
-                                    (literalExpression (stringLiteral " (stringLiteralPart d) "))
-                                  )
-                                )
+            (baseExpression
+              (unaryExpression
+                (memberExpression
+                  (functionCall
+                    (identifier dateadd)
+                    (
+                    (argumentList
+                      (argument
+                        (startExpression
+                          (baseExpression
+                            (unaryExpression
+                              (primaryExpression
+                                (literalExpression (stringLiteral " (stringLiteralPart d) "))
                               )
                             )
                           )
                         )
-                        ,
-                        (argument
-                          (startExpression
-                            (compareExpression
-                              (baseExpression
-                                (unaryExpression
-                                  (memberExpression
-                                    -
-                                    (functionCall
-                                      (identifier val)
-                                      (
-                                      (argumentList
-                                        (argument
-                                          (startExpression
-                                            (compareExpression
-                                              (baseExpression (unaryExpression (memberExpression (identifier iDiff))))
-                                            )
-                                          )
+                      )
+                      ,
+                      (argument
+                        (startExpression
+                          (baseExpression
+                            -
+                            (baseExpression
+                              (unaryExpression
+                                (memberExpression
+                                  (functionCall
+                                    (identifier val)
+                                    (
+                                    (argumentList
+                                      (argument
+                                        (startExpression
+                                          (baseExpression (unaryExpression (memberExpression (identifier iDiff))))
                                         )
                                       )
-                                      )
+                                    )
                                     )
                                   )
                                 )
@@ -87,16 +81,14 @@ Hidden:NEWLINE                  <>
                             )
                           )
                         )
-                        ,
-                        (argument
-                          (startExpression
-                            (compareExpression
-                              (baseExpression (unaryExpression (memberExpression (identifier startDate))))
-                            )
-                          )
+                      )
+                      ,
+                      (argument
+                        (startExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier startDate))))
                         )
                       )
-                      )
+                    )
                     )
                   )
                 )

@@ -29,12 +29,10 @@ Hidden:NEWLINE                  <>
               (identifier name)
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart john) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart john) "))
                     )
                   )
                 )
@@ -45,12 +43,10 @@ Hidden:NEWLINE                  <>
               (identifier birthdate)
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart December 5, 1987) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart December 5, 1987) "))
                     )
                   )
                 )

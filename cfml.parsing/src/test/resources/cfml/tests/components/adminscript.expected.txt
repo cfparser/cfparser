@@ -63,12 +63,10 @@ Hidden:NEWLINE                  <>
                       (multipartIdentifier (identifier action))
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart getRegional) "))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart getRegional) "))
                             )
                           )
                         )
@@ -78,12 +76,10 @@ Hidden:NEWLINE                  <>
                       (multipartIdentifier (identifier type))
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart test) "))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart test) "))
                             )
                           )
                         )
@@ -93,12 +89,10 @@ Hidden:NEWLINE                  <>
                       (multipartIdentifier (identifier password))
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart test) "))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart test) "))
                             )
                           )
                         )
@@ -108,12 +102,10 @@ Hidden:NEWLINE                  <>
                       (multipartIdentifier (identifier returnVariable))
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart rtn) "))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart rtn) "))
                             )
                           )
                         )
@@ -128,10 +120,8 @@ Hidden:NEWLINE                  <>
               (returnStatement
                 return
                 (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression (memberExpression (identifier returnVariable)))
-                    )
+                  (baseExpression
+                    (unaryExpression (memberExpression (identifier returnVariable)))
                   )
                 )
               )
