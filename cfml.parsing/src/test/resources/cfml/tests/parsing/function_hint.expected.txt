@@ -68,20 +68,14 @@ Hidden:NEWLINE                  <>
           (returnStatement
             return
             (startExpression
-              (compareExpression
+              (baseExpression
                 (baseExpression
-                  (additiveExpression
-                    (unaryExpression
-                      (memberExpression (identifier ARGUMENTS) . (identifier inNum))
-                    )
-                    +
-                    (baseOrTernaryExpression
-                      (compareExpression
-                        (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
-                      )
-                    )
+                  (unaryExpression
+                    (memberExpression (identifier ARGUMENTS) . (identifier inNum))
                   )
                 )
+                +
+                (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
               )
             )
           )

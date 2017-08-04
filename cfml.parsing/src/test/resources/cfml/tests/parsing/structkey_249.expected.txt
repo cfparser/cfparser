@@ -34,31 +34,25 @@ Hidden:NEWLINE                  <>
           (localAssignmentExpression
             var
             (startExpression
-              (compareExpression
-                (baseExpression (unaryExpression (memberExpression (identifier bar))))
-              )
+              (baseExpression (unaryExpression (memberExpression (identifier bar))))
             )
             =
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression
-                    (primaryExpression
-                      (implicitStruct
-                        {
-                        (implicitStructElements
-                          (implicitStructExpression
-                             (implicitStructKeyExpression (multipartIdentifier (identifier function)))
-                            =
-                            (compareExpression
-                              (baseExpression
-                                (unaryExpression (primaryExpression (literalExpression (stringLiteral ' '))))
-                              )
-                            )
+              (baseExpression
+                (unaryExpression
+                  (primaryExpression
+                    (implicitStruct
+                      {
+                      (implicitStructElements
+                        (implicitStructExpression
+                          (implicitStructKeyExpression (multipartIdentifier (identifier function)))
+                          =
+                          (baseExpression
+                            (unaryExpression (primaryExpression (literalExpression (stringLiteral ' '))))
                           )
                         )
-                        }
                       )
+                      }
                     )
                   )
                 )

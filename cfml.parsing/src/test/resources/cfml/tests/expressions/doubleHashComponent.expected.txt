@@ -24,12 +24,10 @@ Hidden:NEWLINE                  <>
       (identifier target)
       =
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (primaryExpression
-                (literalExpression (stringLiteral " (stringLiteralPart blank) "))
-              )
+        (baseExpression
+          (unaryExpression
+            (primaryExpression
+              (literalExpression (stringLiteral " (stringLiteralPart blank) "))
             )
           )
         )
@@ -41,19 +39,15 @@ Hidden:NEWLINE                  <>
         (statement
           (assignmentExpression
             (startExpression
-              (compareExpression
-                (baseExpression (unaryExpression (memberExpression (identifier color))))
-              )
+              (baseExpression (unaryExpression (memberExpression (identifier color))))
             )
             =
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression
-                    (primaryExpression
-                      (literalExpression
-                        (stringLiteral " (stringLiteralPart ##) (stringLiteralPart 000000) ")
-                      )
+              (baseExpression
+                (unaryExpression
+                  (primaryExpression
+                    (literalExpression
+                      (stringLiteral " (stringLiteralPart ##) (stringLiteralPart 000000) ")
                     )
                   )
                 )

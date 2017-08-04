@@ -43,10 +43,8 @@ Hidden:NEWLINE                  <>
               (identifier (cfmlFunction query))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression (memberExpression (identifier SiteRelatedTables)))
-                  )
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier SiteRelatedTables)))
                 )
               )
             )
@@ -56,11 +54,9 @@ Hidden:NEWLINE                  <>
             {
             (statement
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression (functionCall (identifier loopy) ( argumentList )))
-                    )
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (functionCall (identifier loopy) ( argumentList )))
                   )
                 )
               )
@@ -83,10 +79,8 @@ Hidden:NEWLINE                  <>
               (identifier (cfmlFunction query))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression (memberExpression (identifier SiteRelatedTables)))
-                  )
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier SiteRelatedTables)))
                 )
               )
             )
@@ -96,11 +90,9 @@ Hidden:NEWLINE                  <>
             {
             (statement
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression (functionCall (identifier loopy) ( argumentList )))
-                    )
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression (functionCall (identifier loopy) ( argumentList )))
                   )
                 )
               )

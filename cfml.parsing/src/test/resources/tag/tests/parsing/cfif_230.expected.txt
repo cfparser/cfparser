@@ -13,7 +13,7 @@ START:cfif
   ===========Tree================
   (expression
     (startExpression
-      (compareExpression
+      (baseExpression
         (baseExpression
           (unaryExpression
             (primaryExpression
@@ -22,12 +22,10 @@ START:cfif
           )
         )
         (compareExpressionOperator <>)
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (primaryExpression
-                (literalExpression (stringLiteral " (stringLiteralPart bar) "))
-              )
+        (baseExpression
+          (unaryExpression
+            (primaryExpression
+              (literalExpression (stringLiteral " (stringLiteralPart bar) "))
             )
           )
         )

@@ -2,6 +2,7 @@ package cfml.parsing;
 
 import static cfml.parsing.utils.TestUtils.normalizeWhite;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import static org.slf4j.LoggerFactory.getLogger;
 
 import java.io.File;
@@ -128,7 +129,10 @@ public class TestFiles {
 		if (!errors.isEmpty()) {
 			logger.info(errors.toString());
 		}
-		assertEquals(true, errors.isEmpty());
+		if (!errors.isEmpty()) {
+			fail(errors.get(0));
+		}
+		
 		CFScriptStatement result;
 		CFScriptStatementVisitor scriptVisitor = new CFScriptStatementVisitor();
 		result = scriptVisitor.visit(parseTree);

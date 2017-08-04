@@ -227,26 +227,22 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier text))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression
-                          (stringLiteral
-                            "
-                            (stringLiteralPart 'Event Gateway ')
-                            #
-                            (startExpression
-                              (compareExpression
-                                (baseExpression
-                                  (unaryExpression (memberExpression (identifier variables) . (identifier id)))
-                                )
-                              )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression
+                        (stringLiteral
+                          "
+                          (stringLiteralPart 'Event Gateway ')
+                          #
+                          (startExpression
+                            (baseExpression
+                              (unaryExpression (memberExpression (identifier variables) . (identifier id)))
                             )
-                            #
-                            (stringLiteralPart ' started')
-                            "
                           )
+                          #
+                          (stringLiteralPart ' started')
+                          "
                         )
                       )
                     )
@@ -258,10 +254,8 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier (cfmlFunction file)))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression (memberExpression (identifier this) . (identifier logfile)))
-                  )
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier this) . (identifier logfile)))
                 )
               )
             )
@@ -281,12 +275,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier text))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart text) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart text) "))
                     )
                   )
                 )
@@ -296,12 +288,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier type))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart information) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart information) "))
                     )
                   )
                 )
@@ -311,12 +301,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier application))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart yes) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart yes) "))
                     )
                   )
                 )
@@ -326,12 +314,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier (cfmlFunction file)))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart filename) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart filename) "))
                     )
                   )
                 )
@@ -341,12 +327,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier (cfmlFunction log)))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart log type) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart log type) "))
                     )
                   )
                 )
@@ -368,35 +352,29 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier text))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression
-                          (stringLiteral
-                            "
-                            (stringLiteralPart 'Event Gateway ')
-                            #
-                            (startExpression
-                              (compareExpression
-                                (baseExpression
-                                  (unaryExpression (memberExpression (identifier variables) . (identifier id)))
-                                )
-                              )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression
+                        (stringLiteral
+                          "
+                          (stringLiteralPart 'Event Gateway ')
+                          #
+                          (startExpression
+                            (baseExpression
+                              (unaryExpression (memberExpression (identifier variables) . (identifier id)))
                             )
-                            #
-                            (stringLiteralPart ' error: ')
-                            #
-                            (startExpression
-                              (compareExpression
-                                (baseExpression
-                                  (unaryExpression (memberExpression (identifier ex) . (identifier message)))
-                                )
-                              )
-                            )
-                            #
-                            "
                           )
+                          #
+                          (stringLiteralPart ' error: ')
+                          #
+                          (startExpression
+                            (baseExpression
+                              (unaryExpression (memberExpression (identifier ex) . (identifier message)))
+                            )
+                          )
+                          #
+                          "
                         )
                       )
                     )
@@ -408,10 +386,8 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier (cfmlFunction file)))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression (memberExpression (identifier this) . (identifier logfile)))
-                  )
+                (baseExpression
+                  (unaryExpression (memberExpression (identifier this) . (identifier logfile)))
                 )
               )
             )
@@ -419,12 +395,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier type))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart error) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart error) "))
                     )
                   )
                 )
@@ -446,12 +420,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier name))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart url.age) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart url.age) "))
                     )
                   )
                 )
@@ -461,12 +433,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier type))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart numeric) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart numeric) "))
                     )
                   )
                 )
@@ -476,12 +446,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier default))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart 10) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart 10) "))
                     )
                   )
                 )
@@ -491,12 +459,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier max))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart 100) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart 100) "))
                     )
                   )
                 )
@@ -506,12 +472,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier min))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart 18) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart 18) "))
                     )
                   )
                 )
@@ -533,12 +497,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier method))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart GET) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart GET) "))
                     )
                   )
                 )
@@ -548,13 +510,11 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier url))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression
-                          (stringLiteral " (stringLiteralPart http://www.google.com) ")
-                        )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression
+                        (stringLiteral " (stringLiteralPart http://www.google.com) ")
                       )
                     )
                   )
@@ -565,12 +525,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier result))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart webPage) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart webPage) "))
                     )
                   )
                 )
@@ -592,12 +550,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier from))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart Mark@getrailo.com) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart Mark@getrailo.com) "))
                     )
                   )
                 )
@@ -607,12 +563,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier to))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart gert@getrailo.com) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart gert@getrailo.com) "))
                     )
                   )
                 )
@@ -622,13 +576,11 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier subject))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression
-                          (stringLiteral " (stringLiteralPart Awesome! Tags in Script!) ")
-                        )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression
+                        (stringLiteral " (stringLiteralPart Awesome! Tags in Script!) ")
                       )
                     )
                   )
@@ -640,29 +592,25 @@ IDENTIFIER               <getUsers>
             {
             (statement
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression
-                        (functionCall
-                          (identifier WriteOutput)
-                          (
-                          (argumentList
-                            (argument
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (primaryExpression
-                                        (literalExpression
-                                          (stringLiteral
-                                            "
-                                            (stringLiteralPart
-                                              Hey Gert!\r\nCheck out the code samples here! You can write tags in CFScript\r\nMark\r\n
-                                            )
-                                            "
-                                          )
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (functionCall
+                        (identifier WriteOutput)
+                        (
+                        (argumentList
+                          (argument
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression
+                                      (stringLiteral
+                                        "
+                                        (stringLiteralPart
+                                          Hey Gert!\r\nCheck out the code samples here! You can write tags in CFScript\r\nMark\r\n
                                         )
+                                        "
                                       )
                                     )
                                   )
@@ -670,7 +618,7 @@ IDENTIFIER               <getUsers>
                               )
                             )
                           )
-                          )
+                        )
                         )
                       )
                     )
@@ -695,12 +643,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier name))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart dir) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart dir) "))
                     )
                   )
                 )
@@ -710,21 +656,17 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier (cfmlFunction directory)))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression (unaryExpression (memberExpression (identifier dir))))
-                )
+                (baseExpression (unaryExpression (memberExpression (identifier dir))))
               )
             )
             (param
               (multipartIdentifier (identifier action))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart list) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart list) "))
                     )
                   )
                 )
@@ -746,12 +688,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier name))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart getUsers) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart getUsers) "))
                     )
                   )
                 )
@@ -761,12 +701,10 @@ IDENTIFIER               <getUsers>
               (multipartIdentifier (identifier dataSource))
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (primaryExpression
-                        (literalExpression (stringLiteral " (stringLiteralPart myDatasource) "))
-                      )
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart myDatasource) "))
                     )
                   )
                 )
@@ -777,31 +715,27 @@ IDENTIFIER               <getUsers>
             {
             (statement
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression
-                        (functionCall
-                          (identifier echo)
-                          (
-                          (argumentList
-                            (argument
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (primaryExpression
-                                        (literalExpression
-                                          (stringLiteral " (stringLiteralPart SELECT * FROM tusers WHERE UserID =) ")
-                                        )
-                                      )
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (functionCall
+                        (identifier echo)
+                        (
+                        (argumentList
+                          (argument
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression
+                                      (stringLiteral " (stringLiteralPart SELECT * FROM tusers WHERE UserID =) ")
                                     )
                                   )
                                 )
                               )
                             )
                           )
-                          )
+                        )
                         )
                       )
                     )
@@ -819,12 +753,10 @@ IDENTIFIER               <getUsers>
                       (multipartIdentifier (identifier cfsqltype))
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart varchar) "))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart varchar) "))
                             )
                           )
                         )
@@ -834,13 +766,11 @@ IDENTIFIER               <getUsers>
                       (multipartIdentifier (identifier value))
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression
-                                  (stringLiteral " (stringLiteralPart 6300EE15-1320-5CC2-F9F48B9DBBA54D9F) ")
-                                )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression
+                                (stringLiteral " (stringLiteralPart 6300EE15-1320-5CC2-F9F48B9DBBA54D9F) ")
                               )
                             )
                           )
@@ -861,23 +791,19 @@ IDENTIFIER               <getUsers>
   (element
     (statement
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (memberExpression
-                (functionCall
-                  (identifier dump)
-                  (
-                  (argumentList
-                    (argument
-                      (startExpression
-                        (compareExpression
-                          (baseExpression (unaryExpression (memberExpression (identifier getUsers))))
-                        )
-                      )
+        (baseExpression
+          (unaryExpression
+            (memberExpression
+              (functionCall
+                (identifier dump)
+                (
+                (argumentList
+                  (argument
+                    (startExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier getUsers))))
                     )
                   )
-                  )
+                )
                 )
               )
             )

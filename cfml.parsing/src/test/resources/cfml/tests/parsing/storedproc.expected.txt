@@ -83,12 +83,10 @@ Hidden:NEWLINE                  <>
                 (argumentName (identifier procedure))
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (primaryExpression
-                          (literalExpression (stringLiteral " (stringLiteralPart dbo.myTestProcedure) "))
-                        )
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart dbo.myTestProcedure) "))
                       )
                     )
                   )
@@ -99,11 +97,9 @@ Hidden:NEWLINE                  <>
                 (argumentName (identifier datasource))
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (memberExpression (identifier Variables) . (identifier datasource))
-                      )
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression (identifier Variables) . (identifier datasource))
                     )
                   )
                 )
@@ -114,41 +110,35 @@ Hidden:NEWLINE                  <>
               {
               (statement
                 (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (memberExpression
-                          (functionCall
-                            (identifier cfprocparam)
-                            (
-                            (argumentList
-                              (argument
-                                (argumentName (identifier value))
-                                =
-                                (startExpression
-                                  (compareExpression
-                                    (baseExpression (unaryExpression (memberExpression (identifier myId))))
-                                  )
-                                )
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifier cfprocparam)
+                          (
+                          (argumentList
+                            (argument
+                              (argumentName (identifier value))
+                              =
+                              (startExpression
+                                (baseExpression (unaryExpression (memberExpression (identifier myId))))
                               )
-                              ,
-                              (argument
-                                (argumentName (identifier cfsqltype))
-                                =
-                                (startExpression
-                                  (compareExpression
-                                    (baseExpression
-                                      (unaryExpression
-                                        (primaryExpression
-                                          (literalExpression (stringLiteral " (stringLiteralPart cf_sql_integer) "))
-                                        )
-                                      )
+                            )
+                            ,
+                            (argument
+                              (argumentName (identifier cfsqltype))
+                              =
+                              (startExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (primaryExpression
+                                      (literalExpression (stringLiteral " (stringLiteralPart cf_sql_integer) "))
                                     )
                                   )
                                 )
                               )
                             )
-                            )
+                          )
                           )
                         )
                       )
@@ -159,41 +149,35 @@ Hidden:NEWLINE                  <>
               )
               (statement
                 (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (unaryExpression
-                        (memberExpression
-                          (functionCall
-                            (identifier cfprocresult)
-                            (
-                            (argumentList
-                              (argument
-                                (argumentName (identifier resultset))
-                                =
-                                (startExpression
-                                  (compareExpression
-                                    (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
-                                  )
-                                )
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (functionCall
+                          (identifier cfprocresult)
+                          (
+                          (argumentList
+                            (argument
+                              (argumentName (identifier resultset))
+                              =
+                              (startExpression
+                                (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
                               )
-                              ,
-                              (argument
-                                (argumentName (identifier name))
-                                =
-                                (startExpression
-                                  (compareExpression
-                                    (baseExpression
-                                      (unaryExpression
-                                        (primaryExpression
-                                          (literalExpression (stringLiteral " (stringLiteralPart myQuery) "))
-                                        )
-                                      )
+                            )
+                            ,
+                            (argument
+                              (argumentName (identifier name))
+                              =
+                              (startExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (primaryExpression
+                                      (literalExpression (stringLiteral " (stringLiteralPart myQuery) "))
                                     )
                                   )
                                 )
                               )
                             )
-                            )
+                          )
                           )
                         )
                       )
@@ -209,19 +193,15 @@ Hidden:NEWLINE                  <>
         (statement
           (assignmentExpression
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression
-                    (memberExpression (identifier Variables) . (identifier myTest))
-                  )
+              (baseExpression
+                (unaryExpression
+                  (memberExpression (identifier Variables) . (identifier myTest))
                 )
               )
             )
             =
             (startExpression
-              (compareExpression
-                (baseExpression (unaryExpression (primaryExpression (implicitArray [ ]))))
-              )
+              (baseExpression (unaryExpression (primaryExpression (implicitArray [ ]))))
             )
           )
           (endOfStatement ;)

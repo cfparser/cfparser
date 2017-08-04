@@ -40,20 +40,16 @@ Hidden:NEWLINE                  <>
         (statement
           (assignmentExpression
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression (memberExpression (identifier local) . (identifier idSet)))
-                )
+              (baseExpression
+                (unaryExpression (memberExpression (identifier local) . (identifier idSet)))
               )
             )
             =
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression
-                    (primaryExpression
-                      (literalExpression (stringLiteral ' (stringLiteralPart 123) '))
-                    )
+              (baseExpression
+                (unaryExpression
+                  (primaryExpression
+                    (literalExpression (stringLiteral ' (stringLiteralPart 123) '))
                   )
                 )
               )
@@ -65,31 +61,27 @@ Hidden:NEWLINE                  <>
           (returnStatement
             return
             (startExpression
-              (compareExpression
-                (baseExpression
-                  (unaryExpression
-                    (memberExpression
-                      (identifier idSet)
-                      .
-                      (qualifiedFunctionCall
-                        (reservedWord (specialWord contains))
-                        (
-                        (argumentList
-                          (argument
-                            (startExpression
-                              (compareExpression
-                                (baseExpression
-                                  (unaryExpression
-                                    (primaryExpression
-                                      (literalExpression (stringLiteral ' (stringLiteralPart 12) '))
-                                    )
-                                  )
+              (baseExpression
+                (unaryExpression
+                  (memberExpression
+                    (identifier idSet)
+                    .
+                    (qualifiedFunctionCall
+                      (reservedWord (specialWord contains))
+                      (
+                      (argumentList
+                        (argument
+                          (startExpression
+                            (baseExpression
+                              (unaryExpression
+                                (primaryExpression
+                                  (literalExpression (stringLiteral ' (stringLiteralPart 12) '))
                                 )
                               )
                             )
                           )
                         )
-                        )
+                      )
                       )
                     )
                   )

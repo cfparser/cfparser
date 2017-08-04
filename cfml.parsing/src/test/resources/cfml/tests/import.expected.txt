@@ -47,13 +47,11 @@ Hidden:NEWLINE                  <>
       (identifier extends)
       =
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (primaryExpression
-                (literalExpression
-                  (stringLiteral " (stringLiteralPart my.path.BaseComponent) ")
-                )
+        (baseExpression
+          (unaryExpression
+            (primaryExpression
+              (literalExpression
+                (stringLiteral " (stringLiteralPart my.path.BaseComponent) ")
               )
             )
           )
@@ -64,12 +62,10 @@ Hidden:NEWLINE                  <>
       (identifier accessors)
       =
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (primaryExpression
-                (literalExpression (stringLiteral " (stringLiteralPart true) "))
-              )
+        (baseExpression
+          (unaryExpression
+            (primaryExpression
+              (literalExpression (stringLiteral " (stringLiteralPart true) "))
             )
           )
         )

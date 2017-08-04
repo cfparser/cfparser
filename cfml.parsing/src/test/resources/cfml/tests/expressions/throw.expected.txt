@@ -47,113 +47,99 @@ CLOSE_STRING             <">
   (element
     (statement
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (memberExpression
-                (functionCall
-                  (identifier throw)
-                  (
-                  (argumentList
-                    (argument
-                      (argumentName (identifier message))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart message) "))
-                              )
-                            )
+        (baseExpression
+          (unaryExpression
+            (memberExpression
+              (functionCall
+                (identifier throw)
+                (
+                (argumentList
+                  (argument
+                    (argumentName (identifier message))
+                    =
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart message) "))
                           )
                         )
                       )
                     )
-                    ,
-                    (argument
-                      (argumentName (identifier type))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart exception type) "))
-                              )
-                            )
+                  )
+                  ,
+                  (argument
+                    (argumentName (identifier type))
+                    =
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart exception type) "))
                           )
                         )
                       )
                     )
-                    ,
-                    (argument
-                      (argumentName (identifier detail))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart xyz) "))
-                              )
-                            )
+                  )
+                  ,
+                  (argument
+                    (argumentName (identifier detail))
+                    =
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart xyz) "))
                           )
                         )
                       )
                     )
-                    ,
-                    (argument
-                      (argumentName (identifier errorCode))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart error code) "))
-                              )
-                            )
+                  )
+                  ,
+                  (argument
+                    (argumentName (identifier errorCode))
+                    =
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart error code) "))
                           )
                         )
                       )
                     )
-                    ,
-                    (argument
-                      (argumentName (identifier extendedInfo))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart additional info) "))
-                              )
-                            )
+                  )
+                  ,
+                  (argument
+                    (argumentName (identifier extendedInfo))
+                    =
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart additional info) "))
                           )
                         )
                       )
                     )
-                    ,
-                    (argument
-                      (argumentName (identifier (cfmlFunction object)))
-                      =
-                      (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression
-                                  (stringLiteral " (stringLiteralPart java exception object) ")
-                                )
-                              )
+                  )
+                  ,
+                  (argument
+                    (argumentName (identifier (cfmlFunction object)))
+                    =
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression
+                              (stringLiteral " (stringLiteralPart java exception object) ")
                             )
                           )
                         )
                       )
                     )
                   )
-                  )
+                )
                 )
               )
             )

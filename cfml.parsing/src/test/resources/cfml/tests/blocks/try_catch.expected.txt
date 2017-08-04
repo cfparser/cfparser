@@ -88,47 +88,41 @@ Hidden:NEWLINE                  <>
             {
             (statement
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression
-                        (functionCall
-                          (identifier throw)
-                          (
-                          (argumentList
-                            (argument
-                              (argumentName (identifier message))
-                              =
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (primaryExpression
-                                        (literalExpression (stringLiteral " (stringLiteralPart Oops) "))
-                                      )
-                                    )
-                                  )
-                                )
-                              )
-                            )
-                            ,
-                            (argument
-                              (argumentName (identifier detail))
-                              =
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (primaryExpression
-                                        (literalExpression (stringLiteral " (stringLiteralPart xyz) "))
-                                      )
-                                    )
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (functionCall
+                        (identifier throw)
+                        (
+                        (argumentList
+                          (argument
+                            (argumentName (identifier message))
+                            =
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart Oops) "))
                                   )
                                 )
                               )
                             )
                           )
+                          ,
+                          (argument
+                            (argumentName (identifier detail))
+                            =
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart xyz) "))
+                                  )
+                                )
+                              )
+                            )
                           )
+                        )
                         )
                       )
                     )
@@ -150,39 +144,31 @@ Hidden:NEWLINE                  <>
             {
             (statement
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression
-                        (functionCall
-                          (identifier WriteOutput)
-                          (
-                          (argumentList
-                            (argument
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (concatenationExpression
-                                      (unaryExpression
-                                        (primaryExpression
-                                          (literalExpression (stringLiteral " (stringLiteralPart 'Error: ') "))
-                                        )
-                                      )
-                                      &
-                                      (baseOrTernaryExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression (memberExpression (identifier e) . (identifier message)))
-                                          )
-                                        )
-                                      )
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (functionCall
+                        (identifier WriteOutput)
+                        (
+                        (argumentList
+                          (argument
+                            (startExpression
+                              (baseExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (primaryExpression
+                                      (literalExpression (stringLiteral " (stringLiteralPart 'Error: ') "))
                                     )
                                   )
+                                )
+                                &
+                                (baseExpression
+                                  (unaryExpression (memberExpression (identifier e) . (identifier message)))
                                 )
                               )
                             )
                           )
-                          )
+                        )
                         )
                       )
                     )
@@ -205,39 +191,31 @@ Hidden:NEWLINE                  <>
             {
             (statement
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression
-                        (functionCall
-                          (identifier WriteOutput)
-                          (
-                          (argumentList
-                            (argument
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (concatenationExpression
-                                      (unaryExpression
-                                        (primaryExpression
-                                          (literalExpression (stringLiteral " (stringLiteralPart 'Error: ') "))
-                                        )
-                                      )
-                                      &
-                                      (baseOrTernaryExpression
-                                        (compareExpression
-                                          (baseExpression
-                                            (unaryExpression (memberExpression (identifier e) . (identifier message)))
-                                          )
-                                        )
-                                      )
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (functionCall
+                        (identifier WriteOutput)
+                        (
+                        (argumentList
+                          (argument
+                            (startExpression
+                              (baseExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (primaryExpression
+                                      (literalExpression (stringLiteral " (stringLiteralPart 'Error: ') "))
                                     )
                                   )
+                                )
+                                &
+                                (baseExpression
+                                  (unaryExpression (memberExpression (identifier e) . (identifier message)))
                                 )
                               )
                             )
                           )
-                          )
+                        )
                         )
                       )
                     )
@@ -256,31 +234,27 @@ Hidden:NEWLINE                  <>
             {
             (statement
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression
-                        (functionCall
-                          (identifier WriteOutput)
-                          (
-                          (argumentList
-                            (argument
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (primaryExpression
-                                        (literalExpression
-                                          (stringLiteral " (stringLiteralPart I run even if no error) ")
-                                        )
-                                      )
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (functionCall
+                        (identifier WriteOutput)
+                        (
+                        (argumentList
+                          (argument
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression
+                                      (stringLiteral " (stringLiteralPart I run even if no error) ")
                                     )
                                   )
                                 )
                               )
                             )
                           )
-                          )
+                        )
                         )
                       )
                     )

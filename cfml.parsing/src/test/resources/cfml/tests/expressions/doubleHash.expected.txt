@@ -18,43 +18,35 @@ IDENTIFIER               <action>
       (localAssignmentExpression
         var
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier a))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier a))))
         )
         =
         (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (memberExpression
-                  (functionCall
-                    (identifier find)
-                    (
-                    (argumentList
-                      (argument
-                        (startExpression
-                          (compareExpression
-                            (baseExpression
-                              (unaryExpression
-                                (primaryExpression
-                                  (literalExpression (stringLiteral ' (stringLiteralPart ##) '))
-                                )
-                              )
+          (baseExpression
+            (unaryExpression
+              (memberExpression
+                (functionCall
+                  (identifier find)
+                  (
+                  (argumentList
+                    (argument
+                      (startExpression
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral ' (stringLiteralPart ##) '))
                             )
                           )
                         )
                       )
-                      ,
-                      (argument
-                        (startExpression
-                          (compareExpression
-                            (baseExpression (unaryExpression (memberExpression (identifier action))))
-                          )
-                        )
+                    )
+                    ,
+                    (argument
+                      (startExpression
+                        (baseExpression (unaryExpression (memberExpression (identifier action))))
                       )
                     )
-                    )
+                  )
                   )
                 )
               )

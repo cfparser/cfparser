@@ -51,42 +51,36 @@ Hidden:NEWLINE                  <>
               (localAssignmentExpression
                 var
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier foo))))
-                  )
+                  (baseExpression (unaryExpression (memberExpression (identifier foo))))
                 )
                 =
                 (startExpression
-                  (compareExpression
-                    (baseExpression
-                      (anonymousFunctionDeclaration
-                        function
-                        (
-                        (parameterList
-                          (parameter required (parameterType (typeSpec (type string))) (identifier baz))
-                        )
-                        )
-                        (compoundStatement
-                          {
-                          (statement
-                            (returnStatement
-                              return
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (primaryExpression
-                                        (literalExpression (stringLiteral " (stringLiteralPart bar!) "))
-                                      )
-                                    )
+                  (baseExpression
+                    (anonymousFunctionDeclaration
+                      function
+                      (
+                      (parameterList
+                        (parameter required (parameterType (typeSpec (type string))) (identifier baz))
+                      )
+                      )
+                      (compoundStatement
+                        {
+                        (statement
+                          (returnStatement
+                            return
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart bar!) "))
                                   )
                                 )
                               )
                             )
-                            (endOfStatement ;)
                           )
-                          }
+                          (endOfStatement ;)
                         )
+                        }
                       )
                     )
                   )

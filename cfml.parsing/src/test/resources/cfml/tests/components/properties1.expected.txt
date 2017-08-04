@@ -86,12 +86,10 @@ Hidden:NEWLINE                  <>
       (identifier accessors)
       =
       (startExpression
-        (compareExpression
-          (baseExpression
-            (unaryExpression
-              (primaryExpression
-                (literalExpression (stringLiteral " (stringLiteralPart true) "))
-              )
+        (baseExpression
+          (unaryExpression
+            (primaryExpression
+              (literalExpression (stringLiteral " (stringLiteralPart true) "))
             )
           )
         )
@@ -109,12 +107,10 @@ Hidden:NEWLINE                  <>
                   (multipartIdentifier (identifier type))
                   =
                   (startExpression
-                    (compareExpression
-                      (baseExpression
-                        (unaryExpression
-                          (primaryExpression
-                            (literalExpression (stringLiteral " (stringLiteralPart string) "))
-                          )
+                    (baseExpression
+                      (unaryExpression
+                        (primaryExpression
+                          (literalExpression (stringLiteral " (stringLiteralPart string) "))
                         )
                       )
                     )
@@ -124,12 +120,10 @@ Hidden:NEWLINE                  <>
                   (multipartIdentifier (identifier name))
                   =
                   (startExpression
-                    (compareExpression
-                      (baseExpression
-                        (unaryExpression
-                          (primaryExpression
-                            (literalExpression (stringLiteral " (stringLiteralPart firstName) "))
-                          )
+                    (baseExpression
+                      (unaryExpression
+                        (primaryExpression
+                          (literalExpression (stringLiteral " (stringLiteralPart firstName) "))
                         )
                       )
                     )
@@ -151,12 +145,10 @@ Hidden:NEWLINE                  <>
                   (multipartIdentifier (identifier name))
                   =
                   (startExpression
-                    (compareExpression
-                      (baseExpression
-                        (unaryExpression
-                          (primaryExpression
-                            (literalExpression (stringLiteral " (stringLiteralPart lastName) "))
-                          )
+                    (baseExpression
+                      (unaryExpression
+                        (primaryExpression
+                          (literalExpression (stringLiteral " (stringLiteralPart lastName) "))
                         )
                       )
                     )
@@ -181,9 +173,7 @@ Hidden:NEWLINE                  <>
               (returnStatement
                 return
                 (startExpression
-                  (compareExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier this))))
-                  )
+                  (baseExpression (unaryExpression (memberExpression (identifier this))))
                 )
               )
               (endOfStatement ;)
@@ -204,10 +194,8 @@ Hidden:NEWLINE                  <>
               (identifier coupon)
               =
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression (stringLiteral " "))))
-                  )
+                (baseExpression
+                  (unaryExpression (primaryExpression (literalExpression (stringLiteral " "))))
                 )
               )
             )
@@ -217,9 +205,7 @@ Hidden:NEWLINE                  <>
               (identifier results)
               =
               (startExpression
-                (compareExpression
-                  (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
-                )
+                (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
               )
             )
           )

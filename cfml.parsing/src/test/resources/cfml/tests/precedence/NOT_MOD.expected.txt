@@ -1,0 +1,36 @@
+/*===TOKENS===*/
+NOT                      <NOT>
+IDENTIFIER               <productIndex>
+MOD                      <MOD>
+INTEGER_LITERAL          <2>
+EQ                       <EQ>
+INTEGER_LITERAL          <0>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (startExpression
+        (baseExpression
+          (notExpression
+            NOT
+            (baseExpression
+              (baseExpression
+                (baseExpression (unaryExpression (memberExpression (identifier productIndex))))
+                MOD
+                (baseExpression (unaryExpression (primaryExpression (literalExpression 2))))
+              )
+              (compareExpressionOperator EQ)
+              (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+NOT productIndex MOD 2 EQ 0
+/*======*/

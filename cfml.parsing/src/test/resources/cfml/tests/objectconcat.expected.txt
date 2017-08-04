@@ -36,73 +36,61 @@ Hidden:NEWLINE                  <>
     (statement
       (assignmentExpression
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression (memberExpression (identifier x))))
-          )
+          (baseExpression (unaryExpression (memberExpression (identifier x))))
         )
         =
         (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (primaryExpression
-                  (implicitStruct
-                    {
-                    (implicitStructElements
-                      (implicitStructExpression
-                        (implicitStructKeyExpression (multipartIdentifier (identifier name)))
-                        :
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (identifier rc)
-                                .
-                                (identifier ticket)
-                                .
-                                (qualifiedFunctionCall (identifier getShortId) ( argumentList ))
+          (baseExpression
+            (unaryExpression
+              (primaryExpression
+                (implicitStruct
+                  {
+                  (implicitStructElements
+                    (implicitStructExpression
+                      (implicitStructKeyExpression (multipartIdentifier (identifier name)))
+                      :
+                      (baseExpression
+                        (unaryExpression
+                          (memberExpression
+                            (identifier rc)
+                            .
+                            (identifier ticket)
+                            .
+                            (qualifiedFunctionCall (identifier getShortId) ( argumentList ))
+                          )
+                        )
+                      )
+                    )
+                    ,
+                    (implicitStructExpression
+                      (implicitStructKeyExpression (multipartIdentifier (identifier action)))
+                      :
+                      (baseExpression
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression
+                                (stringLiteral ' (stringLiteralPart support:tickets/view/id/) ')
                               )
                             )
                           )
                         )
-                      )
-                      ,
-                      (implicitStructExpression
-                        (implicitStructKeyExpression (multipartIdentifier (identifier action)))
-                        :
-                        (compareExpression
-                          (baseExpression
-                            (concatenationExpression
-                              (unaryExpression
-                                (primaryExpression
-                                  (literalExpression
-                                    (stringLiteral ' (stringLiteralPart support:tickets/view/id/) ')
-                                  )
-                                )
-                              )
-                              &
-                              (baseOrTernaryExpression
-                                (compareExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (memberExpression
-                                        (identifier rc)
-                                        .
-                                        (identifier ticket)
-                                        .
-                                        (qualifiedFunctionCall (identifier getShortId) ( argumentList ))
-                                      )
-                                    )
-                                  )
-                                )
-                              )
+                        &
+                        (baseExpression
+                          (unaryExpression
+                            (memberExpression
+                              (identifier rc)
+                              .
+                              (identifier ticket)
+                              .
+                              (qualifiedFunctionCall (identifier getShortId) ( argumentList ))
                             )
                           )
                         )
                       )
                     )
-                    }
                   )
+                  }
                 )
               )
             )

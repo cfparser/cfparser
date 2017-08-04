@@ -79,12 +79,10 @@ Hidden:NEWLINE                  <>
                     (multipartIdentifier (identifier parse_error))
                     =
                     (startExpression
-                      (compareExpression
-                        (baseExpression
-                          (unaryExpression
-                            (primaryExpression
-                              (literalExpression (stringLiteral " (stringLiteralPart but works) "))
-                            )
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral " (stringLiteralPart but works) "))
                           )
                         )
                       )
@@ -103,12 +101,10 @@ Hidden:NEWLINE                  <>
                       (multipartIdentifier (identifier type))
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart string) "))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart string) "))
                             )
                           )
                         )
@@ -118,12 +114,10 @@ Hidden:NEWLINE                  <>
                       (multipartIdentifier (identifier name))
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart parses_fine) "))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart parses_fine) "))
                             )
                           )
                         )
@@ -133,12 +127,10 @@ Hidden:NEWLINE                  <>
                       (multipartIdentifier (identifier default))
                       =
                       (startExpression
-                        (compareExpression
-                          (baseExpression
-                            (unaryExpression
-                              (primaryExpression
-                                (literalExpression (stringLiteral " (stringLiteralPart works as expected) "))
-                              )
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart works as expected) "))
                             )
                           )
                         )
@@ -151,23 +143,19 @@ Hidden:NEWLINE                  <>
             )
             (statement
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression
-                        (functionCall
-                          (identifier writeDump)
-                          (
-                          (argumentList
-                            (argument
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression (unaryExpression (memberExpression (identifier parse_error))))
-                                )
-                              )
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (functionCall
+                        (identifier writeDump)
+                        (
+                        (argumentList
+                          (argument
+                            (startExpression
+                              (baseExpression (unaryExpression (memberExpression (identifier parse_error))))
                             )
                           )
-                          )
+                        )
                         )
                       )
                     )
@@ -178,23 +166,19 @@ Hidden:NEWLINE                  <>
             )
             (statement
               (startExpression
-                (compareExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression
-                        (functionCall
-                          (identifier writeDump)
-                          (
-                          (argumentList
-                            (argument
-                              (startExpression
-                                (compareExpression
-                                  (baseExpression (unaryExpression (memberExpression (identifier parses_fine))))
-                                )
-                              )
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (functionCall
+                        (identifier writeDump)
+                        (
+                        (argumentList
+                          (argument
+                            (startExpression
+                              (baseExpression (unaryExpression (memberExpression (identifier parses_fine))))
                             )
                           )
-                          )
+                        )
                         )
                       )
                     )

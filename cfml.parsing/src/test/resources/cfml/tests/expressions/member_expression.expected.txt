@@ -14,24 +14,23 @@ INTEGER_LITERAL          <1>
     (statement
       (assignmentExpression
         (startExpression
-          (compareExpression
-            (baseExpression
-              (unaryExpression
-                (memberExpression
-                  (identifier struABC)
-                  .
-                  (primaryExpressionIRW 1)
-                  .
-                  (identifier a)
-                )
+          (baseExpression
+            (unaryExpression
+              (memberExpression
+                (identifier struABC)
+                .
+                (primaryExpressionIRW 1)
+                .
+                (identifier a)
               )
             )
           )
         )
         =
         (startExpression
-          (compareExpression
-            (baseExpression (unaryExpression - (primaryExpression (literalExpression 1))))
+          (baseExpression
+            -
+            (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
           )
         )
       )
