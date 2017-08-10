@@ -18,7 +18,6 @@ public class CFUnaryExpression extends CFExpression implements java.io.Serializa
 	
 	public CFUnaryExpression(org.antlr.v4.runtime.Token _t, CFExpression _sub) {
 		super(_t);
-		System.out.println("UNARY:" + _t);
 		kind = _t.getType();
 		sub = _sub;
 	}
