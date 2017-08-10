@@ -27,6 +27,7 @@ To update the version number prior to a release, run:
 
 #Release example
 (we do our final commit for 2.2.13-SNAPSHOT on the develop branch, we're ready to release it)
+```
 [develop]$`git checkout master`
  [master]$`git merge --no-ff develop`
  [master]$`mvn versions:set -DnewVersion=2.2.13`
@@ -37,3 +38,4 @@ To update the version number prior to a release, run:
 [develop]$`git merge --no-ff master`
 [develop]$`mvn versions:set -DnewVersion=2.2.14-SNAPSHOT`
 [develop]$`git commit -am 'Setup version 2.2.14 for development'`
+```
