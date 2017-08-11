@@ -1,0 +1,51 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+PUBLIC                   <public>
+FUNCTION                 <function>
+IDENTIFIER               <foo>
+'('                      <(>
+Hidden:NEWLINE                  <>
+REQUIRED                 <required>
+ANY                      <any>
+IDENTIFIER               <bar>
+','                      <,>
+Hidden:NEWLINE                  <>
+REQUIRED                 <required>
+ANY                      <any>
+IDENTIFIER               <baz>
+','                      <,>
+Hidden:NEWLINE                  <>
+')'                      <)>
+'{'                      <{>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          (accessType public)
+          function
+          (identifier foo)
+          (
+          (parameterList
+            (parameter required (parameterType (typeSpec (type any))) (identifier bar))
+            ,
+            (parameter required (parameterType (typeSpec (type any))) (identifier baz))
+            ,
+          )
+          )
+          (compoundStatement { })
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
