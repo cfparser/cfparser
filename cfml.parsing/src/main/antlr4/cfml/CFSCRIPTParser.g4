@@ -59,7 +59,7 @@ stringLiteralPart
   
 
 parameterList
-  : parameter ( COMMA parameter)*
+  : parameter ( COMMA parameter)* COMMA?
   |
   ;
   

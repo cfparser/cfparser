@@ -297,29 +297,24 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	
 	@Override
 	public CFScriptStatement visitForStatement(ForStatementContext ctx) {
-		// System.out.println("visitForStatement");
 		if (ctx.forInKey() != null) {
 			CFForInStatement forInStatement = new CFForInStatement(ctx.FOR().getSymbol(),
-					cfExpressionVisitor.visit(ctx.forInKey()), cfExpressionVisitor.visit(ctx.inExpr), visit(ctx.statement()));
+					ctx.forInKey() == null ? null : cfExpressionVisitor.visit(ctx.forInKey()),
+					ctx.inExpr == null ? null : cfExpressionVisitor.visit(ctx.inExpr),
+					ctx.statement() == null ? null : visit(ctx.statement()));
 			return forInStatement;
 		} else {
 			ParserRuleContext localOrInit = ExpressionUtils.coalesce(ctx.localAssignmentExpression(), ctx.initExpression);
 			CFExpression LocalOrInitVisited = localOrInit != null ? cfExpressionVisitor.visit(localOrInit) : null;
 			CFForStatement forStatement = new CFForStatement(ctx.FOR().getSymbol(), LocalOrInitVisited,
-					cfExpressionVisitor.visit(ctx.condExpression),
-					cfExpressionVisitor.visit(ExpressionUtils.coalesce(ctx.incrExpression, ctx.incrExpression2)),
-					visit(ctx.statement()));
+					ctx.condExpression == null ? null : cfExpressionVisitor.visit(ctx.condExpression),
+					ExpressionUtils.coalesce(ctx.incrExpression, ctx.incrExpression2) == null ? null
+							: cfExpressionVisitor.visit(ExpressionUtils.coalesce(ctx.incrExpression, ctx.incrExpression2)),
+					ctx.statement() == null ? null : visit(ctx.statement()));
 			return forStatement;
 		}
 		// return super.visitForStatement(ctx);
 	}
-	
-	//
-	// @Override
-	// public CFScriptStatement visitForInKey(ForInKeyContext ctx) {
-	// System.out.println("visitForInKey");
-	// return super.visitForInKey(ctx);
-	// }
 	
 	@Override
 	public CFScriptStatement visitTryCatchStatement(TryCatchStatementContext ctx) {

@@ -290,6 +290,14 @@ public class CFMLParser {
 		cfdic = newDict;
 	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public SyntaxDictionary getDictionary() {
+		return cfdic;
+	}
+	
 	public void addDictionary(String dictionary) {
 	}
 	
