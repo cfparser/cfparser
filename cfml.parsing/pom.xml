@@ -30,11 +30,17 @@
 			<groupId>net.htmlparser.jericho</groupId>
 			<artifactId>jericho-html</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.antlr</groupId>
-			<artifactId>antlr4</artifactId>
-			<version>${antlr.version}</version>
-		</dependency>
+ 		<dependency>
+  			<groupId>org.antlr</groupId>
+ 			<artifactId>antlr4-runtime</artifactId>
+  			<version>${antlr.version}</version>
+  		</dependency>
+  		<!-- TODO remove this dependency #92 -->
+  		<dependency>
+ 			<groupId>org.antlr</groupId>
+ 			<artifactId>antlr-runtime</artifactId>
+ 			<version>3.5.2</version>
+ 		</dependency>
 		<dependency>
 			<groupId>javolution</groupId>
 			<artifactId>javolution</artifactId>
@@ -52,6 +58,12 @@
 		</dependency>
 
 		<!-- Test Dependencies -->
+ 		<dependency>
+ 			<groupId>org.antlr</groupId>
+ 			<artifactId>antlr4</artifactId>
+ 			<version>${antlr.version}</version>
+ 			<scope>test</scope>
+ 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
