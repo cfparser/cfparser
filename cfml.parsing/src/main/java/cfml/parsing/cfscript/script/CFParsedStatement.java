@@ -16,6 +16,7 @@ abstract public class CFParsedStatement implements CFScriptStatement, java.io.Se
 	protected int _col;
 	protected Token token = null;
 	CommonTokenStream tokens;
+	Object parent;
 	
 	protected CFParsedStatement(int line, int col) {
 		_line = line;
@@ -61,6 +62,14 @@ abstract public class CFParsedStatement implements CFScriptStatement, java.io.Se
 	
 	public Token getToken() {
 		return token;
+	}
+	
+	public Object getParent() {
+		return parent;
+	}
+	
+	public void setParent(Object parent) {
+		this.parent = parent;
 	}
 	
 }

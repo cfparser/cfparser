@@ -20,18 +20,17 @@ public class CFTernaryExpression extends CFAssignmentExpression implements java.
 	
 	public CFTernaryExpression(Token t, CFExpression e1, CFExpression left, CFExpression right) {
 		super(t, right, right);
-		// _kind = t.getType();
-		// operatorImage = t.getText();
-		// if (_kind == CFSCRIPTLexer.ANDOPERATOR) {
-		// _kind = CFSCRIPTLexer.AND;
-		// } else if (_kind == CFSCRIPTLexer.OROPERATOR) {
-		// _kind = CFSCRIPTLexer.OR;
-		// } else if (_kind == CFSCRIPTLexer.MODOPERATOR) {
-		// _kind = CFSCRIPTLexer.MOD;
-		// }
 		_cond = e1;
+		if (_cond != null)
+			_cond.setParent(this);
 		_left = left;
+		if (_left != null) {
+			_left.setParent(this);
+		}
 		_right = right;
+		if (_right != null) {
+			_right.setParent(this);
+		}
 	}
 	
 	@Override

@@ -21,6 +21,9 @@ public class CFStructExpression extends CFExpression implements java.io.Serializ
 	
 	public void addElement(CFStructElementExpression _element) {
 		elements.add(_element);
+		if (_element != null) {
+			_element.setParent(this);
+		}
 	}
 	
 	@Override

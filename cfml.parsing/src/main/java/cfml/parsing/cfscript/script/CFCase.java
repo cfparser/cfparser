@@ -21,6 +21,7 @@ public class CFCase implements CFScriptStatement, java.io.Serializable {
 	private boolean isDefault = true;
 	private CFExpression constant;
 	CommonTokenStream tokens;
+	Object parent;
 	
 	public CFCase(CFExpression _constant, List<CFScriptStatement> _statement) {
 		this(_statement);
@@ -38,6 +39,11 @@ public class CFCase implements CFScriptStatement, java.io.Serializable {
 	
 	public CFCase(List<CFScriptStatement> _statement) {
 		statements = _statement;
+		if (statements != null) {
+			for (CFScriptStatement statement : statements) {
+				statement.setParent(this);
+			}
+		}
 	}
 	
 	public boolean isDefault() {
@@ -97,5 +103,13 @@ public class CFCase implements CFScriptStatement, java.io.Serializable {
 	@Override
 	public List<CFScriptStatement> decomposeScript() {
 		return statements;
+	}
+	
+	public Object getParent() {
+		return parent;
+	}
+	
+	public void setParent(Object parent) {
+		this.parent = parent;
 	}
 }

@@ -18,6 +18,8 @@ public class CFAnonymousFunctionExpression extends CFExpression implements java.
 	public CFAnonymousFunctionExpression(org.antlr.v4.runtime.Token _t, CFFuncDeclStatement funcDeclStatement) {
 		super(_t);
 		this.funcDeclStatement = funcDeclStatement;
+		if (funcDeclStatement != null)
+			funcDeclStatement.setParent(this);
 	}
 	
 	@Override

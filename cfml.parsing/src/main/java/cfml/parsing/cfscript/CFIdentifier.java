@@ -20,15 +20,11 @@ public class CFIdentifier extends CFVarExpression implements java.io.Serializabl
 	protected Token token;
 	
 	public CFIdentifier(Token _t) {
-		super(_t);
-		name = _t.getText();
-		token = _t;
+		this(_t, null, null);
 	}
 	
 	public CFIdentifier(Token _t, String _img) {
-		super(_t);
-		name = _img;
-		token = _t;
+		this(_t, null,_img );
 	}
 	
 	public CFIdentifier(Token _t, String scope, String _img) {

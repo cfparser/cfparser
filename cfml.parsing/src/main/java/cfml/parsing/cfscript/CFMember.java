@@ -18,6 +18,9 @@ public class CFMember extends CFExpression implements java.io.Serializable {
 		super(_t);
 		token = _t;
 		expression = expr;
+		if (expression != null) {
+			expression.setParent(this);
+		}
 	}
 	
 	@Override

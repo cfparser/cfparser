@@ -23,4 +23,8 @@ public interface CFScriptStatement {
 	
 	public List<CFExpression> decomposeExpression();
 	
+	public Object getParent();
+	
+	public void setParent(Object parent);
+	
 }

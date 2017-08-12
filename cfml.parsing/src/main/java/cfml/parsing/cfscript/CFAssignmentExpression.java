@@ -25,6 +25,10 @@ public class CFAssignmentExpression extends CFExpression {
 		super(t);
 		left = _left;
 		right = _right;
+		if (left != null)
+			left.setParent(this);
+		if (right != null)
+			right.setParent(this);
 	}
 	
 	@Override

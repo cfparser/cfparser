@@ -20,6 +20,9 @@ public class CFUnaryExpression extends CFExpression implements java.io.Serializa
 		super(_t);
 		kind = _t.getType();
 		sub = _sub;
+		if (sub != null) {
+			sub.setParent(this);
+		}
 	}
 	
 	@Override

@@ -25,7 +25,13 @@ public class CFJavaMethodExpression extends CFExpression {
 	public CFJavaMethodExpression(Token _t, CFExpression _name, ArrayList<CFExpression> _args) {
 		super(_t);
 		name = _name;
+		if (_name != null) {
+			_name.setParent(this);
+		}
 		args = _args;
+		if (args != null) {
+			args.forEach(elem -> elem.setParent(this));
+		}
 	}
 	
 	@Override

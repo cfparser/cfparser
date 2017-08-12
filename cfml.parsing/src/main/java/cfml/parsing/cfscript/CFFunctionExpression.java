@@ -25,7 +25,13 @@ public class CFFunctionExpression extends CFMember {
 	public CFFunctionExpression(Token t, CFIdentifier _name, ArrayList<CFExpression> _args) throws ParseException {
 		super(t, null);
 		nameId = _name;
+		if (nameId != null) {
+			nameId.setParent(this);
+		}
 		args = _args;
+		if (args != null) {
+			args.forEach(elem -> elem.setParent(this));
+		}
 		isUDF = false;
 	}
 	

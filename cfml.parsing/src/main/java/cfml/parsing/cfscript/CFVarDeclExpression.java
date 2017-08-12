@@ -28,7 +28,13 @@ public class CFVarDeclExpression extends CFExpression {
 	public CFVarDeclExpression(Token _t, CFIdentifier _var, CFExpression _init) {
 		super(_t);
 		name = _var.getName();
+		if (_var != null) {
+			_var.setParent(this);
+		}
 		init = _init;
+		if (init != null) {
+			init.setParent(this);
+		}
 	}
 	
 	@Override

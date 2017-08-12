@@ -17,7 +17,13 @@ public class CFStructElementExpression extends CFExpression implements java.io.S
 	public CFStructElementExpression(Token t, CFIdentifier _key, CFExpression _value) {
 		super(t);
 		key = _key;
+		if (key != null) {
+			key.setParent(this);
+		}
 		value = _value;
+		if (value != null) {
+			value.setParent(this);
+		}
 	}
 	
 	@Override

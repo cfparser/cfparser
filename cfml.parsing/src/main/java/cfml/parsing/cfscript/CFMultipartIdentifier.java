@@ -16,6 +16,7 @@ public class CFMultipartIdentifier extends CFIdentifier implements java.io.Seria
 		super(identifiers[0].getToken());
 		this.scope = identifiers[0].getScope();
 		this.ids = new ArrayList<CFIdentifier>(Arrays.asList(identifiers));
+		ids.forEach(id -> id.setParent(this));
 	}
 	
 	@Override

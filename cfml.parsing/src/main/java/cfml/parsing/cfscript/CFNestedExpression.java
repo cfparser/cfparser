@@ -17,6 +17,9 @@ public class CFNestedExpression extends CFExpression implements java.io.Serializ
 	public CFNestedExpression(org.antlr.v4.runtime.Token _t, CFExpression _sub) {
 		super(_t);
 		sub = _sub;
+		if (sub != null) {
+			sub.setParent(this);
+		}
 	}
 	
 	@Override

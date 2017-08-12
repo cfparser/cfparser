@@ -15,6 +15,7 @@ public class CFCatchStatement implements CFScriptStatement {
 	private CFScriptStatement body;
 	CommonTokenStream tokens;
 	final Token token;
+	Object parent;
 	
 	public String getType() {
 		return type;
@@ -26,11 +27,13 @@ public class CFCatchStatement implements CFScriptStatement {
 		type = _type;
 		var = _var;
 		body = _body;
-		if (_var != null)
+		if (_var != null) {
 			token = var.getToken();
-		else if (body != null)
+			var.setParent(this);
+		} else if (body != null) {
 			token = _body.getToken();
-		else
+			body.setParent(this);
+		} else
 			token = null;
 	}
 	
@@ -93,5 +96,13 @@ public class CFCatchStatement implements CFScriptStatement {
 	@Override
 	public List<CFScriptStatement> decomposeScript() {
 		return ArrayBuilder.createCFScriptStatement(body);
+	}
+	
+	public Object getParent() {
+		return parent;
+	}
+	
+	public void setParent(Object parent) {
+		this.parent = parent;
 	}
 }

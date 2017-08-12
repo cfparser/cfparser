@@ -17,10 +17,15 @@ public class CFArrayExpression extends CFExpression implements java.io.Serializa
 	public CFArrayExpression(Token t) {
 		super(t);
 		elements = new ArrayList<CFExpression>();
+		if (elements != null) {
+			elements.forEach(elem -> elem.setParent(this));
+		}
 	}
 	
 	public void addElement(CFExpression _e) {
 		elements.add(_e);
+		if (_e != null)
+			_e.setParent(this);
 	}
 	
 	@Override

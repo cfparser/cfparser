@@ -18,7 +18,13 @@ public class CFNewExpression extends CFExpression implements java.io.Serializabl
 	public CFNewExpression(Token _t, CFExpression _component, ArrayList<CFExpression> _args) {
 		super(_t);
 		componentPath = _component;
+		if (componentPath != null) {
+			componentPath.setParent(this);
+		}
 		args = _args;
+		if (args != null) {
+			args.forEach(arg -> arg.setParent(this));
+		}
 	}
 	
 	@Override

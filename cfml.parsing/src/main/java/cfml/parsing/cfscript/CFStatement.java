@@ -10,4 +10,6 @@ public interface CFStatement {
 	
 	public void checkIndirectAssignments(String[] scriptSource);
 	
+	public Object getParent();
+	
 }

@@ -31,6 +31,10 @@ public class CFBinaryExpression extends CFExpression implements java.io.Serializ
 		}
 		_left = left;
 		_right = right;
+		if (left != null)
+			left.setParent(this);
+		if (right != null)
+			right.setParent(this);
 	}
 	
 	@Override

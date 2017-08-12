@@ -18,6 +18,7 @@ public abstract class CFParsedStatement implements CFStatement, java.io.Serializ
 	private int line;
 	private int col;
 	private Token token;
+	private Object parent;
 	
 	public CFParsedStatement(int _line, int _col) {
 		line = _line;
@@ -71,5 +72,14 @@ public abstract class CFParsedStatement implements CFStatement, java.io.Serializ
 	public abstract List<CFExpression> decomposeExpression();
 	
 	public abstract List<CFScriptStatement> decomposeScript();
+	
+	@Override
+	public Object getParent() {
+		return parent;
+	}
+	
+	public void setParent(Object parent) {
+		this.parent = parent;
+	}
 	
 }

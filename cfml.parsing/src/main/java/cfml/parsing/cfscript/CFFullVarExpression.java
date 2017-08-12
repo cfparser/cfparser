@@ -21,8 +21,10 @@ public class CFFullVarExpression extends CFIdentifier implements Serializable {
 		super(_t);
 		// token = _t;
 		expressions = new ArrayList<CFExpression>();
-		if (_main != null)
+		if (_main != null) {
 			expressions.add(_main);
+			_main.setParent(this);
+		}
 	}
 	
 	public CFIdentifier getIdentifier() {
@@ -46,6 +48,9 @@ public class CFFullVarExpression extends CFIdentifier implements Serializable {
 	
 	public void addMember(CFExpression _right) {
 		expressions.add(_right);
+		if (_right != null) {
+			_right.setParent(this);
+		}
 	}
 	
 	@Override
