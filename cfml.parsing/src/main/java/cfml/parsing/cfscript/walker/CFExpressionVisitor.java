@@ -469,7 +469,8 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		if (ctx.parameterList() != null) {
 			for (ParameterContext argCtx : ctx.parameterList().parameter()) {
 				if (argCtx.name != null) {
-					args.addNamedArg(visit(argCtx.name), visit(argCtx.startExpression()));
+					args.addNamedArg(visit(argCtx.name),
+							argCtx.startExpression() == null ? null : visit(argCtx.startExpression()));
 				} else {
 					args.add(visit(argCtx));
 				}
