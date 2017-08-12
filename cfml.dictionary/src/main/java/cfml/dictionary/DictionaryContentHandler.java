@@ -51,6 +51,7 @@ public class DictionaryContentHandler implements ContentHandler {
 	/** current tag/function being built */
 	private Procedure currentitem = null;
 	private Parameter paramItem = null;
+	private Return returnItem = null;
 	private Function methoditem = null;
 	
 	public DictionaryContentHandler(Map tags, Map functions, Map scopeVars, Map scopes) {
@@ -151,6 +152,8 @@ public class DictionaryContentHandler implements ContentHandler {
 			handleFunctionStart(attributes);
 		} else if (str2.equals("parameter")) {
 			handleParameterStart(attributes);
+		} else if (str2.equals("return")) {
+			handleReturnStart(attributes);
 		} else if (str2.equals("value")) {
 			handleValueStart(attributes);
 		} else if (str2.equals("help")) {
@@ -244,9 +247,10 @@ public class DictionaryContentHandler implements ContentHandler {
 		boolean required = false;
 		String defaultValue = null;
 		String category = "General";
+		String returnVarType = null;
 		
 		for (int x = 0; x < attributes.getLength(); x++) {
-			String attrname = attributes.getQName(x).toLowerCase();
+			final String attrname = attributes.getQName(x).toLowerCase();
 			if (attrname.equals("type")) {
 				type = attributes.getValue(x);
 			} else if (attrname.equals("name")) {
@@ -257,13 +261,34 @@ public class DictionaryContentHandler implements ContentHandler {
 				defaultValue = attributes.getValue(x);
 			} else if (attrname.equals("category")) {
 				category = attributes.getValue(x);
+			} else if (attrname.equals("returnvartype")) {
+				returnVarType = attributes.getValue(x);
 			}
 		}
 		
-		// System.out.println("Param: " + name + " " + type + " " + required);
-		//
-		// Create a new parameter and store it as the current parameter
-		this.paramItem = new Parameter(name, type, required, defaultValue, category);
+		this.paramItem = new Parameter(name, type, required, defaultValue, category, returnVarType);
+	}
+	
+	/**
+	 * Handles a new return. Not added until the closing tag is found.
+	 * 
+	 * @param attributes
+	 *            The attributes associated with the parameter
+	 */
+	private void handleReturnStart(org.xml.sax.Attributes attributes) {
+		// get the name and type
+		String name = "";
+		String type = "";
+		for (int x = 0; x < attributes.getLength(); x++) {
+			final String attrname = attributes.getQName(x).toLowerCase();
+			if (attrname.equals("type")) {
+				type = attributes.getValue(x);
+			} else if (attrname.equals("parameter")) {
+				name = attributes.getValue(x);
+			}
+		}
+		
+		this.returnItem = new Return(name, type);
 	}
 	
 	/**
@@ -283,6 +308,19 @@ public class DictionaryContentHandler implements ContentHandler {
 		//
 		// Reset the paramitem
 		paramItem = null;
+	}
+	
+	/**
+	 * Handles a closing return tag. Performs whatever finishing up is required and stores the parameter for it's
+	 * associated method/tag.
+	 */
+	private void handleReturnEnd() {
+		// Attach the finished parameter to the current item
+		if ((currentitem instanceof Tag) && returnItem != null) {
+			((Tag) currentitem).getReturns().add(returnItem);
+		}
+		// Reset the returnItem
+		returnItem = null;
 	}
 	
 	/**
@@ -367,6 +405,8 @@ public class DictionaryContentHandler implements ContentHandler {
 			}
 		} else if (str2.equals("parameter")) {
 			handleParameterEnd();
+		} else if (str2.equals("return")) {
+			handleReturnEnd();
 		} else if (str2.equals("value")) {
 			handleValueEnd();
 		} else if (str2.equals("help")) {

@@ -137,7 +137,7 @@ public class Procedure implements Comparable {
 	protected String help = "";
 	
 	/** The parameters that belong to this procedure (if any) */
-	protected Set parameters = null;
+	protected Set<Parameter> parameters = null;
 	
 	/**
 	 * Constructs the procedure with a name.
@@ -179,7 +179,7 @@ public class Procedure implements Comparable {
 	 */
 	public void addParameter(Parameter param) {
 		if (parameters == null)
-			parameters = new HashSet();
+			parameters = new HashSet<Parameter>();
 		
 		parameters.add(param);
 	}
@@ -201,7 +201,7 @@ public class Procedure implements Comparable {
 	 * 
 	 * @return Set of parameters belong to this procedure.
 	 */
-	public Set getParameters() {
+	public Set<Parameter> getParameters() {
 		return parameters;
 	}
 	

@@ -32,7 +32,7 @@ import cfml.dictionary.SyntaxDictionary;
 
 /**
  * @author Rob
- * 		
+ * 
  *         This is the javascript specific syntax dictionary dictionary
  */
 public class JSSyntaxDictionary extends SyntaxDictionary implements ISyntaxDictionary {
@@ -76,16 +76,6 @@ public class JSSyntaxDictionary extends SyntaxDictionary implements ISyntaxDicti
 	 */
 	public Set getFunctions() {
 		return functions.keySet();
-	}
-	
-	/**
-	 * retuns a functions usage
-	 * 
-	 * @param functionname
-	 * @return
-	 */
-	public String getFunctionUsage(String functionname) {
-		return (String) functions.get(functionname.toLowerCase());
 	}
 	
 	public Set getAllElements() {
