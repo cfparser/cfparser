@@ -35,7 +35,6 @@
  			<artifactId>antlr4-runtime</artifactId>
   			<version>${antlr.version}</version>
   		</dependency>
-  		<!-- TODO remove this dependency #92 -->
   		<dependency>
  			<groupId>org.antlr</groupId>
  			<artifactId>antlr-runtime</artifactId>
