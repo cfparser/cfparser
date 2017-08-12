@@ -27,7 +27,6 @@ package cfml.dictionary;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -56,11 +55,11 @@ import org.xml.sax.XMLReader;
  */
 public abstract class SyntaxDictionary {
 	/** any tag based items in the dictionary */
-	protected Map<String, Object> syntaxelements;
+	protected Map<String, Tag> syntaxelements;
 	/** any function based elements */
-	protected Map<String, Object> functions;
+	protected Map<String, Function> functions;
 	/** any scope variables including user defined components */
-	protected Map<String, Object> scopeVars;
+	protected Map<String, ScopeVar> scopeVars;
 	/** any scope variables */
 	protected Map<String, Object> scopes;
 	
@@ -68,9 +67,9 @@ public abstract class SyntaxDictionary {
 	protected String dictionaryURL = null;
 	
 	public SyntaxDictionary() {
-		syntaxelements = new HashMap<String, Object>();
-		functions = new HashMap<String, Object>();
-		scopeVars = new HashMap<String, Object>();
+		syntaxelements = new HashMap<String, Tag>();
+		functions = new HashMap<String, Function>();
+		scopeVars = new HashMap<String, ScopeVar>();
 		scopes = new HashMap<String, Object>();
 	}
 	
@@ -225,7 +224,7 @@ public abstract class SyntaxDictionary {
 	 *            the function whose params should be returned
 	 * @return set of matching elements.
 	 */
-	public Set<Object> getFunctionParams(String functionName) {
+	public Set<Parameter> getFunctionParams(String functionName) {
 		Set<String> entries = functions.keySet();
 		Iterator<String> i = entries.iterator();
 		try {
@@ -297,7 +296,7 @@ public abstract class SyntaxDictionary {
 							+ tag + "\'");
 		}
 		
-		Set<Object> attribs = getElementAttributes(tag);
+		Set<Parameter> attribs = getElementAttributes(tag);
 		
 		if (attribs == null)
 			return null;
@@ -358,9 +357,8 @@ public abstract class SyntaxDictionary {
 	 * @return
 	 */
 	public String getFunctionUsage(String functionname) {
-		// Assert.isNotNull(functions, "Private member functions is null");
-		// Assert.isNotNull(functionname, "Functionname parameter is null");
-		return (String) functions.get(functionname.toLowerCase());
+		// Before switching to generics this was attempting to cast a Function to a String
+		return null;// (String) functions.get(functionname.toLowerCase()).;
 	}
 	
 	/**
@@ -438,12 +436,12 @@ public abstract class SyntaxDictionary {
 	 *            the string to use as a limiter
 	 * @return everything in the set that starts with start in the format passed in
 	 */
-	public static Set<Object> limitSet(Set<Object> st, String start) {
+	public static Set<Object> limitSet(Set<? extends Object> st, String start) {
 		Set<Object> filterset = new HashSet<Object>();
-		Set<Object> fullset = st;
+		Set<? extends Object> fullset = st;
 		
 		if (fullset != null) {
-			Iterator<Object> it = fullset.iterator();
+			Iterator<? extends Object> it = fullset.iterator();
 			while (it.hasNext()) {
 				Object item = it.next();
 				String possible = "";
@@ -504,7 +502,7 @@ public abstract class SyntaxDictionary {
 	 *            The tag or function whose attributes we're after.
 	 * @return The set of parameters/attributes for the element, otherwise null.
 	 */
-	public Set<Object> getElementAttributes(String elementname) {
+	public Set<Parameter> getElementAttributes(String elementname) {
 		// Assert.isNotNull(this.syntaxelements,
 		// "Private member syntaxelements is null. Has this dictionary been loaded?");
 		// Assert.isNotNull(elementname, "Parameter elementname supplied is null");
@@ -522,7 +520,7 @@ public abstract class SyntaxDictionary {
 				p = (Procedure) syntaxelements.get(elementname.toLowerCase());
 			}
 			if (p != null) {
-				Set<Object> st = p.getParameters();
+				Set<Parameter> st = p.getParameters();
 				return st;
 			}
 		} catch (Throwable ex) {
@@ -544,23 +542,30 @@ public abstract class SyntaxDictionary {
 		if (this.dictionaryURL == null)
 			throw new IOException("Dictionary file name can not be null!");
 		
-		URL url = new URL(this.dictionaryURL);
-		URLConnection urlcon = url.openConnection();
-		BufferedInputStream xml = new BufferedInputStream(urlcon.getInputStream());
+		final URL url = new URL(this.dictionaryURL);
+		final InputSource input = new InputSource(new BufferedInputStream(url.openStream()));
+		input.setSystemId(url.toString());
 		
-		SAXParserFactory factory = SAXParserFactory.newInstance();
+		final SAXParserFactory factory = SAXParserFactory.newInstance();
 		factory.setNamespaceAware(false);
 		factory.setValidating(false);
-		XMLReader xmlReader = factory.newSAXParser().getXMLReader();
+		final XMLReader xmlReader = factory.newSAXParser().getXMLReader();
 		
 		// setup the content handler and give it the maps for tags and functions
 		xmlReader.setContentHandler(new DictionaryContentHandler(syntaxelements, functions, scopeVars, scopes));
-		
-		InputSource input = new InputSource(xml);
-		// System.err.println("sid: " + url.toString() );
-		input.setSystemId(url.toString());
-		
 		xmlReader.parse(input);
+	}
+	
+	public Map<String, Tag> getSyntaxelements() {
+		return syntaxelements;
+	}
+	
+	public Map<String, ScopeVar> getScopeVars() {
+		return scopeVars;
+	}
+	
+	public Map<String, Object> getScopes() {
+		return scopes;
 	}
 	
 }

@@ -173,6 +173,7 @@ public class Parameter implements Comparable {
 	protected Set values;
 	protected boolean required = false;
 	protected String category = "General";
+	protected String returnVarType;
 	
 	public Parameter(String name) {
 		this.name = name.trim();
@@ -193,11 +194,13 @@ public class Parameter implements Comparable {
 		this.defaultValue = defaultValue;
 	}
 	
-	public Parameter(String name, String type, boolean required, String defaultValue, String category) {
+	public Parameter(String name, String type, boolean required, String defaultValue, String category,
+			String returnVarType) {
 		this.setNameAndType(name, type);
 		this.required = required;
 		this.defaultValue = defaultValue;
 		this.category = category;
+		this.returnVarType = returnVarType;
 	}
 	
 	/**
@@ -247,7 +250,7 @@ public class Parameter implements Comparable {
 	public Set getValues() {
 		if (this.values == null)
 			return new HashSet();
-		
+			
 		// System.err.println("Parameter::getValues() - I have " + values.size()
 		// + " elements");
 		return values;
@@ -313,6 +316,10 @@ public class Parameter implements Comparable {
 	
 	public String getCategory() {
 		return category;
+	}
+	
+	public String getReturnVarType() {
+		return returnVarType;
 	}
 	
 }

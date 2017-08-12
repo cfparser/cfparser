@@ -24,6 +24,9 @@
  */
 package cfml.dictionary;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * <p>
  * This class represents a syntax dictionary tag (should probably be renamed to DictionaryTag or something similar).
@@ -59,6 +62,8 @@ public class Tag extends Procedure {
 	public static final byte FORM = 16;
 	/** w3c table tag */
 	public static final byte TABLE = 32;
+	
+	protected Set<Return> returns = new HashSet<Return>();
 	
 	/**
 	 * Constructs a new Tag with the specified name and whether or not it is a single tag or not (i.e. &lt;cfbreak&gt;).
@@ -202,5 +207,9 @@ public class Tag extends Procedure {
 	
 	public String toString() {
 		return name;
+	}
+	
+	public Set<Return> getReturns() {
+		return returns;
 	}
 }

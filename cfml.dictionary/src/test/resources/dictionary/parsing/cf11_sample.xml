@@ -1,0 +1,13 @@
+<dictionary>
+	<tags>
+		<tag allowanyattribute="true" canHaveAttributeCollection="false"
+			endtagrequired="false" name="cfargument" single="true" xmlstyle="false"
+			validInScript="false" client="true">
+			<return parameter="name" type="Any" />
+			<parameter name="name" required="true" returnVarType="variablename"
+				type="String">
+				<values />
+			</parameter>
+		</tag>
+	</tags>
+</dictionary>
