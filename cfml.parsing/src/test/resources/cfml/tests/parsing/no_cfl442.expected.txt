@@ -1,0 +1,28 @@
+/*===TOKENS===*/
+VAR                      <var>
+BOOLEAN_LITERAL          <no>
+'='                      <=>
+INTEGER_LITERAL          <1>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (localAssignmentExpression
+        var
+        (startExpression
+          (baseExpression (unaryExpression (primaryExpression (literalExpression no))))
+        )
+        =
+        (startExpression
+          (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+        )
+      )
+      (endOfStatement ;)
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+var no = 1
+/*======*/

@@ -25,9 +25,9 @@ public class CFVarDeclExpression extends CFExpression {
 		return otherIds;
 	}
 	
-	public CFVarDeclExpression(Token _t, CFIdentifier _var, CFExpression _init) {
+	public CFVarDeclExpression(Token _t, CFExpression _var, CFExpression _init) {
 		super(_t);
-		name = _var.getName();
+		name = (_var instanceof CFIdentifier) ? ((CFIdentifier) _var).getName() : _var.Decompile(0);
 		if (_var != null) {
 			_var.setParent(this);
 		}

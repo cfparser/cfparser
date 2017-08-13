@@ -171,9 +171,8 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	
 	@Override
 	public CFExpression visitLocalAssignmentExpression(LocalAssignmentExpressionContext ctx) {
-		CFIdentifier identifier = (CFIdentifier) visit(ctx.left);
 		CFExpression initExpression = visit(ctx.right);
-		CFVarDeclExpression retval = new CFVarDeclExpression(ctx.start, identifier, initExpression);
+		CFVarDeclExpression retval = new CFVarDeclExpression(ctx.start, visit(ctx.left), initExpression);
 		if (ctx.otherIdentifiers().size() > 0) {
 			for (OtherIdentifiersContext oi : ctx.otherIdentifiers()) {
 				CFIdentifier otherid = (CFIdentifier) visit(oi.identifier());
