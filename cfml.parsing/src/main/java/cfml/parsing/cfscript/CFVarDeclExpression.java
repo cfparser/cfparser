@@ -12,7 +12,7 @@ public class CFVarDeclExpression extends CFExpression {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String name;
+	private CFExpression var;
 	private CFExpression init; // null if none
 	List<CFIdentifier> otherVars = new ArrayList<CFIdentifier>();
 	List<CFIdentifier> otherIds = new ArrayList<CFIdentifier>();
@@ -27,7 +27,7 @@ public class CFVarDeclExpression extends CFExpression {
 	
 	public CFVarDeclExpression(Token _t, CFExpression _var, CFExpression _init) {
 		super(_t);
-		name = (_var instanceof CFIdentifier) ? ((CFIdentifier) _var).getName() : _var.Decompile(0);
+		this.var = _var;
 		if (_var != null) {
 			_var.setParent(this);
 		}
@@ -41,7 +41,7 @@ public class CFVarDeclExpression extends CFExpression {
 	public String Decompile(int indent) {
 		StringBuilder s = new StringBuilder(Indent(indent));
 		s.append("var ");
-		s.append(name);
+		s.append(var.Decompile(0));
 		for (CFIdentifier id : otherVars) {
 			s.append(" = var ");
 			s.append(id.Decompile(indent));
@@ -57,10 +57,6 @@ public class CFVarDeclExpression extends CFExpression {
 		return s.toString();
 	}
 	
-	public String getName() {
-		return name;
-	}
-	
 	public CFExpression getInit() {
 		return init;
 	}
@@ -68,6 +64,7 @@ public class CFVarDeclExpression extends CFExpression {
 	@Override
 	public List<CFExpression> decomposeExpression() {
 		List<CFExpression> retval = new ArrayList<CFExpression>();
+		retval.add(var);
 		retval.add(init);
 		retval.addAll(otherIds);
 		retval.addAll(otherVars);
@@ -77,5 +74,15 @@ public class CFVarDeclExpression extends CFExpression {
 	@Override
 	public List<CFScriptStatement> decomposeScript() {
 		return ArrayBuilder.createCFScriptStatement();
+	}
+	
+	public CFExpression getVar() {
+		return var;
+	}
+	
+	public String getName() {
+		if (var.getClass().equals(CFIdentifier.class))
+			return ((CFIdentifier) var).getName();
+		return var.Decompile(0);
 	}
 }

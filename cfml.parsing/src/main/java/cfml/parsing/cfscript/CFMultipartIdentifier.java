@@ -53,4 +53,5 @@ public class CFMultipartIdentifier extends CFIdentifier implements java.io.Seria
 	public List<CFScriptStatement> decomposeScript() {
 		return ArrayBuilder.createCFScriptStatement();
 	}
+	
 }
