@@ -8,6 +8,7 @@ scriptBlock
   :
   importStatement*
   componentDeclaration
+  | interfaceDeclaration
   | ( element )*
   | cfscriptBlock* 
   | EOF
@@ -20,6 +21,9 @@ cfscriptBlock
 componentDeclaration
   : COMPONENT componentAttribute* componentGuts //-> ( COMPDECL componentAttribute* componentGuts)
   ;
+interfaceDeclaration
+  : INTERFACE componentAttribute* componentGuts //-> ( COMPDECL componentAttribute* componentGuts)
+  ;
 
 element
   : functionDeclaration
@@ -29,7 +33,7 @@ element
 functionDeclaration
   : accessType? typeSpec? FUNCTION identifier 
   	LEFTPAREN parameterList? RIGHTPAREN
-  	functionAttribute* body=compoundStatement 
+  	functionAttribute* body=compoundStatement? 
   ;
 anonymousFunctionDeclaration
   : accessType? typeSpec? FUNCTION //identifier? 
@@ -571,6 +575,7 @@ multipartIdentifier
 
 identifier
 	:	(COMPONENT
+	| INTERFACE
 	| IDENTIFIER
   | CONTAIN
   | VAR
@@ -603,6 +608,7 @@ type
   | STRING
   | BOOLEAN
   | COMPONENT
+  | INTERFACE
   | ANY
   | ARRAY
   | STRUCT

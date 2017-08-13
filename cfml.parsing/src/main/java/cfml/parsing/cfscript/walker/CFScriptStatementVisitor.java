@@ -34,6 +34,7 @@ import cfml.CFSCRIPTParser.FunctionDeclarationContext;
 import cfml.CFSCRIPTParser.IfStatementContext;
 import cfml.CFSCRIPTParser.ImportStatementContext;
 import cfml.CFSCRIPTParser.IncludeStatementContext;
+import cfml.CFSCRIPTParser.InterfaceDeclarationContext;
 import cfml.CFSCRIPTParser.LocalAssignmentExpressionContext;
 import cfml.CFSCRIPTParser.LockStatementContext;
 import cfml.CFSCRIPTParser.ParamContext;
@@ -76,6 +77,7 @@ import cfml.parsing.cfscript.script.CFFunctionParameter;
 import cfml.parsing.cfscript.script.CFIfStatement;
 import cfml.parsing.cfscript.script.CFImportStatement;
 import cfml.parsing.cfscript.script.CFIncludeStatement;
+import cfml.parsing.cfscript.script.CFInterfaceDeclStatement;
 import cfml.parsing.cfscript.script.CFLockStatement;
 import cfml.parsing.cfscript.script.CFMLFunctionStatement;
 import cfml.parsing.cfscript.script.CFParamStatement;
@@ -121,6 +123,24 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		return compDeclStatement;
 	}
 	
+	@Override
+	public CFScriptStatement visitInterfaceDeclaration(InterfaceDeclarationContext ctx) {
+		Map<CFExpression, CFExpression> _attr = new LinkedHashMap<CFExpression, CFExpression>();
+		CFInterfaceDeclStatement compDeclStatement = new CFInterfaceDeclStatement(ctx.INTERFACE().getSymbol(), _attr,
+				visit(ctx.componentGuts()));
+		for (ComponentAttributeContext attr : ctx.componentAttribute()) {
+			CFIdentifier name = (CFIdentifier) visitExpression(attr.id);
+			if (attr.prefix != null) {
+				CFFullVarExpression fullVar = new CFFullVarExpression(attr.prefix.getStart(), name);
+				fullVar.addMember(visitExpression(attr.prefix));
+				_attr.put(fullVar, visitExpression(attr.startExpression()));
+			} else {
+				_attr.put(name, visitExpression(attr.startExpression()));
+			}
+		}
+		return compDeclStatement;
+	}
+	
 	//
 	// @Override
 	// public CFScriptStatement visitElement(ElementContext ctx) {
@@ -147,7 +167,8 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		
 		CFFuncDeclStatement funcDeclStatement = new CFFuncDeclStatement(ctx.FUNCTION().getSymbol(),
 				(CFIdentifier) visitExpression(ctx.identifier()), getText(ctx.accessType()),
-				(CFIdentifier) visitExpression(ctx.typeSpec()), parameters, attributes, visit(ctx.body));
+				(CFIdentifier) visitExpression(ctx.typeSpec()), parameters, attributes,
+				ctx.body == null ? null : visit(ctx.body));
 		return funcDeclStatement;
 	}
 	

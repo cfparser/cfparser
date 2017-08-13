@@ -121,7 +121,11 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 				sb.append(" ");
 			}
 		}
-		sb.append(body.Decompile(indent + 2));
+		if (body == null) {
+			sb.append(";");
+		} else {
+			sb.append(body.Decompile(indent + 2));
+		}
 		return sb.toString();
 	}
 	

@@ -229,6 +229,7 @@ REMOTE: [rR][eE][mM][oO][tT][eE];
 PACKAGE: [pP][aA][cC][kK][aA][gG][eE];
 REQUIRED: [rR][eE][qQ][uU][iI][rR][eE][dD];
 COMPONENT: [cC][oO][mM][pP][oO][nN][eE][nN][tT];
+INTERFACE: [iI][nN][tT][eE][rR][fF][aA][cC][eE];
 
 //SCOPE
 //    :   [tT][hH][iI][sS] DOT

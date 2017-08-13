@@ -1,0 +1,48 @@
+/*===TOKENS===*/
+INTERFACE                <interface>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+Hidden:ML_COMMENT               </**
+	 * component
+	 */>
+Hidden:NEWLINE                  <>
+ANY                      <any>
+FUNCTION                 <function>
+IDENTIFIER               <foo>
+'('                      <(>
+REQUIRED                 <required>
+ANY                      <any>
+IDENTIFIER               <bar>
+')'                      <)>
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (interfaceDeclaration
+    interface
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          (typeSpec (type any))
+          function
+          (identifier foo)
+          (
+          (parameterList
+            (parameter required (parameterType (typeSpec (type any))) (identifier bar))
+          )
+          )
+        )
+      )
+      (element (statement ;))
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+interface {
+  public any function foo(required bar) ;
+}
+/*======*/
