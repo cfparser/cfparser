@@ -187,9 +187,9 @@ Hidden:NEWLINE                  <>
 /*======*/
 /*===DECOMPILE===*/
 component {
-  private any function call(required url)     {
-      var service = new http(null, null, null, null, null);
+ private any function call(required url) {
+ var service = new http(url = arguments.url, method = 'GET', charset = 'utf-8', timeout = variables.config.timeout, throwonerror = 'false');
 
-    }
+ }
 }
 /*======*/
