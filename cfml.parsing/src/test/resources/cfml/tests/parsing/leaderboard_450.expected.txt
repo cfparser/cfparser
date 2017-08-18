@@ -1,0 +1,195 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+PRIVATE                  <private>
+ANY                      <any>
+FUNCTION                 <function>
+IDENTIFIER               <call>
+'('                      <(>
+REQUIRED                 <required>
+STRING                   <string>
+IDENTIFIER               <url>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+VAR                      <var>
+IDENTIFIER               <service>
+'='                      <=>
+NEW                      <new>
+HTTP                     <http>
+'('                      <(>
+Hidden:NEWLINE                  <>
+IDENTIFIER               <url>
+'='                      <=>
+IDENTIFIER               <arguments>
+'.'                      <.>
+IDENTIFIER               <url>
+Hidden:NEWLINE                  <>
+','                      <,>
+IDENTIFIER               <method>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <GET>
+CLOSE_STRING             <">
+Hidden:NEWLINE                  <>
+','                      <,>
+IDENTIFIER               <charset>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <utf-8>
+CLOSE_STRING             <">
+Hidden:NEWLINE                  <>
+','                      <,>
+IDENTIFIER               <timeout>
+'='                      <=>
+IDENTIFIER               <variables>
+'.'                      <.>
+IDENTIFIER               <config>
+'.'                      <.>
+IDENTIFIER               <timeout>
+Hidden:NEWLINE                  <>
+','                      <,>
+IDENTIFIER               <throwonerror>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <false>
+CLOSE_STRING             <">
+Hidden:NEWLINE                  <>
+')'                      <)>
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          (accessType private)
+          (typeSpec (type any))
+          function
+          (identifier call)
+          (
+          (parameterList
+            (parameter required (parameterType (typeSpec (type string))) (identifier url))
+          )
+          )
+          (compoundStatement
+            {
+            (statement
+              (localAssignmentExpression
+                var
+                (startExpression
+                  (baseExpression (unaryExpression (memberExpression (identifier service))))
+                )
+                =
+                (startExpression
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression
+                        (newComponentExpression
+                          new
+                          (componentPath (identifier (cfmlFunction http)))
+                          (
+                          (argumentList
+                            (argument
+                              (argumentName (identifier url))
+                              =
+                              (startExpression
+                                (baseExpression
+                                  (unaryExpression (memberExpression (identifier arguments) . (identifier url)))
+                                )
+                              )
+                            )
+                            ,
+                            (argument
+                              (argumentName (identifier method))
+                              =
+                              (startExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (primaryExpression
+                                      (literalExpression (stringLiteral " (stringLiteralPart GET) "))
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                            ,
+                            (argument
+                              (argumentName (identifier charset))
+                              =
+                              (startExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (primaryExpression
+                                      (literalExpression (stringLiteral " (stringLiteralPart utf-8) "))
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                            ,
+                            (argument
+                              (argumentName (identifier timeout))
+                              =
+                              (startExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (memberExpression
+                                      (identifier variables)
+                                      .
+                                      (identifier config)
+                                      .
+                                      (identifier timeout)
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                            ,
+                            (argument
+                              (argumentName (identifier throwonerror))
+                              =
+                              (startExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (primaryExpression
+                                      (literalExpression (stringLiteral " (stringLiteralPart false) "))
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              (endOfStatement ;)
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+component {
+  private any function call(required url)     {
+      var service = new http(null, null, null, null, null);
+
+    }
+}
+/*======*/
