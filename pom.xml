@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.cfparser</groupId>
 	<artifactId>cfparser</artifactId>
-	<version>2.5.4</version>
+	<version>2.5.5</version>
 	<packaging>pom</packaging>
 
 	<name>coldfusion-parser</name>

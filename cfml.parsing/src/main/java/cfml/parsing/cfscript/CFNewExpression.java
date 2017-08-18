@@ -34,7 +34,7 @@ public class CFNewExpression extends CFExpression implements java.io.Serializabl
 		sb.append(componentPath.Decompile(0));
 		sb.append("(");
 		for (int i = 0; i < args.size(); i++) {
-			sb.append((args.get(i)).toString());
+			sb.append(args.get(i).Decompile(0));
 			if (i < args.size() - 1) {
 				sb.append(", ");
 			}

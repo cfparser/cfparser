@@ -385,7 +385,11 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		ArgumentsVector args = new ArgumentsVector();
 		if (ctx.getChildCount() > 4) {
 			for (ArgumentContext argCtx : ctx.argumentList().argument()) {
-				args.add(visit(argCtx));
+				if (argCtx.name != null) {
+					args.addNamedArg(visit(argCtx.name), visit(argCtx.startExpression()));
+				} else {
+					args.add(visit(argCtx));
+				}
 			}
 		}
 		CFNewExpression newExpression = new CFNewExpression(ctx.NEW().getSymbol(), visit(ctx.componentPath()), args);
