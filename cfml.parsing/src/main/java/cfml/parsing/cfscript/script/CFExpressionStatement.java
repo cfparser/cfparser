@@ -11,7 +11,7 @@ public class CFExpressionStatement extends CFParsedStatement implements java.io.
 	private CFExpression expression;
 	
 	public CFExpressionStatement(CFExpression _e) {
-		super(_e.getLine(), _e.getColumn());
+		super(_e.getOffset(), _e.getLine(), _e.getColumn());
 		expression = _e;
 	}
 	

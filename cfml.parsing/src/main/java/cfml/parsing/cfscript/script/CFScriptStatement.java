@@ -27,4 +27,10 @@ public interface CFScriptStatement {
 	
 	public void setParent(Object parent);
 	
+	public int getOffset();
+	
+	public int getLine();
+	
+	public int getColumn();
+	
 }

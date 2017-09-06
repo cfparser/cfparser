@@ -15,12 +15,21 @@ public abstract class CFParsedStatement implements CFStatement, java.io.Serializ
 	
 	private static final long serialVersionUID = 1L;
 	
+	private int offset;
 	private int line;
 	private int col;
 	private Token token;
 	private Object parent;
 	
+	@Deprecated
 	public CFParsedStatement(int _line, int _col) {
+		offset = 0;
+		line = _line;
+		col = _col + 1;
+	}
+	
+	public CFParsedStatement(int _offset, int _line, int _col) {
+		offset = _offset;
 		line = _line;
 		col = _col + 1;
 	}
@@ -37,6 +46,7 @@ public abstract class CFParsedStatement implements CFStatement, java.io.Serializ
 		if (t != null) {
 			line = t.getLine();
 			col = t.getCharPositionInLine() + 1;
+			offset = t.getStartIndex();
 		}
 		token = t;
 	}
@@ -51,6 +61,10 @@ public abstract class CFParsedStatement implements CFStatement, java.io.Serializ
 	
 	protected void setLineCol(CFContext context) {
 		context.setLineCol(line, col);
+	}
+	
+	public int getOffset() {
+		return offset;
 	}
 	
 	public int getLine() {

@@ -12,19 +12,21 @@ import org.antlr.v4.runtime.Token;
 abstract public class CFParsedStatement implements CFScriptStatement, java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	protected int _offset;
 	protected int _line;
 	protected int _col;
 	protected Token token = null;
 	CommonTokenStream tokens;
 	Object parent;
 	
-	protected CFParsedStatement(int line, int col) {
+	protected CFParsedStatement(int offset, int line, int col) {
+		_offset = offset;
 		_line = line;
 		_col = col;
 	}
 	
 	protected CFParsedStatement(Token t) {
-		this(t.getLine(), t.getCharPositionInLine());
+		this(t.getStartIndex(), t.getLine(), t.getCharPositionInLine());
 		token = t;
 	}
 	
@@ -38,6 +40,10 @@ abstract public class CFParsedStatement implements CFScriptStatement, java.io.Se
 	
 	public int getLine() {
 		return _line;
+	}
+	
+	public int getOffset() {
+		return _offset;
 	}
 	
 	public int getColumn() {

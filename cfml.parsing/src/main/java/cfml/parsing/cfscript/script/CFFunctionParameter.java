@@ -5,6 +5,7 @@ import cfml.parsing.cfscript.CFIdentifier;
 
 public class CFFunctionParameter {
 	
+	private int offset; // offset of parameter
 	private String name; // the name of the parameter
 	private boolean required; // whether the parameter is a required one
 	private String type; // the expected type of the parameter (for validation), if specified
@@ -15,6 +16,7 @@ public class CFFunctionParameter {
 		required = _required;
 		type = _type;
 		defaultExp = _default;
+		offset = t.getOffset();
 	}
 	
 	public String getName() {
@@ -35,6 +37,10 @@ public class CFFunctionParameter {
 	
 	public String getType() {
 		return type;
+	}
+	
+	public int getOffset() {
+		return offset;
 	}
 	
 	@Override
