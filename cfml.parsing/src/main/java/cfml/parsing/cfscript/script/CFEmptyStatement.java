@@ -20,7 +20,7 @@ public class CFEmptyStatement extends CFParsedStatement implements java.io.Seria
 	}
 	
 	public CFEmptyStatement() {
-		super(0, 0);
+		super(0, 0, 0);
 	}
 	
 	@Override

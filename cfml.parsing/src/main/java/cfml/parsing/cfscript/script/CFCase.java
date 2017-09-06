@@ -20,6 +20,9 @@ public class CFCase implements CFScriptStatement, java.io.Serializable {
 	private List<CFScriptStatement> statements;
 	private boolean isDefault = true;
 	private CFExpression constant;
+	protected int offset = 0;
+	protected int line = 0;
+	protected int col = 0;
 	CommonTokenStream tokens;
 	Object parent;
 	
@@ -27,6 +30,25 @@ public class CFCase implements CFScriptStatement, java.io.Serializable {
 		this(_statement);
 		isDefault = false;
 		constant = _constant;
+		if (constant != null) {
+			offset = constant.getOffset();
+			line = constant.getLine();
+			col = constant.getColumn();
+		}
+	}
+	
+	public CFCase(List<CFScriptStatement> _statement) {
+		statements = _statement;
+		if (statements != null) {
+			if (statements.size() > 0) {
+				offset = statements.get(0).getOffset();
+				line = statements.get(0).getLine();
+				col = statements.get(0).getColumn();
+			}
+			for (CFScriptStatement statement : statements) {
+				statement.setParent(this);
+			}
+		}
 	}
 	
 	public CFExpression getConstant() {
@@ -35,15 +57,6 @@ public class CFCase implements CFScriptStatement, java.io.Serializable {
 	
 	public List<CFScriptStatement> getStatements() {
 		return statements;
-	}
-	
-	public CFCase(List<CFScriptStatement> _statement) {
-		statements = _statement;
-		if (statements != null) {
-			for (CFScriptStatement statement : statements) {
-				statement.setParent(this);
-			}
-		}
 	}
 	
 	public boolean isDefault() {
@@ -111,5 +124,20 @@ public class CFCase implements CFScriptStatement, java.io.Serializable {
 	
 	public void setParent(Object parent) {
 		this.parent = parent;
+	}
+	
+	@Override
+	public int getOffset() {
+		return offset;
+	}
+	
+	@Override
+	public int getLine() {
+		return line;
+	}
+	
+	@Override
+	public int getColumn() {
+		return col;
 	}
 }

@@ -16,7 +16,7 @@ public class CFCompoundStatement extends CFParsedStatement implements CFScriptSt
 	private ArrayList<CFScriptStatement> statements; // List of CFStatements
 	
 	public CFCompoundStatement() {
-		super(1, 1);
+		super(0, 1, 1);
 		statements = new ArrayList<CFScriptStatement>();
 	}
 	

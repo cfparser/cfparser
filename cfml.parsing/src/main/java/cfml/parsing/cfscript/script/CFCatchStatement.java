@@ -16,6 +16,9 @@ public class CFCatchStatement implements CFScriptStatement {
 	CommonTokenStream tokens;
 	final Token token;
 	Object parent;
+	final int offset;
+	final int line;
+	final int col;
 	
 	public String getType() {
 		return type;
@@ -30,17 +33,30 @@ public class CFCatchStatement implements CFScriptStatement {
 		if (_var != null) {
 			token = var.getToken();
 			var.setParent(this);
+			offset = var.getOffset();
+			line = var.getLine();
+			col = var.getColumn();
 		} else if (body != null) {
 			token = _body.getToken();
 			body.setParent(this);
-		} else
+			offset = _body.getOffset();
+			line = _body.getLine();
+			col = _body.getColumn();
+		} else {
 			token = null;
+			offset = 0;
+			line = 0;
+			col = 0;
+		}
 	}
 	
 	public CFCatchStatement(CFIdentifier _type, CFIdentifier _var, CFScriptStatement _body) {
 		type = _type.Decompile(0);
 		var = _var;
 		body = _body;
+		offset = _type.getOffset();
+		line = _type.getLine();
+		col = _type.getColumn();
 		if (var != null)
 			token = var.getToken();
 		else if (body != null)
@@ -104,5 +120,23 @@ public class CFCatchStatement implements CFScriptStatement {
 	
 	public void setParent(Object parent) {
 		this.parent = parent;
+	}
+	
+	@Override
+	public int getOffset() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public int getLine() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public int getColumn() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
