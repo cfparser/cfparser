@@ -50,6 +50,7 @@ import cfml.CFSCRIPTParser.StartExpressionContext;
 import cfml.CFSCRIPTParser.StatementContext;
 import cfml.CFSCRIPTParser.SwitchStatementContext;
 import cfml.CFSCRIPTParser.TagFunctionStatementContext;
+import cfml.CFSCRIPTParser.TagThrowStatementContext;
 import cfml.CFSCRIPTParser.ThreadStatementContext;
 import cfml.CFSCRIPTParser.ThrowStatementContext;
 import cfml.CFSCRIPTParser.TransactionStatementContext;
@@ -87,6 +88,7 @@ import cfml.parsing.cfscript.script.CFReThrowStatement;
 import cfml.parsing.cfscript.script.CFReturnStatement;
 import cfml.parsing.cfscript.script.CFScriptStatement;
 import cfml.parsing.cfscript.script.CFSwitchStatement;
+import cfml.parsing.cfscript.script.CFTagThrowStatemen;
 import cfml.parsing.cfscript.script.CFThreadStatement;
 import cfml.parsing.cfscript.script.CFThrowStatement;
 import cfml.parsing.cfscript.script.CFTransactionStatement;
@@ -679,6 +681,17 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	public void clear() {
 		aggregator.clear();
 		cfExpressionVisitor.clear();
+	}
+	
+	@Override
+	public CFScriptStatement visitTagThrowStatement(TagThrowStatementContext ctx) {
+		// System.out.println("visitLockStatement");
+		Map<CFIdentifier, CFExpression> _attr = new HashMap<CFIdentifier, CFExpression>();
+		CFTagThrowStatemen lockStatement = new CFTagThrowStatemen(ctx.THROW().getSymbol(), _attr);
+		aggregator.push(lockStatement);
+		visitChildren(ctx.paramStatementAttributes());
+		aggregator.pop();
+		return lockStatement;
 	}
 	
 }

@@ -209,6 +209,7 @@ tagOperatorStatement
   | importStatement
   | abortStatement
   | adminStatement
+  | tagThrowStatement
   | throwStatement
   | rethrowStatment 
   | exitStatement
@@ -315,6 +316,10 @@ cfmlFunction
 
 lockStatement
   : lc=LOCK p=paramStatementAttributes cs=compoundStatement 
+  ;
+
+tagThrowStatement
+  : lc=THROW p=paramStatementAttributes
   ;
 
 threadStatement

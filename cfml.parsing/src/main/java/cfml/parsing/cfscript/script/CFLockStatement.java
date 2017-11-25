@@ -48,6 +48,8 @@ public class CFLockStatement extends CFParsedAttributeStatement implements java.
 		validate();
 		
 		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < indent; i++)
+			sb.append(" ");
 		sb.append("lock ");
 		DecompileAttributes(sb);
 		sb.append(body.Decompile(0));

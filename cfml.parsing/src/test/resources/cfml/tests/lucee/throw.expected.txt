@@ -1,0 +1,71 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+FUNCTION                 <function>
+IDENTIFIER               <foo>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+THROW                    <throw>
+IDENTIFIER               <message>
+'='                      <=>
+OPEN_STRING              <">
+CLOSE_STRING             <">
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          function
+          (identifier foo)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (tagOperatorStatement
+                (tagThrowStatement
+                  throw
+                  (paramStatementAttributes
+                    (param
+                      (multipartIdentifier (identifier message))
+                      =
+                      (startExpression
+                        (baseExpression
+                          (unaryExpression (primaryExpression (literalExpression (stringLiteral " "))))
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            (statement ;)
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public function foo()     {
+      throw  message='';
+
+    }
+}
+/*======*/

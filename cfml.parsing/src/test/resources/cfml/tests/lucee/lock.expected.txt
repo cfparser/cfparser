@@ -1,0 +1,192 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+FUNCTION                 <function>
+IDENTIFIER               <test>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+VAR                      <var>
+IDENTIFIER               <test>
+'='                      <=>
+INTEGER_LITERAL          <1>
+';'                      <;>
+Hidden:NEWLINE                  <>
+VAR                      <var>
+IDENTIFIER               <r>
+'='                      <=>
+'{'                      <{>
+'}'                      <}>
+';'                      <;>
+Hidden:NEWLINE                  <>
+LOCK                     <lock>
+IDENTIFIER               <name>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <mylock>
+CLOSE_STRING             <">
+IDENTIFIER               <type>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <exclusive>
+CLOSE_STRING             <">
+IDENTIFIER               <timeout>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <20>
+CLOSE_STRING             <">
+IDENTIFIER               <throwontimeout>
+'='                      <=>
+BOOLEAN_LITERAL          <true>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+IDENTIFIER               <r>
+'.'                      <.>
+IDENTIFIER               <test>
+'='                      <=>
+IDENTIFIER               <test>
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          function
+          (identifier test)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (localAssignmentExpression
+                var
+                (startExpression
+                  (baseExpression (unaryExpression (memberExpression (identifier test))))
+                )
+                =
+                (startExpression
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                )
+              )
+              (endOfStatement ;)
+            )
+            (statement
+              (localAssignmentExpression
+                var
+                (startExpression
+                  (baseExpression (unaryExpression (memberExpression (identifier r))))
+                )
+                =
+                (startExpression
+                  (baseExpression (unaryExpression (primaryExpression (implicitStruct { }))))
+                )
+              )
+              (endOfStatement ;)
+            )
+            (statement
+              (tagOperatorStatement
+                (lockStatement
+                  lock
+                  (paramStatementAttributes
+                    (param
+                      (multipartIdentifier (identifier name))
+                      =
+                      (startExpression
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart mylock) "))
+                            )
+                          )
+                        )
+                      )
+                    )
+                    (param
+                      (multipartIdentifier (identifier type))
+                      =
+                      (startExpression
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart exclusive) "))
+                            )
+                          )
+                        )
+                      )
+                    )
+                    (param
+                      (multipartIdentifier (identifier timeout))
+                      =
+                      (startExpression
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart 20) "))
+                            )
+                          )
+                        )
+                      )
+                    )
+                    (param
+                      (multipartIdentifier (identifier throwontimeout))
+                      =
+                      (startExpression
+                        (baseExpression (unaryExpression (primaryExpression (literalExpression true))))
+                      )
+                    )
+                  )
+                  (compoundStatement
+                    {
+                    (statement
+                      (assignmentExpression
+                        (startExpression
+                          (baseExpression
+                            (unaryExpression (memberExpression (identifier r) . (identifier test)))
+                          )
+                        )
+                        =
+                        (startExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier test))))
+                        )
+                      )
+                      (endOfStatement ;)
+                    )
+                    }
+                  )
+                )
+              )
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public function test()     {
+      var test = 1;
+      var r = {};
+      lock  name='mylock' throwontimeout=true timeout='20' type='exclusive'{
+r.test = test;
+
+};
+
+    }
+}
+/*======*/
