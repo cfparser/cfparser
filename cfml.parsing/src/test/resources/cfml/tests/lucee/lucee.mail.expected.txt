@@ -1,0 +1,96 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+FUNCTION                 <function>
+IDENTIFIER               <foo>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+MAIL                     <mail>
+IDENTIFIER               <from>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <test@test.de>
+CLOSE_STRING             <">
+','                      <,>
+TO                       <to>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <test@test.de>
+CLOSE_STRING             <">
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          function
+          (identifier foo)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (tagOperatorStatement
+                (cfmlfunctionStatement
+                  (cfmlFunction mail)
+                  (paramStatementAttributes
+                    (param
+                      (multipartIdentifier (identifier from))
+                      =
+                      (startExpression
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart test@test.de) "))
+                            )
+                          )
+                        )
+                      )
+                    )
+                    ,
+                    (param
+                      (multipartIdentifier (identifier to))
+                      =
+                      (startExpression
+                        (baseExpression
+                          (unaryExpression
+                            (primaryExpression
+                              (literalExpression (stringLiteral " (stringLiteralPart test@test.de) "))
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                  ;
+                )
+              )
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public function foo()     {
+mail from='test@test.de' to='test@test.de';;
+
+    }
+}
+/*======*/

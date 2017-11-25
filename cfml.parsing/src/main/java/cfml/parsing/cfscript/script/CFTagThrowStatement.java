@@ -24,11 +24,11 @@ import java.util.Map;
 import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFIdentifier;
 
-public class CFTagThrowStatemen extends CFParsedAttributeStatement implements java.io.Serializable {
+public class CFTagThrowStatement extends CFParsedAttributeStatement implements java.io.Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public CFTagThrowStatemen(org.antlr.v4.runtime.Token t, Map<CFIdentifier, CFExpression> a) {
+	public CFTagThrowStatement(org.antlr.v4.runtime.Token t, Map<CFIdentifier, CFExpression> a) {
 		super(t, a);
 	}
 	

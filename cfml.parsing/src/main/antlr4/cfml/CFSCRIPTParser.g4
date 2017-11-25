@@ -220,6 +220,7 @@ tagOperatorStatement
   | transactionStatement
   | cfmlfunctionStatement
   | tagFunctionStatement
+  | tagStatement
   ; 
   
 rethrowStatment:
@@ -321,6 +322,9 @@ lockStatement
 tagThrowStatement
   : lc=THROW p=paramStatementAttributes
   ;
+tagStatement
+  : lc=cfmlFunction p=paramStatementAttributes
+  ;
 
 threadStatement
   : lc=THREAD p=paramStatementAttributes (compoundStatement | SEMICOLON) 
@@ -355,7 +359,7 @@ propertyStatement
   ;
   
 paramStatementAttributes
-  : ( param )+
+  : ( COMMA? param )+
   ;
   
 param
