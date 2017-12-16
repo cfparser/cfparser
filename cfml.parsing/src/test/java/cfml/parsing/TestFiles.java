@@ -124,7 +124,7 @@ public class TestFiles {
 				expectedTree = actualTree;
 				writeExpectFile(expectedFile, actualTokens, actualTree, parseTree);
 			}
-			assertEquals("Parse trees do not match", normalizeWhite(expectedTree), normalizeWhite(actualTree));
+			assertEquals("Parse trees do not match on " + sourceFile, normalizeWhite(expectedTree), normalizeWhite(actualTree));
 		}
 		if (!errors.isEmpty()) {
 			logger.info(errors.toString());
