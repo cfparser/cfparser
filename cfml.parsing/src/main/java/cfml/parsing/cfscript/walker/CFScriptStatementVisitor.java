@@ -156,7 +156,9 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		// System.out.println("visitFunctionDeclaration");
 		List<CFFunctionParameter> parameters = new ArrayList<CFFunctionParameter>();
 		aggregator.push(parameters);
-		visitChildren(ctx.parameterList());
+		if (ctx.parameterList() != null) {
+			visitChildren(ctx.parameterList());
+		}
 		aggregator.pop();
 		
 		Map<CFExpression, CFExpression> attributes = new LinkedHashMap<CFExpression, CFExpression>();
