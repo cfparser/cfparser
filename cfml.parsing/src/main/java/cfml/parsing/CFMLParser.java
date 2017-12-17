@@ -46,7 +46,7 @@ import net.htmlparser.jericho.StartTag;
 
 public class CFMLParser {
 	
-	private Map fCfmlSources = new HashMap();
+	private Map<String, CFMLSource> fCfmlSources = new HashMap<String, CFMLSource>();
 	protected ArrayList<ParseMessage> messages = new ArrayList<ParseMessage>();
 	private boolean hadFatal;
 	private int errCount = 0;
@@ -319,16 +319,16 @@ public class CFMLParser {
 	
 	public ArrayList<StartTag> getCFMLTags() {
 		ArrayList<StartTag> cfmlTags = new ArrayList<StartTag>();
-		Iterator sources = fCfmlSources.keySet().iterator();
+		Iterator<String> sources = fCfmlSources.keySet().iterator();
 		while (sources.hasNext()) {
 			cfmlTags.addAll(((CFMLSource) fCfmlSources.get(sources.next())).getAllCFMLTags());
 		}
 		return cfmlTags;
 	}
 	
-	public ArrayList getAllTags() {
+	public ArrayList<Element> getAllTags() {
 		ArrayList<Element> allTags = new ArrayList<Element>();
-		Iterator sources = fCfmlSources.keySet().iterator();
+		Iterator<String> sources = fCfmlSources.keySet().iterator();
 		while (sources.hasNext()) {
 			allTags.addAll(((CFMLSource) fCfmlSources.get(sources.next())).getAllElements());
 		}
@@ -337,7 +337,7 @@ public class CFMLParser {
 	
 	public String getCacheDebugInfo() {
 		String info = "";
-		Iterator sources = fCfmlSources.keySet().iterator();
+		Iterator<String> sources = fCfmlSources.keySet().iterator();
 		while (sources.hasNext()) {
 			info = info.concat((((CFMLSource) fCfmlSources.get(sources.next())).getCacheDebugInfo()));
 		}
@@ -346,7 +346,7 @@ public class CFMLParser {
 	
 	public String getDebuggingInfo() {
 		String info = "";
-		Iterator sources = fCfmlSources.keySet().iterator();
+		Iterator<String> sources = fCfmlSources.keySet().iterator();
 		while (sources.hasNext()) {
 			info = info.concat((((CFMLSource) fCfmlSources.get(sources.next())).getDebuggingInfo()));
 		}
@@ -385,8 +385,8 @@ public class CFMLParser {
 	 * @param newMessages
 	 *            ArrayList of ParseMessage's
 	 */
-	public void addMessages(ArrayList newMessages) {
-		Iterator msgIter = newMessages.iterator();
+	public void addMessages(ArrayList<?> newMessages) {
+		Iterator<?> msgIter = newMessages.iterator();
 		ParseMessage currMsg = null;
 		while (msgIter.hasNext()) {
 			currMsg = (ParseMessage) msgIter.next();
@@ -400,7 +400,7 @@ public class CFMLParser {
 		}
 	}
 	
-	public ArrayList getMessages() {
+	public ArrayList<ParseMessage> getMessages() {
 		return messages;
 	}
 	
@@ -414,10 +414,10 @@ public class CFMLParser {
 	
 	public void parseElements(CFMLSource cfmlSource) {
 		for (Element element : cfmlSource.getAllElements()) {
-			HashMap suggestedAttributes = new HashMap();
+			HashMap<?, ?> suggestedAttributes = new HashMap<Object, Object>();
 			String attributesFound = "";
 			
-			Set dictAttributes = cfdic.getElementAttributes(element.getName());
+			Set<?> dictAttributes = cfdic.getElementAttributes(element.getName());
 			
 			if (dictAttributes == null) {
 				continue;
@@ -425,7 +425,7 @@ public class CFMLParser {
 			
 			Object[] params = dictAttributes.toArray();
 			
-			Map itemAttributes = new HashMap();
+			Map<String, String> itemAttributes = new HashMap<String, String>();
 			element.getAttributes().populateMap(itemAttributes, true);
 			
 			if (itemAttributes.size() > 0) {
@@ -584,7 +584,7 @@ public class CFMLParser {
 	}
 	
 	public void parse() {
-		Iterator sources = fCfmlSources.keySet().iterator();
+		Iterator<String> sources = fCfmlSources.keySet().iterator();
 		while (sources.hasNext()) {
 			parseElements(((CFMLSource) fCfmlSources.get(sources.next())));
 		}
