@@ -38,6 +38,9 @@ public class TestGetAttributes extends TestCase {
 			testname = type.getAttributeValue("name");
 			assertEquals(testname + " (" + i + ") failed - getAttributes", Integer.parseInt(numattributes),
 					fGenericStartTag.getAttributes(attributes).size());
+			for (Object attr : fGenericStartTag.getAttributes(attributes)) {
+				System.err.println(attr.toString());
+			}
 			i++;
 		}
 	}

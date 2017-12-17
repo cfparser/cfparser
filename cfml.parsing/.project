@@ -22,11 +22,4 @@
 		<nature>org.deved.antlride.core.nature</nature>
 		<nature>org.eclipse.xtext.ui.shared.xtextNature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>jdt</name>
-			<type>2</type>
-			<location>/workspace/eclipse.jdt.core</location>
-		</link>
-	</linkedResources>
 </projectDescription>
