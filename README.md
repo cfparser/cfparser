@@ -15,7 +15,7 @@ mvn clean install
 <dependency>
     <groupId>com.github.cfparser</groupId>
     <artifactId>cfml.parsing</artifactId>
-    <version>2.6.0-SNAPSHOT</version>
+    <version>2.6.0</version>
 </dependency>
 ```
 
