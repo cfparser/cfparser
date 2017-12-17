@@ -344,6 +344,17 @@ HASH
 	: '#' -> type(POUND_SIGN),pushMode(HashMode),pushMode(DefaultMode)
 ;
 
+//FallThrough
+//@after{
+//  throw new RuntimeException(String.format(
+//      "Encountered an illegal char on line \%d, column \%d: '\%s'", 
+//      getLine(), getCharPositionInLine(), getText()
+//    )
+//  );
+//}
+//  :  . // match any char not matched by Number, Id or Space
+//  ;
+
 mode InSingleQuotes;
 CLOSE_STRING_SINGLE
 	: '\''
