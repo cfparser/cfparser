@@ -1,0 +1,142 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+PUBLIC                   <public>
+IDENTIFIER               <tagCFC>
+FUNCTION                 <function>
+IDENTIFIER               <init>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+IDENTIFIER               <cfwddx>
+'('                      <(>
+IDENTIFIER               <action>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <fml2wddx>
+CLOSE_STRING             <">
+','                      <,>
+INPUT                    <input>
+'='                      <=>
+OPEN_STRING              <">
+'#'                      <#>
+IDENTIFIER               <attribs>
+'#'                      <#>
+CLOSE_STRING             <">
+','                      <,>
+OUTPUT                   <output>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <attribsWDDX>
+CLOSE_STRING             <">
+')'                      <)>
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          (accessType public)
+          (typeSpec (multipartIdentifier (identifier tagCFC)))
+          function
+          (identifier init)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (startExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (functionCall
+                        (identifier cfwddx)
+                        (
+                        (argumentList
+                          (argument
+                            (argumentName (identifier action))
+                            =
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart fml2wddx) "))
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          ,
+                          (argument
+                            (argumentName (identifier (cfmlFunction input)))
+                            =
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression
+                                      (stringLiteral
+                                        "
+                                        #
+                                        (startExpression
+                                          (baseExpression (unaryExpression (memberExpression (identifier attribs))))
+                                        )
+                                        #
+                                        "
+                                      )
+                                    )
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          ,
+                          (argument
+                            (argumentName (identifier (cfmlFunction output)))
+                            =
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral " (stringLiteralPart attribsWDDX) "))
+                                  )
+                                )
+                              )
+                            )
+                          )
+                        )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              ;
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public tagCFC function init()     {
+cfwddx(action = 'fml2wddx', input = '#attribs#', output = 'attribsWDDX');
+
+    }
+}
+/*======*/

@@ -2,8 +2,10 @@
 COMPONENT                <component>
 '{'                      <{>
 Hidden:NEWLINE                  <>
+PUBLIC                   <public>
+IDENTIFIER               <tagCFC>
 FUNCTION                 <function>
-IDENTIFIER               <foo>
+IDENTIFIER               <init>
 '('                      <(>
 ')'                      <)>
 '{'                      <{>
@@ -26,8 +28,10 @@ Hidden:NEWLINE                  <>
       {
       (element
         (functionDeclaration
+          (accessType public)
+          (typeSpec (multipartIdentifier (identifier tagCFC)))
           function
-          (identifier foo)
+          (identifier init)
           (
           parameterList
           )
@@ -63,7 +67,7 @@ Hidden:NEWLINE                  <>
 /*======*/
 /*===DECOMPILE===*/
 component {
-  public function foo()     {
+  public tagCFC function init()     {
       throw  message='';
 
     }

@@ -320,10 +320,10 @@ lockStatement
   ;
 
 tagThrowStatement
-  : lc=THROW p=paramStatementAttributes
+  : lc=THROW p=paramStatementAttributes endOfStatement
   ;
 tagStatement
-  : lc=cfmlFunction p=paramStatementAttributes
+  : lc=cfmlFunction p=paramStatementAttributes endOfStatement
   ;
 
 threadStatement
@@ -359,7 +359,7 @@ propertyStatement
   ;
   
 paramStatementAttributes
-  : ( COMMA? param )+
+  : param ( COMMA? param )*
   ;
   
 param
