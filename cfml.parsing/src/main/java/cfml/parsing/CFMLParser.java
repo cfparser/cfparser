@@ -74,6 +74,7 @@ public class CFMLParser {
 		final ANTLRInputStream input = new ANTLRInputStream(_infix);
 		if (lexer == null) {
 			lexer = new CFSCRIPTLexer(input);
+			lexer.removeErrorListeners();
 		} else {
 			lexer.setInputStream(input);
 		}
@@ -83,6 +84,7 @@ public class CFMLParser {
 		// ScriptBlockContext scriptStatement = null;
 		if (parser == null) {
 			parser = new CFSCRIPTParser(tokens);
+			parser.removeErrorListeners();
 			if (errorReporter == null) {
 				lexer.addErrorListener(this.errorReporter);
 				parser.addErrorListener(this.errorReporter);
@@ -127,6 +129,7 @@ public class CFMLParser {
 		final ANTLRInputStream input = new ANTLRInputStream(_infix);
 		if (lexer == null) {
 			lexer = new CFSCRIPTLexer(input);
+			lexer.removeErrorListeners();
 		} else {
 			lexer.setInputStream(input);
 		}
@@ -136,6 +139,7 @@ public class CFMLParser {
 		// ScriptBlockContext scriptStatement = null;
 		if (parser == null) {
 			parser = new CFSCRIPTParser(tokens);
+			parser.removeErrorListeners();
 			if (errorReporter == null) {
 				lexer.addErrorListener(this.errorReporter);
 				parser.addErrorListener(this.errorReporter);
@@ -542,6 +546,7 @@ public class CFMLParser {
 	public CommonTokenStream createTokenStream(String cfscript) throws ParseException, IOException {
 		final ANTLRInputStream input = new ANTLRInputStream(cfscript);
 		final CFSCRIPTLexer lexer = new CFSCRIPTLexer(input);
+		lexer.removeErrorListeners();
 		return new CommonTokenStream(lexer);
 	}
 	
@@ -554,7 +559,6 @@ public class CFMLParser {
 		
 		ScriptBlockContext scriptStatement = null;
 		CFSCRIPTParser parser = new CFSCRIPTParser(tokens);
-		
 		parser.removeErrorListeners();
 		if (tokens.getTokenSource() instanceof CFSCRIPTLexer) {
 			((CFSCRIPTLexer) tokens.getTokenSource()).addErrorListener(errorReporter);
