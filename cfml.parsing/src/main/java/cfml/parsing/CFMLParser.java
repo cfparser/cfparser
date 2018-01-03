@@ -555,9 +555,10 @@ public class CFMLParser {
 		ScriptBlockContext scriptStatement = null;
 		CFSCRIPTParser parser = new CFSCRIPTParser(tokens);
 		
-		parser.getErrorListeners().clear();
+		parser.removeErrorListeners();
 		if (tokens.getTokenSource() instanceof CFSCRIPTLexer) {
 			((CFSCRIPTLexer) tokens.getTokenSource()).addErrorListener(errorReporter);
+			((CFSCRIPTLexer) tokens.getTokenSource()).removeErrorListeners();
 		}
 		parser.reset();
 		// parser.addErrorListener(errorReporter);
