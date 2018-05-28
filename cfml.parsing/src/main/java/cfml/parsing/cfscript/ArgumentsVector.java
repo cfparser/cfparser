@@ -7,6 +7,7 @@ import org.antlr.v4.runtime.Token;
 public class ArgumentsVector extends ArrayList<CFExpression> implements HasToken {
 	
 	private static final long serialVersionUID = 1L;
+	CFExpression parent;
 	
 	public ArgumentsVector() {
 		super();
@@ -23,6 +24,15 @@ public class ArgumentsVector extends ArrayList<CFExpression> implements HasToken
 	@Override
 	public Token getToken() {
 		return size() > 0 ? get(0).getToken() : null;
+	}
+	
+	@Override
+	public CFExpression getParent() {
+		return parent;
+	}
+	
+	public void setParent(CFExpression parent) {
+		this.parent = parent;
 	}
 	
 }

@@ -5,4 +5,6 @@ import org.antlr.v4.runtime.Token;
 public interface HasToken {
 	public Token getToken();
 	
+	public Object getParent();
+	
 }

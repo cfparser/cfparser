@@ -118,6 +118,7 @@ public class CFCase implements CFScriptStatement, java.io.Serializable {
 		return statements;
 	}
 	
+	@Override
 	public Object getParent() {
 		return parent;
 	}

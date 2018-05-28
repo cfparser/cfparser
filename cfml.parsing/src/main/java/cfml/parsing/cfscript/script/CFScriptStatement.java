@@ -21,8 +21,6 @@ public interface CFScriptStatement extends HasToken {
 	
 	public List<CFExpression> decomposeExpression();
 	
-	public Object getParent();
-	
 	public void setParent(Object parent);
 	
 	public int getOffset();

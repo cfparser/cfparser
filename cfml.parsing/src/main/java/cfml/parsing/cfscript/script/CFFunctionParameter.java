@@ -14,6 +14,7 @@ public class CFFunctionParameter implements HasToken {
 	private String type; // the expected type of the parameter (for validation), if specified
 	private CFExpression defaultExp; // the default value to give the parameter
 	private CFIdentifier token;
+	private HasToken parent;
 	
 	public CFFunctionParameter(CFIdentifier t, boolean _required, String _type, CFExpression _default) {
 		name = t.getName();
@@ -70,5 +71,14 @@ public class CFFunctionParameter implements HasToken {
 	@Override
 	public Token getToken() {
 		return token == null ? null : token.getToken();
+	}
+	
+	@Override
+	public HasToken getParent() {
+		return parent;
+	}
+	
+	public void setParent(HasToken parent) {
+		this.parent = parent;
 	}
 }

@@ -114,6 +114,7 @@ public class CFCatchStatement implements CFScriptStatement {
 		return ArrayBuilder.createCFScriptStatement(body);
 	}
 	
+	@Override
 	public Object getParent() {
 		return parent;
 	}

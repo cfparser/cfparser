@@ -10,6 +10,4 @@ public interface CFStatement extends HasToken {
 	
 	public void checkIndirectAssignments(String[] scriptSource);
 	
-	public Object getParent();
-	
 }
