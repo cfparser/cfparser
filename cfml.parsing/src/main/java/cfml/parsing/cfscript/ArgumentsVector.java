@@ -2,7 +2,9 @@ package cfml.parsing.cfscript;
 
 import java.util.ArrayList;
 
-public class ArgumentsVector extends ArrayList<CFExpression> {
+import org.antlr.v4.runtime.Token;
+
+public class ArgumentsVector extends ArrayList<CFExpression> implements HasToken {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -16,6 +18,11 @@ public class ArgumentsVector extends ArrayList<CFExpression> {
 		} else {
 			add(new CFAssignmentExpression(name.getToken(), name, _val));
 		}
+	}
+	
+	@Override
+	public Token getToken() {
+		return size() > 0 ? get(0).getToken() : null;
 	}
 	
 }

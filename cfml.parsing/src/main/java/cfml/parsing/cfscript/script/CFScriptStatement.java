@@ -3,11 +3,11 @@ package cfml.parsing.cfscript.script;
 import java.util.List;
 
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.Token;
 
 import cfml.parsing.cfscript.CFExpression;
+import cfml.parsing.cfscript.HasToken;
 
-public interface CFScriptStatement {
+public interface CFScriptStatement extends HasToken {
 	
 	public String Decompile(int indent);
 	
@@ -16,8 +16,6 @@ public interface CFScriptStatement {
 	public CommonTokenStream getTokens();
 	
 	public void setTokens(CommonTokenStream tokens);
-	
-	public Token getToken();
 	
 	public List<CFScriptStatement> decomposeScript();
 	

@@ -38,6 +38,7 @@ public abstract class CFParsedStatement implements CFStatement, java.io.Serializ
 		setToken(t);
 	}
 	
+	@Override
 	public Token getToken() {
 		return token;
 	}

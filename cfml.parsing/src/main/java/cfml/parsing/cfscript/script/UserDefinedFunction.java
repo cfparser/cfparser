@@ -7,10 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.antlr.v4.runtime.Token;
+
 import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFIdentifier;
+import cfml.parsing.cfscript.HasToken;
 
-public class UserDefinedFunction implements java.io.Serializable {
+public class UserDefinedFunction implements java.io.Serializable, HasToken {
 	private static final long serialVersionUID = 1;
 	
 	public static final int ACCESS_PRIVATE = 0;
@@ -115,6 +118,11 @@ public class UserDefinedFunction implements java.io.Serializable {
 		StringWriter w = new StringWriter();
 		this.dump(new PrintWriter(w));
 		return w.toString();
+	}
+	
+	@Override
+	public Token getToken() {
+		return name == null ? null : name.getToken();
 	}
 	
 }

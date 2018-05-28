@@ -1,0 +1,166 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<parent>
+		<groupId>com.github.cfparser</groupId>
+		<artifactId>cfparser</artifactId>
+		<version>2.4.11</version>
+	</parent>
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>cfml.parsing</artifactId>
+	<packaging>jar</packaging>
+
+	<properties>
+		<cfml.dictionary.version>2.4.9</cfml.dictionary.version>
+		<antlr.version>4.7</antlr.version>
+		<slf4j.version>1.7.21</slf4j.version>
+
+		<antlr4.visitor>true</antlr4.visitor>
+		<antlr4.listener>true</antlr4.listener>
+	</properties>
+
+	<dependencies>
+		<dependency>
+	  		<groupId>${project.groupId}</groupId>
+			<artifactId>cfml.dictionary</artifactId>
+			<version>${cfml.dictionary.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.htmlparser.jericho</groupId>
+			<artifactId>jericho-html</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.antlr</groupId>
+			<artifactId>antlr4</artifactId>
+			<version>${antlr.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javolution</groupId>
+			<artifactId>javolution</artifactId>
+			<version>5.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<!-- Test Dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+	<build>
+		<plugins>
+			<!-- Antlr sources -->
+			<plugin>
+				<groupId>org.antlr</groupId>
+				<artifactId>antlr4-maven-plugin</artifactId>
+				<version>${antlr.version}</version>
+				<executions>
+					<execution>
+						<id>run antlr4</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>antlr4</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Antlr sources -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.12</version>
+				<executions>
+					<execution>
+						<id>add-source</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>add-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>${basedir}/target/generated-sources/antlr4</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+			  <groupId>pl.project13.maven</groupId>
+			  <artifactId>git-commit-id-plugin</artifactId>
+			  <version>2.2.2</version>
+			  <executions>
+				  <execution>
+					  <phase>validate</phase>
+					  <goals>
+						  <goal>revision</goal>
+					  </goals>
+				  </execution>
+			  </executions>
+			  <configuration>
+				<dateFormat>yyyyMMdd-HHmmss</dateFormat>
+				<dotGitDirectory>${project.basedir}/.git</dotGitDirectory>
+				<generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties</generateGitPropertiesFilename>
+				<generateGitPropertiesFile>true</generateGitPropertiesFile>
+				<failOnNoGitDirectory>false</failOnNoGitDirectory>
+				<failOnUnableToExtractRepoInfo>false</failOnUnableToExtractRepoInfo>
+			  </configuration>
+		  	</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.18.1</version>
+				<configuration>
+					<forkCount>1</forkCount>
+					<reuseForks>true</reuseForks>
+					<argLine>-Xmx2048m -XX:MaxPermSize=256m</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.antlr</groupId>
+										<artifactId>
+											antlr4-maven-plugin
+										</artifactId>
+										<versionRange>
+											[4.7,)
+										</versionRange>
+										<goals>
+											<goal>antlr4</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+</project>
