@@ -1,0 +1,94 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+FUNCTION                 <function>
+IDENTIFIER               <foo>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+VAR                      <var>
+IDENTIFIER               <xyz>
+'='                      <=>
+'{'                      <{>
+'}'                      <}>
+';'                      <;>
+Hidden:NEWLINE                  <>
+IF                       <if>
+'('                      <(>
+IDENTIFIER               <xyz>
+'?'                      <?>
+'.'                      <.>
+IDENTIFIER               <bar>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          function
+          (identifier foo)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (localAssignmentExpression
+                var
+                (startExpression
+                  (baseExpression (unaryExpression (memberExpression (identifier xyz))))
+                )
+                =
+                (startExpression
+                  (baseExpression (unaryExpression (primaryExpression (implicitStruct { }))))
+                )
+              )
+              (endOfStatement ;)
+            )
+            (statement
+              (ifStatement
+                if
+                (condition
+                  (
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression (identifier xyz) (nullSafeOperator ? .) (identifier bar))
+                    )
+                  )
+                  )
+                )
+                (statement (compoundStatement { }))
+              )
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public function foo()     {
+      var xyz = {};
+      if(xyz.bar )         {
+
+        };
+
+    }
+}
+/*======*/

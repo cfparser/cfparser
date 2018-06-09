@@ -484,10 +484,10 @@ memberExpression
     | firstidentifier=identifier
   	| parentheticalExpression)
   ( 
-    DOT+ qualifiedFunctionCall
+    (DOT+|nullSafeOperator) qualifiedFunctionCall
     | arrayMemberExpression parentheticalMemberExpression?
-    | DOT+ primaryExpressionIRW 
-    | DOT+ identifier
+    | (DOT+|nullSafeOperator) primaryExpressionIRW 
+    | (DOT+|nullSafeOperator) identifier
   )*
 ;
   
@@ -580,7 +580,11 @@ argumentName
 
 multipartIdentifier
 	:
-		identifier (DOT identifierOrReservedWord)*;
+		identifier ((DOT|nullSafeOperator) identifierOrReservedWord)*;
+
+nullSafeOperator
+    :
+QUESTIONMARK DOT;
 
 identifier
 	:	(COMPONENT
