@@ -1,0 +1,132 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+PUBLIC                   <public>
+BOOLEAN                  <boolean>
+FUNCTION                 <function>
+IDENTIFIER               <getAPIVersion>
+'('                      <(>
+Hidden:NEWLINE                  <>
+REQUIRED                 <required>
+NUMERIC                  <numeric>
+IDENTIFIER               <requestedAPIVersion>
+Hidden:NEWLINE                  <>
+')'                      <)>
+IDENTIFIER               <cachedwithin>
+'='                      <=>
+IDENTIFIER               <createTimeSpan>
+'('                      <(>
+INTEGER_LITERAL          <1>
+','                      <,>
+INTEGER_LITERAL          <0>
+','                      <,>
+INTEGER_LITERAL          <0>
+','                      <,>
+INTEGER_LITERAL          <0>
+')'                      <)>
+IDENTIFIER               <returnformat>
+'='                      <=>
+OPEN_STRING              <">
+STRING_LITERAL           <json>
+CLOSE_STRING             <">
+'{'                      <{>
+Hidden:NEWLINE                  <>
+RETURN                   <return>
+OPEN_STRING              <'>
+CLOSE_STRING             <'>
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          (accessType public)
+          (typeSpec (type boolean))
+          function
+          (identifier getAPIVersion)
+          (
+          (parameterList
+            (parameter
+              required
+              (parameterType (typeSpec (type numeric)))
+              (identifier requestedAPIVersion)
+            )
+          )
+          )
+          (functionAttribute
+            (identifier cachedwithin)
+            =
+            (functionCall
+              (identifier createTimeSpan)
+              (
+              (argumentList
+                (argument
+                  (startExpression
+                    (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                  )
+                )
+                ,
+                (argument
+                  (startExpression
+                    (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+                  )
+                )
+                ,
+                (argument
+                  (startExpression
+                    (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+                  )
+                )
+                ,
+                (argument
+                  (startExpression
+                    (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+                  )
+                )
+              )
+              )
+            )
+          )
+          (functionAttribute
+            (identifier returnformat)
+            =
+            (constantExpression (stringLiteral " (stringLiteralPart json) "))
+          )
+          (compoundStatement
+            {
+            (statement
+              (returnStatement
+                return
+                (startExpression
+                  (baseExpression
+                    (unaryExpression (primaryExpression (literalExpression (stringLiteral ' '))))
+                  )
+                )
+              )
+              (endOfStatement ;)
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public boolean function getAPIVersion(required requestedAPIVersion) cachedwithin returnformat='json'    {
+      return '';
+
+    }
+}
+/*======*/

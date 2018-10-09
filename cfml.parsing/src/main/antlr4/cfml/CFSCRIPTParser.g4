@@ -33,7 +33,7 @@ element
 functionDeclaration
   : accessType? typeSpec? FUNCTION identifier 
   	LEFTPAREN parameterList? RIGHTPAREN
-  	functionAttribute* body=compoundStatement? 
+  	functionAttribute* body=compoundStatement?
   ;
 anonymousFunctionDeclaration
   : accessType? typeSpec? FUNCTION //identifier? 
@@ -82,8 +82,8 @@ componentAttribute
 //i=identifier EQUALSOP^ v=baseExpression
    
 functionAttribute
-  : identifierWithColon op=EQUALSOP (value=identifier | valueString=constantExpression)
-  | id=identifier ( op=(EQUALSOP|COLON) (value=identifier | valueString=constantExpression) )?
+  : identifierWithColon op=EQUALSOP (value=identifier | valueString=constantExpression | function=functionCall)
+  | id=identifier ( op=(EQUALSOP|COLON) (value=identifier | valueString=constantExpression | function=functionCall) )?
   ;
 
 identifierWithColon
