@@ -26,6 +26,7 @@ import cfml.CFSCRIPTParser.FunctionAttributeContext;
 import cfml.CFSCRIPTParser.FunctionCallContext;
 import cfml.CFSCRIPTParser.IdentifierContext;
 import cfml.CFSCRIPTParser.ImplicitArrayContext;
+import cfml.CFSCRIPTParser.ImplicitOrderedStructContext;
 import cfml.CFSCRIPTParser.ImplicitStructContext;
 import cfml.CFSCRIPTParser.ImplicitStructExpressionContext;
 import cfml.CFSCRIPTParser.InnerExpressionContext;
@@ -358,6 +359,18 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		CFStructExpression structExpression = new CFStructExpression(ctx.getStart());
 		aggregator.push(structExpression);
 		CFExpression retval = super.visitImplicitStruct(ctx);
+		aggregator.pop();
+		if (retval instanceof CFStructElementExpression) {
+			structExpression.addElement((CFStructElementExpression) retval);
+		}
+		return structExpression;
+	}
+	
+	@Override
+	public CFExpression visitImplicitOrderedStruct(ImplicitOrderedStructContext ctx) {
+		CFStructExpression structExpression = new CFStructExpression(ctx.getStart(), true);
+		aggregator.push(structExpression);
+		CFExpression retval = super.visitImplicitOrderedStruct(ctx);
 		aggregator.pop();
 		if (retval instanceof CFStructElementExpression) {
 			structExpression.addElement((CFStructElementExpression) retval);

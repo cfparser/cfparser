@@ -14,8 +14,17 @@ public class CFStructExpression extends CFExpression implements java.io.Serializ
 	
 	private ArrayList<CFExpression> elements;
 	
+	private boolean ordered;
+	
 	public CFStructExpression(Token t) {
 		super(t);
+		this.ordered = false;
+		elements = new ArrayList<CFExpression>();
+	}
+	
+	public CFStructExpression(Token t, boolean ordered) {
+		super(t);
+		this.ordered = ordered;
 		elements = new ArrayList<CFExpression>();
 	}
 	
@@ -29,7 +38,7 @@ public class CFStructExpression extends CFExpression implements java.io.Serializ
 	@Override
 	public String Decompile(int indent) {
 		StringBuilder sb = new StringBuilder();
-		sb.append('{');
+		sb.append(ordered ? '[' : '{');
 		for (int i = 0; i < elements.size(); i++) {
 			sb.append(((CFStructElementExpression) elements.get(i)).toString());
 			sb.append(',');
@@ -39,7 +48,7 @@ public class CFStructExpression extends CFExpression implements java.io.Serializ
 			sb.deleteCharAt(sb.length() - 1);
 		}
 		
-		sb.append('}');
+		sb.append(ordered ? ']' : '}');
 		return sb.toString();
 	}
 	
@@ -55,5 +64,9 @@ public class CFStructExpression extends CFExpression implements java.io.Serializ
 	@Override
 	public List<CFScriptStatement> decomposeScript() {
 		return ArrayBuilder.createCFScriptStatement();
+	}
+	
+	public boolean isOrdered() {
+		return ordered;
 	}
 }

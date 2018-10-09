@@ -1,0 +1,112 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+FUNCTION                 <function>
+IDENTIFIER               <foo>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+VAR                      <var>
+IDENTIFIER               <orderedStruct>
+'='                      <=>
+'['                      <[>
+IDENTIFIER               <keyA>
+':'                      <:>
+OPEN_STRING              <'>
+STRING_LITERAL           <value>
+CLOSE_STRING             <'>
+','                      <,>
+IDENTIFIER               <keyB>
+':'                      <:>
+OPEN_STRING              <'>
+STRING_LITERAL           <value>
+CLOSE_STRING             <'>
+']'                      <]>
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          function
+          (identifier foo)
+          (
+          parameterList
+          )
+          (compoundStatement
+            {
+            (statement
+              (localAssignmentExpression
+                var
+                (startExpression
+                  (baseExpression
+                    (unaryExpression (memberExpression (identifier orderedStruct)))
+                  )
+                )
+                =
+                (startExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (implicitOrderedStruct
+                          [
+                          (implicitStructElements
+                            (implicitStructExpression
+                              (implicitStructKeyExpression (multipartIdentifier (identifier keyA)))
+                              :
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral ' (stringLiteralPart value) '))
+                                  )
+                                )
+                              )
+                            )
+                            ,
+                            (implicitStructExpression
+                              (implicitStructKeyExpression (multipartIdentifier (identifier keyB)))
+                              :
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral ' (stringLiteralPart value) '))
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          ]
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              (endOfStatement ;)
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public function foo()     {
+      var orderedStruct = [keyA:'value',keyB:'value'];
+
+    }
+}
+/*======*/

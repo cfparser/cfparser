@@ -538,7 +538,8 @@ primaryExpressionIRW
 	|	BOOLEAN_LITERAL
 	|  INTEGER_LITERAL
 	| implicitArray
-	| implicitStruct
+    | implicitStruct
+    | implicitOrderedStruct
 	| reservedWord
 	;
 	
@@ -655,8 +656,8 @@ cfscriptKeywords
 primaryExpression
 	:	literalExpression
 	| implicitArray
-	| implicitStruct
-//	|	NULL
+    | implicitStruct
+    | implicitOrderedStruct
 	|	identifier
 	;
 	
@@ -674,6 +675,9 @@ implicitArrayElements
   
 implicitStruct
   : lc=LEFTCURLYBRACKET implicitStructElements? RIGHTCURLYBRACKET //-> ^(IMPLICITSTRUCT[$lc] implicitStructElements?)
+  ;
+implicitOrderedStruct
+  : lc=LEFTBRACKET implicitStructElements RIGHTBRACKET
   ;
   
 implicitStructElements
