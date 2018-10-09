@@ -243,11 +243,11 @@ transactionStatement
   ;
   
 cfmlfunctionStatement
-  : cfmlFunction (paramStatementAttributes)? (compoundStatement | SEMICOLON) 
+  : cfmlFunction (paramStatementAttributes)? (body=compoundStatement | SEMICOLON) 
   ;
 
 tagFunctionStatement
-  : cfmlFunction (LEFTPAREN parameterList RIGHTPAREN)? (compoundStatement | SEMICOLON)?
+  : cfmlFunction (LEFTPAREN parameterList RIGHTPAREN)? (body=compoundStatement | SEMICOLON)?
   ;
 
 cfmlFunction

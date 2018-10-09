@@ -108,8 +108,14 @@ Hidden:NEWLINE                  <>
 /*======*/
 /*===DECOMPILE===*/
 {
-cfloop(query = SiteRelatedTables);
-loop(query = SiteRelatedTables);
+cfloop(query = SiteRelatedTables)    {
+loopy();
+
+    };
+loop(query = SiteRelatedTables)    {
+loopy();
+
+    };
 
 }
 /*======*/

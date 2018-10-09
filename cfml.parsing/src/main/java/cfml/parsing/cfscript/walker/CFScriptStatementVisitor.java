@@ -60,6 +60,7 @@ import cfml.CFSCRIPTParser.WhileStatementContext;
 import cfml.CFSCRIPTParserBaseVisitor;
 import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFFullVarExpression;
+import cfml.parsing.cfscript.CFFunctionExpression;
 import cfml.parsing.cfscript.CFIdentifier;
 import cfml.parsing.cfscript.script.CFAbortStatement;
 import cfml.parsing.cfscript.script.CFAdminStatement;
@@ -284,8 +285,11 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	
 	@Override
 	public CFScriptStatement visitTagFunctionStatement(TagFunctionStatementContext ctx) {
-		CFExpressionStatement expressionStmt = new CFExpressionStatement(cfExpressionVisitor.visit(ctx));
-		// System.out.println("visitStatement.b" + expressionStmt.Decompile(0));
+		final CFExpression func = cfExpressionVisitor.visit(ctx);
+		if (func instanceof CFFunctionExpression && ctx.body != null) {
+			((CFFunctionExpression) func).setBody(visit(ctx.body));
+		}
+		final CFExpressionStatement expressionStmt = new CFExpressionStatement(func);
 		return expressionStmt;
 	}
 	
