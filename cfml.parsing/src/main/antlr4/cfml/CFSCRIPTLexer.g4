@@ -105,6 +105,9 @@ fragment CF_DIGIT
 
 // define all the operators/reserved words before the identifier
 
+//DIRECTIVES
+PAGE_ENCODING: [pP][aA][gG][eE][eE][nN][cC][oO][dD][iI][nN][gG];
+
 // not sure why we'd need null, it is not an identifier for CFML, removing
 //NULL: 'NULL';
 // Operators

@@ -100,7 +100,11 @@ compoundStatement
   ;
   
 componentGuts
-  : LEFTCURLYBRACKET ( element )* RIGHTCURLYBRACKET
+  : LEFTCURLYBRACKET componentDirective* ( element )* RIGHTCURLYBRACKET
+  ;
+  
+componentDirective
+  : PAGE_ENCODING stringLiteral
   ;
   
 statement
@@ -612,6 +616,7 @@ identifier
   | REQUIRED
   | FUNCTION
   | IMPORT
+  | PAGE_ENCODING
   | cfmlFunction
   | type	)
 	;

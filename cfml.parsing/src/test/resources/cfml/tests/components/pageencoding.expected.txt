@@ -1,0 +1,28 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+PAGE_ENCODING            <pageencoding>
+OPEN_STRING              <">
+STRING_LITERAL           <UTF-8>
+CLOSE_STRING             <">
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (componentDirective pageencoding (stringLiteral " (stringLiteralPart UTF-8) "))
+      (element (statement ;))
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+component {
+}
+/*======*/
