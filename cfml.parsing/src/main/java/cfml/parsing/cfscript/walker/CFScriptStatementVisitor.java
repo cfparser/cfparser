@@ -506,7 +506,10 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	@Override
 	public CFScriptStatement visitThrowStatement(ThrowStatementContext ctx) {
 		// System.out.println("visitThrowStatement");
-		CFThrowStatement throwStatement = new CFThrowStatement(ctx.THROW().getSymbol(), visitExpression(ctx.memberExpression()));
+		CFThrowStatement throwStatement = new CFThrowStatement(
+			ctx.THROW().getSymbol(), 
+			visitExpression((ctx.memberExpression()!=null)?ctx.memberExpression():ctx.stringLiteral())
+		);
 		return throwStatement;
 	}
 	
