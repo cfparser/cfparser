@@ -1,0 +1,68 @@
+/*===TOKENS===*/
+PUBLIC                   <public>
+IDENTIFIER               <void>
+FUNCTION                 <function>
+IDENTIFIER               <onRequest>
+'('                      <(>
+REQUIRED                 <required>
+STRING                   <string>
+IDENTIFIER               <targetPage>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+INCLUDE                  <include>
+IDENTIFIER               <arguments>
+'.'                      <.>
+IDENTIFIER               <targetPage>
+';'                      <;>
+Hidden:NEWLINE                  <>
+RETURN                   <return>
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (functionDeclaration
+      (accessType public)
+      (typeSpec (multipartIdentifier (identifier void)))
+      function
+      (identifier onRequest)
+      (
+      (parameterList
+        (parameter
+          required
+          (parameterType (typeSpec (type string)))
+          (identifier targetPage)
+        )
+      )
+      )
+      (compoundStatement
+        {
+        (statement
+          (tagOperatorStatement
+            (includeStatement
+              include
+              (baseExpression
+                (unaryExpression
+                  (memberExpression (identifier arguments) . (identifier targetPage))
+                )
+              )
+              ;
+            )
+          )
+        )
+        (statement (returnStatement return) (endOfStatement ;))
+        }
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+public void function onRequest(required targetPage)   {
+include arguments.targetPage;
+    return ;
+
+  }
+/*======*/

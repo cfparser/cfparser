@@ -32,6 +32,9 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 		super(_t);
 		name = _name;
 		formals = _formals;
+		for (CFFunctionParameter formal : formals) {
+			formal.setParent(this);
+		}
 		body = _body;
 		returnType = _returnType;
 		
@@ -65,6 +68,7 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 		body.checkIndirectAssignments(scriptSource);
 	}
 	
+	@Deprecated
 	public UserDefinedFunction getUDF() {
 		return new UserDefinedFunction(name, access, returnType.Decompile(0), formals, attributes, body);
 	}

@@ -4,12 +4,10 @@
 
 package cfml.parsing.cfscript;
 
-public interface CFStatement {
+public interface CFStatement extends HasToken {
 	
 	public String Decompile(int indent);
 	
 	public void checkIndirectAssignments(String[] scriptSource);
-	
-	public Object getParent();
 	
 }

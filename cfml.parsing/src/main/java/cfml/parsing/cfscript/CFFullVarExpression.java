@@ -95,4 +95,9 @@ public class CFFullVarExpression extends CFIdentifier implements Serializable {
 	public List<CFScriptStatement> decomposeScript() {
 		return ArrayBuilder.createCFScriptStatement();
 	}
+	
+	@Override
+	public String toString() {
+		return Decompile(0);
+	}
 }

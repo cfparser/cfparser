@@ -1,15 +1,20 @@
 package cfml.parsing.cfscript.script;
 
+import org.antlr.v4.runtime.Token;
+
 import cfml.parsing.cfscript.CFExpression;
 import cfml.parsing.cfscript.CFIdentifier;
+import cfml.parsing.cfscript.HasToken;
 
-public class CFFunctionParameter {
+public class CFFunctionParameter implements HasToken {
 	
 	private int offset; // offset of parameter
 	private String name; // the name of the parameter
 	private boolean required; // whether the parameter is a required one
 	private String type; // the expected type of the parameter (for validation), if specified
 	private CFExpression defaultExp; // the default value to give the parameter
+	private CFIdentifier token;
+	private HasToken parent;
 	
 	public CFFunctionParameter(CFIdentifier t, boolean _required, String _type, CFExpression _default) {
 		name = t.getName();
@@ -17,6 +22,7 @@ public class CFFunctionParameter {
 		type = _type;
 		defaultExp = _default;
 		offset = t.getOffset();
+		token = t;
 	}
 	
 	public String getName() {
@@ -60,5 +66,19 @@ public class CFFunctionParameter {
 	
 	public CFExpression getDefaultExpression() {
 		return defaultExp;
+	}
+	
+	@Override
+	public Token getToken() {
+		return token == null ? null : token.getToken();
+	}
+	
+	@Override
+	public HasToken getParent() {
+		return parent;
+	}
+	
+	public void setParent(HasToken parent) {
+		this.parent = parent;
 	}
 }

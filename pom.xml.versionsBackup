@@ -1,0 +1,239 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.cfparser</groupId>
+	<artifactId>cfparser</artifactId>
+	<version>2.6.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>coldfusion-parser</name>
+	<description>Stand-Alone ColdFusion Parser. Combined forks from github.com/denuno/cfml.parsing and github.com/denuno/cfml.dictionary.</description>
+	<url>https://github.com/cfparser/cfparser</url>
+	<inceptionYear>2012</inceptionYear>
+	<organization>
+		<name>cfparser</name>
+	</organization>
+
+	<developers>
+		<developer>
+			<name>Ryan Eberly</name>
+			<email>ryaneberly@gmail.com</email>
+			<organization>cfparser</organization>
+			<organizationUrl>https://github.com/ryaneberly</organizationUrl>
+		</developer>
+		<developer>
+			<name>Jerron James</name>
+			<email>jjames967@gmail.com</email>
+			<organization>cfparser</organization>
+			<organizationUrl>https://github.com/jjames967</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git@github.com:cfparser/cfparser.git</connection>
+		<developerConnection>scm:git:git@github.com:cfparser/cfparser.git</developerConnection>
+		<url>git@github.com:cfparser/cfparser.git</url>
+	  <tag>cfparser-2.5.6</tag>
+  </scm>
+
+	<licenses>
+		<license>
+            <name>The New BSD License</name>
+            <url>http://www.opensource.org/licenses/bsd-license.html</url>
+            <distribution>repo</distribution>
+        </license>
+	</licenses>
+
+	<modules>
+		<module>cfml.dictionary</module>
+		<module>cfml.parsing</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>net.htmlparser.jericho</groupId>
+				<artifactId>jericho-html</artifactId>
+				<version>3.4</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<profiles>
+		<profile>
+			<id>deploy</id>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals>
+									<goal>jar</goal>
+								</goals>
+								<configuration>
+									<additionalparam>-Xdoclint:none</additionalparam>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.5</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+				<version>1.8</version>
+				<configuration>
+					<verbose>false</verbose>
+					<addSvnKeyWords>true</addSvnKeyWords>
+				</configuration>
+				<executions>
+					<execution>
+						<id>first</id>
+						<goals>
+							<goal>update-file-header</goal>
+						</goals>
+						<phase>process-sources</phase>
+						<configuration>
+							<licenseName>bsd_2</licenseName>
+							<roots>
+								<root>src/main/java</root>
+								<root>src/test</root>
+							</roots>
+							<includes>
+								<include>*.java</include>
+							</includes>
+							<excludes>
+								<exclude>cfml.dictionary*</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+			     <groupId>com.google.code.maven-replacer-plugin</groupId>
+			     <artifactId>replacer</artifactId>
+			     <version>1.5.2</version>
+			     <executions>
+			         <execution>
+			             <phase>prepare-package</phase>
+			             <goals>
+			                 <goal>replace</goal>
+			             </goals>
+			         </execution>
+			     </executions>
+			     <configuration>
+			         <file>${project.basedir}/README.md</file>
+			             <replacements>
+			                 <replacement>
+			                     <token>&lt;version&gt;.*&lt;/version&gt;</token>
+			                     <value>&lt;version&gt;${project.version}&lt;/version&gt;</value>
+			                 </replacement>
+			             </replacements>
+			     </configuration>
+			 </plugin>
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>false</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+		</plugins>
+		<pluginManagement>
+			<plugins>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.codehaus.mojo
+										</groupId>
+										<artifactId>
+											license-maven-plugin
+										</artifactId>
+										<versionRange>
+											[1.8,)
+										</versionRange>
+										<goals>
+											<goal>
+												update-file-header
+											</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<!-- Sonatype: mvn clean package -P deploy -->
+	<!-- Sonatype: mvn verify gpg:sign -DskipTests -P deploy -->
+	<!-- Sonatype: mvn deploy -DskipTests -P deploy -->
+	<!-- Sonatype: mvn nexus-staging:release -P deploy -DskipTests -->
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+		</repository>
+	</distributionManagement>
+</project>
