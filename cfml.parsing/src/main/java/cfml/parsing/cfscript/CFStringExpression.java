@@ -41,6 +41,11 @@ public class CFStringExpression extends CFExpression {
 		sb.append("'");
 		return sb.toString();
 	}
+
+	@Override
+	public String toString() {
+		return Decompile(0);
+	}
 	
 	public List<CFExpression> getSubExpressions() {
 		return subExpressions;
