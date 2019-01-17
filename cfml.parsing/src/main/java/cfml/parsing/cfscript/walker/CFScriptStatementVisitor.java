@@ -56,6 +56,7 @@ import cfml.CFSCRIPTParser.ThreadStatementContext;
 import cfml.CFSCRIPTParser.ThrowStatementContext;
 import cfml.CFSCRIPTParser.TransactionStatementContext;
 import cfml.CFSCRIPTParser.TryCatchStatementContext;
+import cfml.CFSCRIPTParser.TypeSpecContext;
 import cfml.CFSCRIPTParser.WhileStatementContext;
 import cfml.CFSCRIPTParserBaseVisitor;
 import cfml.parsing.cfscript.CFExpression;
@@ -352,7 +353,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		// System.out.println("visitTryCatchStatement");
 		List<CFCatchStatement> _catches = new ArrayList<CFCatchStatement>();
 		for (CatchConditionContext catchCond : ctx.catchCondition()) {
-			CFCatchStatement clause = new CFCatchStatement(getText(catchCond.typeSpec()),
+			CFCatchStatement clause = new CFCatchStatement(catchCond.typeSpec().getText(),
 					(CFIdentifier) cfExpressionVisitor.visit(catchCond.identifier()), visit(catchCond.compoundStatement()));
 			_catches.add(clause);
 			// System.out.println("visitTryCatchStatement." + visit(catchCond.compoundStatement()).Decompile(0));
@@ -364,8 +365,13 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	
 	@Override
 	public CFScriptStatement visitCatchCondition(CatchConditionContext ctx) {
-		return new CFCatchStatement((CFIdentifier) visit(ctx.typeSpec()), (CFIdentifier) visit(ctx.identifier()),
+		TypeSpecContext type = ctx.typeSpec();
+		if (type.stringLiteral()!=null)
+			return new CFCatchStatement(type.stringLiteral().getText(), (CFIdentifier) visit(ctx.identifier()),
 				visit(ctx.compoundStatement()));
+		else
+			return new CFCatchStatement((CFIdentifier) visit(ctx.typeSpec()), (CFIdentifier) visit(ctx.identifier()),
+					visit(ctx.compoundStatement()));
 	}
 	
 	@Override
