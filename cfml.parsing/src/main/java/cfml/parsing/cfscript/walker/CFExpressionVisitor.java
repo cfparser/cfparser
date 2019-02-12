@@ -242,7 +242,14 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		if (ctx.getChildCount() < 2) {
 			return super.visitChildren(ctx);
 		} else {
-			CFUnaryExpression unaryExpression = new CFUnaryExpression(ctx.start, super.visitChildren(ctx));
+			Token tkn;
+			if (ctx.PLUSPLUS()!=null)
+				tkn = ctx.PLUSPLUS().getSymbol();
+			else if (ctx.MINUSMINUS()!=null)
+				tkn = ctx.MINUSMINUS().getSymbol();
+			else
+				tkn = ctx.start;
+			CFUnaryExpression unaryExpression = new CFUnaryExpression(tkn, super.visitChildren(ctx),ctx.prefixop!=null);
 			return unaryExpression;
 		}
 	}
