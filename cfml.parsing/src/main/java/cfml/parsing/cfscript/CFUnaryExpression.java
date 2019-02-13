@@ -15,19 +15,34 @@ public class CFUnaryExpression extends CFExpression implements java.io.Serializa
 	
 	private int kind;
 	private CFExpression sub;
+	private boolean prefixop=true;
 	
 	public CFUnaryExpression(org.antlr.v4.runtime.Token _t, CFExpression _sub) {
 		super(_t);
+		createFromToken(_t, _sub);
+	}
+	
+	public CFUnaryExpression(org.antlr.v4.runtime.Token _t, CFExpression _sub, boolean isprefixop) {
+		super(_t);
+		createFromToken(_t, _sub);
+		prefixop = isprefixop;
+	}
+	
+	private void createFromToken(org.antlr.v4.runtime.Token _t, CFExpression _sub) {
 		kind = _t.getType();
 		sub = _sub;
 		if (sub != null) {
 			sub.setParent(this);
 		}
 	}
-	
+
 	@Override
 	public byte getType() {
 		return CFExpression.UNARY;
+	}
+
+	public boolean isPrefixop() {
+		return prefixop;
 	}
 	
 	@Override
@@ -61,24 +76,22 @@ public class CFUnaryExpression extends CFExpression implements java.io.Serializa
 			sb.append(sub.Decompile(0));
 			break;
 		case CFSCRIPTLexer.PLUSPLUS:
-			sb.append("++");
+			if (prefixop)
+				sb.append("++");
 			sb.append(sub.Decompile(0));
+			if (!prefixop)
+				sb.append("++");
 			break;
 		case CFSCRIPTLexer.MINUSMINUS:
-			sb.append("--");
+			if (prefixop)
+				sb.append("--");
 			sb.append(sub.Decompile(0));
+			if (!prefixop)
+				sb.append("--");
 			break;
 		default:
 			sb.append(sub.Decompile(0));
 			break;
-		// case CFSCRIPTLexer.POSTPLUSPLUS:
-		// sb.append(sub.Decompile(0));
-		// sb.append("--");
-		// break;
-		// case CFSCRIPTLexer.POSTMINUSMINUS:
-		// sb.append(sub.Decompile(0));
-		// sb.append("--");
-		// break;
 		}
 		return sb.toString();
 	}

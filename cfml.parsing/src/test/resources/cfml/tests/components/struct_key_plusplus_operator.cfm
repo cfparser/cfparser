@@ -1,2 +1,3 @@
 	foo = { bar: 1 };
+	++foo.bar;
 	foo.bar++;

@@ -469,10 +469,10 @@ equalityOperator1
     ;
     
 unaryExpression
-	: (MINUSMINUS | PLUSPLUS) unaryExpression
+	: prefixop=(MINUSMINUS | PLUSPLUS) unaryExpression
   | memberExpression
   | innerExpression
-  | unaryExpression (MINUSMINUS | PLUSPLUS)
+  | unaryExpression postfixop=(MINUSMINUS | PLUSPLUS)
   | primaryExpression//-> ^(POSTMINUSMINUS memberExpression)
 //  | atomicExpression
 //  | notNotExpression
