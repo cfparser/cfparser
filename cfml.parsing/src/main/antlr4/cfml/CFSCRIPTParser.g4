@@ -407,8 +407,7 @@ ternaryExpression
 
 baseExpression
 	:
-	left=baseExpression ternaryExpression
-	| left=baseExpression elvisOperator right=baseExpression
+	 left=baseExpression elvisOperator right=baseExpression
 	| unaryOperator=(MINUS | PLUS) right=baseExpression 
 	| left=baseExpression powerOperator=POWER right=baseExpression
 	| left=baseExpression multiplicativeOperator=(STAR|SLASH) right=baseExpression
@@ -423,7 +422,8 @@ baseExpression
 	| notNotExpression
 	| anonymousFunctionDeclaration
 	| unaryExpression
-	
+	| left=baseExpression ternaryExpression
+
 	;
 	
 elvisOperator:
