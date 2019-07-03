@@ -408,7 +408,7 @@ ternaryExpression
 baseExpression
 	:
 	 left=baseExpression elvisOperator right=baseExpression
-	| unaryOperator=(MINUS | PLUS) right=baseExpression 
+	| unaryOperator=(MINUS | PLUS) right=baseExpression
 	| left=baseExpression powerOperator=POWER right=baseExpression
 	| left=baseExpression multiplicativeOperator=(STAR|SLASH) right=baseExpression
 	| left=baseExpression intDivOperator=BSLASH right=baseExpression
@@ -451,9 +451,9 @@ compareExpressionOperator:
 	
 
 notExpression
-	:	( NOT | NOTOP ) baseExpression
+	:	( NOT | NOTOP ) (unaryExpression|baseExpression)
 	;
-	
+
 notNotExpression
 	:	NOTNOTOP  unaryExpression 
 	;	

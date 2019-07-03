@@ -196,7 +196,6 @@ Hidden:NEWLINE                  <>
                                           (baseExpression
                                             (notExpression
                                               !
-                                              (baseExpression
                                                 (unaryExpression
                                                   (memberExpression
                                                     (functionCall
@@ -225,7 +224,6 @@ Hidden:NEWLINE                  <>
                                             )
                                           )
                                         )
-                                      )
                                       }
                                     )
                                   )
