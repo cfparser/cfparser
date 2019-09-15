@@ -1,6 +1,6 @@
 /*===TOKENS===*/
 IDENTIFIER               <filename>
-'='                      <=>
+'&='                     <&=>
 OPEN_STRING              <">
 STRING_LITERAL           <test>
 CLOSE_STRING             <">
@@ -14,7 +14,7 @@ Hidden:NEWLINE                  <>
         (startExpression
           (baseExpression (unaryExpression (memberExpression (identifier filename))))
         )
-        =
+        &=
         (startExpression
           (baseExpression
             (unaryExpression
@@ -31,5 +31,5 @@ Hidden:NEWLINE                  <>
 )
 /*======*/
 /*===DECOMPILE===*/
-filename = 'test'
+filename &= 'test'
 /*======*/

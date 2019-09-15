@@ -1,0 +1,64 @@
+/*===TOKENS===*/
+IDENTIFIER               <s>
+'='                      <=>
+IDENTIFIER               <a>
+'&&'                     <&&>
+IDENTIFIER               <b>
+'?'                      <?>
+OPEN_STRING              <">
+STRING_LITERAL           <a>
+CLOSE_STRING             <">
+':'                      <:>
+OPEN_STRING              <">
+STRING_LITERAL           <b>
+CLOSE_STRING             <">
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (baseExpression (unaryExpression (memberExpression (identifier s))))
+        )
+        =
+        (startExpression
+          (baseExpression
+            (baseExpression
+              (baseExpression (unaryExpression (memberExpression (identifier a))))
+              &&
+              (baseExpression (unaryExpression (memberExpression (identifier b))))
+            )
+            (ternaryExpression
+              ?
+              (startExpression
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart a) "))
+                    )
+                  )
+                )
+              )
+              :
+              (startExpression
+                (baseExpression
+                  (unaryExpression
+                    (primaryExpression
+                      (literalExpression (stringLiteral " (stringLiteralPart b) "))
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      (endOfStatement ;)
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+s = a && b?'a':'b'
+/*======*/

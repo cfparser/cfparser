@@ -215,8 +215,12 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		} else if (ctx.compareExpressionOperator() != null) {
 			return new CFBinaryExpression(getTerminalToken(ctx.operator), visit(ctx.left), visit(ctx.right));
 		} else if (ctx.notExpression() != null) {
-			return new CFUnaryExpression(getTerminalToken(ctx.notExpression().getChild(0)),
-					visit(ctx.notExpression().baseExpression()));
+			if (ctx.notExpression().baseExpression()!=null)
+				return new CFUnaryExpression(getTerminalToken(ctx.notExpression().getChild(0)),
+						visit(ctx.notExpression().baseExpression()));
+			else
+				return new CFUnaryExpression(getTerminalToken(ctx.notExpression().getChild(0)),
+						visit(ctx.notExpression().unaryExpression()));
 		} else if (ctx.notNotExpression() != null) {
 			return new CFUnaryExpression(getTerminalToken(ctx.notNotExpression().getChild(0)),
 					visit(ctx.notNotExpression().unaryExpression()));
@@ -242,7 +246,14 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		if (ctx.getChildCount() < 2) {
 			return super.visitChildren(ctx);
 		} else {
-			CFUnaryExpression unaryExpression = new CFUnaryExpression(ctx.start, super.visitChildren(ctx));
+			Token tkn;
+			if (ctx.PLUSPLUS()!=null)
+				tkn = ctx.PLUSPLUS().getSymbol();
+			else if (ctx.MINUSMINUS()!=null)
+				tkn = ctx.MINUSMINUS().getSymbol();
+			else
+				tkn = ctx.start;
+			CFUnaryExpression unaryExpression = new CFUnaryExpression(tkn, super.visitChildren(ctx),ctx.prefixop!=null);
 			return unaryExpression;
 		}
 	}

@@ -25,7 +25,6 @@ Hidden:NEWLINE                  <>
           (baseExpression
             (notExpression
               NOT
-              (baseExpression
                 (unaryExpression
                   (memberExpression
                     (parentheticalExpression
@@ -60,7 +59,6 @@ Hidden:NEWLINE                  <>
             )
           )
           )
-        )
         (statement (compoundStatement { }))
       )
     )

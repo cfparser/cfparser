@@ -8,6 +8,12 @@ INTEGER_LITERAL          <1>
 '}'                      <}>
 ';'                      <;>
 Hidden:NEWLINE                  <>
+'++'                     <++>
+IDENTIFIER               <foo>
+'.'                      <.>
+IDENTIFIER               <bar>
+';'                      <;>
+Hidden:NEWLINE                  <>
 IDENTIFIER               <foo>
 '.'                      <.>
 IDENTIFIER               <bar>
@@ -51,6 +57,19 @@ Hidden:NEWLINE                  <>
       (startExpression
         (baseExpression
           (unaryExpression
+            ++
+            (unaryExpression (memberExpression (identifier foo) . (identifier bar)))
+          )
+        )
+      )
+      ;
+    )
+  )
+  (element
+    (statement
+      (startExpression
+        (baseExpression
+          (unaryExpression
             (unaryExpression (memberExpression (identifier foo) . (identifier bar)))
             ++
           )
@@ -64,7 +83,8 @@ Hidden:NEWLINE                  <>
 /*===DECOMPILE===*/
 {
 foo = {bar:1};
-foo.bar;
+++foo.bar;
+foo.bar++;
 
 }
 /*======*/

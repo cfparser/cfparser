@@ -407,9 +407,8 @@ ternaryExpression
 
 baseExpression
 	:
-	left=baseExpression ternaryExpression
-	| left=baseExpression elvisOperator right=baseExpression
-	| unaryOperator=(MINUS | PLUS) right=baseExpression 
+	 left=baseExpression elvisOperator right=baseExpression
+	| unaryOperator=(MINUS | PLUS) right=baseExpression
 	| left=baseExpression powerOperator=POWER right=baseExpression
 	| left=baseExpression multiplicativeOperator=(STAR|SLASH) right=baseExpression
 	| left=baseExpression intDivOperator=BSLASH right=baseExpression
@@ -423,7 +422,8 @@ baseExpression
 	| notNotExpression
 	| anonymousFunctionDeclaration
 	| unaryExpression
-	
+	| left=baseExpression ternaryExpression
+
 	;
 	
 elvisOperator:
@@ -451,9 +451,9 @@ compareExpressionOperator:
 	
 
 notExpression
-	:	( NOT | NOTOP ) baseExpression
+	:	( NOT | NOTOP ) (unaryExpression|baseExpression)
 	;
-	
+
 notNotExpression
 	:	NOTNOTOP  unaryExpression 
 	;	
@@ -469,10 +469,10 @@ equalityOperator1
     ;
     
 unaryExpression
-	: (MINUSMINUS | PLUSPLUS) unaryExpression
+	: prefixop=(MINUSMINUS | PLUSPLUS) unaryExpression
   | memberExpression
   | innerExpression
-  | unaryExpression (MINUSMINUS | PLUSPLUS)
+  | unaryExpression postfixop=(MINUSMINUS | PLUSPLUS)
   | primaryExpression//-> ^(POSTMINUSMINUS memberExpression)
 //  | atomicExpression
 //  | notNotExpression

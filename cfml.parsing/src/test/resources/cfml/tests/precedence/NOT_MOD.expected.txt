@@ -12,11 +12,13 @@ INTEGER_LITERAL          <0>
     (statement
       (startExpression
         (baseExpression
-          (notExpression
-            NOT
             (baseExpression
               (baseExpression
-                (baseExpression (unaryExpression (memberExpression (identifier productIndex))))
+              (notExpression
+                NOT
+                (unaryExpression (memberExpression (identifier productIndex)))
+              )
+            )
                 MOD
                 (baseExpression (unaryExpression (primaryExpression (literalExpression 2))))
               )
@@ -24,8 +26,6 @@ INTEGER_LITERAL          <0>
               (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
             )
           )
-        )
-      )
       ;
     )
   )

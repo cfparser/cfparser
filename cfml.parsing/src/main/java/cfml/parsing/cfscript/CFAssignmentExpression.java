@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.antlr.v4.runtime.Token;
 
+import cfml.CFSCRIPTParser;
 import cfml.parsing.cfscript.script.CFScriptStatement;
 import cfml.parsing.util.ArrayBuilder;
 
@@ -12,8 +13,10 @@ public class CFAssignmentExpression extends CFExpression {
 	
 	private static final long serialVersionUID = 1L;
 	
+	private int _kind;
 	private CFExpression left;
 	private CFExpression right;
+	protected String operatorImage;
 	
 	List<CFIdentifier> otherIds = new ArrayList<CFIdentifier>();
 	
@@ -23,6 +26,14 @@ public class CFAssignmentExpression extends CFExpression {
 	
 	public CFAssignmentExpression(Token t, CFExpression _left, CFExpression _right) {
 		super(t);
+		_kind = t.getType();
+		operatorImage = t.getText();
+		
+		if (!operatorImage.endsWith("=")) {
+			// Its not actual assignment, but maybe named argument, query loop etc
+			_kind = CFSCRIPTParser.EQUALSOP;
+			operatorImage = "=";
+		}
 		left = _left;
 		right = _right;
 		if (left != null)
@@ -34,6 +45,14 @@ public class CFAssignmentExpression extends CFExpression {
 	@Override
 	public byte getType() {
 		return CFExpression.ASSIGNMENT;
+	}
+	
+	public int getKind() {
+		return _kind;
+	}
+	
+	public String getOperatorImage() {
+		return operatorImage;
 	}
 	
 	public void checkIndirect(String expr) {
@@ -91,7 +110,7 @@ public class CFAssignmentExpression extends CFExpression {
 		if (left != null) {
 			sb.append(left.Decompile(indent));
 		}
-		sb.append(" = ");
+		sb.append(" " + operatorImage + " ");
 		for (CFIdentifier id : otherIds) {
 			sb.append(id.Decompile(indent));
 			sb.append(" = ");
