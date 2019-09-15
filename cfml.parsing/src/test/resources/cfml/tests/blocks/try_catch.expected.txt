@@ -275,11 +275,13 @@ Hidden:NEWLINE                  <>
 try{
 throw(message = 'Oops', detail = 'xyz');
 
-}catch(any e{
+}catch(any e)
+{
 WriteOutput('Error: ' & e.message);
 rethrow;
 
-}catch(any e{
+}catch(any e)
+{
 WriteOutput('Error: ' & e.message);
 rethrow;
 

@@ -374,7 +374,7 @@ public class TestCFMLParser {
 	
 	@Test
 	public void testParseScriptTryCatch() {
-		String script = "try { throw('funk'); } catch (Any e) { woot(); }";
+		String script = "try{throw('funk');}catch(Any e){woot();}catch('e' e){e();}";
 		CFScriptStatement scriptStatement = null;
 		try {
 			scriptStatement = fCfmlParser.parseScript(script);
@@ -383,7 +383,7 @@ public class TestCFMLParser {
 			e.printStackTrace();
 		}
 		assertNotNull(scriptStatement);
-		assertEquals("try{throw ('funk');}catch(Any e{woot();}", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
+		assertEquals("try{throw ('funk');}catch(Any e){woot();}catch('e' e){e();}", scriptStatement.Decompile(0).replaceAll("[\\r\\n]", ""));
 	}
 	
 	@Test

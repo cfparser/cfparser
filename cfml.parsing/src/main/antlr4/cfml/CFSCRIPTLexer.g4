@@ -147,7 +147,7 @@ NEW: [nN][eE][wW];
 IF: [iI][fF];
 ELSE: [eE][lL][sS][eE];
 BREAK: [bB][rR][eE][aA][kK];
-CONTINUE: [cC][oO][nN][tT][iI][nN][uU][rE];
+CONTINUE: [cC][oO][nN][tT][iI][nN][uU][eE];
 FUNCTION: [fF][uU][nN][cC][tT][iI][oO][nN];
 RETURN: [rR][eE][tT][uU][rR][nN];
 WHILE: [wW][hH][iI][lL][eE];

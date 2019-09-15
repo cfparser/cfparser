@@ -74,13 +74,7 @@ public class CFTryCatchStatement extends CFParsedStatement implements java.io.Se
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < catchStatements.size(); i++) {
 			CFCatchStatement clause = (CFCatchStatement) catchStatements.get(i);
-			sb.append("catch(");
-			sb.append(clause.getType());
-			sb.append(" ");
-			sb.append(clause.getVariable());
-			// sb.append("{");
-			sb.append(clause.getCatchBody().Decompile(0));
-			// sb.append("}");
+			sb.append(clause.Decompile(indent));
 		}
 		
 		sb.insert(0, "try" + body.Decompile(0));

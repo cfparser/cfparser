@@ -11908,7 +11908,7 @@ The name of a JavaScript function to execute if evaluating a bind expression res
     ...
     /cfsilent
 -->
-        <tag endtagrequired="true" canHaveAttributeCollection="false" name="cfsilent" single="true"
+        <tag endtagrequired="true" canHaveAttributeCollection="false" name="cfsilent" single="false"
              xmlstyle="true">
             <help><![CDATA[
         Suppresses output produced by CFML within a tag's scope.

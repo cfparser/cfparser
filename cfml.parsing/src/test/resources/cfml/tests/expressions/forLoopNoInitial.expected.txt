@@ -1378,10 +1378,8 @@ Hidden:NEWLINE                  <>
                             (baseExpression
                               (notExpression
                                 NOT
-                                (baseExpression
-                                  (unaryExpression
-                                    (memberExpression (functionCall (identifier isTrustedSource) ( argumentList )))
-                                  )
+                                (unaryExpression
+                                  (memberExpression (functionCall (identifier isTrustedSource) ( argumentList )))
                                 )
                               )
                             )

@@ -1,2 +1,2 @@
-filename = "test";
+filename &= "test";
  
