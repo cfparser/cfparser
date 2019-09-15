@@ -175,6 +175,7 @@ MINUSMINUS: '--';
 MODOPERATOR: '%' -> type(MOD);
 CONCAT: '&';
 EQUALSEQUALSOP: '==' -> type(EQ);
+LAMBDAOP: '=>';
 EQUALSOP: '=';
 PLUSEQUALS: '+=';
 MINUSEQUALS: '-=';

@@ -41,6 +41,11 @@ anonymousFunctionDeclaration
   	functionAttribute* body=compoundStatement 
   ;
 
+lambdaDeclaration
+  : LEFTPAREN parameterList? RIGHTPAREN
+  	LAMBDAOP (body=compoundStatement | simpleExpression =startExpression) 
+  ;
+
 accessType
 	:PUBLIC | PRIVATE | REMOTE | PACKAGE
 	;
@@ -422,6 +427,7 @@ baseExpression
 	| left=baseExpression orOperator=(OR | OROPERATOR) right=baseExpression
 	| notNotExpression
 	| anonymousFunctionDeclaration
+	| lambdaDeclaration
 	| unaryExpression
 	
 	;
@@ -576,6 +582,7 @@ argument
   | ( (name=argumentName) EQUALSOP startExpression //-> ^( COLON identifier baseExpression ) 
   )
   | anonymousFunctionDeclaration
+  | lambdaDeclaration
   | startExpression
   ;
   

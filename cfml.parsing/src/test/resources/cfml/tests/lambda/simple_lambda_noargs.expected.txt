@@ -1,0 +1,144 @@
+/*===TOKENS===*/
+Hidden:LINE_COMMENT             <// Using a traditional function>
+IDENTIFIER               <makeSix>
+'='                      <=>
+FUNCTION                 <function>
+'('                      <(>
+')'                      <)>
+'{'                      <{>
+RETURN                   <return>
+INTEGER_LITERAL          <5>
+'+'                      <+>
+INTEGER_LITERAL          <1>
+';'                      <;>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+Hidden:LINE_COMMENT             <// Using a lambda expression>
+IDENTIFIER               <makeSix>
+'='                      <=>
+'('                      <(>
+')'                      <)>
+'=>'                     <=>>
+INTEGER_LITERAL          <5>
+'+'                      <+>
+INTEGER_LITERAL          <1>
+';'                      <;>
+Hidden:NEWLINE                  <>
+Hidden:LINE_COMMENT             <// returns 6>
+IDENTIFIER               <dump>
+'('                      <(>
+IDENTIFIER               <makeSix>
+'('                      <(>
+')'                      <)>
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (baseExpression (unaryExpression (memberExpression (identifier makeSix))))
+        )
+        =
+        (startExpression
+          (baseExpression
+            (anonymousFunctionDeclaration
+              function
+              (
+              parameterList
+              )
+              (compoundStatement
+                {
+                (statement
+                  (returnStatement
+                    return
+                    (startExpression
+                      (baseExpression
+                        (baseExpression (unaryExpression (primaryExpression (literalExpression 5))))
+                        +
+                        (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                      )
+                    )
+                  )
+                  (endOfStatement ;)
+                )
+                }
+              )
+            )
+          )
+        )
+      )
+      endOfStatement
+    )
+  )
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (baseExpression (unaryExpression (memberExpression (identifier makeSix))))
+        )
+        =
+        (startExpression
+          (baseExpression
+            (lambdaDeclaration
+              (
+              parameterList
+              )
+              =>
+              (startExpression
+                (baseExpression
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression 5))))
+                  +
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                )
+              )
+            )
+          )
+        )
+      )
+      (endOfStatement ;)
+    )
+  )
+  (element
+    (statement
+      (startExpression
+        (baseExpression
+          (unaryExpression
+            (memberExpression
+              (functionCall
+                (identifier dump)
+                (
+                (argumentList
+                  (argument
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (memberExpression (functionCall (identifier makeSix) ( argumentList )))
+                        )
+                      )
+                    )
+                  )
+                )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+{
+makeSix =  function ()   {
+    return 5 + 1;
+
+  };
+makeSix = 5 + 1;
+dump(makeSix());
+
+}
+/*======*/

@@ -1,0 +1,192 @@
+/*===TOKENS===*/
+Hidden:LINE_COMMENT             <// Takes a numeric value and returns a string>
+IDENTIFIER               <isOdd>
+'='                      <=>
+'('                      <(>
+NUMERIC                  <numeric>
+IDENTIFIER               <n>
+')'                      <)>
+'=>'                     <=>>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+IF                       <if>
+'('                      <(>
+IDENTIFIER               <n>
+MOD                      <%>
+INTEGER_LITERAL          <2>
+EQ                       <==>
+INTEGER_LITERAL          <0>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+RETURN                   <return>
+OPEN_STRING              <'>
+STRING_LITERAL           <even>
+CLOSE_STRING             <'>
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+ELSE                     <else>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+RETURN                   <return>
+OPEN_STRING              <'>
+STRING_LITERAL           <odd>
+CLOSE_STRING             <'>
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+';'                      <;>
+Hidden:NEWLINE                  <>
+Hidden:LINE_COMMENT             <// returns 'odd'>
+IDENTIFIER               <dump>
+'('                      <(>
+IDENTIFIER               <isOdd>
+'('                      <(>
+INTEGER_LITERAL          <1>
+')'                      <)>
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (baseExpression (unaryExpression (memberExpression (identifier isOdd))))
+        )
+        =
+        (startExpression
+          (baseExpression
+            (lambdaDeclaration
+              (
+              (parameterList
+                (parameter (parameterType (typeSpec (type numeric))) (identifier n))
+              )
+              )
+              =>
+              (compoundStatement
+                {
+                (statement
+                  (ifStatement
+                    if
+                    (condition
+                      (
+                      (baseExpression
+                        (baseExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier n))))
+                          %
+                          (baseExpression (unaryExpression (primaryExpression (literalExpression 2))))
+                        )
+                        (compareExpressionOperator ==)
+                        (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+                      )
+                      )
+                    )
+                    (statement
+                      (compoundStatement
+                        {
+                        (statement
+                          (returnStatement
+                            return
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral ' (stringLiteralPart even) '))
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          (endOfStatement ;)
+                        )
+                        }
+                      )
+                    )
+                    else
+                    (statement
+                      (compoundStatement
+                        {
+                        (statement
+                          (returnStatement
+                            return
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral ' (stringLiteralPart odd) '))
+                                  )
+                                )
+                              )
+                            )
+                          )
+                          (endOfStatement ;)
+                        )
+                        }
+                      )
+                    )
+                  )
+                )
+                }
+              )
+            )
+          )
+        )
+      )
+      (endOfStatement ;)
+    )
+  )
+  (element
+    (statement
+      (startExpression
+        (baseExpression
+          (unaryExpression
+            (memberExpression
+              (functionCall
+                (identifier dump)
+                (
+                (argumentList
+                  (argument
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (memberExpression
+                            (functionCall
+                              (identifier isOdd)
+                              (
+                              (argumentList
+                                (argument
+                                  (startExpression
+                                    (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                                  )
+                                )
+                              )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+{
+isOdd = numeric.nn % 2 == 0;
+dump(isOdd(1));
+
+}
+/*======*/

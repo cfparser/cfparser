@@ -1,0 +1,119 @@
+/*===TOKENS===*/
+Hidden:LINE_COMMENT             <// Takes two numeric values and adds them>
+IDENTIFIER               <add>
+'='                      <=>
+'('                      <(>
+NUMERIC                  <numeric>
+IDENTIFIER               <x>
+','                      <,>
+NUMERIC                  <numeric>
+IDENTIFIER               <y>
+')'                      <)>
+'=>'                     <=>>
+IDENTIFIER               <x>
+'+'                      <+>
+IDENTIFIER               <y>
+';'                      <;>
+Hidden:NEWLINE                  <>
+Hidden:LINE_COMMENT             <// returns 4>
+IDENTIFIER               <dump>
+'('                      <(>
+IDENTIFIER               <add>
+'('                      <(>
+INTEGER_LITERAL          <1>
+','                      <,>
+INTEGER_LITERAL          <3>
+')'                      <)>
+')'                      <)>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (baseExpression (unaryExpression (memberExpression (identifier add))))
+        )
+        =
+        (startExpression
+          (baseExpression
+            (lambdaDeclaration
+              (
+              (parameterList
+                (parameter (parameterType (typeSpec (type numeric))) (identifier x))
+                ,
+                (parameter (parameterType (typeSpec (type numeric))) (identifier y))
+              )
+              )
+              =>
+              (startExpression
+                (baseExpression
+                  (baseExpression (unaryExpression (memberExpression (identifier x))))
+                  +
+                  (baseExpression (unaryExpression (memberExpression (identifier y))))
+                )
+              )
+            )
+          )
+        )
+      )
+      (endOfStatement ;)
+    )
+  )
+  (element
+    (statement
+      (startExpression
+        (baseExpression
+          (unaryExpression
+            (memberExpression
+              (functionCall
+                (identifier dump)
+                (
+                (argumentList
+                  (argument
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (memberExpression
+                            (functionCall
+                              (identifier add)
+                              (
+                              (argumentList
+                                (argument
+                                  (startExpression
+                                    (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                                  )
+                                )
+                                ,
+                                (argument
+                                  (startExpression
+                                    (baseExpression (unaryExpression (primaryExpression (literalExpression 3))))
+                                  )
+                                )
+                              )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+                )
+              )
+            )
+          )
+        )
+      )
+      ;
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+{
+add = numeric.x.numeric.yx + y;
+dump(add(1, 3));
+
+}
+/*======*/
