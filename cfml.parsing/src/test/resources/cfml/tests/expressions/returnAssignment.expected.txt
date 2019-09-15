@@ -40,13 +40,15 @@ Hidden:NEWLINE                  <>
             (statement
               (returnStatement
                 return
-                (assignmentExpression
-                  (startExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier foo))))
-                  )
-                  =
-                  (startExpression
-                    (baseExpression (unaryExpression (memberExpression (identifier bar))))
+                (anExpression
+                  (assignmentExpression
+                    (startExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier foo))))
+                    )
+                    =
+                    (startExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier bar))))
+                    )
                   )
                 )
               )

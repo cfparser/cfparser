@@ -802,8 +802,10 @@ Hidden:NEWLINE                  <>
                                                 (stringLiteral
                                                   "
                                                   #
-                                                  (startExpression
-                                                    (baseExpression (unaryExpression (memberExpression (identifier jar))))
+                                                  (anExpression
+                                                    (startExpression
+                                                      (baseExpression (unaryExpression (memberExpression (identifier jar))))
+                                                    )
                                                   )
                                                   #
                                                   "
@@ -901,8 +903,10 @@ Hidden:NEWLINE                  <>
                                         (stringLiteral
                                           "
                                           #
-                                          (startExpression
-                                            (baseExpression (unaryExpression (memberExpression (identifier path))))
+                                          (anExpression
+                                            (startExpression
+                                              (baseExpression (unaryExpression (memberExpression (identifier path))))
+                                            )
                                           )
                                           #
                                           "
@@ -1327,8 +1331,10 @@ Hidden:NEWLINE                  <>
                                                 (stringLiteral
                                                   "
                                                   #
-                                                  (startExpression
-                                                    (baseExpression (unaryExpression (memberExpression (identifier path))))
+                                                  (anExpression
+                                                    (startExpression
+                                                      (baseExpression (unaryExpression (memberExpression (identifier path))))
+                                                    )
                                                   )
                                                   #
                                                   "
@@ -1418,8 +1424,10 @@ Hidden:NEWLINE                  <>
                                                 (stringLiteral
                                                   "
                                                   #
-                                                  (startExpression
-                                                    (baseExpression (unaryExpression (memberExpression (identifier jar))))
+                                                  (anExpression
+                                                    (startExpression
+                                                      (baseExpression (unaryExpression (memberExpression (identifier jar))))
+                                                    )
                                                   )
                                                   #
                                                   "
@@ -1521,8 +1529,10 @@ Hidden:NEWLINE                  <>
                                                 (stringLiteral
                                                   "
                                                   #
-                                                  (startExpression
-                                                    (baseExpression (unaryExpression (memberExpression (identifier path))))
+                                                  (anExpression
+                                                    (startExpression
+                                                      (baseExpression (unaryExpression (memberExpression (identifier path))))
+                                                    )
                                                   )
                                                   #
                                                   "

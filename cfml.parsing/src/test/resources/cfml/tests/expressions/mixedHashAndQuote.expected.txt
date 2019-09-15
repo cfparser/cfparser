@@ -47,36 +47,38 @@ CLOSE_STRING             <">
                   (stringLiteral
                     "
                     #
-                    (startExpression
-                      (baseExpression
-                        (unaryExpression
-                          (memberExpression
-                            (functionCall
-                              (identifier dateformat)
-                              (
-                              (argumentList
-                                (argument
-                                  (startExpression
-                                    (baseExpression
-                                      (unaryExpression
-                                        (memberExpression (functionCall (identifier Now) ( argumentList )))
+                    (anExpression
+                      (startExpression
+                        (baseExpression
+                          (unaryExpression
+                            (memberExpression
+                              (functionCall
+                                (identifier dateformat)
+                                (
+                                (argumentList
+                                  (argument
+                                    (startExpression
+                                      (baseExpression
+                                        (unaryExpression
+                                          (memberExpression (functionCall (identifier Now) ( argumentList )))
+                                        )
                                       )
                                     )
                                   )
-                                )
-                                ,
-                                (argument
-                                  (startExpression
-                                    (baseExpression
-                                      (unaryExpression
-                                        (primaryExpression
-                                          (literalExpression (stringLiteral " (stringLiteralPart YY_MM_DD) "))
+                                  ,
+                                  (argument
+                                    (startExpression
+                                      (baseExpression
+                                        (unaryExpression
+                                          (primaryExpression
+                                            (literalExpression (stringLiteral " (stringLiteralPart YY_MM_DD) "))
+                                          )
                                         )
                                       )
                                     )
                                   )
                                 )
-                              )
+                                )
                               )
                             )
                           )
@@ -86,36 +88,38 @@ CLOSE_STRING             <">
                     #
                     (stringLiteralPart _)
                     #
-                    (startExpression
-                      (baseExpression
-                        (unaryExpression
-                          (memberExpression
-                            (functionCall
-                              (identifier TimeFormat)
-                              (
-                              (argumentList
-                                (argument
-                                  (startExpression
-                                    (baseExpression
-                                      (unaryExpression
-                                        (memberExpression (functionCall (identifier Now) ( argumentList )))
+                    (anExpression
+                      (startExpression
+                        (baseExpression
+                          (unaryExpression
+                            (memberExpression
+                              (functionCall
+                                (identifier TimeFormat)
+                                (
+                                (argumentList
+                                  (argument
+                                    (startExpression
+                                      (baseExpression
+                                        (unaryExpression
+                                          (memberExpression (functionCall (identifier Now) ( argumentList )))
+                                        )
                                       )
                                     )
                                   )
-                                )
-                                ,
-                                (argument
-                                  (startExpression
-                                    (baseExpression
-                                      (unaryExpression
-                                        (primaryExpression
-                                          (literalExpression (stringLiteral " (stringLiteralPart HH_mm) "))
+                                  ,
+                                  (argument
+                                    (startExpression
+                                      (baseExpression
+                                        (unaryExpression
+                                          (primaryExpression
+                                            (literalExpression (stringLiteral " (stringLiteralPart HH_mm) "))
+                                          )
                                         )
                                       )
                                     )
                                   )
                                 )
-                              )
+                                )
                               )
                             )
                           )

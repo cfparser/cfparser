@@ -91,11 +91,13 @@ INTEGER_LITERAL          <1>
                         (statement
                           (returnStatement
                             return
-                            (startExpression
-                              (baseExpression
-                                (unaryExpression
-                                  (primaryExpression
-                                    (literalExpression (stringLiteral ' (stringLiteralPart even) '))
+                            (anExpression
+                              (startExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (primaryExpression
+                                      (literalExpression (stringLiteral ' (stringLiteralPart even) '))
+                                    )
                                   )
                                 )
                               )
@@ -113,11 +115,13 @@ INTEGER_LITERAL          <1>
                         (statement
                           (returnStatement
                             return
-                            (startExpression
-                              (baseExpression
-                                (unaryExpression
-                                  (primaryExpression
-                                    (literalExpression (stringLiteral ' (stringLiteralPart odd) '))
+                            (anExpression
+                              (startExpression
+                                (baseExpression
+                                  (unaryExpression
+                                    (primaryExpression
+                                      (literalExpression (stringLiteral ' (stringLiteralPart odd) '))
+                                    )
                                   )
                                 )
                               )

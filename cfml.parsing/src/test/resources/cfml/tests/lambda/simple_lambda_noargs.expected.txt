@@ -53,11 +53,13 @@ IDENTIFIER               <makeSix>
                 (statement
                   (returnStatement
                     return
-                    (startExpression
-                      (baseExpression
-                        (baseExpression (unaryExpression (primaryExpression (literalExpression 5))))
-                        +
-                        (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                    (anExpression
+                      (startExpression
+                        (baseExpression
+                          (baseExpression (unaryExpression (primaryExpression (literalExpression 5))))
+                          +
+                          (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                        )
                       )
                     )
                   )

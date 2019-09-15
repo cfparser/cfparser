@@ -67,15 +67,17 @@ Hidden:NEWLINE                  <>
         (statement
           (returnStatement
             return
-            (startExpression
-              (baseExpression
+            (anExpression
+              (startExpression
                 (baseExpression
-                  (unaryExpression
-                    (memberExpression (identifier ARGUMENTS) . (identifier inNum))
+                  (baseExpression
+                    (unaryExpression
+                      (memberExpression (identifier ARGUMENTS) . (identifier inNum))
+                    )
                   )
+                  +
+                  (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
                 )
-                +
-                (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
               )
             )
           )

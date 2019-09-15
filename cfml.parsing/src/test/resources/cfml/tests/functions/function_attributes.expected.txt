@@ -105,9 +105,11 @@ Hidden:NEWLINE                  <>
             (statement
               (returnStatement
                 return
-                (startExpression
-                  (baseExpression
-                    (unaryExpression (primaryExpression (literalExpression (stringLiteral ' '))))
+                (anExpression
+                  (startExpression
+                    (baseExpression
+                      (unaryExpression (primaryExpression (literalExpression (stringLiteral ' '))))
+                    )
                   )
                 )
               )

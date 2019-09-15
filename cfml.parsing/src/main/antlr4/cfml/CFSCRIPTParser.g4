@@ -61,7 +61,7 @@ array
   ; 
   
 stringLiteral
-  :  OPEN_STRING (stringLiteralPart | POUND_SIGN startExpression POUND_SIGN)* CLOSE_STRING;
+  :  OPEN_STRING (stringLiteralPart | POUND_SIGN (anExpression) POUND_SIGN)* CLOSE_STRING;
 
 stringLiteralPart
   :  STRING_LITERAL | DOUBLEHASH;
@@ -150,7 +150,7 @@ condition
   ;
   
 returnStatement
-  : RETURN (startExpression | assignmentExpression)?
+  : RETURN (anExpression)?
   ;
   
 ifStatement
@@ -385,6 +385,12 @@ expression
 	|   startExpression EOF
 	;
 
+anExpression 
+	: localAssignmentExpression
+	|	assignmentExpression
+	|   startExpression
+	;
+
 cfmlExpression 
 	: localAssignmentExpression EOF
 	|	assignmentExpression EOF
@@ -486,7 +492,7 @@ unaryExpression
   ;
 
 innerExpression:
-	POUND_SIGN baseExpression POUND_SIGN;
+	POUND_SIGN (anExpression) POUND_SIGN;
 
 memberExpression
   : (functionCall

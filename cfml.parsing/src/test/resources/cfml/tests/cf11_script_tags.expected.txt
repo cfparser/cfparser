@@ -153,10 +153,12 @@ IDENTIFIER               <filecontent>
                           "
                           (stringLiteralPart http://)
                           #
-                          (startExpression
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression (identifier CGI) . (identifier SERVER_NAME))
+                          (anExpression
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (memberExpression (identifier CGI) . (identifier SERVER_NAME))
+                                )
                               )
                             )
                           )

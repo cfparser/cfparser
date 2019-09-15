@@ -60,28 +60,30 @@ Hidden:NEWLINE                  <>
         (statement
           (returnStatement
             return
-            (startExpression
-              (baseExpression
-                (unaryExpression
-                  (memberExpression
-                    (identifier idSet)
-                    .
-                    (qualifiedFunctionCall
-                      (reservedWord (specialWord contains))
-                      (
-                      (argumentList
-                        (argument
-                          (startExpression
-                            (baseExpression
-                              (unaryExpression
-                                (primaryExpression
-                                  (literalExpression (stringLiteral ' (stringLiteralPart 12) '))
+            (anExpression
+              (startExpression
+                (baseExpression
+                  (unaryExpression
+                    (memberExpression
+                      (identifier idSet)
+                      .
+                      (qualifiedFunctionCall
+                        (reservedWord (specialWord contains))
+                        (
+                        (argumentList
+                          (argument
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression
+                                  (primaryExpression
+                                    (literalExpression (stringLiteral ' (stringLiteralPart 12) '))
+                                  )
                                 )
                               )
                             )
                           )
                         )
-                      )
+                        )
                       )
                     )
                   )

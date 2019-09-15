@@ -235,9 +235,11 @@ IDENTIFIER               <getUsers>
                           "
                           (stringLiteralPart 'Event Gateway ')
                           #
-                          (startExpression
-                            (baseExpression
-                              (unaryExpression (memberExpression (identifier variables) . (identifier id)))
+                          (anExpression
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression (memberExpression (identifier variables) . (identifier id)))
+                              )
                             )
                           )
                           #
@@ -360,17 +362,21 @@ IDENTIFIER               <getUsers>
                           "
                           (stringLiteralPart 'Event Gateway ')
                           #
-                          (startExpression
-                            (baseExpression
-                              (unaryExpression (memberExpression (identifier variables) . (identifier id)))
+                          (anExpression
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression (memberExpression (identifier variables) . (identifier id)))
+                              )
                             )
                           )
                           #
                           (stringLiteralPart ' error: ')
                           #
-                          (startExpression
-                            (baseExpression
-                              (unaryExpression (memberExpression (identifier ex) . (identifier message)))
+                          (anExpression
+                            (startExpression
+                              (baseExpression
+                                (unaryExpression (memberExpression (identifier ex) . (identifier message)))
+                              )
                             )
                           )
                           #

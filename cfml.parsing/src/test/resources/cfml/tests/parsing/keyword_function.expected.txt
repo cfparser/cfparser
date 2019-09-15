@@ -61,10 +61,12 @@ Hidden:NEWLINE                  <>
                       (stringLiteral
                         "
                         #
-                        (startExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression (identifier function) . (identifier subcategories))
+                        (anExpression
+                          (startExpression
+                            (baseExpression
+                              (unaryExpression
+                                (memberExpression (identifier function) . (identifier subcategories))
+                              )
                             )
                           )
                         )

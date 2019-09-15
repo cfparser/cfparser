@@ -99,9 +99,11 @@ CLOSE_STRING             <">
                                                         (stringLiteral
                                                           "
                                                           #
-                                                          (startExpression
-                                                            (baseExpression
-                                                              (unaryExpression (memberExpression (identifier sourceTemplateNum)))
+                                                          (anExpression
+                                                            (startExpression
+                                                              (baseExpression
+                                                                (unaryExpression (memberExpression (identifier sourceTemplateNum)))
+                                                              )
                                                             )
                                                           )
                                                           #

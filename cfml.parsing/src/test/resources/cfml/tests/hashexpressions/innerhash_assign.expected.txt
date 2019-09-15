@@ -1,0 +1,71 @@
+/*===TOKENS===*/
+IDENTIFIER               <x>
+'='                      <=>
+INTEGER_LITERAL          <1>
+';'                      <;>
+Hidden:NEWLINE                  <>
+IDENTIFIER               <y>
+'='                      <=>
+'#'                      <#>
+IDENTIFIER               <x>
+'='                      <=>
+INTEGER_LITERAL          <3>
+'#'                      <#>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (baseExpression (unaryExpression (memberExpression (identifier x))))
+        )
+        =
+        (startExpression
+          (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+        )
+      )
+      (endOfStatement ;)
+    )
+  )
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (baseExpression (unaryExpression (memberExpression (identifier y))))
+        )
+        =
+        (startExpression
+          (baseExpression
+            (unaryExpression
+              (innerExpression
+                #
+                (anExpression
+                  (assignmentExpression
+                    (startExpression
+                      (baseExpression (unaryExpression (memberExpression (identifier x))))
+                    )
+                    =
+                    (startExpression
+                      (baseExpression (unaryExpression (primaryExpression (literalExpression 3))))
+                    )
+                  )
+                )
+                #
+              )
+            )
+          )
+        )
+      )
+      (endOfStatement ;)
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+{
+x = 1;
+y = #x = 3#;
+
+}
+/*======*/

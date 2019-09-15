@@ -1,0 +1,79 @@
+/*===TOKENS===*/
+IDENTIFIER               <x>
+'='                      <=>
+INTEGER_LITERAL          <1>
+';'                      <;>
+Hidden:NEWLINE                  <>
+IDENTIFIER               <y>
+'='                      <=>
+OPEN_STRING              <">
+'#'                      <#>
+IDENTIFIER               <x>
+'='                      <=>
+INTEGER_LITERAL          <2>
+'#'                      <#>
+CLOSE_STRING             <">
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (baseExpression (unaryExpression (memberExpression (identifier x))))
+        )
+        =
+        (startExpression
+          (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+        )
+      )
+      (endOfStatement ;)
+    )
+  )
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (baseExpression (unaryExpression (memberExpression (identifier y))))
+        )
+        =
+        (startExpression
+          (baseExpression
+            (unaryExpression
+              (primaryExpression
+                (literalExpression
+                  (stringLiteral
+                    "
+                    #
+                    (anExpression
+                      (assignmentExpression
+                        (startExpression
+                          (baseExpression (unaryExpression (memberExpression (identifier x))))
+                        )
+                        =
+                        (startExpression
+                          (baseExpression (unaryExpression (primaryExpression (literalExpression 2))))
+                        )
+                      )
+                    )
+                    #
+                    "
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+      (endOfStatement ;)
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+{
+x = 1;
+y = '#x = 2#';
+
+}
+/*======*/
