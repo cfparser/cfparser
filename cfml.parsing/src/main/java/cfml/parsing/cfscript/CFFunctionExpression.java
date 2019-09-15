@@ -98,7 +98,9 @@ public class CFFunctionExpression extends CFMember {
 	public List<CFExpression> decomposeExpression() {
 		ArrayList<CFExpression> retval = new ArrayList<CFExpression>();
 		for (final CFExpression expr : getArgs()) {
-			if (expr instanceof CFAssignmentExpression) {
+			if (expr instanceof CFTernaryExpression) {
+				retval.add(expr);
+			} else if (expr instanceof CFAssignmentExpression) {
 				// Only the right hand side of 'assignments' -- these are
 				// named parameters.
 				retval.add(((CFAssignmentExpression) expr).getRight());
