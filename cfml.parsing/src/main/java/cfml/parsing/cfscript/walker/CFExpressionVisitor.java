@@ -334,7 +334,7 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 	@Override
 	public CFExpression visitPrimaryExpression(PrimaryExpressionContext ctx) {
 		ParseTree child = ctx.getChild(0);
-		if (child.getChildCount() == 0) {
+		if (child != null && child.getChildCount() == 0) {
 			CFLiteral literal = new CFLiteral(((TerminalNode) child).getSymbol());
 			return literal;
 		} else {

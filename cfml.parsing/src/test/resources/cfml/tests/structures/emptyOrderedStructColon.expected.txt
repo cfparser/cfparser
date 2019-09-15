@@ -1,0 +1,32 @@
+/*===TOKENS===*/
+IDENTIFIER               <emptyOrderedStructColon>
+'='                      <=>
+'['                      <[>
+':'                      <:>
+']'                      <]>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (baseExpression
+            (unaryExpression (memberExpression (identifier emptyOrderedStructColon)))
+          )
+        )
+        =
+        (startExpression
+          (baseExpression
+            (unaryExpression (primaryExpression (implicitOrderedStruct [ : ])))
+          )
+        )
+      )
+      (endOfStatement ;)
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+emptyOrderedStructColon = []
+/*======*/

@@ -677,7 +677,7 @@ implicitStruct
   : lc=LEFTCURLYBRACKET implicitStructElements? RIGHTCURLYBRACKET //-> ^(IMPLICITSTRUCT[$lc] implicitStructElements?)
   ;
 implicitOrderedStruct
-  : lc=LEFTBRACKET implicitStructElements RIGHTBRACKET
+  : lc=LEFTBRACKET (emptyDeclaration=( COLON | EQUALSOP )  | implicitStructElements) RIGHTBRACKET
   ;
   
 implicitStructElements

@@ -1,0 +1,58 @@
+/*===TOKENS===*/
+IDENTIFIER               <orderedStructColon>
+'='                      <=>
+'['                      <[>
+IDENTIFIER               <a>
+':'                      <:>
+INTEGER_LITERAL          <1>
+','                      <,>
+IDENTIFIER               <b>
+':'                      <:>
+INTEGER_LITERAL          <2>
+']'                      <]>
+';'                      <;>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (assignmentExpression
+        (startExpression
+          (baseExpression
+            (unaryExpression (memberExpression (identifier orderedStructColon)))
+          )
+        )
+        =
+        (startExpression
+          (baseExpression
+            (unaryExpression
+              (primaryExpression
+                (implicitOrderedStruct
+                  [
+                  (implicitStructElements
+                    (implicitStructExpression
+                      (implicitStructKeyExpression (multipartIdentifier (identifier a)))
+                      :
+                      (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                    )
+                    ,
+                    (implicitStructExpression
+                      (implicitStructKeyExpression (multipartIdentifier (identifier b)))
+                      :
+                      (baseExpression (unaryExpression (primaryExpression (literalExpression 2))))
+                    )
+                  )
+                  ]
+                )
+              )
+            )
+          )
+        )
+      )
+      (endOfStatement ;)
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+orderedStructColon = [a:1,b:2]
+/*======*/
