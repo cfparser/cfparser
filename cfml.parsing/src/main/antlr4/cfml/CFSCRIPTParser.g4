@@ -498,7 +498,8 @@ memberExpression
   : (functionCall
   	| newComponentExpression
     | firstidentifier=identifier
-  	| parentheticalExpression)
+  	| parentheticalExpression
+  	|arrayMemberExpression parentheticalMemberExpression?)
   ( 
     (DOT+|nullSafeOperator) qualifiedFunctionCall
     | arrayMemberExpression parentheticalMemberExpression?

@@ -1,0 +1,95 @@
+/*===TOKENS===*/
+SWITCH                   <switch>
+'('                      <(>
+IDENTIFIER               <id>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+CASE                     <case>
+'-'                      <->
+INTEGER_LITERAL          <1>
+':'                      <:>
+Hidden:NEWLINE                  <>
+RETURN                   <return>
+OPEN_STRING              <">
+STRING_LITERAL           <new>
+CLOSE_STRING             <">
+';'                      <;>
+Hidden:NEWLINE                  <>
+DEFAULT                  <default>
+':'                      <:>
+Hidden:NEWLINE                  <>
+RETURN                   <return>
+OPEN_STRING              <">
+STRING_LITERAL           <existing>
+CLOSE_STRING             <">
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (switchStatement
+        switch
+        (condition
+          (
+          (baseExpression (unaryExpression (memberExpression (identifier id))))
+          )
+        )
+        {
+        (caseStatement
+          case
+          (constantExpression - 1)
+          :
+          (statement
+            (returnStatement
+              return
+              (anExpression
+                (startExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart new) "))
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            (endOfStatement ;)
+          )
+        )
+        (caseStatement
+          default
+          :
+          (statement
+            (returnStatement
+              return
+              (anExpression
+                (startExpression
+                  (baseExpression
+                    (unaryExpression
+                      (primaryExpression
+                        (literalExpression (stringLiteral " (stringLiteralPart existing) "))
+                      )
+                    )
+                  )
+                )
+              )
+            )
+            (endOfStatement ;)
+          )
+        )
+        }
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+switch (id){
+case -1:return 'new';default:return 'existing';
+}
+/*======*/

@@ -1,0 +1,62 @@
+/*===TOKENS===*/
+IF                       <if>
+'('                      <(>
+'!'                      <!>
+'['                      <[>
+OPEN_STRING              <'>
+STRING_LITERAL           <all>
+CLOSE_STRING             <'>
+']'                      <]>
+'.'                      <.>
+IDENTIFIER               <foo>
+'('                      <(>
+')'                      <)>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (ifStatement
+        if
+        (condition
+          (
+          (baseExpression
+            (notExpression
+              !
+              (unaryExpression
+                (memberExpression
+                  (arrayMemberExpression
+                    [
+                    (startExpression
+                      (baseExpression
+                        (unaryExpression
+                          (primaryExpression
+                            (literalExpression (stringLiteral ' (stringLiteralPart all) '))
+                          )
+                        )
+                      )
+                    )
+                    ]
+                  )
+                  .
+                  (qualifiedFunctionCall (identifier foo) ( argumentList ))
+                )
+              )
+            )
+          )
+          )
+        )
+        (statement (compoundStatement { }))
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+if(!['all'].foo() )   {
+
+  }
+/*======*/
