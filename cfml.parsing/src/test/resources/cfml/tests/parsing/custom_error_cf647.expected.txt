@@ -1,0 +1,86 @@
+/*===TOKENS===*/
+TRY                      <try>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+CATCH                    <catch>
+'('                      <(>
+IDENTIFIER               <org>
+'.'                      <.>
+IDENTIFIER               <example>
+'.'                      <.>
+IDENTIFIER               <whateverError>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+CATCH                    <catch>
+'('                      <(>
+IDENTIFIER               <org>
+'.'                      <.>
+IDENTIFIER               <example>
+'.'                      <.>
+IDENTIFIER               <whateverError>
+IDENTIFIER               <local>
+'.'                      <.>
+IDENTIFIER               <foo>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (element
+    (statement
+      (tryCatchStatement
+        try
+        (statement (compoundStatement { }))
+        (catchCondition
+          catch
+          (
+          (multipartIdentifier
+            (identifier org)
+            .
+            (identifierOrReservedWord (identifier example))
+            .
+            (identifierOrReservedWord (identifier whateverError))
+          )
+          )
+          (compoundStatement { })
+        )
+        (catchCondition
+          catch
+          (
+          (typeSpec
+            (multipartIdentifier
+              (identifier org)
+              .
+              (identifierOrReservedWord (identifier example))
+              .
+              (identifierOrReservedWord (identifier whateverError))
+            )
+          )
+          (multipartIdentifier
+            (identifier local)
+            .
+            (identifierOrReservedWord (identifier foo))
+          )
+          )
+          (compoundStatement { })
+        )
+      )
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+try{
+
+}catch(org.example.whateverError)
+{
+
+}catch(org.example.whateverError local.foo)
+{
+
+}
+/*======*/

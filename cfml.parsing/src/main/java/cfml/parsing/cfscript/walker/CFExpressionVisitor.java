@@ -143,7 +143,8 @@ public class CFExpressionVisitor extends CFSCRIPTParserBaseVisitor<CFExpression>
 		if (ctx.floatingPointExpression() != null) {
 			return visitFloatingPointExpression(ctx.floatingPointExpression());
 		} else if (ctx.MINUS() != null) {
-			return new CFUnaryExpression(ctx.MINUS().getSymbol(), visitConstantExpression(ctx.constantExpression()));
+			return new CFUnaryExpression(ctx.MINUS().getSymbol(), ctx.constantExpression() != null
+					? visitConstantExpression(ctx.constantExpression()) : new CFLiteral(ctx.INTEGER_LITERAL().getSymbol()));
 		} else if (ctx.LEFTPAREN() != null) {
 			return new CFUnaryExpression(ctx.LEFTPAREN().getSymbol(), visitConstantExpression(ctx.constantExpression()));
 		} else if (ctx.stringLiteral() != null) {

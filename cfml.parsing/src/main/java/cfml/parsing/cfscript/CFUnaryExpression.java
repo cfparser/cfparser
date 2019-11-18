@@ -15,7 +15,7 @@ public class CFUnaryExpression extends CFExpression implements java.io.Serializa
 	
 	private int kind;
 	private CFExpression sub;
-	private boolean prefixop=true;
+	private boolean prefixop = true;
 	
 	public CFUnaryExpression(org.antlr.v4.runtime.Token _t, CFExpression _sub) {
 		super(_t);
@@ -35,12 +35,12 @@ public class CFUnaryExpression extends CFExpression implements java.io.Serializa
 			sub.setParent(this);
 		}
 	}
-
+	
 	@Override
 	public byte getType() {
 		return CFExpression.UNARY;
 	}
-
+	
 	public boolean isPrefixop() {
 		return prefixop;
 	}

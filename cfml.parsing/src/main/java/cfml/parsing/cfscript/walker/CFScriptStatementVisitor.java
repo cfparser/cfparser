@@ -219,8 +219,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		// System.out.println("visitParameter");
 		
 		CFExpression defaultExpr = (ctx.startExpression() != null)
-				? cfExpressionVisitor.visitStartExpression(ctx.startExpression())
-				: null;
+				? cfExpressionVisitor.visitStartExpression(ctx.startExpression()) : null;
 		CFFunctionParameter functionParameter = new CFFunctionParameter(
 				(CFIdentifier) cfExpressionVisitor.visitIdentifier(ctx.identifier()), ctx.REQUIRED() != null,
 				getText(ctx.parameterType()), defaultExpr);
@@ -353,8 +352,9 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		// System.out.println("visitTryCatchStatement");
 		List<CFCatchStatement> _catches = new ArrayList<CFCatchStatement>();
 		for (CatchConditionContext catchCond : ctx.catchCondition()) {
-			CFCatchStatement clause = new CFCatchStatement(catchCond.typeSpec().getText(),
-					(CFIdentifier) cfExpressionVisitor.visit(catchCond.identifier()), visit(catchCond.compoundStatement()));
+			CFCatchStatement clause = new CFCatchStatement(catchCond.typeSpec() != null ? catchCond.typeSpec().getText() : null,
+					(CFIdentifier) cfExpressionVisitor.visit(catchCond.multipartIdentifier()),
+					visit(catchCond.compoundStatement()));
 			_catches.add(clause);
 			// System.out.println("visitTryCatchStatement." + visit(catchCond.compoundStatement()).Decompile(0));
 		}
@@ -366,11 +366,11 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	@Override
 	public CFScriptStatement visitCatchCondition(CatchConditionContext ctx) {
 		TypeSpecContext type = ctx.typeSpec();
-		if (type.stringLiteral()!=null)
-			return new CFCatchStatement(type.stringLiteral().getText(), (CFIdentifier) visit(ctx.identifier()),
-				visit(ctx.compoundStatement()));
+		if (type.stringLiteral() != null)
+			return new CFCatchStatement(type.stringLiteral().getText(), (CFIdentifier) visit(ctx.multipartIdentifier()),
+					visit(ctx.compoundStatement()));
 		else
-			return new CFCatchStatement((CFIdentifier) visit(ctx.typeSpec()), (CFIdentifier) visit(ctx.identifier()),
+			return new CFCatchStatement((CFIdentifier) visit(ctx.typeSpec()), (CFIdentifier) visit(ctx.multipartIdentifier()),
 					visit(ctx.compoundStatement()));
 	}
 	

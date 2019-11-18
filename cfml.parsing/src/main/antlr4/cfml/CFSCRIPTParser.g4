@@ -184,7 +184,7 @@ tryCatchStatement
   ;
   
 catchCondition
-  : CATCH LEFTPAREN typeSpec? identifier RIGHTPAREN compoundStatement
+  : CATCH LEFTPAREN typeSpec? multipartIdentifier RIGHTPAREN compoundStatement
   ;
 
 finallyStatement

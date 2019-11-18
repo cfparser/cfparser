@@ -82,8 +82,10 @@ public class CFCatchStatement implements CFScriptStatement {
 	public String Decompile(int indent) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("catch(");
-		sb.append(type);
-		sb.append(' ');
+		if (type != null) {
+			sb.append(type);
+			sb.append(' ');
+		}
 		sb.append(var);
 		sb.append(")\n");
 		sb.append(body.Decompile(0));
