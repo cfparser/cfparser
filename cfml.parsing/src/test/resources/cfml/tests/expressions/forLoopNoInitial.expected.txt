@@ -443,1129 +443,1129 @@ Hidden:NEWLINE                  <>
 '}'                      <}>
 /*===TREE===*/
 (scriptBlock
-  (componentDeclaration
-    component
-    (componentGuts
-      {
-      (element
-        (functionDeclaration
-          (accessType private)
-          (typeSpec (multipartIdentifier (identifier void)))
-          function
-          (identifier compileSource)
-          (
-          parameterList
-          )
-          (functionAttribute
-            (identifier hint)
-            =
-            (constantExpression
-              (stringLiteral " (stringLiteralPart compile dynamic source) ")
-            )
-          )
-          (compoundStatement
-            {
-            (statement
-              (localAssignmentExpression
-                var
-                (startExpression
-                  (baseExpression (unaryExpression (memberExpression (identifier dir))))
-                )
-                =
-                (startExpression
-                  (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-                )
-              )
-              (endOfStatement ;)
-            )
-            (statement
-              (localAssignmentExpression
-                var
-                (startExpression
-                  (baseExpression (unaryExpression (memberExpression (identifier path))))
-                )
-                =
-                (startExpression
-                  (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-                )
-              )
-              (endOfStatement ;)
-            )
-            (statement
-              (localAssignmentExpression
-                var
-                (startExpression
-                  (baseExpression (unaryExpression (memberExpression (identifier paths))))
-                )
-                =
-                (startExpression
-                  (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-                )
-              )
-              (endOfStatement ;)
-            )
-            (statement
-              (localAssignmentExpression
-                var
-                (startExpression
-                  (baseExpression
-                    (unaryExpression (memberExpression (identifier (cfmlFunction file))))
-                  )
-                )
-                =
-                (startExpression
-                  (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-                )
-              )
-              (endOfStatement ;)
-            )
-            (statement
-              (localAssignmentExpression
-                var
-                (startExpression
-                  (baseExpression (unaryExpression (memberExpression (identifier counter))))
-                )
-                =
-                (startExpression
-                  (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
-                )
-              )
-              (endOfStatement ;)
-            )
-            (statement
-              (localAssignmentExpression
-                var
-                (startExpression
-                  (baseExpression (unaryExpression (memberExpression (identifier len))))
-                )
-                =
-                (startExpression
-                  (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-                )
-              )
-              (endOfStatement ;)
-            )
-            (statement
-              (localAssignmentExpression
-                var
-                (startExpression
-                  (baseExpression (unaryExpression (memberExpression (identifier directories))))
-                )
-                =
-                (startExpression
-                  (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
-                )
-              )
-              (endOfStatement ;)
-            )
-            (statement
-              (localAssignmentExpression
-                var
-                (startExpression
-                  (baseExpression (unaryExpression (memberExpression (identifier jarName))))
-                )
-                =
-                (startExpression
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression
-                        (functionCall
-                          (identifier calculateJarName)
-                          (
-                          (argumentList
-                            (argument
-                              (startExpression
-                                (baseExpression
-                                  (unaryExpression
-                                    (memberExpression
-                                      (functionCall (identifier getSourceDirectories) ( argumentList ))
-                                    )
-                                  )
-                                )
-                              )
-                            )
-                          )
-                          )
-                        )
-                      )
-                    )
-                  )
-                )
-              )
-              (endOfStatement ;)
-            )
-            (statement
-              (localAssignmentExpression
-                var
-                (startExpression
-                  (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                )
-                =
-                (startExpression
-                  (baseExpression
-                    (baseExpression
-                      (baseExpression
-                        (unaryExpression
-                          (memberExpression
-                            (functionCall (identifier getCompileDirectory) ( argumentList ))
-                          )
-                        )
-                      )
-                      &
-                      (baseExpression
-                        (unaryExpression
-                          (primaryExpression
-                            (literalExpression (stringLiteral " (stringLiteralPart /) "))
-                          )
-                        )
-                      )
-                    )
-                    &
-                    (baseExpression (unaryExpression (memberExpression (identifier jarName))))
-                  )
-                )
-              )
-              (endOfStatement ;)
-            )
-            (statement
-              (ifStatement
-                if
-                (condition
-                  (
-                  (baseExpression
-                    (unaryExpression
-                      (memberExpression
-                        (functionCall
-                          (identifier fileExists)
-                          (
-                          (argumentList
-                            (argument
-                              (startExpression
-                                (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                              )
-                            )
-                          )
-                          )
-                        )
-                      )
-                    )
-                  )
-                  )
-                )
-                (statement
-                  (compoundStatement
-                    {
-                    (statement
-                      (ifStatement
-                        if
-                        (condition
-                          (
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression (functionCall (identifier isTrustedSource) ( argumentList )))
-                            )
-                          )
-                          )
-                        )
-                        (statement
-                          (compoundStatement
-                            {
-                            (statement
-                              (assignmentExpression
-                                (startExpression
-                                  (baseExpression
-                                    (unaryExpression (memberExpression (identifier (cfmlFunction file))))
-                                  )
-                                )
-                                =
-                                (startExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (memberExpression
-                                        (functionCall
-                                          (identifier createObject)
-                                          (
-                                          (argumentList
-                                            (argument
-                                              (startExpression
-                                                (baseExpression
-                                                  (unaryExpression
-                                                    (primaryExpression
-                                                      (literalExpression (stringLiteral " (stringLiteralPart java) "))
-                                                    )
-                                                  )
-                                                )
-                                              )
-                                            )
-                                            ,
-                                            (argument
-                                              (startExpression
-                                                (baseExpression
-                                                  (unaryExpression
-                                                    (primaryExpression
-                                                      (literalExpression (stringLiteral " (stringLiteralPart java.io.File) "))
-                                                    )
-                                                  )
-                                                )
-                                              )
-                                            )
-                                          )
-                                          )
-                                        )
-                                        .
-                                        (qualifiedFunctionCall
-                                          (identifier init)
-                                          (
-                                          (argumentList
-                                            (argument
-                                              (startExpression
-                                                (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                                              )
-                                            )
-                                          )
-                                          )
-                                        )
-                                      )
-                                    )
-                                  )
-                                )
-                              )
-                              (endOfStatement ;)
-                            )
-                            (statement
-                              (startExpression
-                                (baseExpression
-                                  (unaryExpression
-                                    (memberExpression
-                                      (functionCall (identifier getURLClassLoader) ( argumentList ))
-                                      .
-                                      (qualifiedFunctionCall
-                                        (identifier addURL)
-                                        (
-                                        (argumentList
-                                          (argument
-                                            (startExpression
-                                              (baseExpression
-                                                (unaryExpression
-                                                  (memberExpression
-                                                    (identifier (cfmlFunction file))
-                                                    .
-                                                    (qualifiedFunctionCall (identifier toURL) ( argumentList ))
-                                                  )
-                                                )
-                                              )
-                                            )
-                                          )
-                                        )
-                                        )
-                                      )
-                                    )
-                                  )
-                                )
-                              )
-                              ;
-                            )
-                            (statement (returnStatement return) (endOfStatement ;))
-                            }
-                          )
-                        )
-                        else
-                        (statement
-                          (compoundStatement
-                            {
-                            (statement
-                              (tagOperatorStatement
-                                (cfmlfunctionStatement
-                                  (cfmlFunction file)
-                                  (paramStatementAttributes
-                                    (param
-                                      (multipartIdentifier (identifier action))
-                                      =
-                                      (startExpression
-                                        (baseExpression
-                                          (unaryExpression
-                                            (primaryExpression
-                                              (literalExpression (stringLiteral " (stringLiteralPart delete) "))
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                    (param
-                                      (multipartIdentifier (identifier (cfmlFunction file)))
-                                      =
-                                      (startExpression
-                                        (baseExpression
-                                          (unaryExpression
-                                            (primaryExpression
-                                              (literalExpression
-                                                (stringLiteral
-                                                  "
-                                                  #
-                                                  (anExpression
-                                                    (startExpression
-                                                      (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                                                    )
-                                                  )
-                                                  #
-                                                  "
-                                                )
-                                              )
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                  )
-                                  (compoundStatement { })
-                                )
-                              )
-                            )
-                            (statement ;)
-                            }
-                          )
-                        )
-                      )
-                    )
-                    }
-                  )
-                )
-              )
-            )
-            (statement
-              (tryCatchStatement
-                try
-                (statement
-                  (compoundStatement
-                    {
-                    (statement
-                      (assignmentExpression
-                        (startExpression
-                          (baseExpression (unaryExpression (memberExpression (identifier path))))
-                        )
-                        =
-                        (startExpression
-                          (baseExpression
-                            (baseExpression
-                              (baseExpression
-                                (unaryExpression
-                                  (memberExpression
-                                    (functionCall (identifier getCompileDirectory) ( argumentList ))
-                                  )
-                                )
-                              )
-                              &
-                              (baseExpression
-                                (unaryExpression
-                                  (primaryExpression
-                                    (literalExpression (stringLiteral " (stringLiteralPart /) "))
-                                  )
-                                )
-                              )
-                            )
-                            &
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression (functionCall (identifier createUUID) ( argumentList )))
-                              )
-                            )
-                          )
-                        )
-                      )
-                      (endOfStatement ;)
-                    )
-                    (statement
-                      (tagOperatorStatement
-                        (cfmlfunctionStatement
-                          (cfmlFunction directory)
-                          (paramStatementAttributes
-                            (param
-                              (multipartIdentifier (identifier action))
-                              =
-                              (startExpression
-                                (baseExpression
-                                  (unaryExpression
-                                    (primaryExpression
-                                      (literalExpression (stringLiteral " (stringLiteralPart create) "))
-                                    )
-                                  )
-                                )
-                              )
-                            )
-                            (param
-                              (multipartIdentifier (identifier (cfmlFunction directory)))
-                              =
-                              (startExpression
-                                (baseExpression
-                                  (unaryExpression
-                                    (primaryExpression
-                                      (literalExpression
-                                        (stringLiteral
-                                          "
-                                          #
-                                          (anExpression
-                                            (startExpression
-                                              (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                            )
-                                          )
-                                          #
-                                          "
-                                        )
-                                      )
-                                    )
-                                  )
-                                )
-                              )
-                            )
-                          )
-                          (compoundStatement { })
-                        )
-                      )
-                    )
-                    (statement ;)
-                    (statement
-                      (assignmentExpression
-                        (startExpression
-                          (baseExpression (unaryExpression (memberExpression (identifier directories))))
-                        )
-                        =
-                        (startExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (functionCall (identifier getSourceDirectories) ( argumentList ))
-                              )
-                            )
-                          )
-                        )
-                      )
-                      (endOfStatement ;)
-                    )
-                    (statement
-                      (assignmentExpression
-                        (startExpression
-                          (baseExpression (unaryExpression (memberExpression (identifier len))))
-                        )
-                        =
-                        (startExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (functionCall
-                                  (identifier arraylen)
-                                  (
-                                  (argumentList
-                                    (argument
-                                      (startExpression
-                                        (baseExpression (unaryExpression (memberExpression (identifier directories))))
-                                      )
-                                    )
-                                  )
-                                  )
-                                )
-                              )
-                            )
-                          )
-                        )
-                      )
-                      (endOfStatement ;)
-                    )
-                    (statement
-                      (forStatement
-                        for
-                        (
-                        (endOfStatement ;)
-                        (startExpression
-                          (baseExpression
-                            (baseExpression (unaryExpression (memberExpression (identifier counter))))
-                            (compareExpressionOperator lte)
-                            (baseExpression (unaryExpression (memberExpression (identifier len))))
-                          )
-                        )
-                        (endOfStatement ;)
-                        (assignmentExpression
-                          (startExpression
-                            (baseExpression (unaryExpression (memberExpression (identifier counter))))
-                          )
-                          =
-                          (startExpression
-                            (baseExpression
-                              (baseExpression (unaryExpression (memberExpression (identifier counter))))
-                              +
-                              (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
-                            )
-                          )
-                        )
-                        )
-                        (statement
-                          (compoundStatement
-                            {
-                            (statement
-                              (assignmentExpression
-                                (startExpression
-                                  (baseExpression (unaryExpression (memberExpression (identifier dir))))
-                                )
-                                =
-                                (startExpression
-                                  (baseExpression
-                                    (unaryExpression
-                                      (memberExpression
-                                        (identifier directories)
-                                        (arrayMemberExpression
-                                          [
-                                          (startExpression
-                                            (baseExpression (unaryExpression (memberExpression (identifier counter))))
-                                          )
-                                          ]
-                                        )
-                                      )
-                                    )
-                                  )
-                                )
-                              )
-                              (endOfStatement ;)
-                            )
-                            (statement
-                              (startExpression
-                                (baseExpression
-                                  (unaryExpression
-                                    (memberExpression
-                                      (functionCall
-                                        (identifier $directoryCopy)
-                                        (
-                                        (argumentList
-                                          (argument
-                                            (startExpression
-                                              (baseExpression (unaryExpression (memberExpression (identifier dir))))
-                                            )
-                                          )
-                                          ,
-                                          (argument
-                                            (startExpression
-                                              (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                            )
-                                          )
-                                        )
-                                        )
-                                      )
-                                    )
-                                  )
-                                )
-                              )
-                              ;
-                            )
-                            }
-                          )
-                        )
-                      )
-                    )
-                    (statement
-                      (assignmentExpression
-                        (startExpression
-                          (baseExpression (unaryExpression (memberExpression (identifier paths))))
-                        )
-                        =
-                        (startExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (functionCall
-                                  (identifier ArrayNew)
-                                  (
-                                  (argumentList
-                                    (argument
-                                      (startExpression
-                                        (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
-                                      )
-                                    )
-                                  )
-                                  )
-                                )
-                              )
-                            )
-                          )
-                        )
-                      )
-                      (endOfStatement ;)
-                    )
-                    (statement
-                      (startExpression
-                        (baseExpression
-                          (unaryExpression
-                            (memberExpression
-                              (functionCall
-                                (identifier ArrayAppend)
-                                (
-                                (argumentList
-                                  (argument
-                                    (startExpression
-                                      (baseExpression (unaryExpression (memberExpression (identifier paths))))
-                                    )
-                                  )
-                                  ,
-                                  (argument
-                                    (startExpression
-                                      (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                    )
-                                  )
-                                )
-                                )
-                              )
-                            )
-                          )
-                        )
-                      )
-                      ;
-                    )
-                    (statement
-                      (assignmentExpression
-                        (startExpression
-                          (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                        )
-                        =
-                        (startExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (functionCall (identifier getJavaCompiler) ( argumentList ))
-                                .
-                                (qualifiedFunctionCall
-                                  (identifier compile)
-                                  (
-                                  (argumentList
-                                    (argument
-                                      (startExpression
-                                        (baseExpression (unaryExpression (memberExpression (identifier paths))))
-                                      )
-                                    )
-                                    ,
-                                    (argument
-                                      (startExpression
-                                        (baseExpression
-                                          (unaryExpression
-                                            (memberExpression
-                                              (functionCall (identifier getURLClassLoader) ( argumentList ))
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                    ,
-                                    (argument
-                                      (startExpression
-                                        (baseExpression (unaryExpression (memberExpression (identifier jarName))))
-                                      )
-                                    )
-                                  )
-                                  )
-                                )
-                              )
-                            )
-                          )
-                        )
-                      )
-                      (endOfStatement ;)
-                    )
-                    (statement
-                      (assignmentExpression
-                        (startExpression
-                          (baseExpression
-                            (unaryExpression (memberExpression (identifier (cfmlFunction file))))
-                          )
-                        )
-                        =
-                        (startExpression
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (functionCall
-                                  (identifier createObject)
-                                  (
-                                  (argumentList
-                                    (argument
-                                      (startExpression
-                                        (baseExpression
-                                          (unaryExpression
-                                            (primaryExpression
-                                              (literalExpression (stringLiteral " (stringLiteralPart java) "))
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                    ,
-                                    (argument
-                                      (startExpression
-                                        (baseExpression
-                                          (unaryExpression
-                                            (primaryExpression
-                                              (literalExpression (stringLiteral " (stringLiteralPart java.io.File) "))
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                  )
-                                  )
-                                )
-                                .
-                                (qualifiedFunctionCall
-                                  (identifier init)
-                                  (
-                                  (argumentList
-                                    (argument
-                                      (startExpression
-                                        (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                                      )
-                                    )
-                                  )
-                                  )
-                                )
-                              )
-                            )
-                          )
-                        )
-                      )
-                      (endOfStatement ;)
-                    )
-                    (statement
-                      (startExpression
-                        (baseExpression
-                          (unaryExpression
-                            (memberExpression
-                              (functionCall (identifier getURLClassLoader) ( argumentList ))
-                              .
-                              (qualifiedFunctionCall
-                                (identifier addURL)
-                                (
-                                (argumentList
-                                  (argument
-                                    (startExpression
-                                      (baseExpression
-                                        (unaryExpression
-                                          (memberExpression
-                                            (identifier (cfmlFunction file))
-                                            .
-                                            (qualifiedFunctionCall (identifier toURL) ( argumentList ))
-                                          )
-                                        )
-                                      )
-                                    )
-                                  )
-                                )
-                                )
-                              )
-                            )
-                          )
-                        )
-                      )
-                      ;
-                    )
-                    (statement
-                      (ifStatement
-                        if
-                        (condition
-                          (
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (functionCall
-                                  (identifier directoryExists)
-                                  (
-                                  (argumentList
-                                    (argument
-                                      (startExpression
-                                        (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                      )
-                                    )
-                                  )
-                                  )
-                                )
-                              )
-                            )
-                          )
-                          )
-                        )
-                        (statement
-                          (compoundStatement
-                            {
-                            (statement
-                              (tagOperatorStatement
-                                (cfmlfunctionStatement
-                                  (cfmlFunction directory)
-                                  (paramStatementAttributes
-                                    (param
-                                      (multipartIdentifier (identifier action))
-                                      =
-                                      (startExpression
-                                        (baseExpression
-                                          (unaryExpression
-                                            (primaryExpression
-                                              (literalExpression (stringLiteral " (stringLiteralPart delete) "))
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                    (param
-                                      (multipartIdentifier (identifier recurse))
-                                      =
-                                      (startExpression
-                                        (baseExpression
-                                          (unaryExpression
-                                            (primaryExpression
-                                              (literalExpression (stringLiteral " (stringLiteralPart true) "))
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                    (param
-                                      (multipartIdentifier (identifier (cfmlFunction directory)))
-                                      =
-                                      (startExpression
-                                        (baseExpression
-                                          (unaryExpression
-                                            (primaryExpression
-                                              (literalExpression
-                                                (stringLiteral
-                                                  "
-                                                  #
-                                                  (anExpression
-                                                    (startExpression
-                                                      (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                                    )
-                                                  )
-                                                  #
-                                                  "
-                                                )
-                                              )
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                  )
-                                  (compoundStatement { })
-                                )
-                              )
-                            )
-                            (statement ;)
-                            }
-                          )
-                        )
-                      )
-                    )
-                    (statement
-                      (ifStatement
-                        if
-                        (condition
-                          (
-                          (baseExpression
-                            (baseExpression
-                              (unaryExpression
-                                (memberExpression
-                                  (functionCall
-                                    (identifier fileExists)
-                                    (
-                                    (argumentList
-                                      (argument
-                                        (startExpression
-                                          (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                                        )
-                                      )
-                                    )
-                                    )
-                                  )
-                                )
-                              )
-                            )
-                            AND
-                            (baseExpression
-                              (notExpression
-                                NOT
-                                (unaryExpression
-                                  (memberExpression (functionCall (identifier isTrustedSource) ( argumentList )))
-                                )
-                              )
-                            )
-                          )
-                          )
-                        )
-                        (statement
-                          (compoundStatement
-                            {
-                            (statement
-                              (tagOperatorStatement
-                                (cfmlfunctionStatement
-                                  (cfmlFunction file)
-                                  (paramStatementAttributes
-                                    (param
-                                      (multipartIdentifier (identifier action))
-                                      =
-                                      (startExpression
-                                        (baseExpression
-                                          (unaryExpression
-                                            (primaryExpression
-                                              (literalExpression (stringLiteral " (stringLiteralPart delete) "))
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                    (param
-                                      (multipartIdentifier (identifier (cfmlFunction file)))
-                                      =
-                                      (startExpression
-                                        (baseExpression
-                                          (unaryExpression
-                                            (primaryExpression
-                                              (literalExpression
-                                                (stringLiteral
-                                                  "
-                                                  #
-                                                  (anExpression
-                                                    (startExpression
-                                                      (baseExpression (unaryExpression (memberExpression (identifier jar))))
-                                                    )
-                                                  )
-                                                  #
-                                                  "
-                                                )
-                                              )
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                  )
-                                  (compoundStatement { })
-                                )
-                              )
-                            )
-                            }
-                          )
-                        )
-                      )
-                    )
-                    }
-                  )
-                )
-                (catchCondition
-                  catch
-                  (
-                  (typeSpec (type any))
-                  (identifier e)
-                  )
-                  (compoundStatement
-                    {
-                    (statement
-                      (ifStatement
-                        if
-                        (condition
-                          (
-                          (baseExpression
-                            (unaryExpression
-                              (memberExpression
-                                (functionCall
-                                  (identifier directoryExists)
-                                  (
-                                  (argumentList
-                                    (argument
-                                      (startExpression
-                                        (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                      )
-                                    )
-                                  )
-                                  )
-                                )
-                              )
-                            )
-                          )
-                          )
-                        )
-                        (statement
-                          (compoundStatement
-                            {
-                            (statement
-                              (tagOperatorStatement
-                                (cfmlfunctionStatement
-                                  (cfmlFunction directory)
-                                  (paramStatementAttributes
-                                    (param
-                                      (multipartIdentifier (identifier action))
-                                      =
-                                      (startExpression
-                                        (baseExpression
-                                          (unaryExpression
-                                            (primaryExpression
-                                              (literalExpression (stringLiteral " (stringLiteralPart delete) "))
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                    (param
-                                      (multipartIdentifier (identifier recurse))
-                                      =
-                                      (startExpression
-                                        (baseExpression
-                                          (unaryExpression
-                                            (primaryExpression
-                                              (literalExpression (stringLiteral " (stringLiteralPart true) "))
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                    (param
-                                      (multipartIdentifier (identifier (cfmlFunction directory)))
-                                      =
-                                      (startExpression
-                                        (baseExpression
-                                          (unaryExpression
-                                            (primaryExpression
-                                              (literalExpression
-                                                (stringLiteral
-                                                  "
-                                                  #
-                                                  (anExpression
-                                                    (startExpression
-                                                      (baseExpression (unaryExpression (memberExpression (identifier path))))
-                                                    )
-                                                  )
-                                                  #
-                                                  "
-                                                )
-                                              )
-                                            )
-                                          )
-                                        )
-                                      )
-                                    )
-                                  )
-                                  (compoundStatement { })
-                                )
-                              )
-                            )
-                            (statement ;)
-                            }
-                          )
-                        )
-                      )
-                    )
-                    (statement (tagOperatorStatement (rethrowStatment rethrow (endOfStatement ;))))
-                    }
-                  )
-                )
-              )
-            )
-            }
-          )
-        )
-      )
-      }
-    )
-  )
+ (componentDeclaration
+ component
+ (componentGuts
+ {
+ (element
+ (functionDeclaration
+ (accessType private)
+ (typeSpec (multipartIdentifier (identifier void)))
+ function
+ (identifier compileSource)
+ (
+ parameterList
+ )
+ (functionAttribute
+ (identifier hint)
+ =
+ (constantExpression
+ (stringLiteral " (stringLiteralPart compile dynamic source) ")
+ )
+ )
+ (compoundStatement
+ {
+ (statement
+ (localAssignmentExpression
+ var
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier dir))))
+ )
+ =
+ (startExpression
+ (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (localAssignmentExpression
+ var
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier path))))
+ )
+ =
+ (startExpression
+ (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (localAssignmentExpression
+ var
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier paths))))
+ )
+ =
+ (startExpression
+ (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (localAssignmentExpression
+ var
+ (startExpression
+ (baseExpression
+ (unaryExpression (memberExpression (identifier (cfmlFunction file))))
+ )
+ )
+ =
+ (startExpression
+ (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (localAssignmentExpression
+ var
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier counter))))
+ )
+ =
+ (startExpression
+ (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (localAssignmentExpression
+ var
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier len))))
+ )
+ =
+ (startExpression
+ (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (localAssignmentExpression
+ var
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier directories))))
+ )
+ =
+ (startExpression
+ (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (localAssignmentExpression
+ var
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier jarName))))
+ )
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall
+ (identifier calculateJarName)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall (identifier getSourceDirectories) ( argumentList ))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (localAssignmentExpression
+ var
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier jar))))
+ )
+ =
+ (startExpression
+ (baseExpression
+ (baseExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall (identifier getCompileDirectory) ( argumentList ))
+ )
+ )
+ )
+ &
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression (stringLiteral " (stringLiteralPart /) "))
+ )
+ )
+ )
+ )
+ &
+ (baseExpression (unaryExpression (memberExpression (identifier jarName))))
+ )
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (ifStatement
+ if
+ (condition
+ (
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall
+ (identifier fileExists)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier jar))))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (statement
+ (compoundStatement
+ {
+ (statement
+ (ifStatement
+ if
+ (condition
+ (
+ (baseExpression
+ (unaryExpression
+ (memberExpression (functionCall (identifier isTrustedSource) ( argumentList )))
+ )
+ )
+ )
+ )
+ (statement
+ (compoundStatement
+ {
+ (statement
+ (assignmentExpression
+ (startExpression
+ (baseExpression
+ (unaryExpression (memberExpression (identifier (cfmlFunction file))))
+ )
+ )
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall
+ (identifier createObject)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression (stringLiteral " (stringLiteralPart java) "))
+ )
+ )
+ )
+ )
+ )
+ ,
+ (argument
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression (stringLiteral " (stringLiteralPart java.io.File) "))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ .
+ (qualifiedFunctionCall
+ (identifier init)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier jar))))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall (identifier getURLClassLoader) ( argumentList ))
+ .
+ (qualifiedFunctionCall
+ (identifier addURL)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (identifier (cfmlFunction file))
+ .
+ (qualifiedFunctionCall (identifier toURL) ( argumentList ))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ ;
+ )
+ (statement (returnStatement return) (endOfStatement ;))
+ }
+ )
+ )
+ else
+ (statement
+ (compoundStatement
+ {
+ (statement
+ (tagOperatorStatement
+ (cfmlfunctionStatement
+ (cfmlFunction file)
+ (paramStatementAttributes
+ (param
+ (multipartIdentifier (identifier action))
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression (stringLiteral " (stringLiteralPart delete) "))
+ )
+ )
+ )
+ )
+ )
+ (param
+ (multipartIdentifier (identifier (cfmlFunction file)))
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression
+ (stringLiteral
+ "
+ #
+ (anExpression
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier jar))))
+ )
+ )
+ #
+ "
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (compoundStatement { })
+ )
+ )
+ )
+ (statement ;)
+ }
+ )
+ )
+ )
+ )
+ }
+ )
+ )
+ )
+ )
+ (statement
+ (tryCatchStatement
+ try
+ (statement
+ (compoundStatement
+ {
+ (statement
+ (assignmentExpression
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier path))))
+ )
+ =
+ (startExpression
+ (baseExpression
+ (baseExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall (identifier getCompileDirectory) ( argumentList ))
+ )
+ )
+ )
+ &
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression (stringLiteral " (stringLiteralPart /) "))
+ )
+ )
+ )
+ )
+ &
+ (baseExpression
+ (unaryExpression
+ (memberExpression (functionCall (identifier createUUID) ( argumentList )))
+ )
+ )
+ )
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (tagOperatorStatement
+ (cfmlfunctionStatement
+ (cfmlFunction directory)
+ (paramStatementAttributes
+ (param
+ (multipartIdentifier (identifier action))
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression (stringLiteral " (stringLiteralPart create) "))
+ )
+ )
+ )
+ )
+ )
+ (param
+ (multipartIdentifier (identifier (cfmlFunction directory)))
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression
+ (stringLiteral
+ "
+ #
+ (anExpression
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier path))))
+ )
+ )
+ #
+ "
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (compoundStatement { })
+ )
+ )
+ )
+ (statement ;)
+ (statement
+ (assignmentExpression
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier directories))))
+ )
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall (identifier getSourceDirectories) ( argumentList ))
+ )
+ )
+ )
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (assignmentExpression
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier len))))
+ )
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall
+ (identifier arraylen)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier directories))))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (forStatement
+ for
+ (
+ (endOfStatement ;)
+ (startExpression
+ (baseExpression
+ (baseExpression (unaryExpression (memberExpression (identifier counter))))
+ (compareExpressionOperator lte)
+ (baseExpression (unaryExpression (memberExpression (identifier len))))
+ )
+ )
+ (endOfStatement ;)
+ (assignmentExpression
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier counter))))
+ )
+ =
+ (startExpression
+ (baseExpression
+ (baseExpression (unaryExpression (memberExpression (identifier counter))))
+ +
+ (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+ )
+ )
+ )
+ )
+ (statement
+ (compoundStatement
+ {
+ (statement
+ (assignmentExpression
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier dir))))
+ )
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (identifier directories)
+ (arrayMemberExpression
+ [
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier counter))))
+ )
+ ]
+ )
+ )
+ )
+ )
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall
+ (identifier $directoryCopy)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier dir))))
+ )
+ )
+ ,
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier path))))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ ;
+ )
+ }
+ )
+ )
+ )
+ )
+ (statement
+ (assignmentExpression
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier paths))))
+ )
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall
+ (identifier ArrayNew)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall
+ (identifier ArrayAppend)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier paths))))
+ )
+ )
+ ,
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier path))))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ ;
+ )
+ (statement
+ (assignmentExpression
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier jar))))
+ )
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall (identifier getJavaCompiler) ( argumentList ))
+ .
+ (qualifiedFunctionCall
+ (identifier compile)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier paths))))
+ )
+ )
+ ,
+ (argument
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall (identifier getURLClassLoader) ( argumentList ))
+ )
+ )
+ )
+ )
+ )
+ ,
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier jarName))))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (assignmentExpression
+ (startExpression
+ (baseExpression
+ (unaryExpression (memberExpression (identifier (cfmlFunction file))))
+ )
+ )
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall
+ (identifier createObject)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression (stringLiteral " (stringLiteralPart java) "))
+ )
+ )
+ )
+ )
+ )
+ ,
+ (argument
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression (stringLiteral " (stringLiteralPart java.io.File) "))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ .
+ (qualifiedFunctionCall
+ (identifier init)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier jar))))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (endOfStatement ;)
+ )
+ (statement
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall (identifier getURLClassLoader) ( argumentList ))
+ .
+ (qualifiedFunctionCall
+ (identifier addURL)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (identifier (cfmlFunction file))
+ .
+ (qualifiedFunctionCall (identifier toURL) ( argumentList ))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ ;
+ )
+ (statement
+ (ifStatement
+ if
+ (condition
+ (
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall
+ (identifier directoryExists)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier path))))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (statement
+ (compoundStatement
+ {
+ (statement
+ (tagOperatorStatement
+ (cfmlfunctionStatement
+ (cfmlFunction directory)
+ (paramStatementAttributes
+ (param
+ (multipartIdentifier (identifier action))
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression (stringLiteral " (stringLiteralPart delete) "))
+ )
+ )
+ )
+ )
+ )
+ (param
+ (multipartIdentifier (identifier recurse))
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression (stringLiteral " (stringLiteralPart true) "))
+ )
+ )
+ )
+ )
+ )
+ (param
+ (multipartIdentifier (identifier (cfmlFunction directory)))
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression
+ (stringLiteral
+ "
+ #
+ (anExpression
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier path))))
+ )
+ )
+ #
+ "
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (compoundStatement { })
+ )
+ )
+ )
+ (statement ;)
+ }
+ )
+ )
+ )
+ )
+ (statement
+ (ifStatement
+ if
+ (condition
+ (
+ (baseExpression
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall
+ (identifier fileExists)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier jar))))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ AND
+ (baseExpression
+ (notExpression
+ NOT
+ (unaryExpression
+ (memberExpression (functionCall (identifier isTrustedSource) ( argumentList )))
+ )
+ )
+ )
+ )
+ )
+ )
+ (statement
+ (compoundStatement
+ {
+ (statement
+ (tagOperatorStatement
+ (cfmlfunctionStatement
+ (cfmlFunction file)
+ (paramStatementAttributes
+ (param
+ (multipartIdentifier (identifier action))
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression (stringLiteral " (stringLiteralPart delete) "))
+ )
+ )
+ )
+ )
+ )
+ (param
+ (multipartIdentifier (identifier (cfmlFunction file)))
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression
+ (stringLiteral
+ "
+ #
+ (anExpression
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier jar))))
+ )
+ )
+ #
+ "
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (compoundStatement { })
+ )
+ )
+ )
+ }
+ )
+ )
+ )
+ )
+ }
+ )
+ )
+ (catchCondition
+ catch
+ (
+ (typeSpec (type any))
+ (multipartIdentifier (identifier e))
+ )
+ (compoundStatement
+ {
+ (statement
+ (ifStatement
+ if
+ (condition
+ (
+ (baseExpression
+ (unaryExpression
+ (memberExpression
+ (functionCall
+ (identifier directoryExists)
+ (
+ (argumentList
+ (argument
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier path))))
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (statement
+ (compoundStatement
+ {
+ (statement
+ (tagOperatorStatement
+ (cfmlfunctionStatement
+ (cfmlFunction directory)
+ (paramStatementAttributes
+ (param
+ (multipartIdentifier (identifier action))
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression (stringLiteral " (stringLiteralPart delete) "))
+ )
+ )
+ )
+ )
+ )
+ (param
+ (multipartIdentifier (identifier recurse))
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression (stringLiteral " (stringLiteralPart true) "))
+ )
+ )
+ )
+ )
+ )
+ (param
+ (multipartIdentifier (identifier (cfmlFunction directory)))
+ =
+ (startExpression
+ (baseExpression
+ (unaryExpression
+ (primaryExpression
+ (literalExpression
+ (stringLiteral
+ "
+ #
+ (anExpression
+ (startExpression
+ (baseExpression (unaryExpression (memberExpression (identifier path))))
+ )
+ )
+ #
+ "
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ )
+ (compoundStatement { })
+ )
+ )
+ )
+ (statement ;)
+ }
+ )
+ )
+ )
+ )
+ (statement (tagOperatorStatement (rethrowStatment rethrow (endOfStatement ;))))
+ }
+ )
+ )
+ )
+ )
+ }
+ )
+ )
+ )
+ }
+ )
+ )
 )
 /*======*/

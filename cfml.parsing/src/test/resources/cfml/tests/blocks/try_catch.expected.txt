@@ -138,7 +138,7 @@ Hidden:NEWLINE                  <>
           catch
           (
           (typeSpec (type any))
-          (identifier e)
+          (multipartIdentifier (identifier e))
           )
           (compoundStatement
             {
@@ -185,7 +185,7 @@ Hidden:NEWLINE                  <>
           catch
           (
           (typeSpec (type any))
-          (identifier e)
+          (multipartIdentifier (identifier e))
           )
           (compoundStatement
             {
