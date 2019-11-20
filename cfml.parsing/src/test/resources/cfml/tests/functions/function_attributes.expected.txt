@@ -64,7 +64,7 @@ Hidden:NEWLINE                  <>
           (functionAttribute
             (identifier cachedwithin)
             =
-            (functionCall
+            (simpleFunctionCall
               (identifier createTimeSpan)
               (
               (argumentList
