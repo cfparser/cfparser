@@ -550,4 +550,78 @@ public class TestScriptParser {
 		// assertEquals("setNumberOwners(val(arguments.f['ownership_numberOwners']))", scriptStatement.Decompile(0));
 	}
 	
+	@Test
+	public void testParseStaticSyntax() {
+		String path = "";
+		try {
+			path = new URL("file:src/test/resources/cfml/static.cfc").getPath();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CFScriptStatement scriptStatement = null;
+		try {
+			scriptStatement = fCfmlParser.parseScriptFile(path);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail("whoops! " + e.getMessage());
+		}
+		if (fCfmlParser.getMessages().size() > 0) {
+			fail("whoops! " + fCfmlParser.getMessages());
+		}
+		
+		System.out.println(scriptStatement.toString());
+		assertNotNull(scriptStatement);
+	}
+	
+	@Test
+	public void testParseAbstractSyntax() {
+		String path = "";
+		try {
+			path = new URL("file:src/test/resources/cfml/abstract_modifier.cfc").getPath();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CFScriptStatement scriptStatement = null;
+		try {
+			scriptStatement = fCfmlParser.parseScriptFile(path);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail("whoops! " + e.getMessage());
+		}
+		if (fCfmlParser.getMessages().size() > 0) {
+			fail("whoops! " + fCfmlParser.getMessages());
+		}
+		
+		System.out.println(scriptStatement.toString());
+		assertNotNull(scriptStatement);
+	}
+	
+	@Test
+	public void testParseFinalSyntax() {
+		String path = "";
+		try {
+			path = new URL("file:src/test/resources/cfml/final_modifier.cfc").getPath();
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		CFScriptStatement scriptStatement = null;
+		try {
+			scriptStatement = fCfmlParser.parseScriptFile(path);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail("whoops! " + e.getMessage());
+		}
+		if (fCfmlParser.getMessages().size() > 0) {
+			fail("whoops! " + fCfmlParser.getMessages());
+		}
+		
+		System.out.println(scriptStatement.toString());
+		assertNotNull(scriptStatement);
+	}
 }

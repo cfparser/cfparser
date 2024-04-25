@@ -19,19 +19,35 @@ cfscriptBlock
   ;
 
 componentDeclaration
-  : COMPONENT componentAttribute* componentGuts //-> ( COMPDECL componentAttribute* componentGuts)
+  : componentModifier? COMPONENT componentAttribute* componentGuts //-> ( COMPDECL componentAttribute* componentGuts)
   ;
 interfaceDeclaration
   : INTERFACE componentAttribute* componentGuts //-> ( COMPDECL componentAttribute* componentGuts)
   ;
 
+staticBlock
+  : STATIC LEFTCURLYBRACKET ( statement )* RIGHTCURLYBRACKET
+  ;
+
 element
   : functionDeclaration
+  | staticBlock
   | statement
   ;
 
+componentModifier
+  : ABSTRACT
+  | FINAL
+  ;
+
+modifier
+  : STATIC
+  | ABSTRACT
+  | FINAL
+  ;
+
 functionDeclaration
-  : accessType? typeSpec? FUNCTION identifier 
+  : modifier* accessType? typeSpec? FUNCTION identifier 
   	LEFTPAREN parameterList? RIGHTPAREN
   	functionAttribute* body=compoundStatement?
   ;
@@ -501,10 +517,10 @@ memberExpression
   	| parentheticalExpression
   	|arrayMemberExpression parentheticalMemberExpression?)
   ( 
-    (DOT+|nullSafeOperator) qualifiedFunctionCall
+    (DOT+|nullSafeOperator|DOUBLECOLUMN) qualifiedFunctionCall
     | arrayMemberExpression parentheticalMemberExpression?
-    | (DOT+|nullSafeOperator) primaryExpressionIRW 
-    | (DOT+|nullSafeOperator) identifier
+    | (DOT+|nullSafeOperator|DOUBLECOLUMN) primaryExpressionIRW 
+    | (DOT+|nullSafeOperator|DOUBLECOLUMN) identifier
   )*
 ;
   
@@ -609,6 +625,7 @@ identifier
 	:	(COMPONENT
 	| INTERFACE
 	| IDENTIFIER
+  | STATIC
   | CONTAIN
   | VAR
   | TO
