@@ -40,14 +40,14 @@ componentModifier
   | FINAL
   ;
 
-modifier
+functionModifier
   : STATIC
   | ABSTRACT
   | FINAL
   ;
 
 functionDeclaration
-  : modifier* accessType? typeSpec? FUNCTION identifier 
+  : functionModifier* accessType? typeSpec? FUNCTION identifier 
   	LEFTPAREN parameterList? RIGHTPAREN
   	functionAttribute* body=compoundStatement?
   ;
