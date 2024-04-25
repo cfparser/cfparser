@@ -10,5 +10,6 @@ component {
         writeOutput(static.test);
         writeOutput(compName::test);
         compName::runStatic();
+        long.component.name::member.function();
     }
 }

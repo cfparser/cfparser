@@ -549,15 +549,6 @@ javaCallMemberExpression
 	:primaryExpressionIRW LEFTPAREN argumentList RIGHTBRACKET 
 	;	
 
-memberExpressionSuffix
-  : indexSuffix
-  | propertyReferenceSuffix
-  ;
-
-propertyReferenceSuffix
-  : DOT LT* identifier
-  ;
-
 indexSuffix
   : LEFTBRACKET  LT* (primaryExpression | parentheticalExpression) LT* RIGHTBRACKET 
   ; 
@@ -615,7 +606,7 @@ argumentName
 
 multipartIdentifier
 	:
-		identifier ((DOT|nullSafeOperator) identifierOrReservedWord)*;
+		identifier ((DOT|nullSafeOperator|DOUBLECOLUMN) identifierOrReservedWord)*;
 
 nullSafeOperator
     :
