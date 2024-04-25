@@ -39,4 +39,6 @@
 			<td style="fred"></td>
 		</td>
 	</table>
+	<cfset test = compName::staticVariable >
+	<cfset test2 = compName::staticFunction() >
 </html>
