@@ -29,6 +29,7 @@ import cfml.CFSCRIPTParser.ExitStatementContext;
 import cfml.CFSCRIPTParser.ExpressionContext;
 import cfml.CFSCRIPTParser.ForStatementContext;
 import cfml.CFSCRIPTParser.FunctionAttributeContext;
+import cfml.CFSCRIPTParser.FunctionModifierContext;
 import cfml.CFSCRIPTParser.FunctionCallContext;
 import cfml.CFSCRIPTParser.FunctionDeclarationContext;
 import cfml.CFSCRIPTParser.IfStatementContext;
@@ -157,6 +158,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 	public CFScriptStatement visitFunctionDeclaration(FunctionDeclarationContext ctx) {
 		// System.out.println("visitFunctionDeclaration");
 		List<CFFunctionParameter> parameters = new ArrayList<CFFunctionParameter>();
+
 		aggregator.push(parameters);
 		if (ctx.parameterList() != null) {
 			visitChildren(ctx.parameterList());
@@ -172,10 +174,27 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 			attributes.put(name, value != null ? value : stringValue);
 		}
 		
+		boolean isAbstract = false;
+		boolean isFinal = false;
+		boolean isStatic = false;
+		for (FunctionModifierContext mod: ctx.functionModifier()) {
+			switch (getText(mod).toUpperCase()) {
+				case "ABSTRACT":
+					isAbstract = true;
+					break;
+				case "FINAL":
+					isFinal = true;
+					break;
+				case "STATIC":
+					isStatic = true;
+					break;
+			}
+		}
+
 		CFFuncDeclStatement funcDeclStatement = new CFFuncDeclStatement(ctx.FUNCTION().getSymbol(),
 				(CFIdentifier) visitExpression(ctx.identifier()), getText(ctx.accessType()),
 				(CFIdentifier) visitExpression(ctx.typeSpec()), parameters, attributes,
-				ctx.body == null ? null : visit(ctx.body));
+				ctx.body == null ? null : visit(ctx.body), isAbstract, isFinal, isStatic);
 		return funcDeclStatement;
 	}
 	
@@ -209,7 +228,7 @@ public class CFScriptStatementVisitor extends CFSCRIPTParserBaseVisitor<CFScript
 		
 		CFFuncDeclStatement funcDeclStatement = new CFFuncDeclStatement(ctx.FUNCTION().getSymbol(), (CFIdentifier) null,
 				getText(ctx.accessType()), (CFIdentifier) visitExpression(ctx.typeSpec()), parameters, attributes,
-				visit(ctx.body));
+				visit(ctx.body), false, false, false);
 		return funcDeclStatement;
 	}
 	

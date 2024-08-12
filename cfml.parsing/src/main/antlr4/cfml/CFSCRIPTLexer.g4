@@ -160,6 +160,9 @@ SWITCH: [sS][wW][iI][tT][cC][hH];
 CASE: [cC][aA][sS][eE];
 DEFAULT: [dD][eE][fF][aA][uU][lL][tT];
 FINALLY: [fF][iI][nN][aA][lL][lL][yY];
+FINAL: [fF][iI][nN][aA][lL];
+ABSTRACT: [aA][Bb][sS][tT][Rr][aA][cC][tT];
+STATIC: [sS][tT][aA][tT][iI][cC];
 SCRIPTOPEN: '<' [cC] [fF] [sS] [cC] [rR] [iI] [pP] [tT] '>';
 SCRIPTCLOSE:'</' [cC] [fF] [sS] [cC] [rR] [iI] [pP] [tT] '>';
 // operators
@@ -196,6 +199,7 @@ RIGHTPAREN: ')';
 LEFTCURLYBRACKET: '{';
 RIGHTCURLYBRACKET: '}';
 QUESTIONMARK: '?';
+DOUBLECOLUMN: '::';
 // tag operators
 INCLUDE: [iI][nN][cC][lL][uU][dD][eE];
 IMPORT: [iI][mM][pP][oO][rR][tT];
@@ -368,7 +372,7 @@ DOUBLEHASH_SINGLE
 	: '##' -> type(DOUBLEHASH)
 ;
 STRING_LITERAL_SINGLE
-	: (~['#]+ | '\'\'' )* -> type(STRING_LITERAL)
+	: (~['#]+ | '\'\'' )+ -> type(STRING_LITERAL)
 ;
 HASH_SINGLE
 	: '#' -> type(POUND_SIGN),pushMode(HashMode),pushMode(DefaultMode)

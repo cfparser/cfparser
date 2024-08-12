@@ -25,10 +25,15 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 	
 	private byte access;
 	private CFIdentifier returnType;
+
+	private boolean abstractMod;
+	private boolean finalMod;
+	private boolean staticMod;
 	
 	// TODO: prevent function declared inside function. May want to do this elsewhere
 	public CFFuncDeclStatement(Token _t, CFIdentifier _name, String _access, CFIdentifier _returnType,
-			List<CFFunctionParameter> _formals, Map<CFExpression, CFExpression> _attr, CFScriptStatement _body) {
+			List<CFFunctionParameter> _formals, Map<CFExpression, CFExpression> _attr, CFScriptStatement _body, 
+			boolean isAbstract, boolean isFinal, boolean isStatic) {
 		super(_t);
 		name = _name;
 		formals = _formals;
@@ -37,6 +42,10 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 		}
 		body = _body;
 		returnType = _returnType;
+
+		abstractMod = isAbstract;
+		finalMod = isFinal;
+		staticMod = isStatic;
 		
 		access = UserDefinedFunction.ACCESS_PUBLIC;
 		if (_access != null) {
@@ -81,6 +90,19 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 	public String Decompile(int indent) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(Indent(indent));
+
+		if (finalMod) {
+			sb.append("final ");
+		}
+
+		if (abstractMod) {
+			sb.append("abstract ");
+		}
+
+		if (staticMod) {
+			sb.append("static ");
+		}
+
 		if (name != null) {
 			switch (access) {
 			case UserDefinedFunction.ACCESS_PUBLIC:
@@ -147,6 +169,18 @@ public class CFFuncDeclStatement extends CFParsedStatement {
 	
 	public byte getAccess() {
 		return access;
+	}
+	
+	public boolean isStatic() {
+		return staticMod;
+	}
+	
+	public boolean isFinal() {
+		return finalMod;
+	}
+	
+	public boolean isAbstract() {
+		return abstractMod;
 	}
 	
 	public CFIdentifier getReturnType() {
