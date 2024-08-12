@@ -35,10 +35,10 @@ import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
-import org.jdom.xpath.XPath;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.xpath.XPath;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -274,7 +274,7 @@ public class DictionaryManager {
 			try {
 				dictionaryConfigURL = new URL(DICTIONARY_DIR);
 				URL configurl = new URL(dictionaryConfigURL, "dictionaryconfig.xml");
-				org.jdom.Document document = builder.build(configurl);
+				org.jdom2.Document document = builder.build(configurl);
 				
 				XPath x = XPath.newInstance("//dictionary[@id='CF_DICTIONARY']/version[@key=\'" + versionkey
 						+ "\']/grammar[1]");

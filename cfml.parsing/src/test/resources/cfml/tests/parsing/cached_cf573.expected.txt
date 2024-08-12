@@ -1,0 +1,219 @@
+/*===TOKENS===*/
+COMPONENT                <component>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+PUBLIC                   <public>
+BOOLEAN                  <boolean>
+FUNCTION                 <function>
+IDENTIFIER               <getAPIVersion>
+'('                      <(>
+Hidden:NEWLINE                  <>
+REQUIRED                 <required>
+NUMERIC                  <numeric>
+IDENTIFIER               <requestedAPIVersion>
+Hidden:NEWLINE                  <>
+')'                      <)>
+IDENTIFIER               <cachedwithin>
+'='                      <=>
+IDENTIFIER               <createTimeSpan>
+'('                      <(>
+INTEGER_LITERAL          <1>
+','                      <,>
+INTEGER_LITERAL          <0>
+','                      <,>
+INTEGER_LITERAL          <0>
+','                      <,>
+INTEGER_LITERAL          <0>
+')'                      <)>
+'{'                      <{>
+Hidden:NEWLINE                  <>
+RETURN                   <return>
+'('                      <(>
+IDENTIFIER               <variables>
+'.'                      <.>
+IDENTIFIER               <availableAPIVersions>
+'.'                      <.>
+IDENTIFIER               <find>
+'('                      <(>
+IDENTIFIER               <arguments>
+'.'                      <.>
+IDENTIFIER               <requestedAPIVersion>
+')'                      <)>
+GT                       <>>
+INTEGER_LITERAL          <0>
+')'                      <)>
+'?'                      <?>
+Hidden:NEWLINE                  <>
+IDENTIFIER               <arguments>
+'.'                      <.>
+IDENTIFIER               <requestedAPIVersion>
+':'                      <:>
+Hidden:NEWLINE                  <>
+IDENTIFIER               <variables>
+'.'                      <.>
+IDENTIFIER               <availableAPIVersions>
+'['                      <[>
+INTEGER_LITERAL          <1>
+']'                      <]>
+';'                      <;>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+Hidden:NEWLINE                  <>
+'}'                      <}>
+/*===TREE===*/
+(scriptBlock
+  (componentDeclaration
+    component
+    (componentGuts
+      {
+      (element
+        (functionDeclaration
+          (accessType public)
+          (typeSpec (type boolean))
+          function
+          (identifier getAPIVersion)
+          (
+          (parameterList
+            (parameter
+              required
+              (parameterType (typeSpec (type numeric)))
+              (identifier requestedAPIVersion)
+            )
+          )
+          )
+          (functionAttribute
+            (identifier cachedwithin)
+            =
+            (simpleFunctionCall
+              (identifier createTimeSpan)
+              (
+              (argumentList
+                (argument
+                  (startExpression
+                    (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                  )
+                )
+                ,
+                (argument
+                  (startExpression
+                    (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+                  )
+                )
+                ,
+                (argument
+                  (startExpression
+                    (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+                  )
+                )
+                ,
+                (argument
+                  (startExpression
+                    (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+                  )
+                )
+              )
+              )
+            )
+          )
+          (compoundStatement
+            {
+            (statement
+              (returnStatement
+                return
+                (anExpression
+                  (startExpression
+                    (baseExpression
+                      (baseExpression
+                        (unaryExpression
+                          (memberExpression
+                            (parentheticalExpression
+                              (
+                              (startExpression
+                                (baseExpression
+                                  (baseExpression
+                                    (unaryExpression
+                                      (memberExpression
+                                        (identifier variables)
+                                        .
+                                        (identifier availableAPIVersions)
+                                        .
+                                        (qualifiedFunctionCall
+                                          (identifier find)
+                                          (
+                                          (argumentList
+                                            (argument
+                                              (startExpression
+                                                (baseExpression
+                                                  (unaryExpression
+                                                    (memberExpression (identifier arguments) . (identifier requestedAPIVersion))
+                                                  )
+                                                )
+                                              )
+                                            )
+                                          )
+                                          )
+                                        )
+                                      )
+                                    )
+                                  )
+                                  (compareExpressionOperator >)
+                                  (baseExpression (unaryExpression (primaryExpression (literalExpression 0))))
+                                )
+                              )
+                              )
+                            )
+                          )
+                        )
+                      )
+                      (ternaryExpression
+                        ?
+                        (startExpression
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression (identifier arguments) . (identifier requestedAPIVersion))
+                            )
+                          )
+                        )
+                        :
+                        (startExpression
+                          (baseExpression
+                            (unaryExpression
+                              (memberExpression
+                                (identifier variables)
+                                .
+                                (identifier availableAPIVersions)
+                                (arrayMemberExpression
+                                  [
+                                  (startExpression
+                                    (baseExpression (unaryExpression (primaryExpression (literalExpression 1))))
+                                  )
+                                  ]
+                                )
+                              )
+                            )
+                          )
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+              (endOfStatement ;)
+            )
+            }
+          )
+        )
+      )
+      }
+    )
+  )
+)
+/*======*/
+/*===DECOMPILE===*/
+component {
+  public boolean function getAPIVersion(required requestedAPIVersion) cachedwithin    {
+      return (variables.availableAPIVersions.find(arguments.requestedAPIVersion) > 0)?arguments.requestedAPIVersion:variables.availableAPIVersions[1];
+
+    }
+}
+/*======*/

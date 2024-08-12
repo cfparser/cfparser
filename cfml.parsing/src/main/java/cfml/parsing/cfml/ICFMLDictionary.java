@@ -31,7 +31,7 @@ public interface ICFMLDictionary
 	/**
 	 * Is this tag name an actual CF tag?
 	 * 
-	 * @param string
+	 * @param tagName
 	 *            the name o fhe tag
 	 * @return if it is or isn't
 	 */

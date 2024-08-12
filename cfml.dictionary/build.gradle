@@ -1,0 +1,10 @@
+dependencies {
+	implementation 'org.jdom:jdom2:2.0.6.1'
+
+	//implementation group: 'org.jdom', name: 'jdom', version:'6.5.0.Final'
+	testImplementation 'junit:junit:4.13.2'
+}
+
+jar.manifest.attributes(
+	'-exportcontents': 'cfml.dictionary.*'
+)

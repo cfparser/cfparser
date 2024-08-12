@@ -103,8 +103,8 @@ componentAttribute
 //i=identifier EQUALSOP^ v=baseExpression
    
 functionAttribute
-  : identifierWithColon op=EQUALSOP (value=identifier | valueString=constantExpression | function=functionCall)
-  | id=identifier ( op=(EQUALSOP|COLON) (value=identifier | valueString=constantExpression | function=functionCall) )?
+  : identifierWithColon op=EQUALSOP (value=identifier | valueString=constantExpression | function=simpleFunctionCall)
+  | id=identifier ( op=(EQUALSOP|COLON) (value=identifier | valueString=constantExpression | function=simpleFunctionCall) )?
   ;
 
 identifierWithColon
@@ -532,9 +532,13 @@ arrayMemberExpression
 	;
 
 functionCall
-	:(identifier | specialWord) LEFTPAREN argumentList RIGHTPAREN
-	body=compoundStatement?
-	;
+    :(identifier | specialWord) LEFTPAREN argumentList RIGHTPAREN
+    body=compoundStatement?
+    ;
+simpleFunctionCall
+    :(identifier | specialWord) LEFTPAREN argumentList RIGHTPAREN
+    body=compoundStatement?
+    ;
 qualifiedFunctionCall
 	:(identifier | reservedWord) LEFTPAREN argumentList RIGHTPAREN
 	body=compoundStatement?

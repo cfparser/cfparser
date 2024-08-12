@@ -1,0 +1,35 @@
+apply plugin: 'antlr'
+description = ''
+
+repositories {
+	mavenCentral()
+}
+
+sourceSets.main.antlr.srcDirs = ['src/main/antlr4/cfml']
+sourceSets.main.java.srcDirs = ['src/main/java', "${project.buildDir}/generated-src/antlr/main"]
+
+generateGrammarSource {
+	arguments += ["-package", "cfml", "-visitor"]
+	outputDirectory = file("${project.buildDir}/generated-src/antlr/main/cfml")
+}
+
+ext {
+	antlrVersion = '4.7'
+	slf4jVersion = '1.7.21'
+}
+
+jar.manifest.attributes(
+	'-exportcontents': 'cfml.parsing.*, net.jericho.*',
+)
+
+dependencies {
+	implementation project(':cfml.dictionary')
+	antlr group: 'org.antlr', name: 'antlr4', version: antlrVersion
+	implementation group: 'net.htmlparser.jericho', name: 'jericho-html', version: '3.4'
+	implementation group: 'org.antlr', name: 'antlr4-runtime', version: antlrVersion
+	implementation group: 'org.antlr', name: 'antlr-runtime', version: '3.5.2'
+	implementation group: 'javolution', name: 'javolution', version: '5.5.1'
+	implementation group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
+	implementation group: 'org.slf4j', name: 'slf4j-simple', version: slf4jVersion
+	testImplementation 'junit:junit:4.13.2'
+}

@@ -1,0 +1,168 @@
+plugins {
+	id "com.github.hierynomus.license" version "0.15.0"
+	id "com.diffplug.gradle.osgi.bndmanifest" version "3.18.1"
+	id 'net.researchgate.release' version '3.0.2' apply(false)
+}
+
+license {
+	header rootProject.file('LICENSE')
+	exclude "./cfml.dictionary/**"
+	include "./cfml.parsing/**/*.java"
+}
+
+allprojects {
+	buildDir = rootProject.buildDir.path + File.separator + project.name
+	apply plugin: 'maven-publish'
+	group = 'com.github.cfparser'
+}
+
+subprojects {
+	apply plugin: 'net.researchgate.release'
+	release {
+		pushReleaseVersionBranch = 'master'
+		preTagCommitMessage = '[Release Cycle] - pre tag commit: '
+		tagCommitMessage = '[Release Cycle] - creating tag: '
+		newVersionCommitMessage = '[Release Cycle] - new version commit: '
+		git {
+			requireBranch.set('master')
+			pushToRemote.set('origin')
+			pushToBranchPrefix.set('')
+			commitVersionFileOnly.set(false)
+			signTag.set(false)
+		}
+	}
+
+}
+publishing {
+	publications {
+		mavenJava(MavenPublication) {
+			pom {
+				name = 'coldfusion-parser'
+				description = 'Stand-Alone ColdFusion Parser. Combined forks from github.com/denuno/cfml.parsing and github.com/denuno/cfml.dictionary.'
+				url = 'https://github.com/cfparser/cfparser'
+				inceptionYear = '2012'
+				organization {
+					name = 'cfparser'
+				}
+				licenses {
+					license {
+						name = 'The New BSD License'
+						url = 'http://www.opensource.org/licenses/bsd-license.html'
+					}
+				}
+
+				developers {
+					developer {
+						id = 'ryan'
+						name = 'Ryan Eberly'
+						email = 'ryaneberly@gmail.com'
+						organization = 'cfparser'
+						organizationUrl = 'https://github.com/ryaneberly'
+					}
+					developer {
+						id = 'jerron'
+						name = 'Jerron James'
+						email = 'jjames967@gmail.com'
+						organization = 'cfparser'
+						organizationUrl = 'https://github.com/jjames967'
+					}
+				}
+
+				scm {
+					connection = 'scm:git:git@github.com:cfparser/cfparser.git'
+					developerConnection = 'scm:git:git@github.com:cfparser/cfparser.git'
+					url = 'git@github.com:cfparser/cfparser.git'
+					tag = 'cfparser-' + version
+				}
+			}
+		}
+	}
+}
+
+subprojects {
+	apply plugin: 'java'
+	apply plugin: 'com.diffplug.gradle.osgi.bndmanifest'
+	apply plugin: 'signing'
+
+	ext {
+		cfdistrorcFile = file("${System.properties['user.home']}/.cfdistrorc")
+		deployToMaven = cfdistrorcFile.exists()
+	}
+
+
+	jar.manifest.attributes(
+		'-removeheaders': 'Bnd-LastModified,Bundle-Name,Created-By,Tool,Private-Package',
+		'Bundle-SymbolicName': project.name,
+		'Bundle-Vendor': 'CFParser',
+	)
+	osgiBndManifest {
+		copyTo 'META-INF/MANIFEST.MF'
+	}
+
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+	tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
+
+	task sourcesJar(type: Jar) {
+		from sourceSets.main.allJava
+		archiveClassifier = 'sources'
+	}
+
+	task javadocJar(type: Jar) {
+		from javadoc
+		archiveClassifier = 'javadoc'
+	}
+
+	artifacts { archives javadocJar, sourcesJar }
+
+	repositories {
+		mavenLocal()
+        mavenCentral()
+		maven { url "https://cfmlprojects.org/artifacts" }
+	}
+
+	publishing {
+		publications {
+			mavenJava(MavenPublication) {
+				from components.java
+				artifact sourcesJar
+				artifact javadocJar
+				versionMapping {
+					usage('java-api') {
+						fromResolutionOf('runtimeClasspath')
+					}
+					usage('java-runtime') {
+						fromResolutionResult()
+					}
+				}
+				//pom rootProject.publishing.publications.mavenJava.pom
+			}
+		}
+		repositories {
+			maven {
+				// change URLs to point to your repos, e.g. http://my.org/repo
+				// https://oss.sonatype.org/service/local/staging/deploy/maven2
+				// https://oss.sonatype.org/content/repositories/snapshots
+				def releasesRepoUrl = "$rootProject.buildDir/repos/releases"
+				def snapshotsRepoUrl = "$rootProject.buildDir/repos/snapshots"
+				name = 'build'
+				url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+			}
+		}
+	}
+
+	if (deployToMaven) {
+		ext['signing.keyId'] = project.findProperty('signkeyid')
+		ext['signing.password'] = project.findProperty('pass')
+		ext['signing.secretKeyRingFile'] = findProperty('secring')
+		println ext['signing.secretKeyRingFile']
+		signing { sign configurations.archives }
+	} else {
+		task signArchives() {
+			description = "Add a ${cfdistrorcFile} with signing info to enbable jar signing"
+			doFirst {
+				println "Signing is disabled without keys"
+			}
+		}
+	}
+}

@@ -65,7 +65,7 @@ public class Procedure implements Comparable {
 	 * 
 	 * @param activeParams
 	 *            - the parameters currently entered by the user
-	 * @return A HashMap between triggered Parameter & it's status (see Procedure.PARAM_*)
+	 * @return A HashMap between triggered Parameter &amp; it's status (see Procedure.PARAM_*)
 	 */
 	public HashMap getAvailParams(HashMap activeParams) {
 		/*
@@ -73,7 +73,7 @@ public class Procedure implements Comparable {
 		 * parameters. For every Parameter the Procedure has it asks it whether it would be triggered by any of the
 		 * passed in active parameters.
 		 * 
-		 * If so it allocates whether it is required & triggered or just triggered.
+		 * If so it allocates whether it is required &amp; triggered or just triggered.
 		 */
 		HashMap params2Return = new HashMap();
 		Iterator paramIter = this.parameters.iterator();
@@ -123,6 +123,10 @@ public class Procedure implements Comparable {
 	public static final byte W3C = 0x4;
 	/** user defined tag */
 	public static final byte USR = 0x8;
+	/** form tag */
+	public static final byte FRM = 0x10;
+	/** table tag */
+	public static final byte TBL = 0x20;
 	
 	/** this procedure's name */
 	protected String name = "";
