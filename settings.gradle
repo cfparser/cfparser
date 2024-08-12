@@ -1,0 +1,3 @@
+rootProject.name = 'cfparser'
+include ':cfml.dictionary'
+include ':cfml.parsing'
