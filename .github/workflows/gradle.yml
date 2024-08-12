@@ -5,7 +5,7 @@ on:
     branches:
       - main
       - master
-      - dev
+      - develop
 
 jobs:
   gradle:
