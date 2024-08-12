@@ -14,7 +14,7 @@ allprojects {
 	apply plugin: 'maven-publish'
 
 	group = 'com.github.cfparser'
-	version = '2.12.0-SNAPSHOT'
+	version = '2.13.0-SNAPSHOT'
 }
 
 publishing {
