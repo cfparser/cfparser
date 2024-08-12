@@ -19,12 +19,13 @@ allprojects {
 subprojects {
 	apply plugin: 'net.researchgate.release'
 	release {
+		versionPropertyFile = "${projectDir}/gradle.properties"
 		pushReleaseVersionBranch = 'master'
 		preTagCommitMessage = '[Release Cycle] - pre tag commit: '
 		tagCommitMessage = '[Release Cycle] - creating tag: '
 		newVersionCommitMessage = '[Release Cycle] - new version commit: '
 		git {
-			requireBranch.set('master')
+			requireBranch.set('develop')
 			pushToRemote.set('origin')
 			pushToBranchPrefix.set('')
 			commitVersionFileOnly.set(false)
