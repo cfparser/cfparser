@@ -1,6 +1,7 @@
 plugins {
 	id "com.github.hierynomus.license" version "0.15.0"
 	id "com.diffplug.gradle.osgi.bndmanifest" version "3.18.1"
+	id 'net.researchgate.release' version '3.0.2' apply(false)
 }
 
 license {
@@ -12,11 +13,26 @@ license {
 allprojects {
 	buildDir = rootProject.buildDir.path + File.separator + project.name
 	apply plugin: 'maven-publish'
-
 	group = 'com.github.cfparser'
-	version = '2.13.0-SNAPSHOT'
 }
 
+subprojects {
+	apply plugin: 'net.researchgate.release'
+	release {
+		pushReleaseVersionBranch = 'master'
+		preTagCommitMessage = '[Release Cycle] - pre tag commit: '
+		tagCommitMessage = '[Release Cycle] - creating tag: '
+		newVersionCommitMessage = '[Release Cycle] - new version commit: '
+		git {
+			requireBranch.set('master')
+			pushToRemote.set('origin')
+			pushToBranchPrefix.set('')
+			commitVersionFileOnly.set(false)
+			signTag.set(false)
+		}
+	}
+
+}
 publishing {
 	publications {
 		mavenJava(MavenPublication) {
