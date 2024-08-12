@@ -19,19 +19,35 @@ cfscriptBlock
   ;
 
 componentDeclaration
-  : COMPONENT componentAttribute* componentGuts //-> ( COMPDECL componentAttribute* componentGuts)
+  : componentModifier? COMPONENT componentAttribute* componentGuts //-> ( COMPDECL componentAttribute* componentGuts)
   ;
 interfaceDeclaration
   : INTERFACE componentAttribute* componentGuts //-> ( COMPDECL componentAttribute* componentGuts)
   ;
 
+staticBlock
+  : STATIC LEFTCURLYBRACKET ( statement )* RIGHTCURLYBRACKET
+  ;
+
 element
   : functionDeclaration
+  | staticBlock
   | statement
   ;
 
+componentModifier
+  : ABSTRACT
+  | FINAL
+  ;
+
+functionModifier
+  : STATIC
+  | ABSTRACT
+  | FINAL
+  ;
+
 functionDeclaration
-  : accessType? typeSpec? FUNCTION identifier 
+  : functionModifier* accessType? typeSpec? FUNCTION identifier 
   	LEFTPAREN parameterList? RIGHTPAREN
   	functionAttribute* body=compoundStatement?
   ;
@@ -501,10 +517,10 @@ memberExpression
   	| parentheticalExpression
   	|arrayMemberExpression parentheticalMemberExpression?)
   ( 
-    (DOT+|nullSafeOperator) qualifiedFunctionCall
+    (DOT+|nullSafeOperator|DOUBLECOLUMN) qualifiedFunctionCall
     | arrayMemberExpression parentheticalMemberExpression?
-    | (DOT+|nullSafeOperator) primaryExpressionIRW 
-    | (DOT+|nullSafeOperator) identifier
+    | (DOT+|nullSafeOperator|DOUBLECOLUMN) primaryExpressionIRW 
+    | (DOT+|nullSafeOperator|DOUBLECOLUMN) identifier
   )*
 ;
   
@@ -536,15 +552,6 @@ parentheticalMemberExpression
 javaCallMemberExpression
 	:primaryExpressionIRW LEFTPAREN argumentList RIGHTBRACKET 
 	;	
-
-memberExpressionSuffix
-  : indexSuffix
-  | propertyReferenceSuffix
-  ;
-
-propertyReferenceSuffix
-  : DOT LT* identifier
-  ;
 
 indexSuffix
   : LEFTBRACKET  LT* (primaryExpression | parentheticalExpression) LT* RIGHTBRACKET 
@@ -603,7 +610,7 @@ argumentName
 
 multipartIdentifier
 	:
-		identifier ((DOT|nullSafeOperator) identifierOrReservedWord)*;
+		identifier ((DOT|nullSafeOperator|DOUBLECOLUMN) identifierOrReservedWord)*;
 
 nullSafeOperator
     :
@@ -613,6 +620,7 @@ identifier
 	:	(COMPONENT
 	| INTERFACE
 	| IDENTIFIER
+  | STATIC
   | CONTAIN
   | VAR
   | TO

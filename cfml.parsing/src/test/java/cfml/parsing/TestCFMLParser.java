@@ -55,7 +55,7 @@ public class TestCFMLParser {
 			System.out.println("Source text with content:\n" + element);
 		}
 		System.out.println(fCfmlParser.printMessages());
-		assertEquals(14, elementList.size());
+		assertEquals(16, elementList.size());
 	}
 	
 	@Test
@@ -455,7 +455,7 @@ public class TestCFMLParser {
 			}
 			System.out.println("Source text with content:\n" + element);
 		}
-		assertEquals(21, elementList.size());
+		assertEquals(23, elementList.size());
 	}
 	
 }
