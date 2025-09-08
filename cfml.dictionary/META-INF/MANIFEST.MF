@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: cfml.dictionary
+Bundle-Vendor: CFParser
+Bundle-Version: 2.5.1
+Export-Package: cfml.dictionary;uses:="cfml.dictionary.preferences,org
+ .xml.sax";version="2.5.1",cfml.dictionary.preferences;version="2.5.1"
+ ,cfml.dictionary.syntax;uses:="cfml.dictionary";version="2.5.1"
+Import-Package: cfml.dictionary,cfml.dictionary.preferences,cfml.dicti
+ onary.syntax,javax.xml.parsers,org.jdom2,org.jdom2.input,org.jdom2.xp
+ ath,org.w3c.dom,org.xml.sax
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=1.8))"
+
