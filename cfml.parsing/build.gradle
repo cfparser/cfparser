@@ -13,8 +13,11 @@ generateGrammarSource {
 	outputDirectory = file("${project.buildDir}/generated-src/antlr/main/cfml")
 }
 
+// Fix task dependency for Gradle 8.5+
+sourcesJar.dependsOn generateGrammarSource
+
 ext {
-	antlrVersion = '4.7'
+	antlrVersion = '4.13.1'
 	slf4jVersion = '1.7.21'
 }
 

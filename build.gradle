@@ -1,5 +1,5 @@
 plugins {
-	id "com.github.hierynomus.license" version "0.15.0"
+	id "com.github.hierynomus.license" version "0.16.1"
 	id "com.diffplug.gradle.osgi.bndmanifest" version "3.18.1"
 	id 'net.researchgate.release' version '3.0.2' apply(false)
 }
