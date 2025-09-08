@@ -81,7 +81,7 @@ publishing {
 
 subprojects {
 	apply plugin: 'java'
-	apply plugin: 'com.diffplug.gradle.osgi.bndmanifest'
+	// apply plugin: 'com.diffplug.gradle.osgi.bndmanifest'  // Temporarily disabled for Java 17 compatibility
 	apply plugin: 'signing'
 
 	ext {
@@ -90,17 +90,18 @@ subprojects {
 	}
 
 
-	jar.manifest.attributes(
-		'-removeheaders': 'Bnd-LastModified,Bundle-Name,Created-By,Tool,Private-Package',
-		'Bundle-SymbolicName': project.name,
-		'Bundle-Vendor': 'CFParser',
-	)
-	osgiBndManifest {
-		copyTo 'META-INF/MANIFEST.MF'
-	}
+	// Temporarily disabled OSGi manifest for Java 17 compatibility
+	// jar.manifest.attributes(
+	//	'-removeheaders': 'Bnd-LastModified,Bundle-Name,Created-By,Tool,Private-Package',
+	//	'Bundle-SymbolicName': project.name,
+	//	'Bundle-Vendor': 'CFParser',
+	// )
+	// osgiBndManifest {
+	//	copyTo 'META-INF/MANIFEST.MF'
+	// }
 
-	sourceCompatibility = 1.8
-	targetCompatibility = 1.8
+	sourceCompatibility = 17
+	targetCompatibility = 17
 	tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
 
 	task sourcesJar(type: Jar) {
